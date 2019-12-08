@@ -2,7 +2,19 @@
   "name": "@f-design/component-library",
   "version": "0.1.2",
   "description": "A component library built and maintained by Featherweight Design",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "postversion": "git push && git push --tags",
+    "prepare": "yarn run build",
+    "prepublishOnly": "yarn run test && yarn run lint",
+    "preversion": "yarn run lint",
+    "test": "jest --config jestconfig.json",
+    "version": "yarn run format && git add -A src"
+  },
   "homepage": "https://github.com/HartiganHM/component-library#readme",
   "repository": {
     "type": "git",
@@ -11,14 +23,19 @@
   "bugs": {
     "url": "https://github.com/HartiganHM/component-library/issues"
   },
+  "files": [
+    "lib/**/*"
+  ],
   "keywords": [],
-  "author": "",
+  "author": "Hugh Hartigan",
   "license": "ISC",
-  "scripts": {
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.2.0",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.3"
   }
 }
