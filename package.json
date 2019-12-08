@@ -1,0 +1,24 @@
+{
+  "name": "@f-design/component-library",
+  "version": "0.1.2",
+  "description": "A component library built and maintained by Featherweight Design",
+  "main": "index.js",
+  "homepage": "https://github.com/HartiganHM/component-library#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HartiganHM/component-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HartiganHM/component-library/issues"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.3"
+  }
+}
