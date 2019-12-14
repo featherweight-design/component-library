@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./lib && tsc",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
