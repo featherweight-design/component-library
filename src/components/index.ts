@@ -1,3 +1,5 @@
+import { CircleLoader } from './Loaders';
 import ExpansionPanel from './ExpansionPanel/ExpansionPanel';
+import { HeaderMenu, SideNavigation } from './Navigation';
 
-export { ExpansionPanel };
+export { CircleLoader, ExpansionPanel, HeaderMenu, SideNavigation };
