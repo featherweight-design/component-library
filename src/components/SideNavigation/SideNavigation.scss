@@ -1,0 +1,233 @@
+.side-navigation {
+  top: 0;
+  left: 0;
+  right: auto;
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+  border: 1px solid #d8dde6;
+  background-color: #fff;
+  box-shadow: rgba(99, 115, 138, 0.2) 0px 5px 5px -3px,
+    rgba(99, 115, 138, 0.14) 0px 8px 10px 1px,
+    rgba(99, 115, 138, 0.12) 0px 3px 14px 2px;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: width 0.3s ease-in-out;
+  outline: none;
+  z-index: 1200;
+  &.collapsed {
+    width: 90px;
+  }
+  *:focus {
+    outline: none;
+  }
+  *:hover {
+    text-decoration: none;
+  }
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 88px;
+    padding: 1.5rem;
+  }
+  &__logo-link {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+  }
+  &__logo-back {
+    position: relative;
+    left: 0;
+    color: #63738a;
+    transition: 0.3s ease-in-out;
+    &-hidden {
+      color: rgba(0, 0, 0, 0);
+    }
+    &-collapsed-away {
+      left: -1rem;
+    }
+  }
+  &__logo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    &-away {
+      left: 0rem;
+    }
+    &-home {
+      left: -1.25rem;
+      cursor: default;
+    }
+    &-collapsed-away {
+      left: -0.75rem;
+    }
+  }
+  &__logo-image {
+    height: 1.75rem;
+  }
+  &__logo-text {
+    margin-left: 0.65rem;
+    color: #4a4a4a;
+    font-size: 1.5rem;
+    text-decoration: none;
+    visibility: visible;
+    transition: color 0.1s ease-in-out;
+    &.hidden-text {
+      color: rgba(0, 0, 0, 0);
+    }
+  }
+  &__menu {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  &__option-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem;
+    &-selected {
+      background-color: #f8f8f8;
+    }
+    &-collapsed {
+      padding: 0.5rem;
+    }
+  }
+  &__option-title {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 3.375rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    cursor: pointer;
+    transition: color 0.1s ease-in-out;
+    &-selected {
+      color: #0073d1;
+      cursor: default;
+    }
+    &-hidden {
+      color: rgba(0, 0, 0, 0);
+    }
+  }
+  &__option-icon {
+    position: absolute;
+    left: 1.25rem;
+    color: rgba(99, 115, 138, 0.8);
+    font-size: 1rem;
+    transition: 0.2s 0.1s ease-in-out;
+    &-selected {
+      color: #0073d1;
+    }
+    &-hidden {
+      left: 1.75rem;
+    }
+  }
+  &__option-hover-menu {
+    position: absolute;
+    left: 6.5rem;
+    min-width: 150px;
+    margin-top: -0.5rem;
+    padding-bottom: 0.25rem;
+    border: 1px solid #eee;
+    background-color: #fff;
+    box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  &__option-hover-title {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(216, 221, 230);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    &-selected {
+      color: #0073d1;
+    }
+  }
+  &__option-expansion-panel {
+    width: 100%;
+  }
+  &__sub-option {
+    padding: 0.5rem 3.375rem;
+    border-radius: 0.25rem;
+    text-transform: capitalize;
+    cursor: pointer;
+    &-selected {
+      background-color: #ebecee;
+    }
+    &-hover {
+      margin: 0 auto;
+      padding: 0.5rem 1rem;
+      border-radius: 0.125rem;
+    }
+    &:hover {
+      background-color: #ebecee;
+      > .side-navigation__sub-option-text {
+        color: #0073d1;
+      }
+    }
+  }
+  &__sub-option-text {
+    color: #6c7b91;
+    font-size: 1rem;
+    font-weight: normal;
+    transition: none !important;
+    &.selected {
+      color: #000;
+      font-weight: 500;
+    }
+  }
+  &__collapse-toggle {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 0.5rem;
+    cursor: pointer;
+    &:hover {
+      color: #0073d1;
+      > * {
+        color: #0073d1;
+      }
+    }
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 11.25rem;
+      border-top: 1px solid rgb(216, 221, 230);
+      transition: width 0.3s ease-in-out;
+    }
+    &.collapsed::before {
+      width: 2.5rem;
+    }
+  }
+  &__collapse-icon {
+    position: absolute;
+    left: 2rem;
+    font-size: 1rem;
+    color: #63738a;
+    transition: 0.2s 0.1s ease-in-out;
+    &-collapsed {
+      left: 2rem;
+      transform: rotate(180deg);
+    }
+  }
+  &__collapse-text {
+    width: 100%;
+    margin-left: 3.375rem;
+    transition: color 0.1s ease-in-out;
+    &.hidden-text {
+      color: rgba(0, 0, 0, 0);
+    }
+  }
+}
