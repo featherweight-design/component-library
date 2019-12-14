@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 
-import { CurrentlyViewing, SideNavigationOptions } from '../../types';
-import ExpansionPanel from '../ExpansionPanel/ExpansionPanel';
+import { CurrentlyViewing, SideNavigationOptions } from '../../../types';
+import ExpansionPanel from '../../ExpansionPanel/ExpansionPanel';
 import './SideNavigation.scss';
 
 type SideNavigationProps = {

@@ -6,7 +6,7 @@ import {
   HeaderMenuOptions,
   HeaderMenuOption,
   HeaderMenuSubOption
-} from '../../types'
+} from '../../../types'
 import './HeaderMenu.scss';
 
 type HeaderMenuProps = {
