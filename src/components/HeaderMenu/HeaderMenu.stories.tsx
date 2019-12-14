@@ -9,7 +9,7 @@ const currentlyViewing = {
   path: '/notifications',
 };
 
-storiesOf('Header Menu', module)
+storiesOf('Navigation/Header Menu', module)
   .addDecorator(checkA11y)
   .add('Default', () => (
     <HeaderMenu
