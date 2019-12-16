@@ -1,4 +1,4 @@
-import React, { Component, Fragment, MouseEvent } from 'react';
+import React, { Component, Fragment, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -60,7 +60,7 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
     }
   };
 
-  handleHeaderMenuOutsideClick = (event: MouseEvent) => {
+  handleHeaderMenuOutsideClick = (event: SyntheticEvent) => {
     if (this.subOptionsMenu && !this.subOptionsMenu.contains(event.currentTarget)) {
       this.handleRemoveEventListener();
       this.setState({ selectedOption: null });
