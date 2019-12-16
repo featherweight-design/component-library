@@ -10,6 +10,8 @@
 
 # production
 /lib
+/lib-esm
+/_bundles
 
 # misc
 /notes

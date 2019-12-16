@@ -2,10 +2,9 @@
   "name": "@f-design/component-library",
   "version": "0.1.4",
   "description": "A component library built and maintained by Featherweight Design",
-  "main": "lib/components/index.js",
-  "types": "lib/types.js",
+  "main": "_bundles/main.js",
   "scripts": {
-    "build": "rm -rf ./lib && tsc",
+    "build": "rm -rf _bundles lib lib-esm && tsc && tsc -m es6 --outDir lib-esm && npx webpack",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -17,7 +16,7 @@
   "homepage": "https://github.com/HartiganHM/component-library#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HartiganHM/component-library.git"
+    "url": "git+https://githgit fub.com/HartiganHM/component-library.git"
   },
   "bugs": {
     "url": "https://github.com/HartiganHM/component-library/issues"
@@ -66,6 +65,7 @@
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.1",
+    "terser-webpack-plugin": "^2.3.0",
     "ts-jest": "^24.2.0",
     "ts-loader": "^6.2.1",
     "tslint": "^5.20.1",
