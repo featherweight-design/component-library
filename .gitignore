@@ -11,7 +11,7 @@
 # production
 /lib
 /lib-esm
-/_bundles
+/dist
 
 # misc
 /notes

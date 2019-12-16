@@ -2,7 +2,7 @@
   "name": "@f-design/component-library",
   "version": "0.1.4",
   "description": "A component library built and maintained by Featherweight Design",
-  "main": "_bundles/main.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "rm -rf _bundles lib lib-esm && tsc && tsc -m es6 --outDir lib-esm && npx webpack",
     "build-storybook": "build-storybook",

@@ -2,12 +2,13 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     main: './src/index.ts',
     'main.min': './src/index.ts',
   },
   output: {
-    path: path.resolve(__dirname, '_bundles'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     libraryTarget: 'umd',
     library: '@f-design/component-library',
@@ -35,6 +36,11 @@ module.exports = {
         query: {
           declaration: false,
         },
+      },
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
       },
       {
         test: /\.scss$/,
