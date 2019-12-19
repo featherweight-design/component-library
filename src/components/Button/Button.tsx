@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { ReactChild } from 'react';
+
+import './Button.scss';
 
 type ButtonProps = {
-  value: string | number;
+  children: string | number | ReactChild | ReactChild[];
 }
 
-const Button = ({ value }: ButtonProps) => (
-  <button>{value}</button>
+const Button = ({ children }: ButtonProps) => (
+  <button className="fd-button">
+    {children}
+  </button>
 )
 
 export default Button;
