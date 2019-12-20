@@ -1,0 +1,18 @@
+// Color contrast mixin from https://codepen.io/davidhalford/pen/wlDxL
+
+@mixin generateColorContrast($hexValue) {
+  $colorBrightness: round(
+    (red($hexValue) * 0.299) + (green($hexValue) * 0.587) +
+      (blue($hexValue) * 0.114)
+  );
+
+  $lightColor: round(
+    (red(#ffffff) * 0.299) + (green(#ffffff) * 0.587) + (blue(#ffffff) * 0.114)
+  );
+
+  @if abs($colorBrightness) < ($lightColor / 2) {
+    color: white;
+  } @else {
+    color: black;
+  }
+}
