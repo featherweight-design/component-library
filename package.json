@@ -8,7 +8,7 @@
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint './src/**/*.{js,ts,tsx}'",
     "storybook": "start-storybook -p 6006",
     "test": "jest --config jestconfig.json",
     "version": "yarn run format && git add -A src"
