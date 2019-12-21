@@ -12,6 +12,7 @@ const generateColorContrast = (
   const red = parseInt(rgbFromHex, 16);
   const green = parseInt(rgbFromHex, 16);
   const blue = parseInt(rgbFromHex, 16);
+
   const result =
     red * 0.299 + green * 0.587 + blue * 0.114 > threshold ? '#000' : '#fff';
 
