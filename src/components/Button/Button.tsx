@@ -1,4 +1,4 @@
-import React, { ReactChild } from 'react';
+import React, { FunctionComponent, ReactChild } from 'react';
 import classnames from 'classnames';
 
 import { CircleLoader } from '../Loaders';
@@ -21,7 +21,7 @@ type ButtonType =
   | 'destructive'
   | 'outline-destructive';
 
-const Button = ({
+const Button: FunctionComponent<ButtonProps> = ({
   children,
   type,
   name,
