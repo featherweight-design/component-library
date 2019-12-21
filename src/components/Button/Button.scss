@@ -1,5 +1,4 @@
 @import '../../styles/main.scss';
-@import '../../styles/mixins.scss';
 
 .fd-button {
   position: relative;
@@ -16,8 +15,7 @@
     color: $brand-active;
   }
   &:focus {
-    outline: none;
-    box-shadow: 0 0 3px 2px $brand-focus-outline;
+    @include focus-styles;
   }
   &:disabled {
     cursor: not-allowed;
@@ -105,7 +103,7 @@
   &-destructive,
   &-outline-destructive {
     &:focus {
-      box-shadow: 0 0 3px 2px $destructive-focus-outline;
+      @include error-focus-styles;
     }
   }
   &-default-destructive,
