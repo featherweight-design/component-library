@@ -26,4 +26,14 @@ storiesOf('Button', module)
       <Button type="destructive" disabled>Destructive</Button>
       <Button type="outline-destructive" disabled>Outline Destructive</Button>
     </div>
+  )).add('Loading', () => (
+    <div>
+      <Button loading>Default</Button>
+      <Button type="default-destructive" loading>Default Destructive</Button>
+      <Button type="brand" loading>Brand</Button>
+      <Button type="neutral" loading>Neutral</Button>
+      <Button type="outline" loading>Outline</Button>
+      <Button type="destructive" loading>Destructive</Button>
+      <Button type="outline-destructive" loading>Outline Destructive</Button>
+    </div>
   ));

@@ -2,6 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .fd-button {
+  position: relative;
   border: 2px solid transparent;
   border-radius: 2rem;
   box-sizing: border-box;
@@ -21,7 +22,8 @@
   &:disabled {
     cursor: not-allowed;
     color: $gray-5;
-    &-hover, &-active {
+    &-hover,
+    &-active {
       color: $gray-5;
     }
   }
@@ -64,7 +66,8 @@
     &:active {
       border-color: $brand-active;
     }
-    &:disabled {}
+    &:disabled {
+    }
   }
   &-destructive {
     background-color: $destructive;
@@ -141,6 +144,26 @@
     &:disabled {
       border-color: $gray-6;
       background-color: $white;
+    }
+  }
+  &-loading {
+    > .fd-button__value {
+      color: transparent;
+    }
+    > .fd-button__loader-container {
+      position: absolute;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  &-brand,
+  &-neutral,
+  &-outline,
+  &-outline-destructive {
+    > .fd-button__loader-container {
+      top: 0.5rem;
     }
   }
 }
