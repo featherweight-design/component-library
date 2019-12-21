@@ -5,8 +5,8 @@ import {
   CurrentlyViewing,
   HeaderMenuOptions,
   HeaderMenuOption,
-  HeaderMenuSubOption
-} from '../../../types'
+  HeaderMenuSubOption,
+} from '../../../types';
 import './HeaderMenu.scss';
 
 type HeaderMenuProps = {
@@ -14,11 +14,11 @@ type HeaderMenuProps = {
   menuOptions: HeaderMenuOptions;
   onNavigate: (currentlyViewing: CurrentlyViewing) => void;
   defaultTitle: string;
-}
+};
 
 type HeaderMenuState = {
   selectedOption: string | null;
-}
+};
 
 class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
   state = {
@@ -44,8 +44,8 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
       if (!selectedOption) {
         document.addEventListener(
           'click',
-          this.handleHeaderMenuOutsideClick as any as EventListener,
-          false,
+          (this.handleHeaderMenuOutsideClick as any) as EventListener,
+          false
         );
       }
 
@@ -61,7 +61,10 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
   };
 
   handleHeaderMenuOutsideClick = (event: SyntheticEvent) => {
-    if (this.subOptionsMenu && !this.subOptionsMenu.contains(event.currentTarget)) {
+    if (
+      this.subOptionsMenu &&
+      !this.subOptionsMenu.contains(event.currentTarget)
+    ) {
       this.handleRemoveEventListener();
       this.setState({ selectedOption: null });
     }
@@ -87,10 +90,10 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
   handleRemoveEventListener = () => {
     document.removeEventListener(
       'click',
-      this.handleHeaderMenuOutsideClick as any as EventListener,
-      false,
+      (this.handleHeaderMenuOutsideClick as any) as EventListener,
+      false
     );
-  }
+  };
 
   // RENDER METHODS
   renderCurrentlyViewingHeader = ({ title, subTitle }: CurrentlyViewing) => {
@@ -141,12 +144,12 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
                   role="menuitem"
                   tabIndex={0}
                   onClick={() =>
-                    !selectedOption
-                    && this.handleSelectOption(option, menuOptions[option])
+                    !selectedOption &&
+                    this.handleSelectOption(option, menuOptions[option])
                   }
                   onKeyDown={() =>
-                    !selectedOption
-                    && this.handleSelectOption(option, menuOptions[option])
+                    !selectedOption &&
+                    this.handleSelectOption(option, menuOptions[option])
                   }
                 >
                   {icon}
@@ -157,21 +160,21 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
                     role="menuitem"
                     tabIndex={index}
                     onClick={() =>
-                      !selectedOption
-                      && this.handleSelectOption(option, menuOptions[option])
+                      !selectedOption &&
+                      this.handleSelectOption(option, menuOptions[option])
                     }
                     onKeyDown={() =>
-                      !selectedOption
-                      && this.handleSelectOption(option, menuOptions[option])
+                      !selectedOption &&
+                      this.handleSelectOption(option, menuOptions[option])
                     }
                   >
-                    {typeof (indicator) === 'number' && indicator}
+                    {typeof indicator === 'number' && indicator}
                   </div>
                 )}
                 {subOptions && selectedOption === option && (
                   <div
                     className="header-menu__sub-options"
-                    ref={(element) => {
+                    ref={element => {
                       this.subOptionsMenu = element;
                     }}
                   >
@@ -201,9 +204,7 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
 
     return subOptions
       .filter(subOption => subOption.hasAccess)
-      .map(({
-        label, icon, path, href,
-      }, index) => {
+      .map(({ label, icon, path, href }, index) => {
         const key = `${label}__${index}`;
         const isSelected = path === currentlyViewing.path;
         const subOptionClassNames = classNames({
@@ -214,7 +215,6 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
             .join('-')}`]: true,
           'header-menu__sub-option-link-selected': isSelected,
         });
-        
 
         if (href) {
           return (
@@ -231,7 +231,9 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
                 this.setState({ selectedOption: null });
               }}
             >
-              <i className="material-icons header-menu__sub-option-icon">{icon}</i>
+              <i className="material-icons header-menu__sub-option-icon">
+                {icon}
+              </i>
               {label}
             </a>
           );
@@ -251,7 +253,9 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
                 !isSelected && this.handleSelectSubOption(label, path)
               }
             >
-              <i className="material-icons header-menu__sub-option-icon">{icon}</i>
+              <i className="material-icons header-menu__sub-option-icon">
+                {icon}
+              </i>
               {label}
             </div>
           );
@@ -268,8 +272,8 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
       <div className="header-menu">
         <div className="header-menu__left">
           <div className="header-menu__location-container">
-            {currentlyViewing
-              && this.renderCurrentlyViewingHeader(currentlyViewing)}
+            {currentlyViewing &&
+              this.renderCurrentlyViewingHeader(currentlyViewing)}
           </div>
         </div>
 

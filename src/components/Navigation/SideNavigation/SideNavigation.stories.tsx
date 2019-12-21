@@ -8,11 +8,7 @@ const sideNavigationMenuOptions = {
   user: {
     icon: 'person',
     titleType: 'subOption option',
-    subOptions: [
-      'my info',
-      'notifications',
-      'logout'
-    ],
+    subOptions: ['my info', 'notifications', 'logout'],
   },
   settings: {
     icon: 'settings_applications',
@@ -24,7 +20,7 @@ const sideNavigationMenuOptions = {
 const currentlyViewing = {
   path: '/user/my info',
   title: 'user',
-}
+};
 
 storiesOf('Navigation/Side Navigation', module)
   .addDecorator(checkA11y)
@@ -37,7 +33,8 @@ storiesOf('Navigation/Side Navigation', module)
         subOption: 'my info',
       }}
     />
-  )).add('Collapsed by default', () => (
+  ))
+  .add('Collapsed by default', () => (
     <SideNavigation
       isCollapsed
       currentlyViewing={currentlyViewing}
@@ -47,4 +44,4 @@ storiesOf('Navigation/Side Navigation', module)
         subOption: 'my info',
       }}
     />
-  ))
+  ));

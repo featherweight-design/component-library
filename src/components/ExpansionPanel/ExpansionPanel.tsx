@@ -10,13 +10,16 @@ type ExpansionPanelProps = {
   title: string;
   type: string;
   onClick: (event: MouseEvent | KeyboardEvent) => void;
-}
+};
 
 type ExpansionPanelState = {
   isExpanded: boolean;
-}
+};
 
-class ExpansionPanel extends Component<ExpansionPanelProps, ExpansionPanelState> {
+class ExpansionPanel extends Component<
+  ExpansionPanelProps,
+  ExpansionPanelState
+> {
   state = {
     isExpanded: this.props.isExpanded,
   };
@@ -44,20 +47,15 @@ class ExpansionPanel extends Component<ExpansionPanelProps, ExpansionPanelState>
     }
   }
 
-  getExpansionChildrenHeight = () => this.expansionChildren && this.expansionChildren.clientHeight;
+  getExpansionChildrenHeight = () =>
+    this.expansionChildren && this.expansionChildren.clientHeight;
 
   handleToggleExpansion = () => {
     this.setState(({ isExpanded }) => ({ isExpanded: !isExpanded }));
   };
 
   render() {
-    const {
-      className,
-      title,
-      children,
-      type,
-      onClick,
-    } = this.props;
+    const { className, title, children, type, onClick } = this.props;
     const { isExpanded } = this.state;
 
     const containerClassNames = classNames({
@@ -110,7 +108,7 @@ class ExpansionPanel extends Component<ExpansionPanelProps, ExpansionPanelState>
 
         <div
           className={childWrapperClassName}
-          ref={(element) => {
+          ref={element => {
             this.expansionChildren = element;
           }}
         >

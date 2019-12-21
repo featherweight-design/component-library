@@ -1,5 +1,5 @@
 // NAVIGATION
-export interface CurrentlyViewingTab  {
+export interface CurrentlyViewingTab {
   label: string;
   path: string;
   disabled: boolean;
@@ -18,7 +18,7 @@ export interface CurrentlyViewing {
 }
 
 export interface HeaderMenuOptions {
-  [key: string]: HeaderMenuOption
+  [key: string]: HeaderMenuOption;
 }
 
 export interface HeaderMenuOption {
@@ -44,6 +44,5 @@ export interface SideNavigationOptions {
     subOptions: string[];
     titleType: string;
     // titleType: 'option' | 'subOption' | 'option subOption' | 'subOption option';
-  }
+  };
 }
-

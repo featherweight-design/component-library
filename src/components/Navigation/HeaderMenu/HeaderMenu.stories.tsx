@@ -27,7 +27,7 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'search',
         },
       }}
-      onNavigate={() => { }}
+      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ))
@@ -36,7 +36,7 @@ storiesOf('Navigation/Header Menu', module)
       currentlyViewing={currentlyViewing}
       menuOptions={{
         settings: {
-          subTitle: "Bob H.",
+          subTitle: 'Bob H.',
           icon: 'settings',
           subOptions: [
             {
@@ -84,7 +84,7 @@ storiesOf('Navigation/Header Menu', module)
           ],
         },
       }}
-      onNavigate={() => { }}
+      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ))
@@ -102,7 +102,7 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'search',
         },
       }}
-      onNavigate={() => { }}
+      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ));

@@ -20,23 +20,26 @@ type SideNavigationProps = {
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   logoAssetPath?: string;
   logoTitle?: string;
-}
+};
 
 type SideNavigationState = {
   isCollapsed: boolean;
   selectedOption: string | null;
   selectedSubOption: string | null;
-}
+};
 
 const getSubOptions = (options: SideNavigationOptions) =>
   Object.keys(options).reduce(
     (accumulator, option) => [...accumulator, ...options[option].subOptions],
-    [] as string[],
+    [] as string[]
   );
 
-const getPreSelection = (options: string[], currentlyViewing = { path: '/' }) => {
+const getPreSelection = (
+  options: string[],
+  currentlyViewing = { path: '/' }
+) => {
   const locationArray = currentlyViewing.path.split('/');
-  const preSelection = locationArray.find((path) => {
+  const preSelection = locationArray.find(path => {
     const match = options.find((subOption: string) => subOption === path);
 
     if (match) {
@@ -50,9 +53,7 @@ const getPreSelection = (options: string[], currentlyViewing = { path: '/' }) =>
 };
 
 const getDefaultState = (props: SideNavigationProps) => {
-  const {
-    currentlyViewing, menuOptions, defaultSelected, isCollapsed,
-  } = props;
+  const { currentlyViewing, menuOptions, defaultSelected, isCollapsed } = props;
 
   if (isCollapsed) {
     return {
@@ -75,7 +76,10 @@ const getDefaultState = (props: SideNavigationProps) => {
   };
 };
 
-class SideNavigation extends Component<SideNavigationProps, SideNavigationState> {
+class SideNavigation extends Component<
+  SideNavigationProps,
+  SideNavigationState
+> {
   static defaultProps = {
     isCollapsed: false,
     onCollapse: null,
@@ -88,7 +92,10 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
 
   state = getDefaultState(this.props);
 
-  componentDidUpdate(prevProps: SideNavigationProps, prevState: SideNavigationState) {
+  componentDidUpdate(
+    prevProps: SideNavigationProps,
+    prevState: SideNavigationState
+  ) {
     const { currentlyViewing: prevViewing } = prevProps;
     const { currentlyViewing, menuOptions } = this.props;
 
@@ -100,11 +107,11 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
 
       const newOption = getPreSelection(
         Object.keys(menuOptions),
-        currentlyViewing,
+        currentlyViewing
       );
       const newSubOption = getPreSelection(
         getSubOptions(menuOptions),
-        currentlyViewing,
+        currentlyViewing
       );
 
       if (newOption !== prevOption || newSubOption !== prevSubOption) {
@@ -114,7 +121,10 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
   }
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
-  handleUpdateSelection = (newOption: string | null, newSubOption: string | null) => {
+  handleUpdateSelection = (
+    newOption: string | null,
+    newSubOption: string | null
+  ) => {
     const { isCollapsed } = this.state;
 
     this.setState({
@@ -126,21 +136,23 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
   handleToggleCollapse = () => {
     const { menuOptions, onCollapse } = this.props;
     const { selectedSubOption, isCollapsed } = this.state;
-    const selectedOption = Object.keys(menuOptions).find((option) =>
+    const selectedOption = Object.keys(menuOptions).find(option =>
       menuOptions[option].subOptions.find(
-        (subOption) => subOption === selectedSubOption,
-      ));
+        subOption => subOption === selectedSubOption
+      )
+    );
 
     this.setState(
       prevState => ({
         isCollapsed: !prevState.isCollapsed,
-        selectedOption: !prevState.isCollapsed || !selectedOption ? null : selectedOption,
+        selectedOption:
+          !prevState.isCollapsed || !selectedOption ? null : selectedOption,
       }),
       () => {
         if (onCollapse) {
           onCollapse(!isCollapsed);
         }
-      },
+      }
     );
   };
 
@@ -162,9 +174,9 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
     const { isCollapsed } = this.state;
     const { onNavigate, menuOptions } = this.props;
 
-    const subOptionParent = Object.keys(menuOptions).find((option) => {
+    const subOptionParent = Object.keys(menuOptions).find(option => {
       const match = menuOptions[option].subOptions.find(
-        sub => sub === subOption,
+        sub => sub === subOption
       );
 
       if (match) {
@@ -237,7 +249,7 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
         {Object.keys(menuOptions).map((option, index) => {
           const key = `${option}__${index}`;
           const isOptionSelected = menuOptions[option].subOptions.find(
-            subOption => subOption === selectedSubOption,
+            subOption => subOption === selectedSubOption
           );
 
           const optionMenuClassNames = classNames({
@@ -359,7 +371,7 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
           <div
             className={`side-navigation__sub-option-text ${
               isSelected ? 'selected' : ''
-              }`}
+            }`}
           >
             {subOption}
           </div>
@@ -422,7 +434,7 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
                     <span
                       className={`side-navigation__logo-text ${
                         isCollapsed ? 'hidden-text' : ''
-                        }`}
+                      }`}
                     >
                       {logoTitle}
                     </span>
@@ -441,7 +453,7 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
           aria-checked={isCollapsed}
           className={`side-navigation__collapse-toggle ${
             isCollapsed ? 'collapsed' : ''
-            }`}
+          }`}
           onClick={this.handleToggleCollapse}
           onKeyDown={this.handleToggleCollapse}
         >
@@ -449,7 +461,7 @@ class SideNavigation extends Component<SideNavigationProps, SideNavigationState>
           <span
             className={`side-navigation__collapse-text ${
               isCollapsed ? 'hidden-text' : ''
-              }`}
+            }`}
           >
             {'Collapse'}
           </span>
