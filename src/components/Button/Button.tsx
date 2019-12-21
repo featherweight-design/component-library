@@ -6,6 +6,8 @@ import './Button.scss';
 
 type ButtonProps = {
   children: string | number | ReactChild | ReactChild[];
+  onClick: () => void;
+  id?: string;
   type?: ButtonType;
   name?: string;
   className?: string;
@@ -23,6 +25,8 @@ type ButtonType =
 
 const Button: FunctionComponent<ButtonProps> = ({
   children,
+  onClick,
+  id,
   type,
   name,
   className,
@@ -30,8 +34,10 @@ const Button: FunctionComponent<ButtonProps> = ({
   loading,
 }: ButtonProps) => (
   <button
-    disabled={disabled}
+    id={id}
     name={name}
+    onClick={onClick}
+    disabled={disabled}
     className={classnames({
       'fd-button': true,
       [`fd-button-${type}`]: type,
