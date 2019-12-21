@@ -1,0 +1,32 @@
+@import '../../styles/main.scss';
+
+.fd-input {
+  display: flex;
+  flex-direction: column;
+  max-width: 16.75rem;
+  &__label {
+    margin-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 0.75rem;
+  }
+  &__input {
+    padding: 0.5rem 1rem;
+    border: 2px solid $gray-9;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    box-sizing: border-box;
+    &:disabled {
+      background-color: $gray-3;
+      cursor: not-allowed;
+    }
+    &::placeholder {
+      color: $gray-6;
+    }
+    &:focus {
+      @include focus-styles;
+    }
+  }
+  + .fd-input {
+    margin-left: 0.5rem;
+  }
+}
