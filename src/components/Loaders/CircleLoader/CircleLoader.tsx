@@ -9,16 +9,16 @@ type CircleLoaderProps = {
 
 const CircleLoader = ({ size, color }: CircleLoaderProps) => {
   const wrapperStyles = {
-    height: `${size}px`,
-    width: `${size}px`,
+    height: `${size}`,
+    width: `${size}`,
   };
 
   return (
-    <div className="circle-loader" style={wrapperStyles}>
-      <div className="circle-loader__container">
-        <svg className="circle-loader__svg" viewBox=" 25 25 50 50">
+    <div className="fd-circle-loader" style={wrapperStyles}>
+      <div className="fd-circle-loader__container">
+        <svg className="fd-circle-loader__svg" viewBox=" 25 25 50 50">
           <circle
-            className="circle-loader__path"
+            className="fd-circle-loader__path"
             cx="50"
             cy="50"
             r="20"
@@ -36,6 +36,6 @@ const CircleLoader = ({ size, color }: CircleLoaderProps) => {
 export default CircleLoader;
 
 CircleLoader.defaultProps = {
-  size: '100',
-  color: '#004366',
+  size: '100px',
+  color: 'currentColor',
 };
