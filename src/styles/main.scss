@@ -1,2 +1,7 @@
 @import './colors.scss';
 @import './mixins.scss';
+
+body {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+  color: $gray-16;
+}
