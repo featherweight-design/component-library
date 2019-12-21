@@ -18,6 +18,13 @@
     outline: none;
     box-shadow: 0 0 3px 2px $brand-focus-outline;
   }
+  &:disabled {
+    cursor: not-allowed;
+    color: $gray-5;
+    &-hover, &-active {
+      color: $gray-5;
+    }
+  }
   + .fd-button {
     margin-left: 0.5rem;
   }
@@ -44,6 +51,10 @@
     &:active {
       background-color: $gray-3;
     }
+    &:disabled {
+      color: $gray-5;
+      background-color: $gray-1;
+    }
   }
   &-outline {
     border-color: $brand-color;
@@ -53,6 +64,7 @@
     &:active {
       border-color: $brand-active;
     }
+    &:disabled {}
   }
   &-destructive {
     background-color: $destructive;
@@ -102,6 +114,9 @@
     &:active {
       color: $destructive-active;
     }
+    &:disabled {
+      color: $gray-5;
+    }
   }
   &-brand,
   &-destructive {
@@ -109,6 +124,10 @@
     &:hover,
     &:active {
       color: $white;
+    }
+    &:disabled {
+      color: $gray-6;
+      background-color: $gray-3;
     }
   }
   &-outline,
@@ -118,6 +137,10 @@
     }
     &:active {
       background-color: $gray-2;
+    }
+    &:disabled {
+      border-color: $gray-6;
+      background-color: $white;
     }
   }
 }

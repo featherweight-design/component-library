@@ -6,13 +6,15 @@ import './Button.scss';
 type ButtonProps = {
   children: string | number | ReactChild | ReactChild[];
   type?: ButtonType;
+  name?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 type ButtonType = 'default-destructive' | 'brand' | 'neutral' | 'outline' | 'destructive' | 'outline-destructive';
 
-const Button = ({ children, type, className }: ButtonProps) => (
-  <button className={classnames({
+const Button = ({ children, type, name, className, disabled }: ButtonProps) => (
+  <button disabled={disabled} name={name} className={classnames({
     'fd-button': true,
     [`fd-button-${type}`]: type,
     [className as string]: className
