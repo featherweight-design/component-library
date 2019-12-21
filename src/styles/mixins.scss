@@ -1,3 +1,15 @@
+@import './colors.scss';
+
+@mixin focus-styles {
+  outline: none;
+  box-shadow: 0 0 3px 2px $brand-focus-outline;
+}
+
+@mixin error-focus-styles {
+  outline: none;
+  box-shadow: 0 0 3px 2px $destructive-focus-outline;
+}
+
 // Color contrast mixin tweaked and based on
 // https://medium.com/@jonnykates/automating-colour-contrast-ratios-with-sass-e201f3b52797
 @function text-contrast($hex-value) {
