@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "./src",
     "outDir": "./lib/",
     "sourceMap": true,
     "noImplicitAny": true,
