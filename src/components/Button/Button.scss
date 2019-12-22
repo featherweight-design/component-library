@@ -5,7 +5,7 @@
   border: 2px solid transparent;
   border-radius: 2rem;
   box-sizing: border-box;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: $brand-color;
   cursor: pointer;
   transition: 0.1s ease-in-out;
@@ -161,6 +161,7 @@
   &-brand,
   &-neutral,
   &-outline,
+  &-destructive,
   &-outline-destructive {
     > .fd-button__loader-container {
       top: 0.5rem;
