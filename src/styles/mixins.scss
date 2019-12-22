@@ -10,6 +10,14 @@
   box-shadow: 0 0 3px 2px $destructive-focus-outline;
 }
 
+@mixin input-base-styles {
+  padding: 0.5rem 1rem;
+  border: 2px solid $gray-9;
+  border-radius: 0.25rem;
+  font-size: 1.25rem;
+  box-sizing: border-box;
+}
+
 // Color contrast mixin tweaked and based on
 // https://medium.com/@jonnykates/automating-colour-contrast-ratios-with-sass-e201f3b52797
 @function text-contrast($hex-value) {
