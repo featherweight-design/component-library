@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEvent, FormEvent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
 import './Input.scss';
@@ -33,7 +33,7 @@ const Input: FunctionComponent<InputProps> = ({
       'fd-input': true,
     })}
   >
-    {label && <span className="fd-input__label">{label}</span>}
+    {label && <span className="fd-label">{label}</span>}
     <input
       id={id}
       name={name}
