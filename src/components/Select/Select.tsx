@@ -5,7 +5,6 @@ import { SelectOptionType } from '../../types';
 import './Select.scss';
 
 type SelectProps = {
-  name: string;
   value: string;
   onClick: (option: SelectOptionType) => void;
   options?: SelectOptionType[];
@@ -17,7 +16,6 @@ type SelectProps = {
 };
 
 const Select: FunctionComponent<SelectProps> = ({
-  name,
   value,
   onClick,
   options,

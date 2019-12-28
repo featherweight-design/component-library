@@ -18,7 +18,6 @@ storiesOf('Select', module)
     return (
       <div>
         <Select
-          name="default"
           label="Label"
           value={value}
           onClick={mockOnClick}
