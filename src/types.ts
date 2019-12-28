@@ -1,3 +1,9 @@
+// FORM
+export interface SelectOptionType {
+  value: string;
+  label: string;
+}
+
 // NAVIGATION
 export interface CurrentlyViewingTab {
   label: string;
