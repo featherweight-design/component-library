@@ -1,19 +1,18 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
 import Select from './Select';
+import { SelectOptionType } from '../../types';
 
 storiesOf('Select', module)
   .addDecorator(withA11y)
   .add('Default', () => {
     const [value, handleChange] = useState('');
 
-    const mockOnChange = ({
-      target: { value, name },
-    }: ChangeEvent<HTMLSelectElement>) => {
-      console.log({ value });
-      handleChange(value);
+    const mockOnClick = (option: SelectOptionType) => {
+      console.log({ option });
+      handleChange(option.label);
     };
 
     return (
@@ -22,16 +21,14 @@ storiesOf('Select', module)
           name="default"
           label="Label"
           value={value}
-          onChange={mockOnChange}
-        >
-          <option>Blah</option>
-          <option>Blah</option>
-          <option>Blah</option>
-          <option>Blah</option>
-          <option>Blah</option>
-          <option>Blah</option>
-          <option>Blah</option>
-        </Select>
+          onClick={mockOnClick}
+          options={[
+            { value: 'huey', label: 'Huhu' },
+            { value: 'juliana', label: 'Juju' },
+            { value: 'torin', label: 'Tor-bear' },
+            { value: 'juniper', label: 'Jean-june' },
+          ]}
+        />
       </div>
     );
   });

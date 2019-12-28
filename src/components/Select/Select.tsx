@@ -1,18 +1,14 @@
-import React, {
-  ReactChild,
-  FunctionComponent,
-  ChangeEvent,
-  useState,
-} from 'react';
+import React, { FunctionComponent, MouseEvent, useState } from 'react';
 import classnames from 'classnames';
 
+import { SelectOptionType } from '../../types';
 import './Select.scss';
 
 type SelectProps = {
   name: string;
   value: string;
-  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
-  children?: ReactChild | ReactChild[];
+  onClick: (option: SelectOptionType) => void;
+  options?: SelectOptionType[];
   id?: string;
   label?: string;
   placeholder?: string;
@@ -23,8 +19,8 @@ type SelectProps = {
 const Select: FunctionComponent<SelectProps> = ({
   name,
   value,
-  onChange,
-  children,
+  onClick,
+  options,
   id,
   label,
   placeholder,
@@ -38,7 +34,10 @@ const Select: FunctionComponent<SelectProps> = ({
       {label && <span className="fd-label">{label}</span>}
 
       <div
-        className="fd-select__container"
+        className={classnames({
+          'fd-select__container': true,
+          'fd-select__container-open': areOptionsShown,
+        })}
         onClick={() => toggleShowOptions(!areOptionsShown)}
       >
         <div
@@ -50,25 +49,15 @@ const Select: FunctionComponent<SelectProps> = ({
           {value || placeholder}
         </div>
 
-        <i className="material-icons fd-select__dropdown-icon">
+        <i
+          className={classnames({
+            'material-icons': true,
+            'fd-select__icon': true,
+            'fd-select__icon-open': areOptionsShown,
+          })}
+        >
           keyboard_arrow_down
         </i>
-
-        <select
-          tabIndex={-1}
-          aria-hidden
-          value={value}
-          onChange={onChange}
-          style={{
-            position: 'absolute',
-            width: '0',
-            border: 'none',
-            opacity: 0,
-            zIndex: -1,
-          }}
-        >
-          <option value={value} />
-        </select>
       </div>
 
       <div
@@ -76,9 +65,19 @@ const Select: FunctionComponent<SelectProps> = ({
           'fd-select__options': true,
           'fd-select__options-open': areOptionsShown,
         })}
-        // onChange={onChange}
       >
-        {children}
+        {options &&
+          options.map(option => (
+            <option
+              onClick={() => {
+                toggleShowOptions(false);
+                onClick(option);
+              }}
+              value={option.value}
+            >
+              {option.label}
+            </option>
+          ))}
       </div>
     </div>
   );
@@ -86,6 +85,7 @@ const Select: FunctionComponent<SelectProps> = ({
 
 Select.defaultProps = {
   placeholder: 'Select a value...',
+  options: [],
 };
 
 export default Select;
