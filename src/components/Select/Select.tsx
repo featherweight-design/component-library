@@ -5,8 +5,8 @@ import { SelectOptionType } from '../../types';
 import './Select.scss';
 
 type SelectProps = {
-  value: string;
   onClick: (option: SelectOptionType) => void;
+  selected?: SelectOptionType;
   options?: SelectOptionType[];
   id?: string;
   label?: string;
@@ -16,35 +16,36 @@ type SelectProps = {
 };
 
 const Select: FunctionComponent<SelectProps> = ({
-  value,
+  selected,
   onClick,
   options,
   id,
   label,
   placeholder,
   disabled,
-  multiple,
 }: SelectProps) => {
   const [areOptionsShown, toggleShowOptions] = useState(false);
 
   return (
-    <div className="fd-select">
+    <div id={id} className="fd-select">
       {label && <span className="fd-label">{label}</span>}
 
       <div
         className={classnames({
           'fd-select__container': true,
           'fd-select__container-open': areOptionsShown,
+          'fd-select__container-disabled': disabled,
         })}
-        onClick={() => toggleShowOptions(!areOptionsShown)}
+        onClick={() => !disabled && toggleShowOptions(!areOptionsShown)}
       >
         <div
           className={classnames({
             'fd-select__input': true,
-            'fd-select__input-placeholder': !value,
+            'fd-select__input-placeholder': !selected,
+            'fd-select__input-disabled': disabled,
           })}
         >
-          {value || placeholder}
+          {(selected && selected.label) || placeholder}
         </div>
 
         <i
@@ -60,13 +61,17 @@ const Select: FunctionComponent<SelectProps> = ({
 
       <div
         className={classnames({
-          'fd-select__options': true,
-          'fd-select__options-open': areOptionsShown,
+          'fd-select__options-container': true,
+          'fd-select__options-container-open': areOptionsShown,
         })}
       >
         {options &&
           options.map(option => (
             <option
+              className={classnames({
+                'fd-select__option': true,
+                'fd-select__option-selected': selected?.value === option.value,
+              })}
               onClick={() => {
                 toggleShowOptions(false);
                 onClick(option);
