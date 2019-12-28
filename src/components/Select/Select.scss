@@ -6,12 +6,20 @@
   flex-direction: column;
   max-width: 16.75rem;
   cursor: pointer;
+  + .fd-select {
+    margin-left: 0.5rem;
+  }
   &__container {
     @include input-base-styles;
     padding-right: 0.5rem;
     display: flex;
     // Closing transition
     transition: border-radius 0.01s ease-in-out 0.2s;
+    &-disabled {
+      background-color: $gray-3;
+      color: $gray-8;
+      cursor: not-allowed;
+    }
     &-open {
       border-radius: 0.25rem 0.25rem 0 0;
       transition: border-radius 0.01s;
@@ -22,6 +30,9 @@
     &-placeholder {
       color: $gray-6;
     }
+    &-disabled {
+      color: $gray-8;
+    }
   }
   &__icon {
     transition: 0.2s ease-in-out;
@@ -29,7 +40,7 @@
       transform: rotate(180deg);
     }
   }
-  &__options {
+  &__options-container {
     display: flex;
     flex-direction: column;
     min-width: 16.75rem;
@@ -63,10 +74,17 @@
         visibility: visible;
         // Opening transitions
         transition: 0.01s ease-in-out;
-        &:hover {
-          background-color: $gray-2;
-        }
       }
+    }
+  }
+  &__option {
+    &:hover {
+      background-color: $brand-white;
+    }
+    &-selected {
+      background-color: $gray-2;
+      color: $brand-xx-dark;
+      font-weight: 700;
     }
   }
 }
