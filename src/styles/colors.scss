@@ -1,12 +1,19 @@
-// COLORS
+// BRAND
+$brand-white: #ECF6FB;
+$brand-xx-light: #68B9E3;
+$brand-x-light: #55B0DF;
+$brand-light: #42A7DC;
 $brand-color: #309FD9;
 $brand-hover: #2C91C6;
 $brand-active: #2883B2;
+$brand-dark: #23749E;
+$brand-x-dark: #1F668B;
+$brand-xx-dark: #1B5777;
+$brand-black: #050F14;
 $brand-focus-outline: #3178C4;
-$destructive: #E52810;
-$destructive-hover: #D1250F;
-$destructive-active: #BC210E;
-$destructive-focus-outline: #691308;
+
+// GRAYS
+$black: #000;
 $gray-1: #F9F9F9;
 $gray-2: #F2F2F2;
 $gray-3: #E5E5E5;
@@ -29,3 +36,9 @@ $gray-19: #191919;
 $gray-20: #0C0C0C;
 $gray-21: #070707;
 $white: #fff;
+
+// REDS
+$destructive: #E52810;
+$destructive-hover: #D1250F;
+$destructive-active: #BC210E;
+$destructive-focus-outline: #691308;
