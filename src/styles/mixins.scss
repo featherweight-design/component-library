@@ -19,7 +19,18 @@
   box-sizing: border-box;
 }
 
-@mixin check-mark-animation($width, $height) {
+@mixin check-mark-animation($width, $height, $thickness) {
+  position: absolute;
+  top: $height;
+  left: $width;
+  height: $height;
+  width: $width;
+  border-right: $thickness solid $white;
+  border-top: $thickness solid $white;
+  transform: scaleX(-1) rotate(135deg);
+  transform-origin: left top;
+  animation: 0.4s ease check-mark;
+
   @keyframes check-mark {
     0% {
       height: 0;

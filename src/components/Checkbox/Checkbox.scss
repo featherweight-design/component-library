@@ -46,18 +46,6 @@
     }
   }
   &__icon {
-    opacity: 1;
-    height: 0.6rem;
-    width: 0.3rem;
-    transform-origin: left top;
-    border-right: 2px solid $white;
-    border-top: 2px solid $white;
-    content: '';
-    position: absolute;
-    left: 0.1rem;
-    top: 0.5rem;
-    animation: 0.4s ease check-mark;
-    transform: scaleX(-1) rotate(135deg);
+    @include check-mark-animation(0.2rem, 0.5rem, 0.125rem);
   }
-  @include check-mark-animation(0.3rem, 0.6rem);
 }
