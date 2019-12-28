@@ -11,6 +11,8 @@
   }
   &__container {
     @include input-base-styles;
+    display: flex;
+    align-items: center;
     padding-right: 0.5rem;
     display: flex;
     // Closing transition
