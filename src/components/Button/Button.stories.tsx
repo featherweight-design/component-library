@@ -1,10 +1,10 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { withA11Y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
 import Button from './Button';
 
-const mockClick = () => console.log("I've been clicked!");
+const mockClick = (): void => console.log("I've been clicked!");
 
 storiesOf('Button', module)
   .addDecorator(withA11Y)

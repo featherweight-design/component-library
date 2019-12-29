@@ -16,10 +16,6 @@ type HeaderMenuProps = {
   defaultTitle: string;
 };
 
-type HeaderMenuState = {
-  selectedOption: string | null;
-};
-
 const HeaderMenu = ({
   currentlyViewing,
   menuOptions,
@@ -155,10 +151,7 @@ const HeaderMenu = ({
                 </div>
               )}
               {subOptions && selectedOption === option && (
-                <div
-                  className="header-menu__sub-options"
-                  ref={subOptionsMenu}
-                >
+                <div className="header-menu__sub-options" ref={subOptionsMenu}>
                   <div className="header-menu__sub-options-header">
                     <span className="header-menu__sub-options-title">
                       {option}

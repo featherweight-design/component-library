@@ -1,4 +1,11 @@
-import React, { ReactChild, MouseEvent, KeyboardEvent, useState, useRef, useEffect } from 'react';
+import React, {
+  ReactChild,
+  MouseEvent,
+  KeyboardEvent,
+  useState,
+  useRef,
+  useEffect,
+} from 'react';
 import classNames from 'classnames';
 
 import './ExpansionPanel.scss';
@@ -12,7 +19,14 @@ type ExpansionPanelProps = {
   onClick: (event: MouseEvent | KeyboardEvent) => void;
 };
 
-const ExpansionPanel = ({ children, isExpanded, className, title, type, onClick }: ExpansionPanelProps) => {
+const ExpansionPanel = ({
+  children,
+  isExpanded,
+  className,
+  title,
+  type,
+  onClick,
+}: ExpansionPanelProps) => {
   const [isOpen, toggleIsOpen] = useState(isExpanded);
   const expansionChildren = useRef<HTMLDivElement>(null);
 
@@ -23,14 +37,12 @@ const ExpansionPanel = ({ children, isExpanded, className, title, type, onClick 
     } else if (isOpen && !isExpanded) {
       handleToggleExpansion();
     }
-
-  }, [isExpanded])
+  }, [isExpanded]);
 
   const getExpansionChildrenHeight = () =>
     expansionChildren.current && expansionChildren.current.clientHeight;
 
-  const handleToggleExpansion = () =>
-    toggleIsOpen(!isOpen);
+  const handleToggleExpansion = () => toggleIsOpen(!isOpen);
 
   const containerClassNames = classNames({
     [className]: className,
@@ -80,16 +92,12 @@ const ExpansionPanel = ({ children, isExpanded, className, title, type, onClick 
         </button>
       )}
 
-      <div
-        className={childWrapperClassName}
-        ref={expansionChildren}
-      >
+      <div className={childWrapperClassName} ref={expansionChildren}>
         {children}
       </div>
     </div>
   );
-}
-
+};
 
 ExpansionPanel.defaultProps = {
   children: null,

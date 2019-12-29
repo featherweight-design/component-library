@@ -18,7 +18,7 @@ storiesOf('Checkbox', module)
 
     const handleChange = ({
       target: { name, checked },
-    }: ChangeEvent<HTMLInputElement>) => {
+    }: ChangeEvent<HTMLInputElement>): void => {
       const newOptions = options.map(option =>
         option.label === name ? { ...option, checked } : option
       );
