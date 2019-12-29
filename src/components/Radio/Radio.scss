@@ -1,0 +1,70 @@
+@import '../../styles/main';
+
+// Ripple layout/animation inspired by
+// https://codepen.io/hansmaad/pen/zBdzxp
+.fd-radio {
+  display: flex;
+  flex-direction: column;
+  &__container + .fd-radio__container {
+    margin-top: 0.5rem;
+  }
+  &__input {
+    display: none;
+    &:checked + .fd-radio__styled:before {
+      border-color: $brand-color;
+      animation: ripple 0.2s linear forwards;
+    }
+    &:checked + .fd-radio__styled:after {
+      transform: scale(1);
+    }
+  }
+  &__styled {
+    display: inline-block;
+    height: 1.25rem;
+    position: relative;
+    padding: 0 1.875rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    vertical-align: bottom;
+
+    &:before,
+    &:after {
+      position: absolute;
+      content: '';
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      transition-property: transform, border-color;
+    }
+
+    &:before {
+      left: 0;
+      top: 0;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid $gray-15;
+    }
+
+    &:after {
+      top: 0.25rem;
+      left: 0.25rem;
+      width: 0.75rem;
+      height: 0.75rem;
+      transform: scale(0);
+      background: $brand-color;
+    }
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0px 0px 0px 1px  rgba(22, 73, 99, 0);
+  }
+
+  50% {
+    box-shadow: 0px 0px 0px 1rem rgba(22, 73, 99, 0.1);
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 1rem rgba(22, 73, 99, 0);
+  }
+}
