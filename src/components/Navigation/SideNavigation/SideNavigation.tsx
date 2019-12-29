@@ -47,30 +47,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
   const [selectedOption, setOption] = useState<string | null>(null);
   const [selectedSubOption, setSubOption] = useState<string | null>(null);
 
-  const getSubOptions = (options: SideNavigationOptions): string[] =>
-    Object.keys(options).reduce(
-      (accumulator, option) => [...accumulator, ...options[option].subOptions],
-      [] as string[]
-    );
-
-  const getPreSelection = (
-    options: string[],
-    currentlyViewing = { path: '/' }
-  ): string | null => {
-    const locationArray = currentlyViewing.path.split('/');
-    const preSelection = locationArray.find(path => {
-      const match = options.find((subOption: string) => subOption === path);
-
-      if (match) {
-        return match;
-      }
-
-      return false;
-    });
-
-    return preSelection || null;
-  };
-
   useEffect(() => {
     if (collapsed) {
       const selectedSubOption = currentlyViewing
@@ -106,6 +82,30 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
       handleUpdateSelection(newOption, newSubOption);
     }
   }, [currentlyViewing]);
+
+  const getSubOptions = (options: SideNavigationOptions): string[] =>
+    Object.keys(options).reduce(
+      (accumulator, option) => [...accumulator, ...options[option].subOptions],
+      [] as string[]
+    );
+
+  const getPreSelection = (
+    options: string[],
+    currentlyViewing = { path: '/' }
+  ): string | null => {
+    const locationArray = currentlyViewing.path.split('/');
+    const preSelection = locationArray.find(path => {
+      const match = options.find((subOption: string) => subOption === path);
+
+      if (match) {
+        return match;
+      }
+
+      return false;
+    });
+
+    return preSelection || null;
+  };
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
   const handleUpdateSelection = (

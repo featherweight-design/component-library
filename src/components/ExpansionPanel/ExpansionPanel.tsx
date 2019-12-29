@@ -31,9 +31,6 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
   const [isExpanded, toggleIsExpanded] = useState(expanded);
   const expansionChildren = useRef<HTMLDivElement>(null);
 
-  const getExpansionChildrenHeight = (): number | null =>
-    expansionChildren.current && expansionChildren.current.clientHeight;
-
   useEffect(() => {
     if (expanded) {
       setTimeout(() => getExpansionChildrenHeight(), 300);
@@ -41,6 +38,9 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
 
     toggleIsExpanded(expanded);
   }, [expanded]);
+
+  const getExpansionChildrenHeight = (): number | null =>
+    expansionChildren.current && expansionChildren.current.clientHeight;
 
   const containerClassNames = classNames({
     [className as string]: className,
