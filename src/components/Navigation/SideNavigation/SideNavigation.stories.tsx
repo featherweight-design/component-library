@@ -36,7 +36,7 @@ storiesOf('Navigation/Side Navigation', module)
   ))
   .add('Collapsed by default', () => (
     <SideNavigation
-      isCollapsed
+      collapsed
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
       defaultSelected={{

@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 
@@ -14,7 +14,7 @@ type SideNavigationProps = {
     option: string;
     subOption: string;
   };
-  isCollapsed?: boolean;
+  collapsed?: boolean;
   onCollapse?: (isCollapsed: boolean) => void;
   showBackButton?: boolean;
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
@@ -22,158 +22,115 @@ type SideNavigationProps = {
   logoTitle?: string;
 };
 
-type SideNavigationState = {
-  isCollapsed: boolean;
-  selectedOption: string | null;
-  selectedSubOption: string | null;
-};
+const SideNavigation = ({
+  menuOptions,
+  currentlyViewing,
+  onGoBack,
+  defaultSelected,
+  collapsed,
+  onCollapse,
+  showBackButton,
+  onNavigate,
+  logoAssetPath,
+  logoTitle,
+}: SideNavigationProps) => {
+  const [isCollapsed, toggleCollapsed] = useState(collapsed);
+  const [selectedOption, setOption] = useState<string | null>(null);
+  const [selectedSubOption, setSubOption] = useState<string | null>(null);
 
-const getSubOptions = (options: SideNavigationOptions) =>
-  Object.keys(options).reduce(
-    (accumulator, option) => [...accumulator, ...options[option].subOptions],
-    [] as string[]
-  );
+  const getSubOptions = (options: SideNavigationOptions) =>
+    Object.keys(options).reduce(
+      (accumulator, option) => [...accumulator, ...options[option].subOptions],
+      [] as string[]
+    );
 
-const getPreSelection = (
-  options: string[],
-  currentlyViewing = { path: '/' }
-) => {
-  const locationArray = currentlyViewing.path.split('/');
-  const preSelection = locationArray.find(path => {
-    const match = options.find((subOption: string) => subOption === path);
+  const getPreSelection = (
+    options: string[],
+    currentlyViewing = { path: '/' }
+  ) => {
+    const locationArray = currentlyViewing.path.split('/');
+    const preSelection = locationArray.find(path => {
+      const match = options.find((subOption: string) => subOption === path);
 
-    if (match) {
-      return match;
-    }
-
-    return false;
-  });
-
-  return preSelection || null;
-};
-
-const getDefaultState = (props: SideNavigationProps) => {
-  const { currentlyViewing, menuOptions, defaultSelected, isCollapsed } = props;
-
-  if (isCollapsed) {
-    return {
-      isCollapsed,
-      selectedOption: null,
-      selectedSubOption: currentlyViewing
-        ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-        : defaultSelected.option,
-    };
-  }
-
-  return {
-    isCollapsed: isCollapsed || false,
-    selectedSubOption: currentlyViewing
-      ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
-      : defaultSelected.subOption,
-    selectedOption: currentlyViewing
-      ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-      : defaultSelected.option,
-  };
-};
-
-class SideNavigation extends Component<
-  SideNavigationProps,
-  SideNavigationState
-> {
-  static defaultProps = {
-    isCollapsed: false,
-    onCollapse: null,
-    currentlyViewing: null,
-    showBackButton: false,
-    onNavigate: null,
-    logoAssetPath: null,
-    logoTitle: null,
-  };
-
-  state = getDefaultState(this.props);
-
-  componentDidUpdate(
-    prevProps: SideNavigationProps,
-    prevState: SideNavigationState
-  ) {
-    const { currentlyViewing: prevViewing } = prevProps;
-    const { currentlyViewing, menuOptions } = this.props;
-
-    if (!isEqual(prevViewing, currentlyViewing)) {
-      const {
-        selectedOption: prevOption,
-        selectedSubOption: prevSubOption,
-      } = prevState;
-
-      const newOption = getPreSelection(
-        Object.keys(menuOptions),
-        currentlyViewing
-      );
-      const newSubOption = getPreSelection(
-        getSubOptions(menuOptions),
-        currentlyViewing
-      );
-
-      if (newOption !== prevOption || newSubOption !== prevSubOption) {
-        this.handleUpdateSelection(newOption, newSubOption);
+      if (match) {
+        return match;
       }
+
+      return false;
+    });
+
+    return preSelection || null;
+  };
+
+  useEffect(() => {
+    if (collapsed) {
+      const selectedSubOption = currentlyViewing
+        ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
+        : defaultSelected.option;
+
+      setOption(null);
+      setSubOption(selectedSubOption);
+    } else {
+      const selectedOption = currentlyViewing
+        ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
+        : defaultSelected.option;
+      const selectedSubOption = currentlyViewing
+        ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
+        : defaultSelected.subOption;
+
+      setOption(selectedOption);
+      setSubOption(selectedSubOption);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    const newOption = getPreSelection(
+      Object.keys(menuOptions),
+      currentlyViewing
+    );
+    const newSubOption = getPreSelection(
+      getSubOptions(menuOptions),
+      currentlyViewing
+    );
+
+    if (newOption !== selectedOption || newSubOption !== selectedSubOption) {
+      handleUpdateSelection(newOption, newSubOption);
+    }
+  }, [currentlyViewing]);
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
-  handleUpdateSelection = (
+  const handleUpdateSelection = (
     newOption: string | null,
     newSubOption: string | null
   ) => {
-    const { isCollapsed } = this.state;
-
-    this.setState({
-      selectedOption: isCollapsed ? null : newOption,
-      selectedSubOption: newSubOption,
-    });
+    setOption(isCollapsed ? null : newOption);
+    setSubOption(newSubOption);
   };
 
-  handleToggleCollapse = () => {
-    const { menuOptions, onCollapse } = this.props;
-    const { selectedSubOption, isCollapsed } = this.state;
+  const handleToggleCollapse = () => {
     const selectedOption = Object.keys(menuOptions).find(option =>
       menuOptions[option].subOptions.find(
         subOption => subOption === selectedSubOption
       )
     );
 
-    this.setState(
-      prevState => ({
-        isCollapsed: !prevState.isCollapsed,
-        selectedOption:
-          !prevState.isCollapsed || !selectedOption ? null : selectedOption,
-      }),
-      () => {
-        if (onCollapse) {
-          onCollapse(!isCollapsed);
-        }
-      }
-    );
-  };
+    toggleCollapsed(!isCollapsed);
+    setOption(!isCollapsed || !selectedOption ? null : selectedOption);
 
-  handleSelectOption = (option: string | null) => {
-    const { isCollapsed, selectedOption } = this.state;
-
-    let newViewing;
-
-    if (!isCollapsed && selectedOption === option) {
-      newViewing = null;
-    } else {
-      newViewing = option;
+    if (onCollapse) {
+      onCollapse(!isCollapsed);
     }
-
-    this.setState({ selectedOption: newViewing });
   };
 
-  handleSelectSubOption = (subOption: string) => {
-    const { isCollapsed } = this.state;
-    const { onNavigate, menuOptions } = this.props;
+  const handleSelectOption = (option: string | null) => {
+    if (!isCollapsed && selectedOption === option) {
+      setOption(null);
+    } else {
+      setOption(option);
+    }
+  };
 
+  const handleSelectSubOption = (subOption: string) => {
     const subOptionParent = Object.keys(menuOptions).find(option => {
       const match = menuOptions[option].subOptions.find(
         sub => sub === subOption
@@ -189,18 +146,15 @@ class SideNavigation extends Component<
     if (onNavigate && subOptionParent) {
       onNavigate({
         path: `/${subOptionParent.toLowerCase()}/${subOption.toLowerCase()}`,
-        title: this.formatSelectedTitle(subOptionParent, subOption),
+        title: formatSelectedTitle(subOptionParent, subOption),
       });
     }
 
-    this.setState({
-      selectedSubOption: subOption,
-      selectedOption: isCollapsed || !subOptionParent ? null : subOptionParent,
-    });
+    setOption(isCollapsed || !subOptionParent ? null : subOptionParent);
+    setSubOption(subOption);
   };
 
-  handleGoBack = () => {
-    const { onGoBack, currentlyViewing } = this.props;
+  const handleGoBack = () => {
     const { backPath, backTitle } = currentlyViewing;
 
     if (onGoBack && backPath && backTitle) {
@@ -212,8 +166,7 @@ class SideNavigation extends Component<
   };
 
   // FORMATTING METHODS
-  formatSelectedTitle = (option: string, subOption: string) => {
-    const { menuOptions } = this.props;
+  const formatSelectedTitle = (option: string, subOption: string) => {
     const { titleType } = menuOptions[option];
 
     let title;
@@ -240,10 +193,7 @@ class SideNavigation extends Component<
   };
 
   // RENDER METHODS
-  renderMenuOptions = () => {
-    const { isCollapsed, selectedSubOption, selectedOption } = this.state;
-    const { menuOptions } = this.props;
-
+  const renderMenuOptions = () => {
     return (
       <Fragment>
         {Object.keys(menuOptions).map((option, index) => {
@@ -290,7 +240,7 @@ class SideNavigation extends Component<
               className={optionMenuClassNames}
               onMouseEnter={() => {
                 if (isCollapsed) {
-                  this.handleSelectOption(option);
+                  handleSelectOption(option);
                 }
               }}
             >
@@ -300,12 +250,12 @@ class SideNavigation extends Component<
                 className={optionTitleClassNames}
                 onClick={() => {
                   if (!isCollapsed && !isOptionSelected) {
-                    this.handleSelectOption(option);
+                    handleSelectOption(option);
                   }
                 }}
                 onKeyDown={() => {
                   if (!isCollapsed && !isOptionSelected) {
-                    this.handleSelectOption(option);
+                    handleSelectOption(option);
                   }
                 }}
               >
@@ -319,12 +269,12 @@ class SideNavigation extends Component<
                   className="side-navigation__option-hover-menu"
                   onMouseLeave={() => {
                     if (isCollapsed) {
-                      this.handleSelectOption(null);
+                      handleSelectOption(null);
                     }
                   }}
                 >
                   <div className={optionHoverTitleClassNames}>{option}</div>
-                  {this.renderSubOptions(menuOptions[option].subOptions)}
+                  {renderSubOptions(menuOptions[option].subOptions)}
                 </div>
               )}
               <ExpansionPanel
@@ -336,7 +286,7 @@ class SideNavigation extends Component<
                     : (isOptionSelected && true) || selectedOption === option
                 }
               >
-                {this.renderSubOptions(menuOptions[option].subOptions)}
+                {renderSubOptions(menuOptions[option].subOptions)}
               </ExpansionPanel>
             </div>
           );
@@ -345,9 +295,7 @@ class SideNavigation extends Component<
     );
   };
 
-  renderSubOptions = (subOptions: string[]) => {
-    const { selectedSubOption, isCollapsed } = this.state;
-
+  const renderSubOptions = (subOptions: string[]) => {
     return subOptions.map((subOption, subIndex) => {
       const key = `${subOption}__${subIndex}`;
       const isSelected = subOption === selectedSubOption;
@@ -365,8 +313,8 @@ class SideNavigation extends Component<
           tabIndex={subIndex}
           aria-selected={isSelected}
           className={subOptionClassNames}
-          onClick={() => this.handleSelectSubOption(subOption)}
-          onKeyDown={() => this.handleSelectSubOption(subOption)}
+          onClick={() => handleSelectSubOption(subOption)}
+          onKeyDown={() => handleSelectSubOption(subOption)}
         >
           <div
             className={`side-navigation__sub-option-text ${
@@ -380,95 +328,99 @@ class SideNavigation extends Component<
     });
   };
 
-  render() {
-    const { isCollapsed } = this.state;
-    const { showBackButton, logoAssetPath, logoTitle, onGoBack } = this.props;
+  const logoWrapperClassNames = classNames({
+    'side-navigation__logo-wrapper': true,
+    'side-navigation__logo-wrapper-home': !showBackButton,
+    'side-navigation__logo-wrapper-away': showBackButton,
+    'side-navigation__logo-wrapper-collapsed-away':
+      isCollapsed && showBackButton,
+  });
 
-    const logoWrapperClassNames = classNames({
-      'side-navigation__logo-wrapper': true,
-      'side-navigation__logo-wrapper-home': !showBackButton,
-      'side-navigation__logo-wrapper-away': showBackButton,
-      'side-navigation__logo-wrapper-collapsed-away':
-        isCollapsed && showBackButton,
-    });
+  const backIconClassNames = classNames({
+    'material-icons': true,
+    'side-navigation__logo-back': true,
+    'side-navigation__logo-back-hidden': !showBackButton,
+    'side-navigation__logo-back-collapsed-away': isCollapsed && showBackButton,
+  });
 
-    const backIconClassNames = classNames({
-      'material-icons': true,
-      'side-navigation__logo-back': true,
-      'side-navigation__logo-back-hidden': !showBackButton,
-      'side-navigation__logo-back-collapsed-away':
-        isCollapsed && showBackButton,
-    });
+  const collapseIconClassNames = classNames({
+    'material-icons': true,
+    'side-navigation__collapse-icon': true,
+    'side-navigation__collapse-icon-collapsed': isCollapsed,
+  });
 
-    const collapseIconClassNames = classNames({
-      'material-icons': true,
-      'side-navigation__collapse-icon': true,
-      'side-navigation__collapse-icon-collapsed': isCollapsed,
-    });
+  const hasHeader = onGoBack || logoAssetPath || logoTitle;
 
-    const hasHeader = onGoBack || logoAssetPath || logoTitle;
-
-    return (
-      <div className={`side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
-        {hasHeader && (
-          <div className="side-navigation__header">
-            <div
-              role="link"
-              tabIndex={0}
-              className="side-navigation__logo-link"
-              onClick={() => showBackButton && this.handleGoBack()}
-              onKeyDown={() => showBackButton && this.handleGoBack()}
-            >
-              <i className={backIconClassNames}>keyboard_arrow_left</i>
-
-              {(logoAssetPath || logoTitle) && (
-                <div className={logoWrapperClassNames}>
-                  {logoAssetPath && (
-                    <img
-                      className="side-navigation__logo-image"
-                      alt={logoTitle}
-                      src={`${process.env.PUBLIC_URL}${logoAssetPath}`}
-                    />
-                  )}
-                  {logoTitle && (
-                    <span
-                      className={`side-navigation__logo-text ${
-                        isCollapsed ? 'hidden-text' : ''
-                      }`}
-                    >
-                      {logoTitle}
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        <div className="side-navigation__menu">{this.renderMenuOptions()}</div>
-
-        <div
-          role="switch"
-          tabIndex={0}
-          aria-checked={isCollapsed}
-          className={`side-navigation__collapse-toggle ${
-            isCollapsed ? 'collapsed' : ''
-          }`}
-          onClick={this.handleToggleCollapse}
-          onKeyDown={this.handleToggleCollapse}
-        >
-          <i className={collapseIconClassNames}>arrow_back_ios</i>
-          <span
-            className={`side-navigation__collapse-text ${
-              isCollapsed ? 'hidden-text' : ''
-            }`}
+  return (
+    <div className={`side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
+      {hasHeader && (
+        <div className="side-navigation__header">
+          <div
+            role="link"
+            tabIndex={0}
+            className="side-navigation__logo-link"
+            onClick={() => showBackButton && handleGoBack()}
+            onKeyDown={() => showBackButton && handleGoBack()}
           >
-            {'Collapse'}
-          </span>
+            <i className={backIconClassNames}>keyboard_arrow_left</i>
+
+            {(logoAssetPath || logoTitle) && (
+              <div className={logoWrapperClassNames}>
+                {logoAssetPath && (
+                  <img
+                    className="side-navigation__logo-image"
+                    alt={logoTitle}
+                    src={`${process.env.PUBLIC_URL}${logoAssetPath}`}
+                  />
+                )}
+                {logoTitle && (
+                  <span
+                    className={`side-navigation__logo-text ${
+                      isCollapsed ? 'hidden-text' : ''
+                    }`}
+                  >
+                    {logoTitle}
+                  </span>
+                )}
+              </div>
+            )}
+          </div>
         </div>
+      )}
+
+      <div className="side-navigation__menu">{renderMenuOptions()}</div>
+
+      <div
+        role="switch"
+        tabIndex={0}
+        aria-checked={isCollapsed}
+        className={`side-navigation__collapse-toggle ${
+          isCollapsed ? 'collapsed' : ''
+        }`}
+        onClick={handleToggleCollapse}
+        onKeyDown={handleToggleCollapse}
+      >
+        <i className={collapseIconClassNames}>arrow_back_ios</i>
+        <span
+          className={`side-navigation__collapse-text ${
+            isCollapsed ? 'hidden-text' : ''
+          }`}
+        >
+          {'Collapse'}
+        </span>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+SideNavigation.defaultProps = {
+  isCollapsed: false,
+  onCollapse: null,
+  currentlyViewing: null,
+  showBackButton: false,
+  onNavigate: null,
+  logoAssetPath: null,
+  logoTitle: null,
+};
 
 export default SideNavigation;
