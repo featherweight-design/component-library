@@ -26,7 +26,6 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'search',
         },
       }}
-      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ))
@@ -87,7 +86,6 @@ storiesOf('Navigation/Header Menu', module)
           ],
         },
       }}
-      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ))
@@ -108,7 +106,6 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'search',
         },
       }}
-      onNavigate={() => {}}
       defaultTitle="Dashboard"
     />
   ));

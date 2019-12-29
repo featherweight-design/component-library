@@ -29,7 +29,10 @@ storiesOf('Expansion Panel', module)
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Button type="brand" onClick={(): void => toggleIsExpanded(!isExpanded)}>
+        <Button
+          type="brand"
+          onClick={(): void => toggleIsExpanded(!isExpanded)}
+        >
           Click Me!
         </Button>
         <ExpansionPanel type="hidden" isExpanded={isExpanded}>

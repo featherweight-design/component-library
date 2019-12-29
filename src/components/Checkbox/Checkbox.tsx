@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement } from 'react';
+import React, { ChangeEvent, FunctionComponent } from 'react';
 import classnames from 'classnames';
 
 import './Checkbox.scss';
@@ -14,7 +14,10 @@ type CheckboxOption = {
   disabled?: boolean;
 };
 
-const Checkbox = ({ onChange, options }: CheckboxProps): ReactElement => (
+const Checkbox: FunctionComponent<CheckboxProps> = ({
+  onChange,
+  options,
+}: CheckboxProps) => (
   <div className="fd-checkbox">
     {options.map(({ label, checked, disabled }) => (
       <label

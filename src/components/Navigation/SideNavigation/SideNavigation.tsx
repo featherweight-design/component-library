@@ -1,7 +1,17 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, {
+  ReactElement,
+  Fragment,
+  useState,
+  useEffect,
+  FunctionComponent,
+} from 'react';
 import classNames from 'classnames';
 
-import { CurrentlyViewing, SideNavigationOptions } from '../../../types';
+import {
+  CurrentlyViewing,
+  SideNavigationOptions,
+  SideNavigationOption,
+} from '../../../types';
 import ExpansionPanel from '../../ExpansionPanel/ExpansionPanel';
 import './SideNavigation.scss';
 
@@ -21,7 +31,7 @@ type SideNavigationProps = {
   logoTitle?: string;
 };
 
-const SideNavigation = ({
+const SideNavigation: FunctionComponent<SideNavigationProps> = ({
   menuOptions,
   currentlyViewing,
   onGoBack,
@@ -37,7 +47,7 @@ const SideNavigation = ({
   const [selectedOption, setOption] = useState<string | null>(null);
   const [selectedSubOption, setSubOption] = useState<string | null>(null);
 
-  const getSubOptions = (options: SideNavigationOptions) =>
+  const getSubOptions = (options: SideNavigationOptions): string[] =>
     Object.keys(options).reduce(
       (accumulator, option) => [...accumulator, ...options[option].subOptions],
       [] as string[]
@@ -46,7 +56,7 @@ const SideNavigation = ({
   const getPreSelection = (
     options: string[],
     currentlyViewing = { path: '/' }
-  ) => {
+  ): string | null => {
     const locationArray = currentlyViewing.path.split('/');
     const preSelection = locationArray.find(path => {
       const match = options.find((subOption: string) => subOption === path);
@@ -101,12 +111,12 @@ const SideNavigation = ({
   const handleUpdateSelection = (
     newOption: string | null,
     newSubOption: string | null
-  ) => {
+  ): void => {
     setOption(isCollapsed ? null : newOption);
     setSubOption(newSubOption);
   };
 
-  const handleToggleCollapse = () => {
+  const handleToggleCollapse = (): void => {
     const selectedOption = Object.keys(menuOptions).find(option =>
       menuOptions[option].subOptions.find(
         subOption => subOption === selectedSubOption
@@ -121,7 +131,7 @@ const SideNavigation = ({
     }
   };
 
-  const handleSelectOption = (option: string | null) => {
+  const handleSelectOption = (option: string | null): void => {
     if (!isCollapsed && selectedOption === option) {
       setOption(null);
     } else {
@@ -129,7 +139,7 @@ const SideNavigation = ({
     }
   };
 
-  const handleSelectSubOption = (subOption: string) => {
+  const handleSelectSubOption = (subOption: string): void => {
     const subOptionParent = Object.keys(menuOptions).find(option => {
       const match = menuOptions[option].subOptions.find(
         sub => sub === subOption
@@ -153,7 +163,7 @@ const SideNavigation = ({
     setSubOption(subOption);
   };
 
-  const handleGoBack = () => {
+  const handleGoBack = (): void => {
     const { backPath, backTitle } = currentlyViewing;
 
     if (onGoBack && backPath && backTitle) {
@@ -165,7 +175,7 @@ const SideNavigation = ({
   };
 
   // FORMATTING METHODS
-  const formatSelectedTitle = (option: string, subOption: string) => {
+  const formatSelectedTitle = (option: string, subOption: string): string => {
     const { titleType } = menuOptions[option];
 
     let title;
@@ -192,12 +202,14 @@ const SideNavigation = ({
   };
 
   // RENDER METHODS
-  const renderMenuOptions = () => {
+  const renderMenuOptions = (): ReactElement => {
     return (
       <Fragment>
         {Object.keys(menuOptions).map((option, index) => {
           const key = `${option}__${index}`;
-          const isOptionSelected = menuOptions[option].subOptions.find(
+          const optionObject = menuOptions[option] as SideNavigationOption;
+
+          const isOptionSelected = optionObject.subOptions.find(
             subOption => subOption === selectedSubOption
           );
 
@@ -237,7 +249,7 @@ const SideNavigation = ({
             <div
               key={key}
               className={optionMenuClassNames}
-              onMouseEnter={() => {
+              onMouseEnter={(): void => {
                 if (isCollapsed) {
                   handleSelectOption(option);
                 }
@@ -247,33 +259,31 @@ const SideNavigation = ({
                 role="listbox"
                 tabIndex={index}
                 className={optionTitleClassNames}
-                onClick={() => {
+                onClick={(): void => {
                   if (!isCollapsed && !isOptionSelected) {
                     handleSelectOption(option);
                   }
                 }}
-                onKeyDown={() => {
+                onKeyDown={(): void => {
                   if (!isCollapsed && !isOptionSelected) {
                     handleSelectOption(option);
                   }
                 }}
               >
-                <i className={optionIconClassNames}>
-                  {menuOptions[option].icon}
-                </i>
+                <i className={optionIconClassNames}>{optionObject.icon}</i>
                 {option}
               </div>
               {isCollapsed && selectedOption === option && (
                 <div
                   className="side-navigation__option-hover-menu"
-                  onMouseLeave={() => {
+                  onMouseLeave={(): void => {
                     if (isCollapsed) {
                       handleSelectOption(null);
                     }
                   }}
                 >
                   <div className={optionHoverTitleClassNames}>{option}</div>
-                  {renderSubOptions(menuOptions[option].subOptions)}
+                  {renderSubOptions(optionObject.subOptions)}
                 </div>
               )}
               <ExpansionPanel
@@ -285,7 +295,7 @@ const SideNavigation = ({
                     : (isOptionSelected && true) || selectedOption === option
                 }
               >
-                {renderSubOptions(menuOptions[option].subOptions)}
+                {renderSubOptions(optionObject.subOptions)}
               </ExpansionPanel>
             </div>
           );
@@ -294,7 +304,7 @@ const SideNavigation = ({
     );
   };
 
-  const renderSubOptions = (subOptions: string[]) => {
+  const renderSubOptions = (subOptions: string[]): ReactElement[] => {
     return subOptions.map((subOption, subIndex) => {
       const key = `${subOption}__${subIndex}`;
       const isSelected = subOption === selectedSubOption;
@@ -312,8 +322,8 @@ const SideNavigation = ({
           tabIndex={subIndex}
           aria-selected={isSelected}
           className={subOptionClassNames}
-          onClick={() => handleSelectSubOption(subOption)}
-          onKeyDown={() => handleSelectSubOption(subOption)}
+          onClick={(): void => handleSelectSubOption(subOption)}
+          onKeyDown={(): void => handleSelectSubOption(subOption)}
         >
           <div
             className={`side-navigation__sub-option-text ${
@@ -358,8 +368,16 @@ const SideNavigation = ({
             role="link"
             tabIndex={0}
             className="side-navigation__logo-link"
-            onClick={() => showBackButton && handleGoBack()}
-            onKeyDown={() => showBackButton && handleGoBack()}
+            onClick={(): void => {
+              if (showBackButton) {
+                handleGoBack();
+              }
+            }}
+            onKeyDown={(): void => {
+              if (showBackButton) {
+                handleGoBack();
+              }
+            }}
           >
             <i className={backIconClassNames}>keyboard_arrow_left</i>
 
@@ -413,13 +431,13 @@ const SideNavigation = ({
 };
 
 SideNavigation.defaultProps = {
-  isCollapsed: false,
-  onCollapse: null,
-  currentlyViewing: null,
+  collapsed: false,
+  onCollapse: undefined,
+  currentlyViewing: undefined,
   showBackButton: false,
-  onNavigate: null,
-  logoAssetPath: null,
-  logoTitle: null,
+  onNavigate: undefined,
+  logoAssetPath: undefined,
+  logoTitle: undefined,
 };
 
 export default SideNavigation;

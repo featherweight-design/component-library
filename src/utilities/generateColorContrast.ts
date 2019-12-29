@@ -4,18 +4,24 @@
 
 const generateColorContrast = (
   backgroundColor: string,
-  threshold: number = 150
-) => {
-  const rgbFromHex: string = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
+  threshold: number | 150
+): string => {
+  const rgbArray = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
     backgroundColor
-  )![1];
-  const red = parseInt(rgbFromHex, 16);
-  const green = parseInt(rgbFromHex, 16);
-  const blue = parseInt(rgbFromHex, 16);
+  );
+  const rgbFromHex = rgbArray && rgbArray[1];
 
-  const result =
-    red * 0.299 + green * 0.587 + blue * 0.114 > threshold ? '#000' : '#fff';
+  if (rgbFromHex) {
+    const red = parseInt(rgbFromHex, 16);
+    const green = parseInt(rgbFromHex, 16);
+    const blue = parseInt(rgbFromHex, 16);
 
-  return result;
+    const result =
+      red * 0.299 + green * 0.587 + blue * 0.114 > threshold ? '#000' : '#fff';
+
+    return result;
+  }
+
+  return '#000';
 };
 export default generateColorContrast;

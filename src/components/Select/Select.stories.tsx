@@ -12,7 +12,7 @@ storiesOf('Select', module)
       SelectOptionType | undefined
     >(undefined);
 
-    const mockOnClick = (option: SelectOptionType) => {
+    const mockOnClick = (option: SelectOptionType): void => {
       console.log({ option });
       handleSelectOption(option);
     };

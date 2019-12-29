@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
 import './CircleLoader.scss';
 
 type CircleLoaderProps = {
   size?: string | number;
   color?: string;
-}
+};
 
-const CircleLoader = ({ size, color }: CircleLoaderProps) => {
+const CircleLoader: FunctionComponent<CircleLoaderProps> = ({
+  size,
+  color,
+}: CircleLoaderProps) => {
   const wrapperStyles = {
     height: `${size}`,
     width: `${size}`,

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
 import './Radio.scss';
@@ -9,7 +9,11 @@ type RadioProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Radio = ({ options, selected, onChange }: RadioProps) => (
+const Radio: FunctionComponent<RadioProps> = ({
+  options,
+  selected,
+  onChange,
+}: RadioProps) => (
   <div className="fd-radio">
     {options.map(option => (
       <label key={option} className="fd-radio__container">

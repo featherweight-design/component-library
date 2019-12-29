@@ -1,4 +1,4 @@
-import React, { FunctionComponent, MouseEvent, useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import classnames from 'classnames';
 
 import { SelectOptionType } from '../../types';
@@ -36,7 +36,11 @@ const Select: FunctionComponent<SelectProps> = ({
           'fd-select__container-open': areOptionsShown,
           'fd-select__container-disabled': disabled,
         })}
-        onClick={() => !disabled && toggleShowOptions(!areOptionsShown)}
+        onClick={(): void => {
+          if (!disabled) {
+            toggleShowOptions(!areOptionsShown);
+          }
+        }}
       >
         <div
           className={classnames({
@@ -68,11 +72,12 @@ const Select: FunctionComponent<SelectProps> = ({
         {options &&
           options.map(option => (
             <option
+              key={`${option.value}__${option.label}`}
               className={classnames({
                 'fd-select__option': true,
                 'fd-select__option-selected': selected?.value === option.value,
               })}
-              onClick={() => {
+              onClick={(): void => {
                 toggleShowOptions(false);
                 onClick(option);
               }}

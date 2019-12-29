@@ -5,6 +5,7 @@ import React, {
   useState,
   useRef,
   useEffect,
+  FunctionComponent,
 } from 'react';
 import classNames from 'classnames';
 
@@ -14,12 +15,12 @@ type ExpansionPanelProps = {
   children: ReactChild | ReactChild[];
   isExpanded: boolean;
   className: string;
-  title: string;
   type: 'light' | 'hidden' | 'nested';
-  onClick: (event: MouseEvent | KeyboardEvent) => void;
+  title?: string;
+  onClick?: (event: MouseEvent | KeyboardEvent) => void;
 };
 
-const ExpansionPanel = ({
+const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
   children,
   isExpanded,
   className,
@@ -30,6 +31,11 @@ const ExpansionPanel = ({
   const [isOpen, toggleIsOpen] = useState(isExpanded);
   const expansionChildren = useRef<HTMLDivElement>(null);
 
+  const getExpansionChildrenHeight = (): number | null =>
+    expansionChildren.current && expansionChildren.current.clientHeight;
+
+  const handleToggleExpansion = (): void => toggleIsOpen(!isOpen);
+
   useEffect(() => {
     if (!isOpen && isExpanded) {
       setTimeout(() => getExpansionChildrenHeight(), 300);
@@ -38,11 +44,6 @@ const ExpansionPanel = ({
       handleToggleExpansion();
     }
   }, [isExpanded]);
-
-  const getExpansionChildrenHeight = () =>
-    expansionChildren.current && expansionChildren.current.clientHeight;
-
-  const handleToggleExpansion = () => toggleIsOpen(!isOpen);
 
   const containerClassNames = classNames({
     [className]: className,
@@ -100,12 +101,12 @@ const ExpansionPanel = ({
 };
 
 ExpansionPanel.defaultProps = {
-  children: null,
+  children: undefined,
   isExpanded: false,
-  className: null,
-  title: null,
-  type: null,
-  onClick: null,
+  className: undefined,
+  title: undefined,
+  type: undefined,
+  onClick: undefined,
 };
 
 export default ExpansionPanel;

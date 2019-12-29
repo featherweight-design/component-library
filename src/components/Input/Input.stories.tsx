@@ -12,7 +12,7 @@ storiesOf('Input', module)
 
     const mockOnChange = ({
       target: { value, name },
-    }: ChangeEvent<HTMLInputElement>) => {
+    }: ChangeEvent<HTMLInputElement>): void => {
       console.log({ value });
       if (name === 'default') {
         handleChangeTextValue(value);
