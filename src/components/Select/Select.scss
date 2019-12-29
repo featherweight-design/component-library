@@ -18,8 +18,8 @@
     // Closing transition
     transition: border-radius 0.01s ease-in-out 0.2s;
     &-disabled {
-      background-color: $gray-3;
-      color: $gray-8;
+      background-color: $gray-03;
+      color: $gray-08;
       cursor: not-allowed;
     }
     &-open {
@@ -30,10 +30,10 @@
   &__input {
     flex: 1;
     &-placeholder {
-      color: $gray-6;
+      color: $gray-06;
     }
     &-disabled {
-      color: $gray-8;
+      color: $gray-08;
     }
   }
   &__icon {
@@ -61,7 +61,7 @@
     &-open {
       height: 12.5rem;
       padding: 0;
-      border: 1px solid $gray-9;
+      border: 1px solid $gray-09;
       border-top: none;
       border-radius: 0 0 0.25rem 0.25rem;
       overflow: auto;
@@ -80,7 +80,7 @@
       background-color: $brand-white;
     }
     &-selected {
-      background-color: $gray-2;
+      background-color: $gray-02;
       color: $brand-xx-dark;
       font-weight: 700;
     }

@@ -7,11 +7,11 @@
   &__input {
     @include input-base-styles;
     &:disabled {
-      background-color: $gray-3;
+      background-color: $gray-03;
       cursor: not-allowed;
     }
     &::placeholder {
-      color: $gray-6;
+      color: $gray-06;
     }
     &:focus {
       @include focus-styles;
