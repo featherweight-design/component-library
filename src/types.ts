@@ -45,10 +45,11 @@ export interface HeaderMenuSubOption {
 }
 
 export interface SideNavigationOptions {
-  [key: string]: {
-    icon: string;
-    subOptions: string[];
-    titleType: string;
-    // titleType: 'option' | 'subOption' | 'option subOption' | 'subOption option';
-  };
+  [key: string]: SideNavigationOption;
+}
+
+export interface SideNavigationOption {
+  icon: string;
+  subOptions: string[];
+  titleType: 'option' | 'subOption' | 'option subOption' | 'subOption option';
 }
