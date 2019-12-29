@@ -49,9 +49,13 @@
     transition: 0.2s ease-in-out;
     &-checked {
       background-color: $brand-color;
+      border-color: $brand-color;
     }
-    &-disabled > .fd-checkbox__icon {
-      border-color: $gray-8;
+    &-disabled {
+      border-color: $gray-9;
+      > .fd-checkbox__icon {
+        border-color: $gray-8;
+      }
     }
   }
   &__icon {
