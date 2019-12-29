@@ -141,7 +141,7 @@ const HeaderMenu = ({
                 <div
                   className="header-menu__icon-indicator"
                   role="menuitem"
-                  tabIndex={index}
+                  tabIndex={-1}
                   onClick={() =>
                     !selectedOption &&
                     handleSelectOption(option, menuOptions[option])
@@ -222,7 +222,7 @@ const HeaderMenu = ({
             <div
               key={key}
               role="link"
-              tabIndex={index}
+              tabIndex={0}
               className={subOptionClassNames}
               onClick={() => !isSelected && handleSelectSubOption(label, path)}
               onKeyDown={() =>

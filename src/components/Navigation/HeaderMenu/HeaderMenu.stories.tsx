@@ -4,16 +4,15 @@ import { storiesOf } from '@storybook/react';
 
 import HeaderMenu from './HeaderMenu';
 
-const currentlyViewing = {
-  title: 'Notifications',
-  path: '/notifications',
-};
-
 storiesOf('Navigation/Header Menu', module)
   .addDecorator(checkA11y)
   .add('Default', () => (
     <HeaderMenu
-      currentlyViewing={currentlyViewing}
+      currentlyViewing={{
+        title: 'Best Site',
+        subTitle: 'ever',
+        path: '/best-site',
+      }}
       menuOptions={{
         settings: {
           icon: 'settings',
@@ -33,7 +32,11 @@ storiesOf('Navigation/Header Menu', module)
   ))
   .add('With sub-options', () => (
     <HeaderMenu
-      currentlyViewing={currentlyViewing}
+      currentlyViewing={{
+        title: 'Lalapalooza',
+        subTitle: 'Get Wild',
+        path: '/lalapalooza',
+      }}
       menuOptions={{
         settings: {
           subTitle: 'Bob H.',
@@ -90,13 +93,16 @@ storiesOf('Navigation/Header Menu', module)
   ))
   .add('With an indicator', () => (
     <HeaderMenu
-      currentlyViewing={currentlyViewing}
+      currentlyViewing={{
+        title: 'Notifications',
+        path: '/notifications',
+      }}
       menuOptions={{
         notifications: {
           icon: 'notifications',
           path: '/notifications',
           indicator: true,
-          isActive: currentlyViewing.path === '/notifications',
+          isActive: true,
         },
         search: {
           icon: 'search',
