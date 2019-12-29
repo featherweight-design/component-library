@@ -48,6 +48,7 @@
     min-width: 16.75rem;
     max-height: 0;
     border: 0px solid transparent;
+    box-sizing: border-box;
     background-color: $white;
     // Closing transitions
     transition: max-height 0.2s ease-in-out, border 0.01s ease-in-out 0.2s;
@@ -66,7 +67,6 @@
       border: 1px solid $gray-9;
       border-top: none;
       border-radius: 0 0 0.25rem 0.25rem;
-      box-sizing: border-box;
       overflow: auto;
       // Opening transitions
       transition: max-height 0.2s ease-in-out;
