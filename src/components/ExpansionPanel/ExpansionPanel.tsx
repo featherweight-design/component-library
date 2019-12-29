@@ -13,7 +13,7 @@ import './ExpansionPanel.scss';
 
 type ExpansionPanelProps = {
   children: ReactChild | ReactChild[];
-  isExpanded?: boolean;
+  expanded?: boolean;
   type?: 'light' | 'hidden' | 'nested';
   className?: string;
   title?: string;
@@ -22,58 +22,58 @@ type ExpansionPanelProps = {
 
 const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
   children,
-  isExpanded,
+  expanded,
   className,
   title,
   type,
   onClick,
 }: ExpansionPanelProps) => {
-  const [isOpen, toggleIsOpen] = useState(isExpanded);
+  const [isExpanded, toggleIsExpanded] = useState(expanded);
   const expansionChildren = useRef<HTMLDivElement>(null);
 
   const getExpansionChildrenHeight = (): number | null =>
     expansionChildren.current && expansionChildren.current.clientHeight;
 
-  const handleToggleExpansion = (): void => toggleIsOpen(!isOpen);
+  const handleToggleExpansion = (): void => toggleIsExpanded(!isExpanded);
 
   useEffect(() => {
-    if (!isOpen && isExpanded) {
+    if (!isExpanded && expanded) {
       setTimeout(() => getExpansionChildrenHeight(), 300);
       handleToggleExpansion();
-    } else if (isOpen && !isExpanded) {
+    } else if (isExpanded && !expanded) {
       handleToggleExpansion();
     }
-  }, [isExpanded]);
+  }, [expanded]);
 
   const containerClassNames = classNames({
     [className as string]: className,
     'expansion-panel': true,
-    'expansion-panel-show': isOpen,
-    'expansion-panel-hide': !isOpen,
+    'expansion-panel-show': isExpanded,
+    'expansion-panel-hide': !isExpanded,
     'expansion-panel-no-title': !title,
     [`expansion-panel-${type}`]: type,
   });
 
   const childWrapperClassName = classNames({
     'expansion-panel__child-wrapper': true,
-    'expansion-panel__child-wrapper-show': isOpen,
-    'expansion-panel__child-wrapper-hide': !isOpen,
+    'expansion-panel__child-wrapper-show': isExpanded,
+    'expansion-panel__child-wrapper-hide': !isExpanded,
     'expansion-panel__child-wrapper-primary': !type,
     [`expansion-panel__child-wrapper-${type}`]: type,
   });
 
   const buttonClassNames = classNames({
     'expansion-panel__button': true,
-    'expansion-panel__button-show': isOpen,
-    'expansion-panel__button-hide': !isOpen,
+    'expansion-panel__button-show': isExpanded,
+    'expansion-panel__button-hide': !isExpanded,
     [`expansion-panel__button-${type}`]: type,
   });
 
   const iconClassNames = classNames({
     'material-icons': true,
     'expansion-panel__icon': true,
-    'expansion-panel__icon-show': isOpen,
-    'expansion-panel__icon-hide': !isOpen,
+    'expansion-panel__icon-show': isExpanded,
+    'expansion-panel__icon-hide': !isExpanded,
     [`expansion-panel__icon-${type}`]: type,
   });
 
@@ -102,7 +102,7 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
 
 ExpansionPanel.defaultProps = {
   children: undefined,
-  isExpanded: false,
+  expanded: false,
   className: undefined,
   title: undefined,
   type: undefined,

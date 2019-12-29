@@ -35,7 +35,7 @@ storiesOf('Expansion Panel', module)
         >
           Click Me!
         </Button>
-        <ExpansionPanel type="hidden" isExpanded={isExpanded}>
+        <ExpansionPanel type="hidden" expanded={isExpanded}>
           <div
             style={{
               display: 'flex',

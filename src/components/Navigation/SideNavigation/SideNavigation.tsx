@@ -289,7 +289,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
               <ExpansionPanel
                 className={optionExpansionPanelClassNames}
                 type="hidden"
-                isExpanded={
+                expanded={
                   isCollapsed
                     ? false
                     : (isOptionSelected && true) || selectedOption === option
