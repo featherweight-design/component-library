@@ -46,37 +46,32 @@
     display: flex;
     flex-direction: column;
     min-width: 16.75rem;
-    max-height: 0;
+    height: 0;
     border: 0px solid transparent;
     box-sizing: border-box;
     background-color: $white;
     // Closing transitions
-    transition: max-height 0.2s ease-in-out, border 0.01s ease-in-out 0.2s;
+    transition: height 0.2s ease-in-out, border 0.01s ease-in-out 0.2s;
     > * {
       min-height: 0;
       max-height: 0;
       padding: 0;
       visibility: hidden;
-      // Closing transitions
-      transition: 0.01s ease-in-out 0.2s, visibility 0.01s ease-in-out;
-      // transition: 1s ease-in-out;
     }
     &-open {
-      max-height: 12.5rem;
+      height: 12.5rem;
       padding: 0;
       border: 1px solid $gray-9;
       border-top: none;
       border-radius: 0 0 0.25rem 0.25rem;
       overflow: auto;
       // Opening transitions
-      transition: max-height 0.2s ease-in-out;
+      transition: height 0.2s ease-in-out;
       > * {
         min-height: 1.375rem;
         max-height: 1.375rem;
         padding: 0.5rem 1rem;
         visibility: visible;
-        // Opening transitions
-        transition: 0.01s ease-in-out;
       }
     }
   }
