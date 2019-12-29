@@ -329,7 +329,7 @@ class SideNavigation extends Component<
               )}
               <ExpansionPanel
                 className={optionExpansionPanelClassNames}
-                type="minimal"
+                type="hidden"
                 isExpanded={
                   isCollapsed
                     ? false
