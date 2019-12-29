@@ -12,6 +12,13 @@
     &:hover > div[class='fd-checkbox__styled'] {
       background-color: $brand-xx-light;
     }
+    &-disabled {
+      cursor: not-allowed;
+      > .fd-checkbox__styled,
+      &:hover > div[class='fd-checkbox__styled'] {
+        background-color: $gray-3;
+      }
+    }
   }
   &__input {
     // Hide checkbox visually but remain accessible to screen readers.
@@ -23,7 +30,6 @@
     padding: 0;
     border: 0;
     clip: rect(0 0 0 0);
-    clippath: inset(50%);
     overflow: hidden;
     white-space: nowrap;
     &:focus + .fd-checkbox__styled {
@@ -43,6 +49,9 @@
     transition: 0.2s ease-in-out;
     &-checked {
       background-color: $brand-color;
+    }
+    &-disabled > .fd-checkbox__icon {
+      border-color: $gray-8;
     }
   }
   &__icon {
