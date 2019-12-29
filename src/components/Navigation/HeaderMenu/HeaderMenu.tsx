@@ -1,4 +1,4 @@
-import React, { Component, Fragment, SyntheticEvent } from 'react';
+import React, { Fragment, SyntheticEvent, useState, useRef } from 'react';
 import classNames from 'classnames';
 
 import {
@@ -20,38 +20,29 @@ type HeaderMenuState = {
   selectedOption: string | null;
 };
 
-class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
-  state = {
-    selectedOption: null,
-  };
-
-  ['subOptionsMenu']: HTMLDivElement | null;
-
-  static defaultProps = {
-    menuOptions: null,
-    onNavigate: null,
-    defaultTitle: null,
-  };
+const HeaderMenu = ({
+  currentlyViewing,
+  menuOptions,
+  onNavigate,
+  defaultTitle,
+}: HeaderMenuProps) => {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const subOptionsMenu = useRef<HTMLDivElement>(null);
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
-  handleSelectOption = (name: string, optionObject: HeaderMenuOption) => {
-    const { selectedOption } = this.state;
-    const { onNavigate } = this.props;
-
+  const handleSelectOption = (name: string, optionObject: HeaderMenuOption) => {
     const { subOptions, path } = optionObject;
 
     if (subOptions) {
       if (!selectedOption) {
         document.addEventListener(
           'click',
-          (this.handleHeaderMenuOutsideClick as any) as EventListener,
+          (handleHeaderMenuOutsideClick as any) as EventListener,
           false
         );
       }
 
-      this.setState({
-        selectedOption: name,
-      });
+      setSelectedOption(name);
     } else if (path) {
       onNavigate({
         title: name,
@@ -60,19 +51,17 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
     }
   };
 
-  handleHeaderMenuOutsideClick = (event: SyntheticEvent) => {
+  const handleHeaderMenuOutsideClick = (event: SyntheticEvent) => {
     if (
-      this.subOptionsMenu &&
-      !this.subOptionsMenu.contains(event.currentTarget)
+      subOptionsMenu.current &&
+      !subOptionsMenu.current.contains(event.currentTarget)
     ) {
-      this.handleRemoveEventListener();
-      this.setState({ selectedOption: null });
+      handleRemoveEventListener();
+      setSelectedOption(null);
     }
   };
 
-  handleSelectSubOption = (title: string, path: string) => {
-    const { onNavigate } = this.props;
-
+  const handleSelectSubOption = (title: string, path: string) => {
     if (title && path && onNavigate) {
       onNavigate({
         path,
@@ -80,24 +69,26 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
       });
     }
 
-    if (this.subOptionsMenu) {
-      this.handleRemoveEventListener();
+    if (subOptionsMenu) {
+      handleRemoveEventListener();
     }
 
-    this.setState({ selectedOption: null });
+    setSelectedOption(null);
   };
 
-  handleRemoveEventListener = () => {
+  const handleRemoveEventListener = () => {
     document.removeEventListener(
       'click',
-      (this.handleHeaderMenuOutsideClick as any) as EventListener,
+      (handleHeaderMenuOutsideClick as any) as EventListener,
       false
     );
   };
 
   // RENDER METHODS
-  renderCurrentlyViewingHeader = ({ title, subTitle }: CurrentlyViewing) => {
-    const { defaultTitle } = this.props;
+  const renderCurrentlyViewingHeader = ({
+    title,
+    subTitle,
+  }: CurrentlyViewing) => {
     const titleClassNames = classNames({
       'header-menu__location-title': true,
       'header-menu__location-title-with-subtitle': subTitle,
@@ -113,96 +104,83 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
     );
   };
 
-  renderMenuOptions = () => {
-    const { selectedOption } = this.state;
-    const { menuOptions } = this.props;
+  const renderMenuOptions = () => (
+    <div className="header-menu__menu-icon-container">
+      {Object.keys(menuOptions).map((option, index) => {
+        const key = `${option}__${index}`;
+        const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
+          option
+        ];
+        const menuOptionIconClassNames = classNames({
+          'material-icons': true,
+          'header-menu__menu-icon': true,
+          [`header-menu__menu-icon-${option}`]: true,
+          'header-menu__menu-icon-selected':
+            selectedOption === option || isActive,
+        });
 
-    return (
-      <div className="header-menu__menu-icon-container">
-        {Object.keys(menuOptions).map((option, index) => {
-          const key = `${option}__${index}`;
-          const {
-            icon,
-            subOptions,
-            subTitle,
-            indicator,
-            isActive,
-          } = menuOptions[option];
-          const menuOptionIconClassNames = classNames({
-            'material-icons': true,
-            'header-menu__menu-icon': true,
-            [`header-menu__menu-icon-${option}`]: true,
-            'header-menu__menu-icon-selected':
-              selectedOption === option || isActive,
-          });
-
-          return (
-            <Fragment key={key}>
-              <div className="header-menu__icon-container">
-                <i
-                  className={menuOptionIconClassNames}
+        return (
+          <Fragment key={key}>
+            <div className="header-menu__icon-container">
+              <i
+                className={menuOptionIconClassNames}
+                role="menuitem"
+                tabIndex={0}
+                onClick={() =>
+                  !selectedOption &&
+                  handleSelectOption(option, menuOptions[option])
+                }
+                onKeyDown={() =>
+                  !selectedOption &&
+                  handleSelectOption(option, menuOptions[option])
+                }
+              >
+                {icon}
+              </i>
+              {indicator && (
+                <div
+                  className="header-menu__icon-indicator"
                   role="menuitem"
-                  tabIndex={0}
+                  tabIndex={index}
                   onClick={() =>
                     !selectedOption &&
-                    this.handleSelectOption(option, menuOptions[option])
+                    handleSelectOption(option, menuOptions[option])
                   }
                   onKeyDown={() =>
                     !selectedOption &&
-                    this.handleSelectOption(option, menuOptions[option])
+                    handleSelectOption(option, menuOptions[option])
                   }
                 >
-                  {icon}
-                </i>
-                {indicator && (
-                  <div
-                    className="header-menu__icon-indicator"
-                    role="menuitem"
-                    tabIndex={index}
-                    onClick={() =>
-                      !selectedOption &&
-                      this.handleSelectOption(option, menuOptions[option])
-                    }
-                    onKeyDown={() =>
-                      !selectedOption &&
-                      this.handleSelectOption(option, menuOptions[option])
-                    }
-                  >
-                    {typeof indicator === 'number' && indicator}
-                  </div>
-                )}
-                {subOptions && selectedOption === option && (
-                  <div
-                    className="header-menu__sub-options"
-                    ref={element => {
-                      this.subOptionsMenu = element;
-                    }}
-                  >
-                    <div className="header-menu__sub-options-header">
-                      <span className="header-menu__sub-options-title">
-                        {option}
+                  {typeof indicator === 'number' && indicator}
+                </div>
+              )}
+              {subOptions && selectedOption === option && (
+                <div
+                  className="header-menu__sub-options"
+                  ref={subOptionsMenu}
+                >
+                  <div className="header-menu__sub-options-header">
+                    <span className="header-menu__sub-options-title">
+                      {option}
+                    </span>
+                    {subTitle && (
+                      <span className="header-menu__sub-options-sub-title">
+                        {subTitle}
                       </span>
-                      {subTitle && (
-                        <span className="header-menu__sub-options-sub-title">
-                          {subTitle}
-                        </span>
-                      )}
-                    </div>
-                    {this.renderSubOptions(subOptions)}
+                    )}
                   </div>
-                )}
-              </div>
-            </Fragment>
-          );
-        })}
-      </div>
-    );
-  };
+                  {renderSubOptions(subOptions)}
+                </div>
+              )}
+            </div>
+          </Fragment>
+        );
+      })}
+    </div>
+  );
 
-  renderSubOptions = (subOptions: HeaderMenuSubOption[]) => {
-    const { currentlyViewing } = this.props;
-
-    return subOptions
+  const renderSubOptions = (subOptions: HeaderMenuSubOption[]) =>
+    subOptions
       .filter(subOption => subOption.hasAccess)
       .map(({ label, icon, path, href }, index) => {
         const key = `${label}__${index}`;
@@ -223,12 +201,12 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
               className={subOptionClassNames}
               href={href}
               onClick={() => {
-                this.handleRemoveEventListener();
-                this.setState({ selectedOption: null });
+                handleRemoveEventListener();
+                setSelectedOption(null);
               }}
               onKeyDown={() => {
-                this.handleRemoveEventListener();
-                this.setState({ selectedOption: null });
+                handleRemoveEventListener();
+                setSelectedOption(null);
               }}
             >
               <i className="material-icons header-menu__sub-option-icon">
@@ -246,11 +224,9 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
               role="link"
               tabIndex={index}
               className={subOptionClassNames}
-              onClick={() =>
-                !isSelected && this.handleSelectSubOption(label, path)
-              }
+              onClick={() => !isSelected && handleSelectSubOption(label, path)}
               onKeyDown={() =>
-                !isSelected && this.handleSelectSubOption(label, path)
+                !isSelected && handleSelectSubOption(label, path)
               }
             >
               <i className="material-icons header-menu__sub-option-icon">
@@ -263,26 +239,26 @@ class HeaderMenu extends Component<HeaderMenuProps, HeaderMenuState> {
 
         return null;
       });
-  };
 
-  render() {
-    const { currentlyViewing, menuOptions } = this.props;
-
-    return (
-      <div className="header-menu">
-        <div className="header-menu__left">
-          <div className="header-menu__location-container">
-            {currentlyViewing &&
-              this.renderCurrentlyViewingHeader(currentlyViewing)}
-          </div>
-        </div>
-
-        <div className="header-menu__right">
-          {menuOptions && this.renderMenuOptions()}
+  return (
+    <div className="header-menu">
+      <div className="header-menu__left">
+        <div className="header-menu__location-container">
+          {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
         </div>
       </div>
-    );
-  }
-}
+
+      <div className="header-menu__right">
+        {menuOptions && renderMenuOptions()}
+      </div>
+    </div>
+  );
+};
+
+HeaderMenu.defaultProps = {
+  menuOptions: null,
+  onNavigate: null,
+  defaultTitle: null,
+};
 
 export default HeaderMenu;
