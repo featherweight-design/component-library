@@ -51,5 +51,5 @@ export interface SideNavigationOptions {
 export interface SideNavigationOption {
   icon: string;
   subOptions: string[];
-  titleType: 'option' | 'subOption' | 'option subOption' | 'subOption option';
+  titleType: string;
 }

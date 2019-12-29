@@ -13,9 +13,9 @@ import './ExpansionPanel.scss';
 
 type ExpansionPanelProps = {
   children: ReactChild | ReactChild[];
-  isExpanded: boolean;
-  className: string;
-  type: 'light' | 'hidden' | 'nested';
+  isExpanded?: boolean;
+  type?: 'light' | 'hidden' | 'nested';
+  className?: string;
   title?: string;
   onClick?: (event: MouseEvent | KeyboardEvent) => void;
 };
@@ -46,7 +46,7 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
   }, [isExpanded]);
 
   const containerClassNames = classNames({
-    [className]: className,
+    [className as string]: className,
     'expansion-panel': true,
     'expansion-panel-show': isOpen,
     'expansion-panel-hide': !isOpen,
