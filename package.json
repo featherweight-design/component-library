@@ -3,19 +3,19 @@
   "version": "0.1.5",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/main.js",
-  "homepage": "https://github.com/HartiganHM/component-library#readme",
+  "homepage": "https://github.com/featherweight-design/component-library#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://githgit fub.com/HartiganHM/component-library.git"
+    "url": "git+https://github.com/featherweight-design/component-library.git"
   },
   "bugs": {
-    "url": "https://github.com/HartiganHM/component-library/issues"
+    "url": "https://github.com/featherweight-design/component-library/issues"
   },
   "files": [
     "lib/**/*"
   ],
   "keywords": [],
-  "author": "Hugh Hartigan",
+  "author": "Featherweight Design",
   "license": "ISC",
   "scripts": {
     "build": "rm -rf _bundles lib lib-esm && tsc && tsc -m es6 --outDir lib-esm && npx webpack",
