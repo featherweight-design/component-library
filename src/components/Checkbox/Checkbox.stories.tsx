@@ -8,10 +8,12 @@ storiesOf('Checkbox', module)
   .addDecorator(withA11y)
   .add('Default', () => {
     const [options, updateOptions] = useState([
-      { checked: false, label: 'Torin' },
+      { checked: true, label: 'Torin' },
       { checked: false, label: 'Juniper' },
       { checked: false, label: 'Pooch' },
       { checked: false, label: 'Luna' },
+      { checked: false, label: 'Disabled', disabled: true },
+      { checked: true, label: 'Disabled Checked', disabled: true },
     ]);
 
     const handleChange = ({
