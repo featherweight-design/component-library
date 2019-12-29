@@ -9,7 +9,7 @@
     max-height: 20000px;
     margin-bottom: 1rem;
   }
-  &-minimal {
+  &-hidden {
     max-height: unset;
     margin-bottom: 0;
     border-radius: 0;
@@ -105,7 +105,7 @@
           max-height 0.6s 0.1s ease-in-out;
       }
     }
-    &-minimal {
+    &-hidden {
       padding: 0;
       border-bottom: none;
     }
