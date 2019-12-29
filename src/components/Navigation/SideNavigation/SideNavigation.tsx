@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import isEqual from 'lodash/isEqual';
 import classNames from 'classnames';
 
 import { CurrentlyViewing, SideNavigationOptions } from '../../../types';
