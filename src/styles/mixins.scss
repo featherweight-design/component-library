@@ -21,14 +21,20 @@
 
 // Check-mark animation influenced by and tweaked from
 // https://codepen.io/scottloway/pen/zqoLyQ
-@mixin check-mark-animation($width, $height, $thickness, $timing: 0.4s) {
+@mixin check-mark-animation(
+  $width,
+  $height,
+  $thickness,
+  $timing: 0.4s,
+  $color: $white
+) {
   position: absolute;
   top: $height;
   left: $width;
   height: $height;
   width: $width;
-  border-right: $thickness solid $white;
-  border-top: $thickness solid $white;
+  border-right: $thickness solid $color;
+  border-top: $thickness solid $color;
   transform: scaleX(-1) rotate(135deg);
   transform-origin: left top;
   animation: $timing ease check-mark;
