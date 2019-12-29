@@ -34,15 +34,12 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
   const getExpansionChildrenHeight = (): number | null =>
     expansionChildren.current && expansionChildren.current.clientHeight;
 
-  const handleToggleExpansion = (): void => toggleIsExpanded(!isExpanded);
-
   useEffect(() => {
-    if (!isExpanded && expanded) {
+    if (expanded) {
       setTimeout(() => getExpansionChildrenHeight(), 300);
-      handleToggleExpansion();
-    } else if (isExpanded && !expanded) {
-      handleToggleExpansion();
     }
+
+    toggleIsExpanded(expanded);
   }, [expanded]);
 
   const containerClassNames = classNames({
@@ -83,8 +80,8 @@ const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
         <button
           className={buttonClassNames}
           tabIndex={0}
-          onClick={onClick || handleToggleExpansion}
-          onKeyDown={onClick || handleToggleExpansion}
+          onClick={onClick || ((): void => toggleIsExpanded(!isExpanded))}
+          onKeyDown={onClick || ((): void => toggleIsExpanded(!isExpanded))}
         >
           <h4 className="expansion-panel__title">{title}</h4>
           <i className={iconClassNames}>
