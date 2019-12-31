@@ -1,31 +1,38 @@
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: {
-    main: './src/index.ts',
-    'main.min': './src/index.ts',
-  },
+  entry: './src/index.ts',
+  devtool: 'inline-source-map',
   output: {
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
     libraryTarget: 'umd',
     library: '@f-design/component-library',
+    publicPath: '/dist/',
     umdNamedDefine: true,
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
+    alias: {
+      react: path.resolve(__dirname, './node_modules/react'),
+      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+    },
   },
-  devtool: 'source-map',
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        sourceMap: true,
-        include: /\.min\.js$/,
-      }),
-    ],
+  externals: {
+    // Don't bundle react or react-dom
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'React',
+      root: 'React',
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'ReactDOM',
+      root: 'ReactDOM',
+    },
   },
   module: {
     rules: [
@@ -38,9 +45,9 @@ module.exports = {
         },
       },
       {
-        enforce: "pre",
+        enforce: 'pre',
         test: /\.js$/,
-        loader: "source-map-loader"
+        loader: 'source-map-loader',
       },
       {
         test: /\.scss$/,
