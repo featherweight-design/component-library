@@ -387,7 +387,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
                   <img
                     className="side-navigation__logo-image"
                     alt={logoTitle}
-                    src={`${process.env.PUBLIC_URL}${logoAssetPath}`}
+                    src={logoAssetPath}
                   />
                 )}
                 {logoTitle && (
