@@ -20,7 +20,6 @@ module.exports = {
     'no-use-before-define': ['error', { variables: false }],
     '@typescript-eslint/no-use-before-define': ['error', { variables: false }],
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
   },
   settings: {
     react: {
