@@ -2,7 +2,7 @@
   "name": "@f-design/component-library",
   "version": "0.1.6",
   "description": "A component library built and maintained by Featherweight Design",
-  "main": "dist/main.js",
+  "main": "dist/bundle.js",
   "homepage": "https://github.com/featherweight-design/component-library#readme",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "author": "Featherweight Design",
   "license": "ISC",
   "scripts": {
-    "build": "rm -rf _bundles lib lib-esm && tsc && tsc -m es6 --outDir lib-esm && npx webpack",
+    "build": "npx webpack",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
