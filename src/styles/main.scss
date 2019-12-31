@@ -1,0 +1,16 @@
+@import './colors.scss';
+@import './mixins.scss';
+
+* {
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+}
+
+body {
+  color: $gray-16;
+  font-size: 1rem;
+  .fd-label {
+    margin-bottom: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 0.75rem;
+  }
+}

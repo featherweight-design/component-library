@@ -9,9 +9,12 @@
 /coverage
 
 # production
-/build
+/lib
+/lib-esm
+/dist
 
 # misc
+/notes
 .DS_Store
 .env.local
 .env.development.local

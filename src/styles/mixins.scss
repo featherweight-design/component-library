@@ -1,0 +1,82 @@
+@import './colors.scss';
+
+@mixin focus-styles {
+  outline: none;
+  box-shadow: 0 0 3px 2px $brand-focus-outline;
+}
+
+@mixin error-focus-styles {
+  outline: none;
+  box-shadow: 0 0 3px 2px $destructive-focus-outline;
+}
+
+@mixin input-base-styles {
+  height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $gray-09;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+// Check-mark animation influenced by and tweaked from
+// https://codepen.io/scottloway/pen/zqoLyQ
+@mixin check-mark-animation(
+  $width,
+  $height,
+  $thickness,
+  $timing: 0.4s,
+  $color: $white
+) {
+  position: absolute;
+  top: $height;
+  left: $width;
+  height: $height;
+  width: $width;
+  border-right: $thickness solid $color;
+  border-top: $thickness solid $color;
+  transform: scaleX(-1) rotate(135deg);
+  transform-origin: left top;
+  animation: $timing ease check-mark;
+
+  @keyframes check-mark {
+    0% {
+      height: 0;
+      width: 0;
+      opacity: 1;
+    }
+    20% {
+      height: 0;
+      width: $width;
+      opacity: 1;
+    }
+    40% {
+      height: $height;
+      width: $width;
+      opacity: 1;
+    }
+    100% {
+      height: $height;
+      width: $width;
+      opacity: 1;
+    }
+  }
+}
+
+// Color contrast mixin tweaked and based on
+// https://medium.com/@jonnykates/automating-colour-contrast-ratios-with-sass-e201f3b52797
+@function text-contrast($hex-value) {
+  $color-brightness: round(
+    (red($hex-value) * 0.299) + (green($hex-value) * 0.587) +
+      (blue($hex-value) * 0.114)
+  );
+  $light-color: round(
+    (red(#ffffff) * 0.299) + (green(#ffffff) * 0.587) + (blue(#ffffff) * 0.114)
+  );
+
+  @if abs($color-brightness) < ($light-color / 2) {
+    @return white;
+  } @else {
+    @return black;
+  }
+}

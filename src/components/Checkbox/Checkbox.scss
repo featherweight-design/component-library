@@ -1,0 +1,64 @@
+@import '../../styles/main';
+
+.fd-checkbox {
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    + .fd-checkbox__container {
+      margin-top: 0.5rem;
+    }
+    &:hover > div[class='fd-checkbox__styled'] {
+      background-color: $brand-xx-light;
+    }
+    &-disabled {
+      cursor: not-allowed;
+      > .fd-checkbox__styled,
+      &:hover > div[class='fd-checkbox__styled'] {
+        background-color: $gray-03;
+      }
+    }
+  }
+  &__input {
+    // Hide checkbox visually but remain accessible to screen readers.
+    // Source: https://polished.js.org/docs/#hidevisually
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    white-space: nowrap;
+    &:focus + .fd-checkbox__styled {
+      @include focus-styles;
+    }
+  }
+  &__styled {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    border: 1px solid $gray-09;
+    border-radius: 0.25rem;
+    transition: 0.2s ease-in-out;
+    &-checked {
+      background-color: $brand-color;
+      border-color: $brand-color;
+    }
+    &-disabled {
+      border-color: $gray-09;
+      > .fd-checkbox__icon {
+        border-color: $gray-08;
+      }
+    }
+  }
+  &__icon {
+    @include check-mark-animation(0.2rem, 0.5rem, 0.125rem);
+  }
+}

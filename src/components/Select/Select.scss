@@ -1,0 +1,88 @@
+@import '../../styles//mixins.scss';
+
+.fd-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 16.75rem;
+  cursor: pointer;
+  + .fd-select {
+    margin-left: 0.5rem;
+  }
+  &__container {
+    @include input-base-styles;
+    display: flex;
+    align-items: center;
+    padding-right: 0.5rem;
+    display: flex;
+    // Closing transition
+    transition: border-radius 0.01s ease-in-out 0.2s;
+    &-disabled {
+      background-color: $gray-03;
+      color: $gray-08;
+      cursor: not-allowed;
+    }
+    &-open {
+      border-radius: 0.25rem 0.25rem 0 0;
+      transition: border-radius 0.01s;
+    }
+  }
+  &__input {
+    flex: 1;
+    &-placeholder {
+      color: $gray-06;
+    }
+    &-disabled {
+      color: $gray-08;
+    }
+  }
+  &__icon {
+    transition: 0.2s ease-in-out;
+    &-open {
+      transform: rotate(180deg);
+    }
+  }
+  &__options-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 16.75rem;
+    height: 0;
+    border: 0px solid transparent;
+    box-sizing: border-box;
+    background-color: $white;
+    // Closing transitions
+    transition: height 0.2s ease-in-out, border 0.01s ease-in-out 0.2s;
+    > * {
+      min-height: 0;
+      max-height: 0;
+      padding: 0;
+      visibility: hidden;
+    }
+    &-open {
+      height: 12.5rem;
+      padding: 0;
+      border: 1px solid $gray-09;
+      border-top: none;
+      border-radius: 0 0 0.25rem 0.25rem;
+      overflow: auto;
+      // Opening transitions
+      transition: height 0.2s ease-in-out;
+      > * {
+        min-height: 1.375rem;
+        max-height: 1.375rem;
+        padding: 0.5rem 1rem;
+        visibility: visible;
+      }
+    }
+  }
+  &__option {
+    &:hover {
+      background-color: $brand-white;
+    }
+    &-selected {
+      background-color: $gray-02;
+      color: $brand-xx-dark;
+      font-weight: 700;
+    }
+  }
+}
