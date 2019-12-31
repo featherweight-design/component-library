@@ -2,7 +2,6 @@ import React, {
   FunctionComponent,
   ReactElement,
   Fragment,
-  SyntheticEvent,
   useState,
   useRef,
 } from 'react';
