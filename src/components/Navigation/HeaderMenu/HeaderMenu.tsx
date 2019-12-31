@@ -33,17 +33,13 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   const subOptionsMenu = useRef<HTMLDivElement>(null);
 
   const handleRemoveEventListener = (): void => {
-    document.removeEventListener(
-      'click',
-      (handleHeaderMenuOutsideClick as Function) as EventListener,
-      false
-    );
+    document.removeEventListener('click', handleHeaderMenuOutsideClick);
   };
 
-  const handleHeaderMenuOutsideClick = (event: SyntheticEvent): void => {
+  const handleHeaderMenuOutsideClick = (event: MouseEvent): void => {
     if (
       subOptionsMenu.current &&
-      !subOptionsMenu.current.contains(event.currentTarget)
+      !subOptionsMenu.current.contains(event.currentTarget as Node)
     ) {
       handleRemoveEventListener();
       setSelectedOption(null);
@@ -58,11 +54,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
 
     if (subOptions) {
       if (!selectedOption) {
-        document.addEventListener(
-          'click',
-          (handleHeaderMenuOutsideClick as Function) as EventListener,
-          false
-        );
+        document.addEventListener('click', handleHeaderMenuOutsideClick);
       }
 
       setSelectedOption(name);
@@ -81,12 +73,9 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         title,
       });
     }
-
     if (subOptionsMenu) {
       handleRemoveEventListener();
     }
-
-    setSelectedOption(null);
   };
 
   // RENDER METHODS
