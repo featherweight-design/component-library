@@ -67,7 +67,7 @@
     }
   }
   &-destructive {
-    background-color: purple;
+    background-color: $destructive;
     &:hover {
       background-color: $destructive-hover;
     }
