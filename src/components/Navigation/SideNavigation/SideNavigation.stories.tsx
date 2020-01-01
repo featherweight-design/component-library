@@ -22,16 +22,18 @@ const currentlyViewing = {
   title: 'user',
 };
 
+const defaultSelected = {
+  option: 'user',
+  subOption: 'my info',
+};
+
 storiesOf('Navigation/Side Navigation', module)
   .addDecorator(checkA11y)
   .add('Default', () => (
     <SideNavigation
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
-      defaultSelected={{
-        option: 'user',
-        subOption: 'my info',
-      }}
+      defaultSelected={defaultSelected}
     />
   ))
   .add('Collapsed by default', () => (
@@ -39,9 +41,24 @@ storiesOf('Navigation/Side Navigation', module)
       collapsed
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
-      defaultSelected={{
-        option: 'user',
-        subOption: 'my info',
-      }}
+      defaultSelected={defaultSelected}
+    />
+  ))
+  .add('With logo', () => (
+    <SideNavigation
+      currentlyViewing={currentlyViewing}
+      menuOptions={sideNavigationMenuOptions}
+      defaultSelected={defaultSelected}
+      logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
+      showBackButton
+    />
+  ))
+  .add('With logo and title', () => (
+    <SideNavigation
+      currentlyViewing={currentlyViewing}
+      menuOptions={sideNavigationMenuOptions}
+      defaultSelected={defaultSelected}
+      logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
+      logoTitle="DevelopmentalFX"
     />
   ));
