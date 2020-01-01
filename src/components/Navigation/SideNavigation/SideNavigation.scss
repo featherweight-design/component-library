@@ -42,6 +42,9 @@
     text-decoration: none;
     outline: none;
     cursor: pointer;
+    &-image-only {
+      justify-content: flex-start;
+    }
   }
   &__logo-back {
     position: relative;
@@ -73,6 +76,9 @@
   }
   &__logo-image {
     height: 1.75rem;
+    &-larger {
+      height: 2.25rem;
+    }
   }
   &__logo-text {
     width: 8.25rem;
