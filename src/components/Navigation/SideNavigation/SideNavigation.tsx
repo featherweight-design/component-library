@@ -5,7 +5,7 @@ import React, {
   useEffect,
   FunctionComponent,
 } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import {
   CurrentlyViewing,
@@ -213,21 +213,21 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
             subOption => subOption === selectedSubOption
           );
 
-          const optionMenuClassNames = classNames({
+          const optionMenuClassNames = classnames({
             'side-navigation__option-menu': true,
             [`side-navigation__option-menu-${option}`]: true,
             'side-navigation__option-menu-selected': isOptionSelected,
             'side-navigation__option-menu-collapsed': isCollapsed,
           });
 
-          const optionTitleClassNames = classNames({
+          const optionTitleClassNames = classnames({
             'side-navigation__option-title': true,
             [`side-navigation__option-title-${option}`]: true,
             'side-navigation__option-title-selected': isOptionSelected,
             'side-navigation__option-title-hidden': isCollapsed,
           });
 
-          const optionIconClassNames = classNames({
+          const optionIconClassNames = classnames({
             'material-icons': true,
             'side-navigation__option-icon': true,
             [`side-navigation__option-icon-${option}`]: true,
@@ -235,12 +235,12 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
             'side-navigation__option-icon-hidden': isCollapsed,
           });
 
-          const optionHoverTitleClassNames = classNames({
+          const optionHoverTitleClassNames = classnames({
             'side-navigation__option-hover-title': true,
             'side-navigation__option-hover-title-selected': isOptionSelected,
           });
 
-          const optionExpansionPanelClassNames = classNames({
+          const optionExpansionPanelClassNames = classnames({
             'side-navigation__option-expansion-panel': true,
             [`side-navigation__option-expansion-panel-${option}`]: true,
           });
@@ -308,7 +308,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
     return subOptions.map((subOption, subIndex) => {
       const key = `${subOption}__${subIndex}`;
       const isSelected = subOption === selectedSubOption;
-      const subOptionClassNames = classNames({
+      const subOptionClassNames = classnames({
         'side-navigation__sub-option': true,
         [`side-navigation__sub-option-${subOption}`]: true,
         'side-navigation__sub-option-selected': isSelected,
@@ -337,7 +337,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
     });
   };
 
-  const logoWrapperClassNames = classNames({
+  const logoWrapperClassNames = classnames({
     'side-navigation__logo-wrapper': true,
     'side-navigation__logo-wrapper-home': !showBackButton,
     'side-navigation__logo-wrapper-away': showBackButton,
@@ -345,20 +345,20 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
       isCollapsed && showBackButton,
   });
 
-  const backIconClassNames = classNames({
+  const backIconClassNames = classnames({
     'material-icons': true,
     'side-navigation__logo-back': true,
     'side-navigation__logo-back-hidden': !showBackButton,
     'side-navigation__logo-back-collapsed-away': isCollapsed && showBackButton,
   });
 
-  const collapseIconClassNames = classNames({
+  const collapseIconClassNames = classnames({
     'material-icons': true,
     'side-navigation__collapse-icon': true,
     'side-navigation__collapse-icon-collapsed': isCollapsed,
   });
 
-  const hasHeader = onGoBack || logoAssetPath || logoTitle;
+  const hasHeader = logoAssetPath || logoTitle;
 
   return (
     <div className={`side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
@@ -367,7 +367,11 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
           <div
             role="link"
             tabIndex={0}
-            className="side-navigation__logo-link"
+            className={classnames({
+              'side-navigation__logo-link': true,
+              'side-navigation__logo-link-image-only':
+                logoAssetPath && !logoTitle,
+            })}
             onClick={(): void => {
               if (showBackButton) {
                 handleGoBack();
@@ -385,7 +389,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
               <div className={logoWrapperClassNames}>
                 {logoAssetPath && (
                   <img
-                    className="side-navigation__logo-image"
+                    className={classnames({
+                      'side-navigation__logo-image': true,
+                      'side-navigation__logo-image-large': !logoTitle,
+                    })}
                     alt={logoTitle}
                     src={logoAssetPath}
                   />
