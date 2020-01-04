@@ -296,11 +296,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                     handleSelectOption(option);
                   }
                 }}
-                onKeyDown={(): void => {
-                  if (!isCollapsed && !isOptionSelected) {
-                    handleSelectOption(option);
-                  }
-                }}
               >
                 <i className={optionIconClassNames}>{optionObject.icon}</i>
                 {option}
@@ -355,7 +350,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           aria-selected={isSelected}
           className={subOptionClassNames}
           onClick={(): void => handleSelectSubOption(subOption)}
-          onKeyDown={(): void => handleSelectSubOption(subOption)}
         >
           <div
             className={`side-navigation__sub-option-text ${
@@ -395,7 +389,12 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   return (
     <div className={`side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
       {hasHeader && (
-        <div className="side-navigation__header">
+        <div
+          className={classnames({
+            'side-navigation__header': true,
+            'side-navigation__header-image-only': logoAssetPath && !logoTitle,
+          })}
+        >
           <div
             role="link"
             tabIndex={0}
@@ -405,11 +404,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 logoAssetPath && !logoTitle,
             })}
             onClick={(): void => {
-              if (showBackButton) {
-                handleGoBack();
-              }
-            }}
-            onKeyDown={(): void => {
               if (showBackButton) {
                 handleGoBack();
               }
@@ -454,7 +448,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           isCollapsed ? 'collapsed' : ''
         }`}
         onClick={handleToggleCollapse}
-        onKeyDown={handleToggleCollapse}
       >
         <i className={collapseIconClassNames}>arrow_back_ios</i>
         <span
