@@ -110,31 +110,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   );
 
   useEffect(() => {
-    if (collapsed) {
-      const selectedSubOption = currentlyViewing
-        ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-        : defaultSelected.option;
-
-      setSelection({
-        option: undefined,
-        subOption: selectedSubOption,
-      });
-    } else {
-      const selectedOption = currentlyViewing
-        ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-        : defaultSelected.option;
-      const selectedSubOption = currentlyViewing
-        ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
-        : defaultSelected.subOption;
-
-      setSelection({
-        option: selectedOption,
-        subOption: selectedSubOption,
-      });
-    }
-  }, []);
-
-  useEffect(() => {
     const newOption = getPreSelection(
       Object.keys(menuOptions),
       currentlyViewing
