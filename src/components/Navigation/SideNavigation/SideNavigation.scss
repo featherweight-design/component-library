@@ -35,6 +35,9 @@
     height: 88px;
     padding: 1.5rem;
     box-sizing: border-box;
+    &-image-only {
+      height: unset;
+    }
   }
   &__logo-link {
     flex: 1;
@@ -78,8 +81,11 @@
   }
   &__logo-image {
     height: 1.75rem;
-    &-larger {
-      height: 2.25rem;
+    &-large {
+      height: unset;
+      width: 100%;
+      min-width: 2rem;
+      max-width: 5rem;
     }
   }
   &__logo-text {
