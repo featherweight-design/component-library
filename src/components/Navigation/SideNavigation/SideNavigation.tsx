@@ -95,7 +95,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     menuOptions,
     currentlyViewing,
     onGoBack,
-    defaultSelected,
     collapsed,
     onCollapse,
     showBackButton,
