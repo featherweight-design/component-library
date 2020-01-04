@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { checkA11y } from '@storybook/addon-a11y';
+import React, { useState } from 'react';
+import { withA11Y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
 import SideNavigation from './SideNavigation';
@@ -20,6 +20,8 @@ const sideNavigationMenuOptions = {
 const currentlyViewing = {
   path: '/user/my info',
   title: 'user',
+  backPath: '/',
+  backTitle: 'Home',
 };
 
 const defaultSelected = {
@@ -28,7 +30,7 @@ const defaultSelected = {
 };
 
 storiesOf('Navigation/Side Navigation', module)
-  .addDecorator(checkA11y)
+  .addDecorator(withA11Y)
   .add('Default', () => (
     <SideNavigation
       currentlyViewing={currentlyViewing}
@@ -44,15 +46,23 @@ storiesOf('Navigation/Side Navigation', module)
       defaultSelected={defaultSelected}
     />
   ))
-  .add('With logo', () => (
-    <SideNavigation
-      currentlyViewing={currentlyViewing}
-      menuOptions={sideNavigationMenuOptions}
-      defaultSelected={defaultSelected}
-      logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
-      showBackButton
-    />
-  ))
+  .add('With logo', () => {
+    const [showBackButton, toggleOnGoBack] = useState(true);
+
+    return (
+      <SideNavigation
+        currentlyViewing={currentlyViewing}
+        menuOptions={sideNavigationMenuOptions}
+        defaultSelected={defaultSelected}
+        logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
+        showBackButton={showBackButton}
+        onGoBack={(): void => {
+          toggleOnGoBack(false);
+          setTimeout(() => toggleOnGoBack(true), 1000);
+        }}
+      />
+    );
+  })
   .add('With logo and title', () => (
     <SideNavigation
       currentlyViewing={currentlyViewing}
