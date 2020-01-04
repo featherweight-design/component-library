@@ -11,7 +11,7 @@ import {
   CurrentlyViewing,
   SideNavigationOptions,
   SideNavigationOption,
-} from '../../../types';
+} from 'types';
 import ExpansionPanel from '../../ExpansionPanel/ExpansionPanel';
 import './SideNavigation.scss';
 
@@ -31,21 +31,83 @@ type SideNavigationProps = {
   logoTitle?: string;
 };
 
-const SideNavigation: FunctionComponent<SideNavigationProps> = ({
-  menuOptions,
-  currentlyViewing,
-  onGoBack,
-  defaultSelected,
-  collapsed,
-  onCollapse,
-  showBackButton,
-  onNavigate,
-  logoAssetPath,
-  logoTitle,
-}: SideNavigationProps) => {
+type SideNavigationSelection = {
+  option?: string | null;
+  subOption?: string | null;
+};
+
+const getPreSelection = (
+  options: string[],
+  currentlyViewing = { path: '/' }
+): string | null => {
+  const locationArray = currentlyViewing.path.split('/');
+  const preSelection = locationArray.find(path => {
+    const match = options.find((subOption: string) => subOption === path);
+
+    if (match) {
+      return match;
+    }
+
+    return false;
+  });
+
+  return preSelection || null;
+};
+
+const getSubOptions = (options: SideNavigationOptions): string[] =>
+  Object.keys(options).reduce(
+    (accumulator, option) => [...accumulator, ...options[option].subOptions],
+    [] as string[]
+  );
+
+const getInitialSelection = (
+  props: SideNavigationProps
+): SideNavigationSelection => {
+  const { collapsed, currentlyViewing, menuOptions, defaultSelected } = props;
+  if (collapsed) {
+    const selectedSubOption = currentlyViewing
+      ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
+      : defaultSelected.option;
+
+    return {
+      option: undefined,
+      subOption: selectedSubOption,
+    };
+  } else {
+    const selectedOption = currentlyViewing
+      ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
+      : defaultSelected.option;
+    const selectedSubOption = currentlyViewing
+      ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
+      : defaultSelected.subOption;
+
+    return {
+      option: selectedOption,
+      subOption: selectedSubOption,
+    };
+  }
+};
+
+const SideNavigation: FunctionComponent<SideNavigationProps> = (
+  props: SideNavigationProps
+) => {
+  const {
+    menuOptions,
+    currentlyViewing,
+    onGoBack,
+    defaultSelected,
+    collapsed,
+    onCollapse,
+    showBackButton,
+    onNavigate,
+    logoAssetPath,
+    logoTitle,
+  } = props;
+
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
-  const [selectedOption, setOption] = useState<string | null>(null);
-  const [selectedSubOption, setSubOption] = useState<string | null>(null);
+  const [selection, setSelection] = useState<SideNavigationSelection>(
+    getInitialSelection(props)
+  );
 
   useEffect(() => {
     if (collapsed) {
@@ -53,8 +115,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
         ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
         : defaultSelected.option;
 
-      setOption(null);
-      setSubOption(selectedSubOption);
+      setSelection({
+        option: undefined,
+        subOption: selectedSubOption,
+      });
     } else {
       const selectedOption = currentlyViewing
         ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
@@ -63,8 +127,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
         ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
         : defaultSelected.subOption;
 
-      setOption(selectedOption);
-      setSubOption(selectedSubOption);
+      setSelection({
+        option: selectedOption,
+        subOption: selectedSubOption,
+      });
     }
   }, []);
 
@@ -78,53 +144,37 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
       currentlyViewing
     );
 
-    if (newOption !== selectedOption || newSubOption !== selectedSubOption) {
+    if (
+      newOption !== selection.option ||
+      newSubOption !== selection.subOption
+    ) {
       handleUpdateSelection(newOption, newSubOption);
     }
   }, [currentlyViewing]);
-
-  const getSubOptions = (options: SideNavigationOptions): string[] =>
-    Object.keys(options).reduce(
-      (accumulator, option) => [...accumulator, ...options[option].subOptions],
-      [] as string[]
-    );
-
-  const getPreSelection = (
-    options: string[],
-    currentlyViewing = { path: '/' }
-  ): string | null => {
-    const locationArray = currentlyViewing.path.split('/');
-    const preSelection = locationArray.find(path => {
-      const match = options.find((subOption: string) => subOption === path);
-
-      if (match) {
-        return match;
-      }
-
-      return false;
-    });
-
-    return preSelection || null;
-  };
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
   const handleUpdateSelection = (
     newOption: string | null,
     newSubOption: string | null
   ): void => {
-    setOption(isCollapsed ? null : newOption);
-    setSubOption(newSubOption);
+    setSelection({
+      option: isCollapsed ? null : newOption,
+      subOption: newSubOption,
+    });
   };
 
   const handleToggleCollapse = (): void => {
     const selectedOption = Object.keys(menuOptions).find(option =>
       menuOptions[option].subOptions.find(
-        subOption => subOption === selectedSubOption
+        subOption => subOption === selection.subOption
       )
     );
 
     toggleCollapsed(!isCollapsed);
-    setOption(!isCollapsed || !selectedOption ? null : selectedOption);
+    setSelection({
+      ...selection,
+      option: !isCollapsed || !selectedOption ? null : selectedOption,
+    });
 
     if (onCollapse) {
       onCollapse(!isCollapsed);
@@ -132,10 +182,16 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
   };
 
   const handleSelectOption = (option: string | null): void => {
-    if (!isCollapsed && selectedOption === option) {
-      setOption(null);
+    if (!isCollapsed && selection.option === option) {
+      setSelection({
+        ...selection,
+        option: null,
+      });
     } else {
-      setOption(option);
+      setSelection({
+        ...selection,
+        option,
+      });
     }
   };
 
@@ -159,8 +215,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
       });
     }
 
-    setOption(isCollapsed || !subOptionParent ? null : subOptionParent);
-    setSubOption(subOption);
+    setSelection({
+      subOption,
+      option: isCollapsed || !subOptionParent ? null : subOptionParent,
+    });
   };
 
   const handleGoBack = (): void => {
@@ -210,7 +268,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
           const optionObject = menuOptions[option] as SideNavigationOption;
 
           const isOptionSelected = optionObject.subOptions.find(
-            subOption => subOption === selectedSubOption
+            subOption => subOption === selection.subOption
           );
 
           const optionMenuClassNames = classnames({
@@ -273,7 +331,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
                 <i className={optionIconClassNames}>{optionObject.icon}</i>
                 {option}
               </div>
-              {isCollapsed && selectedOption === option && (
+              {isCollapsed && selection.option === option && (
                 <div
                   className="side-navigation__option-hover-menu"
                   onMouseLeave={(): void => {
@@ -292,7 +350,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
                 expanded={
                   isCollapsed
                     ? false
-                    : (isOptionSelected && true) || selectedOption === option
+                    : (isOptionSelected && true) || selection.option === option
                 }
               >
                 {renderSubOptions(optionObject.subOptions)}
@@ -307,7 +365,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = ({
   const renderSubOptions = (subOptions: string[]): ReactElement[] => {
     return subOptions.map((subOption, subIndex) => {
       const key = `${subOption}__${subIndex}`;
-      const isSelected = subOption === selectedSubOption;
+      const isSelected = subOption === selection.subOption;
       const subOptionClassNames = classnames({
         'side-navigation__sub-option': true,
         [`side-navigation__sub-option-${subOption}`]: true,
