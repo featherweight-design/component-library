@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { checkA11y } from '@storybook/addon-a11y';
+import React from 'react';
+import { withA11Y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
 import HeaderMenu from './HeaderMenu';
 
 storiesOf('Navigation/Header Menu', module)
-  .addDecorator(checkA11y)
+  .addDecorator(withA11Y)
   .add('Default', () => (
     <HeaderMenu
       currentlyViewing={{
