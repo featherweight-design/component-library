@@ -1,9 +1,9 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.11",
+  "version": "0.1.18",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
-  "types": "dist/",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/featherweight-design/component-library#readme",
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
     "url": "https://github.com/featherweight-design/component-library/issues"
   },
   "files": [
-    "lib/**/*"
+    "dist/**/*"
   ],
   "keywords": [],
   "author": "Featherweight Design",
