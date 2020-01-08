@@ -1,109 +1,95 @@
 import React, {
   ReactChild,
-  MouseEvent,
-  KeyboardEvent,
-  useState,
-  useRef,
-  useEffect,
   FunctionComponent,
+  useState,
+  useEffect,
 } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import './ExpansionPanel.scss';
 
 type ExpansionPanelProps = {
   children: ReactChild | ReactChild[];
-  expanded?: boolean;
-  type?: 'light' | 'hidden' | 'nested';
-  className?: string;
   title?: string;
-  onClick?: (event: MouseEvent | KeyboardEvent) => void;
+  expanded?: boolean;
+  className?: string;
 };
-
 const ExpansionPanel: FunctionComponent<ExpansionPanelProps> = ({
-  children,
   expanded,
-  className,
   title,
-  type,
-  onClick,
+  className,
+  children,
 }: ExpansionPanelProps) => {
-  const [isExpanded, toggleIsExpanded] = useState(expanded);
-  const expansionChildren = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(expanded);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isHidden, setIsHidden] = useState(!expanded);
 
   useEffect(() => {
-    if (expanded) {
-      setTimeout(() => getExpansionChildrenHeight(), 300);
+    if (expanded !== isExpanded) {
+      handleToggleExpansion();
     }
-
-    toggleIsExpanded(expanded);
   }, [expanded]);
 
-  const getExpansionChildrenHeight = (): number | null =>
-    expansionChildren.current && expansionChildren.current.clientHeight;
-
-  const containerClassNames = classNames({
-    [className as string]: className,
-    'expansion-panel': true,
-    'expansion-panel-show': isExpanded,
-    'expansion-panel-hide': !isExpanded,
-    'expansion-panel-no-title': !title,
-    [`expansion-panel-${type}`]: type,
-  });
-
-  const childWrapperClassName = classNames({
-    'expansion-panel__child-wrapper': true,
-    'expansion-panel__child-wrapper-show': isExpanded,
-    'expansion-panel__child-wrapper-hide': !isExpanded,
-    'expansion-panel__child-wrapper-primary': !type,
-    [`expansion-panel__child-wrapper-${type}`]: type,
-  });
-
-  const buttonClassNames = classNames({
-    'expansion-panel__button': true,
-    'expansion-panel__button-show': isExpanded,
-    'expansion-panel__button-hide': !isExpanded,
-    [`expansion-panel__button-${type}`]: type,
-  });
-
-  const iconClassNames = classNames({
-    'material-icons': true,
-    'expansion-panel__icon': true,
-    'expansion-panel__icon-show': isExpanded,
-    'expansion-panel__icon-hide': !isExpanded,
-    [`expansion-panel__icon-${type}`]: type,
-  });
+  const handleToggleExpansion = (): void => {
+    if (isExpanded) {
+      setIsClosing(true);
+      setTimeout(() => {
+        setIsClosing(false);
+        setIsHidden(true);
+      }, 500);
+    } else {
+      setIsHidden(false);
+    }
+    setIsExpanded(!isExpanded);
+  };
 
   return (
-    <div className={containerClassNames}>
+    <div
+      className={classnames({
+        'fd-expansion-panel': true,
+        'fd-expansion-panel-with-title': title,
+        [className as string]: className,
+      })}
+    >
       {title && (
         <button
-          className={buttonClassNames}
-          tabIndex={0}
-          onClick={onClick || ((): void => toggleIsExpanded(!isExpanded))}
-          onKeyDown={onClick || ((): void => toggleIsExpanded(!isExpanded))}
+          className={classnames({
+            'fd-expansion-panel__button': true,
+            'fd-expansion-panel__button-hidden': !isExpanded,
+          })}
+          aria-controls="accordion-details-01"
+          aria-expanded={isExpanded}
+          onClick={handleToggleExpansion}
         >
-          <h4 className="expansion-panel__title">{title}</h4>
-          <i className={iconClassNames}>
-            {type === 'light' ? 'arrow_drop_down' : 'keyboard_arrow_down'}
+          <i
+            className={classnames({
+              'material-icons': true,
+              'fd-expansion-panel__icon': true,
+              'fd-expansion-panel__icon-hidden': !isExpanded,
+            })}
+          >
+            keyboard_arrow_down
           </i>
+          ​<span className="fd-expansion-panel__title">{title}</span>
         </button>
       )}
-
-      <div className={childWrapperClassName} ref={expansionChildren}>
+      ​
+      <div
+        aria-hidden={isExpanded}
+        className={classnames({
+          'fd-expansion-panel__content': true,
+          'fd-expansion-panel__content-closing': isClosing,
+          'fd-expansion-panel__content-hidden': !isExpanded && isHidden,
+        })}
+      >
         {children}
       </div>
     </div>
   );
 };
-
 ExpansionPanel.defaultProps = {
-  children: undefined,
+  title: undefined,
   expanded: false,
   className: undefined,
-  title: undefined,
-  type: undefined,
-  onClick: undefined,
 };
-
 export default ExpansionPanel;
