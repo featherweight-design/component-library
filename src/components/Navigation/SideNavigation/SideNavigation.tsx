@@ -246,35 +246,35 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           );
 
           const optionMenuClassNames = classnames({
-            'side-navigation__option-menu': true,
-            [`side-navigation__option-menu-${option}`]: true,
-            'side-navigation__option-menu-selected': isOptionSelected,
-            'side-navigation__option-menu-collapsed': isCollapsed,
+            'fd-side-navigation__option-menu': true,
+            [`fd-side-navigation__option-menu-${option}`]: true,
+            'fd-side-navigation__option-menu-selected': isOptionSelected,
+            'fd-side-navigation__option-menu-collapsed': isCollapsed,
           });
 
           const optionTitleClassNames = classnames({
-            'side-navigation__option-title': true,
-            [`side-navigation__option-title-${option}`]: true,
-            'side-navigation__option-title-selected': isOptionSelected,
-            'side-navigation__option-title-hidden': isCollapsed,
+            'fd-side-navigation__option-title': true,
+            [`fd-side-navigation__option-title-${option}`]: true,
+            'fd-side-navigation__option-title-selected': isOptionSelected,
+            'fd-side-navigation__option-title-hidden': isCollapsed,
           });
 
           const optionIconClassNames = classnames({
             'material-icons': true,
-            'side-navigation__option-icon': true,
-            [`side-navigation__option-icon-${option}`]: true,
-            'side-navigation__option-icon-selected': isOptionSelected,
-            'side-navigation__option-icon-hidden': isCollapsed,
+            'fd-side-navigation__option-icon': true,
+            [`fd-side-navigation__option-icon-${option}`]: true,
+            'fd-side-navigation__option-icon-selected': isOptionSelected,
+            'fd-side-navigation__option-icon-hidden': isCollapsed,
           });
 
           const optionHoverTitleClassNames = classnames({
-            'side-navigation__option-hover-title': true,
-            'side-navigation__option-hover-title-selected': isOptionSelected,
+            'fd-side-navigation__option-hover-title': true,
+            'fd-side-navigation__option-hover-title-selected': isOptionSelected,
           });
 
           const optionExpansionPanelClassNames = classnames({
-            'side-navigation__option-expansion-panel': true,
-            [`side-navigation__option-expansion-panel-${option}`]: true,
+            'fd-side-navigation__option-expansion-panel': true,
+            [`fd-side-navigation__option-expansion-panel-${option}`]: true,
           });
 
           return (
@@ -302,7 +302,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
               </div>
               {isCollapsed && selection.option === option && (
                 <div
-                  className="side-navigation__option-hover-menu"
+                  className="fd-side-navigation__option-hover-menu"
                   onMouseLeave={(): void => {
                     if (isCollapsed) {
                       handleSelectOption(null);
@@ -335,10 +335,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       const key = `${subOption}__${subIndex}`;
       const isSelected = subOption === selection.subOption;
       const subOptionClassNames = classnames({
-        'side-navigation__sub-option': true,
-        [`side-navigation__sub-option-${subOption}`]: true,
-        'side-navigation__sub-option-selected': isSelected,
-        'side-navigation__sub-option-hover': isCollapsed,
+        'fd-side-navigation__sub-option': true,
+        [`fd-side-navigation__sub-option-${subOption}`]: true,
+        'fd-side-navigation__sub-option-selected': isSelected,
+        'fd-side-navigation__sub-option-hover': isCollapsed,
       });
 
       return (
@@ -351,7 +351,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           onClick={(): void => handleSelectSubOption(subOption)}
         >
           <div
-            className={`side-navigation__sub-option-text ${
+            className={`fd-side-navigation__sub-option-text ${
               isSelected ? 'selected' : ''
             }`}
           >
@@ -363,43 +363,45 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const logoWrapperClassNames = classnames({
-    'side-navigation__logo-wrapper': true,
-    'side-navigation__logo-wrapper-home': !showBackButton,
-    'side-navigation__logo-wrapper-away': showBackButton,
-    'side-navigation__logo-wrapper-collapsed-away':
+    'fd-side-navigation__logo-wrapper': true,
+    'fd-side-navigation__logo-wrapper-home': !showBackButton,
+    'fd-side-navigation__logo-wrapper-away': showBackButton,
+    'fd-side-navigation__logo-wrapper-collapsed-away':
       isCollapsed && showBackButton,
   });
 
   const backIconClassNames = classnames({
     'material-icons': true,
-    'side-navigation__logo-back': true,
-    'side-navigation__logo-back-hidden': !showBackButton,
-    'side-navigation__logo-back-collapsed-away': isCollapsed && showBackButton,
+    'fd-side-navigation__logo-back': true,
+    'fd-side-navigation__logo-back-hidden': !showBackButton,
+    'fd-side-navigation__logo-back-collapsed-away':
+      isCollapsed && showBackButton,
   });
 
   const collapseIconClassNames = classnames({
     'material-icons': true,
-    'side-navigation__collapse-icon': true,
-    'side-navigation__collapse-icon-collapsed': isCollapsed,
+    'fd-side-navigation__collapse-icon': true,
+    'fd-side-navigation__collapse-icon-collapsed': isCollapsed,
   });
 
   const hasHeader = logoAssetPath || logoTitle;
 
   return (
-    <div className={`side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
+    <nav className={`fd-side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
       {hasHeader && (
         <div
           className={classnames({
-            'side-navigation__header': true,
-            'side-navigation__header-image-only': logoAssetPath && !logoTitle,
+            'fd-side-navigation__header': true,
+            'fd-side-navigation__header-image-only':
+              logoAssetPath && !logoTitle,
           })}
         >
           <div
             role="link"
             tabIndex={0}
             className={classnames({
-              'side-navigation__logo-link': true,
-              'side-navigation__logo-link-image-only':
+              'fd-side-navigation__logo-link': true,
+              'fd-side-navigation__logo-link-image-only':
                 logoAssetPath && !logoTitle,
             })}
             onClick={(): void => {
@@ -415,8 +417,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 {logoAssetPath && (
                   <img
                     className={classnames({
-                      'side-navigation__logo-image': true,
-                      'side-navigation__logo-image-large': !logoTitle,
+                      'fd-side-navigation__logo-image': true,
+                      'fd-side-navigation__logo-image-large': !logoTitle,
                     })}
                     alt={logoTitle}
                     src={logoAssetPath}
@@ -424,7 +426,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 )}
                 {logoTitle && (
                   <span
-                    className={`side-navigation__logo-text ${
+                    className={`fd-side-navigation__logo-text ${
                       isCollapsed ? 'hidden-text' : ''
                     }`}
                   >
@@ -437,27 +439,27 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         </div>
       )}
 
-      <div className="side-navigation__menu">{renderMenuOptions()}</div>
+      <div className="fd-side-navigation__menu">{renderMenuOptions()}</div>
 
       <div
         role="switch"
         tabIndex={0}
         aria-checked={isCollapsed}
-        className={`side-navigation__collapse-toggle ${
+        className={`fd-side-navigation__collapse-toggle ${
           isCollapsed ? 'collapsed' : ''
         }`}
         onClick={handleToggleCollapse}
       >
         <i className={collapseIconClassNames}>arrow_back_ios</i>
         <span
-          className={`side-navigation__collapse-text ${
+          className={`fd-side-navigation__collapse-text ${
             isCollapsed ? 'hidden-text' : ''
           }`}
         >
           {'Collapse'}
         </span>
       </div>
-    </div>
+    </nav>
   );
 };
 
