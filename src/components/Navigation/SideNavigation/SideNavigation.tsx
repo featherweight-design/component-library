@@ -315,7 +315,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
               )}
               <ExpansionPanel
                 className={optionExpansionPanelClassNames}
-                type="hidden"
                 expanded={
                   isCollapsed
                     ? false
