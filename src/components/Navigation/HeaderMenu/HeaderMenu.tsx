@@ -83,15 +83,15 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     subTitle,
   }: CurrentlyViewing): ReactElement => {
     const titleClassNames = classNames({
-      'header-menu__location-title': true,
-      'header-menu__location-title-with-subtitle': subTitle,
+      'fd-header-menu__location-title': true,
+      'fd-header-menu__location-title-with-subtitle': subTitle,
     });
 
     return (
       <Fragment>
         <h2 className={titleClassNames}>{title || defaultTitle}</h2>
         {subTitle && (
-          <h4 className="header-menu__location-sub-title">{subTitle}</h4>
+          <h4 className="fd-header-menu__location-sub-title">{subTitle}</h4>
         )}
       </Fragment>
     );
@@ -106,12 +106,12 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         const key = `${label}__${index}`;
         const isSelected = path === currentlyViewing.path;
         const subOptionClassNames = classNames({
-          'header-menu__sub-option-link': true,
-          [`header-menu__sub-option-link-${label
+          'fd-header-menu__sub-option-link': true,
+          [`fd-header-menu__sub-option-link-${label
             .toLowerCase()
             .split(' ')
             .join('-')}`]: true,
-          'header-menu__sub-option-link-selected': isSelected,
+          'fd-header-menu__sub-option-link-selected': isSelected,
         });
 
         if (href) {
@@ -129,7 +129,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 setSelectedOption(null);
               }}
             >
-              <i className="material-icons header-menu__sub-option-icon">
+              <i className="material-icons fd-header-menu__sub-option-icon">
                 {icon}
               </i>
               {label}
@@ -155,7 +155,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 }
               }}
             >
-              <i className="material-icons header-menu__sub-option-icon">
+              <i className="material-icons fd-header-menu__sub-option-icon">
                 {icon}
               </i>
               {label}
@@ -167,7 +167,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
       });
 
   const renderMenuOptions = (): ReactElement => (
-    <div className="header-menu__menu-icon-container">
+    <div className="fd-header-menu__menu-icon-container">
       {Object.keys(menuOptions).map((option, index) => {
         const key = `${option}__${index}`;
         const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
@@ -175,15 +175,15 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         ] as HeaderMenuOption;
         const menuOptionIconClassNames = classNames({
           'material-icons': true,
-          'header-menu__menu-icon': true,
-          [`header-menu__menu-icon-${option}`]: true,
-          'header-menu__menu-icon-selected':
+          'fd-header-menu__menu-icon': true,
+          [`fd-header-menu__menu-icon-${option}`]: true,
+          'fd-header-menu__menu-icon-selected':
             selectedOption === option || isActive,
         });
 
         return (
           <Fragment key={key}>
-            <div className="header-menu__icon-container">
+            <div className="fd-header-menu__icon-container">
               <i
                 className={menuOptionIconClassNames}
                 role="menuitem"
@@ -203,7 +203,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
               </i>
               {indicator && (
                 <div
-                  className="header-menu__icon-indicator"
+                  className="fd-header-menu__icon-indicator"
                   role="menuitem"
                   tabIndex={-1}
                   onClick={(): void => {
@@ -221,13 +221,16 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 </div>
               )}
               {subOptions && selectedOption === option && (
-                <div className="header-menu__sub-options" ref={subOptionsMenu}>
-                  <div className="header-menu__sub-options-header">
-                    <span className="header-menu__sub-options-title">
+                <div
+                  className="fd-header-menu__sub-options"
+                  ref={subOptionsMenu}
+                >
+                  <div className="fd-header-menu__sub-options-header">
+                    <span className="fd-header-menu__sub-options-title">
                       {option}
                     </span>
                     {subTitle && (
-                      <span className="header-menu__sub-options-sub-title">
+                      <span className="fd-header-menu__sub-options-sub-title">
                         {subTitle}
                       </span>
                     )}
@@ -243,14 +246,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   );
 
   return (
-    <div className="header-menu">
-      <div className="header-menu__left">
-        <div className="header-menu__location-container">
+    <div className="fd-header-menu">
+      <div className="fd-header-menu__left">
+        <div className="fd-header-menu__location-container">
           {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
         </div>
       </div>
 
-      <div className="header-menu__right">
+      <div className="fd-header-menu__right">
         {menuOptions && renderMenuOptions()}
       </div>
     </div>
