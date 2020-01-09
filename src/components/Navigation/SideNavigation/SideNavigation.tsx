@@ -103,6 +103,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     logoTitle,
   } = props;
 
+  const [isTransitioning, toggleIsTransitioning] = useState(false);
+  const [iconBackgroundTop, setIconBackgroundTop] = useState('26px');
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
   const [selection, setSelection] = useState<SideNavigationSelection>(
     getInitialSelection(props)
@@ -125,6 +127,23 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       handleUpdateSelection(newOption, newSubOption);
     }
   }, [currentlyViewing]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      const { top } = document
+        .getElementsByClassName('fd-side-navigation__option-icon-selected')[0]
+        .getBoundingClientRect();
+
+      const iconTop = `${top - 2}px`;
+      setIconBackgroundTop(iconTop);
+    }, 500);
+  }, [selection]);
+
+  useEffect(() => {
+    if (isTransitioning) {
+      setTimeout(() => toggleIsTransitioning(false), 1250);
+    }
+  }, [isTransitioning]);
 
   // LOCAL STATE CHANGE/TOGGLE METHODS
   const handleUpdateSelection = (
@@ -169,7 +188,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     }
   };
 
-  const handleSelectSubOption = (subOption: string): void => {
+  const getSubOptionParent = (subOption: string): string | undefined => {
     const subOptionParent = Object.keys(menuOptions).find(option => {
       const match = menuOptions[option].subOptions.find(
         sub => sub === subOption
@@ -181,6 +200,18 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
       return false;
     });
+
+    return subOptionParent;
+  };
+
+  const handleSelectSubOption = (subOption: string): void => {
+    const subOptionParent = getSubOptionParent(subOption);
+    const currentSelectedSubOptionParent =
+      selection.subOption && getSubOptionParent(selection.subOption);
+
+    if (subOptionParent !== currentSelectedSubOptionParent) {
+      toggleIsTransitioning(true);
+    }
 
     if (onNavigate && subOptionParent) {
       onNavigate({
@@ -297,6 +328,13 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                   }
                 }}
               >
+                <div
+                  className={classnames({
+                    'fd-side-navigation__icon-background': true,
+                    'fd-side-navigation__icon-background-collapsed': isCollapsed,
+                    'fd-side-navigation__icon-background-selected': isOptionSelected,
+                  })}
+                />
                 <i className={optionIconClassNames}>{optionObject.icon}</i>
                 {option}
               </div>
@@ -439,7 +477,17 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         </div>
       )}
 
-      <div className="fd-side-navigation__menu">{renderMenuOptions()}</div>
+      <div className="fd-side-navigation__menu">
+        <div
+          className={classnames({
+            'fd-side-navigation__floating-icon-background': true,
+            'fd-side-navigation__floating-icon-background-collapsed': isCollapsed,
+            'fd-side-navigation__floating-icon-background-transitioning': isTransitioning,
+          })}
+          style={{ top: iconBackgroundTop }}
+        />
+        {renderMenuOptions()}
+      </div>
 
       <div
         role="switch"
