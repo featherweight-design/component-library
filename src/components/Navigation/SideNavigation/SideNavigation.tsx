@@ -29,6 +29,7 @@ type SideNavigationProps = {
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   logoAssetPath?: string;
   logoTitle?: string;
+  goDark?: boolean;
 };
 
 type SideNavigationSelection = {
@@ -88,6 +89,9 @@ const getInitialSelection = (
   }
 };
 
+const getBaseClassName = (goDark: boolean | undefined): string =>
+  goDark ? 'fd-side-navigation-dark' : 'fd-side-navigation';
+
 const SideNavigation: FunctionComponent<SideNavigationProps> = (
   props: SideNavigationProps
 ) => {
@@ -101,8 +105,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     onNavigate,
     logoAssetPath,
     logoTitle,
+    goDark,
   } = props;
 
+  const [baseClassName] = useState(getBaseClassName(goDark));
   const [isTransitioning, toggleIsTransitioning] = useState(false);
   const [iconBackgroundTop, setIconBackgroundTop] = useState('26px');
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
@@ -131,7 +137,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   useEffect(() => {
     setTimeout(() => {
       const { top } = document
-        .getElementsByClassName('fd-side-navigation__option-icon-selected')[0]
+        .getElementsByClassName(`${baseClassName}__option-icon-selected`)[0]
         .getBoundingClientRect();
 
       const iconTop = `${top - 2}px`;
@@ -277,35 +283,35 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           );
 
           const optionMenuClassNames = classnames({
-            'fd-side-navigation__option-menu': true,
-            [`fd-side-navigation__option-menu-${option}`]: true,
-            'fd-side-navigation__option-menu-selected': isOptionSelected,
-            'fd-side-navigation__option-menu-collapsed': isCollapsed,
+            [`${baseClassName}__option-menu`]: true,
+            [`${baseClassName}__option-menu-${option}`]: true,
+            [`${baseClassName}__option-menu-selected`]: isOptionSelected,
+            [`${baseClassName}__option-menu-collapsed`]: isCollapsed,
           });
 
           const optionTitleClassNames = classnames({
-            'fd-side-navigation__option-title': true,
-            [`fd-side-navigation__option-title-${option}`]: true,
-            'fd-side-navigation__option-title-selected': isOptionSelected,
-            'fd-side-navigation__option-title-hidden': isCollapsed,
+            [`${baseClassName}__option-title`]: true,
+            [`${baseClassName}__option-title-${option}`]: true,
+            [`${baseClassName}__option-title-selected`]: isOptionSelected,
+            [`${baseClassName}__option-title-hidden`]: isCollapsed,
           });
 
           const optionIconClassNames = classnames({
             'material-icons': true,
-            'fd-side-navigation__option-icon': true,
-            [`fd-side-navigation__option-icon-${option}`]: true,
-            'fd-side-navigation__option-icon-selected': isOptionSelected,
-            'fd-side-navigation__option-icon-hidden': isCollapsed,
+            [`${baseClassName}__option-icon`]: true,
+            [`${baseClassName}__option-icon-${option}`]: true,
+            [`${baseClassName}__option-icon-selected`]: isOptionSelected,
+            [`${baseClassName}__option-icon-hidden`]: isCollapsed,
           });
 
           const optionHoverTitleClassNames = classnames({
-            'fd-side-navigation__option-hover-title': true,
-            'fd-side-navigation__option-hover-title-selected': isOptionSelected,
+            [`${baseClassName}__option-hover-title`]: true,
+            [`${baseClassName}__option-hover-title-selected`]: isOptionSelected,
           });
 
           const optionExpansionPanelClassNames = classnames({
-            'fd-side-navigation__option-expansion-panel': true,
-            [`fd-side-navigation__option-expansion-panel-${option}`]: true,
+            [`${baseClassName}__option-expansion-panel`]: true,
+            [`${baseClassName}__option-expansion-panel-${option}`]: true,
           });
 
           return (
@@ -330,9 +336,9 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
               >
                 <div
                   className={classnames({
-                    'fd-side-navigation__icon-background': true,
-                    'fd-side-navigation__icon-background-collapsed': isCollapsed,
-                    'fd-side-navigation__icon-background-selected': isOptionSelected,
+                    [`${baseClassName}__icon-background`]: true,
+                    [`${baseClassName}__icon-background-collapsed`]: isCollapsed,
+                    [`${baseClassName}__icon-background-selected`]: isOptionSelected,
                   })}
                 />
                 <i className={optionIconClassNames}>{optionObject.icon}</i>
@@ -340,7 +346,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
               </div>
               {isCollapsed && selection.option === option && (
                 <div
-                  className="fd-side-navigation__option-hover-menu"
+                  className={`${baseClassName}__option-hover-menu`}
                   onMouseLeave={(): void => {
                     if (isCollapsed) {
                       handleSelectOption(null);
@@ -373,10 +379,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       const key = `${subOption}__${subIndex}`;
       const isSelected = subOption === selection.subOption;
       const subOptionClassNames = classnames({
-        'fd-side-navigation__sub-option': true,
-        [`fd-side-navigation__sub-option-${subOption}`]: true,
-        'fd-side-navigation__sub-option-selected': isSelected,
-        'fd-side-navigation__sub-option-hover': isCollapsed,
+        [`${baseClassName}__sub-option`]: true,
+        [`${baseClassName}__sub-option-${subOption}`]: true,
+        [`${baseClassName}__sub-option-selected`]: isSelected,
+        [`${baseClassName}__sub-option-hover`]: isCollapsed,
       });
 
       return (
@@ -390,8 +396,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         >
           <div
             className={classnames({
-              'fd-side-navigation__sub-option-text': true,
-              'fd-side-navigation__sub-option-text-selected': isSelected,
+              [`${baseClassName}__sub-option-text`]: true,
+              [`${baseClassName}__sub-option-text-selected`]: isSelected,
             })}
           >
             {subOption}
@@ -402,25 +408,25 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const logoWrapperClassNames = classnames({
-    'fd-side-navigation__logo-wrapper': true,
-    'fd-side-navigation__logo-wrapper-home': !showBackButton,
-    'fd-side-navigation__logo-wrapper-away': showBackButton,
-    'fd-side-navigation__logo-wrapper-collapsed-away':
+    [`${baseClassName}__logo-wrapper`]: true,
+    [`${baseClassName}__logo-wrapper-home`]: !showBackButton,
+    [`${baseClassName}__logo-wrapper-away`]: showBackButton,
+    [`${baseClassName}__logo-wrapper-collapsed-away`]:
       isCollapsed && showBackButton,
   });
 
   const backIconClassNames = classnames({
     'material-icons': true,
-    'fd-side-navigation__logo-back': true,
-    'fd-side-navigation__logo-back-hidden': !showBackButton,
-    'fd-side-navigation__logo-back-collapsed-away':
+    [`${baseClassName}__logo-back`]: true,
+    [`${baseClassName}__logo-back-hidden`]: !showBackButton,
+    [`${baseClassName}__logo-back-collapsed-away`]:
       isCollapsed && showBackButton,
   });
 
   const collapseIconClassNames = classnames({
     'material-icons': true,
-    'fd-side-navigation__collapse-icon': true,
-    'fd-side-navigation__collapse-icon-collapsed': isCollapsed,
+    [`${baseClassName}__collapse-icon`]: true,
+    [`${baseClassName}__collapse-icon-collapsed`]: isCollapsed,
   });
 
   const hasHeader = logoAssetPath || logoTitle;
@@ -428,15 +434,15 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   return (
     <nav
       className={classnames({
-        'fd-side-navigation': true,
-        'fd-side-navigation-collapsed': isCollapsed,
+        [`${baseClassName}`]: true,
+        [`${baseClassName}-collapsed`]: isCollapsed,
       })}
     >
       {hasHeader && (
         <div
           className={classnames({
-            'fd-side-navigation__header': true,
-            'fd-side-navigation__header-image-only':
+            [`${baseClassName}__header`]: true,
+            [`${baseClassName}__header-image-only`]:
               logoAssetPath && !logoTitle,
           })}
         >
@@ -444,8 +450,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
             role="link"
             tabIndex={0}
             className={classnames({
-              'fd-side-navigation__logo-link': true,
-              'fd-side-navigation__logo-link-image-only':
+              [`${baseClassName}__logo-link`]: true,
+              [`${baseClassName}__logo-link-image-only`]:
                 logoAssetPath && !logoTitle,
             })}
             onClick={(): void => {
@@ -461,8 +467,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 {logoAssetPath && (
                   <img
                     className={classnames({
-                      'fd-side-navigation__logo-image': true,
-                      'fd-side-navigation__logo-image-large': !logoTitle,
+                      [`${baseClassName}__logo-image`]: true,
+                      [`${baseClassName}__logo-image-large`]: !logoTitle,
                     })}
                     alt={logoTitle}
                     src={logoAssetPath}
@@ -471,8 +477,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 {logoTitle && (
                   <span
                     className={classnames({
-                      'fd-side-navigation__logo-text': true,
-                      'fd-side-navigation__logo-text-hidden': isCollapsed,
+                      [`${baseClassName}__logo-text`]: true,
+                      [`${baseClassName}__logo-text-hidden`]: isCollapsed,
                     })}
                   >
                     {logoTitle}
@@ -484,12 +490,12 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         </div>
       )}
 
-      <div className="fd-side-navigation__menu">
+      <div className={`${baseClassName}__menu`}>
         <div
           className={classnames({
-            'fd-side-navigation__floating-icon-background': true,
-            'fd-side-navigation__floating-icon-background-collapsed': isCollapsed,
-            'fd-side-navigation__floating-icon-background-transitioning': isTransitioning,
+            [`${baseClassName}__floating-icon-background`]: true,
+            [`${baseClassName}__floating-icon-background-collapsed`]: isCollapsed,
+            [`${baseClassName}__floating-icon-background-transitioning`]: isTransitioning,
           })}
           style={{ top: iconBackgroundTop }}
         />
@@ -501,16 +507,16 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         tabIndex={0}
         aria-checked={isCollapsed}
         className={classnames({
-          'fd-side-navigation__collapse-toggle': true,
-          'fd-side-navigation__collapse-toggle-collapsed': isCollapsed,
+          [`${baseClassName}__collapse-toggle`]: true,
+          [`${baseClassName}__collapse-toggle-collapsed`]: isCollapsed,
         })}
         onClick={handleToggleCollapse}
       >
         <i className={collapseIconClassNames}>arrow_back_ios</i>
         <span
           className={classnames({
-            'fd-side-navigation__collapse-text': true,
-            'fd-side-navigation__collapse-text-hidden': isCollapsed,
+            [`${baseClassName}__collapse-text`]: true,
+            [`${baseClassName}__collapse-text-hidden`]: isCollapsed,
           })}
         >
           {'Collapse'}
@@ -528,6 +534,7 @@ SideNavigation.defaultProps = {
   onNavigate: undefined,
   logoAssetPath: undefined,
   logoTitle: undefined,
+  goDark: false,
 };
 
 export default SideNavigation;
