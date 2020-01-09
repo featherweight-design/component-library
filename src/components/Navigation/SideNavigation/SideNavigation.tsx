@@ -389,9 +389,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           onClick={(): void => handleSelectSubOption(subOption)}
         >
           <div
-            className={`fd-side-navigation__sub-option-text ${
-              isSelected ? 'selected' : ''
-            }`}
+            className={classnames({
+              'fd-side-navigation__sub-option-text': true,
+              'fd-side-navigation__sub-option-text-selected': isSelected,
+            })}
           >
             {subOption}
           </div>
@@ -425,7 +426,12 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   const hasHeader = logoAssetPath || logoTitle;
 
   return (
-    <nav className={`fd-side-navigation ${isCollapsed ? 'collapsed' : ''}`}>
+    <nav
+      className={classnames({
+        'fd-side-navigation': true,
+        'fd-side-navigation-collapsed': isCollapsed,
+      })}
+    >
       {hasHeader && (
         <div
           className={classnames({
@@ -464,9 +470,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 )}
                 {logoTitle && (
                   <span
-                    className={`fd-side-navigation__logo-text ${
-                      isCollapsed ? 'hidden-text' : ''
-                    }`}
+                    className={classnames({
+                      'fd-side-navigation__logo-text': true,
+                      'fd-side-navigation__logo-text-hidden': isCollapsed,
+                    })}
                   >
                     {logoTitle}
                   </span>
@@ -493,16 +500,18 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         role="switch"
         tabIndex={0}
         aria-checked={isCollapsed}
-        className={`fd-side-navigation__collapse-toggle ${
-          isCollapsed ? 'collapsed' : ''
-        }`}
+        className={classnames({
+          'fd-side-navigation__collapse-toggle': true,
+          'fd-side-navigation__collapse-toggle-collapsed': isCollapsed,
+        })}
         onClick={handleToggleCollapse}
       >
         <i className={collapseIconClassNames}>arrow_back_ios</i>
         <span
-          className={`fd-side-navigation__collapse-text ${
-            isCollapsed ? 'hidden-text' : ''
-          }`}
+          className={classnames({
+            'fd-side-navigation__collapse-text': true,
+            'fd-side-navigation__collapse-text-hidden': isCollapsed,
+          })}
         >
           {'Collapse'}
         </span>
