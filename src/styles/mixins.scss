@@ -104,3 +104,92 @@
     @return black;
   }
 }
+
+@mixin side-navigation-dark {
+  border: 1px solid $cool-gray-17;
+  background-color: $cool-gray-11;
+  &__logo-back {
+    color: $cool-gray-17;
+  }
+  &__logo-text {
+    color: $cool-gray-17;
+    &-hidden {
+      color: transparent;
+    }
+  }
+  &__option-menu {
+    &-selected {
+      background-color: $cool-gray-14;
+    }
+  }
+  &__floating-icon-background {
+    &-transitioning {
+      background: $white;
+    }
+  }
+  &__icon-background {
+    &-selected {
+      background: $white;
+    }
+  }
+  &__option-title {
+    color: $white;
+    &-selected {
+      color: $white;
+    }
+    &-hidden {
+      color: transparent;
+    }
+  }
+  &__option-icon {
+    color: $white;
+    &-selected {
+      color: $brand-color;
+    }
+  }
+  &__option-hover-menu {
+    border: 1px solid $cool-gray-17;
+    background-color: $cool-gray-11;
+  }
+  &__option-hover-title {
+    border-bottom: 1px solid $cool-gray-17;
+    color: $white;
+  }
+  &__sub-option {
+    &-selected {
+      background-color: $cool-gray-17;
+    }
+    &:hover {
+      background-color: $cool-gray-17;
+      > .fd-side-navigation__sub-option-text {
+        color: $brand-white;
+      }
+    }
+  }
+  &__sub-option-text {
+    color: $brand-xx-light;
+    &.selected {
+      color: $brand-white;
+    }
+  }
+  &__collapse-toggle {
+    color: $white;
+    &:hover {
+      color: $brand-xx-light;
+      > * {
+        color: $brand-xx-light;
+      }
+    }
+    &::before {
+      @include gradientPseudoBorderTop($cool-gray-11, $cool-gray-17);
+    }
+  }
+  &__collapse-icon {
+    color: $cool-gray-17;
+  }
+  &-collapse-text {
+    &-hidden {
+      color: transparent;
+    }
+  }
+}
