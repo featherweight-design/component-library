@@ -71,4 +71,12 @@ storiesOf('Navigation/Side Navigation', module)
       logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
       logoTitle="DevelopmentalFX"
     />
+  ))
+  .add('Dark theme', () => (
+    <SideNavigation
+      goDark
+      currentlyViewing={currentlyViewing}
+      menuOptions={sideNavigationMenuOptions}
+      defaultSelected={defaultSelected}
+    />
   ));
