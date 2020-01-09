@@ -1,6 +1,6 @@
 @import '../../../styles/main';
 
-.fd-side-navigation {
+.fd-side-navigation, .fd-side-navigation-dark {
   top: 0;
   left: 0;
   right: auto;
@@ -253,8 +253,11 @@
         color: $brand-color;
       }
     }
-    &-collapsed:hover > .fd-side-navigation__collapse-text {
-      color: transparent;
+    &-collapsed:hover {
+      > .fd-side-navigation__collapse-text,
+      > .fd-side-navigation-dark__collapse-text {
+        color: transparent;
+      }
     }
     &::before {
       @include gradientPseudoBorderTop($white, $gray-04);
@@ -280,4 +283,8 @@
       color: transparent;
     }
   }
+}
+
+.fd-side-navigation-dark {
+  @include side-navigation-dark;
 }
