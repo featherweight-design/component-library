@@ -32,8 +32,8 @@ storiesOf('Navigation/Header Menu', module)
   .add('With sub-options', () => (
     <HeaderMenu
       currentlyViewing={{
-        title: 'User Management',
-        path: '/user-management',
+        title: 'Permissions',
+        path: '/permissions',
       }}
       menuOptions={{
         settings: {

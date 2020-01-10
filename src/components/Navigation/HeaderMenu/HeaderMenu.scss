@@ -41,13 +41,23 @@
     position: relative;
     margin-left: 1.5rem;
   }
+  &__menu-icon-background {
+    position: absolute;
+    background-color: transparent;
+    height: 1.75rem;
+    width: 1.75rem;
+    border-radius: 50%;
+    right: -4px;
+    top: -4px;
+  }
   &__menu-icon {
     position: relative;
     margin-left: 2.375rem;
     color: $cool-gray-17;
+    opacity: 0.8;
     font-size: 1.25rem;
     cursor: pointer;
-    transition: 0.2s ease-in-out;
+    z-index: 1;
     &:focus {
       outline: none;
     }
@@ -56,7 +66,11 @@
     }
     &:hover,
     &-selected {
-      color: $brand-color;
+      color: $white;
+      opacity: 1;
+      + .fd-header-menu__menu-icon-background {
+        background-color: $brand-color;
+      }
     }
     &-settings:hover {
       animation: spin 2.5s infinite linear;
@@ -131,9 +145,11 @@
     position: relative;
     margin-right: 1rem;
     color: $gray-10;
+    opacity: 0.8;
     font-size: 1rem;
     &-selected {
       color: $white;
+      opacity: 1;
     }
   }
   &__sub-option-icon-background {
@@ -162,9 +178,10 @@
       color: $brand-color;
       background-color: $gray-03;
       text-decoration: none;
-      > .header-menu__sub-option-icon {
-        color: $brand-color;
-      }
+    }
+    &:hover > .fd-header-menu__sub-option-icon {
+      color: $brand-color;
+      opacity: 1;
     }
     &:focus {
       outline: none;
