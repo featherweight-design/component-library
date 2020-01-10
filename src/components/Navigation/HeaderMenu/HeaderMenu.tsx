@@ -5,7 +5,7 @@ import React, {
   useState,
   useRef,
 } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import {
   CurrentlyViewing,
@@ -82,9 +82,8 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     title,
     subTitle,
   }: CurrentlyViewing): ReactElement => {
-    const titleClassNames = classNames({
+    const titleClassNames = classnames({
       'fd-header-menu__location-title': true,
-      'fd-header-menu__location-title-with-subtitle': subTitle,
     });
 
     return (
@@ -105,7 +104,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
       .map(({ label, icon, path, href }, index) => {
         const key = `${label}__${index}`;
         const isSelected = path === currentlyViewing.path;
-        const subOptionClassNames = classNames({
+        const subOptionClassNames = classnames({
           'fd-header-menu__sub-option-link': true,
           [`fd-header-menu__sub-option-link-${label
             .toLowerCase()
@@ -129,7 +128,20 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 setSelectedOption(null);
               }}
             >
-              <i className="material-icons fd-header-menu__sub-option-icon">
+              <div
+                className={classnames({
+                  'fd-header-menu__sub-option-icon-background': true,
+                  'fd-header-menu__sub-option-icon-background-selected': isSelected,
+                })}
+              />
+
+              <i
+                className={classnames({
+                  'material-icons': true,
+                  'fd-header-menu__sub-option-icon': true,
+                  'fd-header-menu__sub-option-icon-selected': isSelected,
+                })}
+              >
                 {icon}
               </i>
               {label}
@@ -155,7 +167,20 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 }
               }}
             >
-              <i className="material-icons fd-header-menu__sub-option-icon">
+              <div
+                className={classnames({
+                  'fd-header-menu__sub-option-icon-background': true,
+                  'fd-header-menu__sub-option-icon-background-selected': isSelected,
+                })}
+              />
+
+              <i
+                className={classnames({
+                  'material-icons': true,
+                  'fd-header-menu__sub-option-icon': true,
+                  'fd-header-menu__sub-option-icon-selected': isSelected,
+                })}
+              >
                 {icon}
               </i>
               {label}
@@ -173,7 +198,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
           option
         ] as HeaderMenuOption;
-        const menuOptionIconClassNames = classNames({
+        const menuOptionIconClassNames = classnames({
           'material-icons': true,
           'fd-header-menu__menu-icon': true,
           [`fd-header-menu__menu-icon-${option}`]: true,
@@ -220,9 +245,13 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                   {typeof indicator === 'number' && indicator}
                 </div>
               )}
-              {subOptions && selectedOption === option && (
+              {subOptions && (
                 <div
-                  className="fd-header-menu__sub-options"
+                  className={classnames({
+                    'fd-header-menu__sub-options': true,
+                    'fd-header-menu__sub-options-shown':
+                      selectedOption === option,
+                  })}
                   ref={subOptionsMenu}
                 >
                   <div className="fd-header-menu__sub-options-header">
