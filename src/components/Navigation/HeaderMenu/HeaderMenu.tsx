@@ -18,16 +18,22 @@ import './HeaderMenu.scss';
 type HeaderMenuProps = {
   currentlyViewing: CurrentlyViewing;
   menuOptions: HeaderMenuOptions;
-  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   defaultTitle: string;
+  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
+  goDark?: boolean;
 };
+
+const getBaseClassName = (goDark: boolean | undefined): string =>
+  goDark ? 'fd-header-menu-dark' : 'fd-header-menu';
 
 const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   currentlyViewing,
   menuOptions,
   onNavigate,
   defaultTitle,
+  goDark,
 }: HeaderMenuProps) => {
+  const [baseClassName] = useState(getBaseClassName(goDark));
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const subOptionsMenu = useRef<HTMLDivElement>(null);
 
@@ -83,14 +89,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     subTitle,
   }: CurrentlyViewing): ReactElement => {
     const titleClassNames = classnames({
-      'fd-header-menu__location-title': true,
+      [`${baseClassName}__location-title`]: true,
     });
 
     return (
       <Fragment>
         <h2 className={titleClassNames}>{title || defaultTitle}</h2>
         {subTitle && (
-          <h4 className="fd-header-menu__location-sub-title">{subTitle}</h4>
+          <h4 className={`${baseClassName}__location-sub-title`}>{subTitle}</h4>
         )}
       </Fragment>
     );
@@ -105,12 +111,12 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         const key = `${label}__${index}`;
         const isSelected = path === currentlyViewing.path;
         const subOptionClassNames = classnames({
-          'fd-header-menu__sub-option-link': true,
-          [`fd-header-menu__sub-option-link-${label
+          [`${baseClassName}__sub-option-link`]: true,
+          [`${baseClassName}__sub-option-link-${label
             .toLowerCase()
             .split(' ')
             .join('-')}`]: true,
-          'fd-header-menu__sub-option-link-selected': isSelected,
+          [`${baseClassName}__sub-option-link-selected`]: isSelected,
         });
 
         if (href) {
@@ -130,16 +136,16 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
             >
               <div
                 className={classnames({
-                  'fd-header-menu__sub-option-icon-background': true,
-                  'fd-header-menu__sub-option-icon-background-selected': isSelected,
+                  [`${baseClassName}__sub-option-icon-background`]: true,
+                  [`${baseClassName}__sub-option-icon-background-selected`]: isSelected,
                 })}
               />
 
               <i
                 className={classnames({
                   'material-icons': true,
-                  'fd-header-menu__sub-option-icon': true,
-                  'fd-header-menu__sub-option-icon-selected': isSelected,
+                  [`${baseClassName}__sub-option-icon`]: true,
+                  [`${baseClassName}__sub-option-icon-selected`]: isSelected,
                 })}
               >
                 {icon}
@@ -169,16 +175,16 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
             >
               <div
                 className={classnames({
-                  'fd-header-menu__sub-option-icon-background': true,
-                  'fd-header-menu__sub-option-icon-background-selected': isSelected,
+                  [`${baseClassName}__sub-option-icon-background`]: true,
+                  [`${baseClassName}__sub-option-icon-background-selected`]: isSelected,
                 })}
               />
 
               <i
                 className={classnames({
                   'material-icons': true,
-                  'fd-header-menu__sub-option-icon': true,
-                  'fd-header-menu__sub-option-icon-selected': isSelected,
+                  [`${baseClassName}__sub-option-icon`]: true,
+                  [`${baseClassName}__sub-option-icon-selected`]: isSelected,
                 })}
               >
                 {icon}
@@ -192,7 +198,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
       });
 
   const renderMenuOptions = (): ReactElement => (
-    <div className="fd-header-menu__menu-icon-container">
+    <div className={`${baseClassName}__menu-icon-container`}>
       {Object.keys(menuOptions).map((option, index) => {
         const key = `${option}__${index}`;
         const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
@@ -203,14 +209,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
 
         const menuOptionIconClassNames = classnames({
           'material-icons': true,
-          'fd-header-menu__menu-icon': true,
-          [`fd-header-menu__menu-icon-${option}`]: true,
-          'fd-header-menu__menu-icon-selected': isSelected,
+          [`${baseClassName}__menu-icon`]: true,
+          [`${baseClassName}__menu-icon-${option}`]: true,
+          [`${baseClassName}__menu-icon-selected`]: isSelected,
         });
 
         return (
           <Fragment key={key}>
-            <div className="fd-header-menu__icon-container">
+            <div className={`${baseClassName}__icon-container`}>
               <i
                 className={menuOptionIconClassNames}
                 role="menuitem"
@@ -231,14 +237,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
 
               <div
                 className={classnames({
-                  'fd-header-menu__menu-icon-background': true,
-                  'fd-header-menu__menu-icon-background-selected': isSelected,
+                  [`${baseClassName}__menu-icon-background`]: true,
+                  [`${baseClassName}__menu-icon-background-selected`]: isSelected,
                 })}
               />
 
               {indicator && (
                 <div
-                  className="fd-header-menu__icon-indicator"
+                  className={`${baseClassName}__icon-indicator`}
                   role="menuitem"
                   tabIndex={-1}
                   onClick={(): void => {
@@ -258,18 +264,20 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
               {subOptions && (
                 <div
                   className={classnames({
-                    'fd-header-menu__sub-options': true,
-                    'fd-header-menu__sub-options-shown':
+                    [`${baseClassName}__sub-options`]: true,
+                    [`${baseClassName}__sub-options-shown`]:
                       selectedOption === option,
                   })}
                   ref={subOptionsMenu}
                 >
-                  <div className="fd-header-menu__sub-options-header">
-                    <span className="fd-header-menu__sub-options-title">
+                  <div className={`${baseClassName}__sub-options-header`}>
+                    <span className={`${baseClassName}__sub-options-title`}>
                       {option}
                     </span>
                     {subTitle && (
-                      <span className="fd-header-menu__sub-options-sub-title">
+                      <span
+                        className={`${baseClassName}__sub-options-sub-title`}
+                      >
                         {subTitle}
                       </span>
                     )}
@@ -285,14 +293,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   );
 
   return (
-    <div className="fd-header-menu">
-      <div className="fd-header-menu__left">
-        <div className="fd-header-menu__location-container">
+    <div className={`${baseClassName}`}>
+      <div className={`${baseClassName}__left`}>
+        <div className={`${baseClassName}__location-container`}>
           {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
         </div>
       </div>
 
-      <div className="fd-header-menu__right">
+      <div className={`${baseClassName}__right`}>
         {menuOptions && renderMenuOptions()}
       </div>
     </div>
@@ -303,6 +311,7 @@ HeaderMenu.defaultProps = {
   menuOptions: undefined,
   onNavigate: undefined,
   defaultTitle: undefined,
+  goDark: false,
 };
 
 export default HeaderMenu;
