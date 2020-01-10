@@ -89,4 +89,46 @@ storiesOf('Navigation/Header Menu', module)
       }}
       defaultTitle="Dashboard"
     />
+  ))
+  .add('Dark theme', () => (
+    <HeaderMenu
+      goDark
+      currentlyViewing={{
+        title: 'Permissions',
+        path: '/permissions',
+      }}
+      menuOptions={{
+        settings: {
+          subTitle: 'Bob H.',
+          icon: 'settings',
+          subOptions: [
+            {
+              icon: 'group',
+              label: 'User Management',
+              path: '/user-management',
+              hasAccess: true,
+            },
+            {
+              icon: 'account_tree',
+              label: 'Permissions',
+              path: '/permissions',
+              hasAccess: true,
+            },
+            {
+              icon: 'mail',
+              label: 'Support',
+              path: '/support',
+              hasAccess: true,
+            },
+            {
+              icon: 'info',
+              label: 'Info',
+              path: '/info',
+              hasAccess: true,
+            },
+          ],
+        },
+      }}
+      defaultTitle="Dashboard"
+    />
   ));
