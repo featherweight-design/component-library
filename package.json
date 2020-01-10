@@ -1,8 +1,9 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.9",
+  "version": "0.1.19",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/featherweight-design/component-library#readme",
   "repository": {
     "type": "git",
@@ -12,7 +13,7 @@
     "url": "https://github.com/featherweight-design/component-library/issues"
   },
   "files": [
-    "lib/**/*"
+    "dist/**/*"
   ],
   "keywords": [],
   "author": "Featherweight Design",
@@ -46,7 +47,6 @@
     "@babel/preset-typescript": "^7.7.4",
     "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-actions": "^5.2.8",
-    "@storybook/addon-knobs": "^5.2.8",
     "@storybook/addon-links": "^5.2.8",
     "@storybook/addon-storyshots": "^5.2.8",
     "@storybook/addons": "^5.2.8",

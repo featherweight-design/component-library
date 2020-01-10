@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": "src",
     "outDir": "./dist/",
     "sourceMap": true,
+    "declaration": true,
     "noImplicitAny": true,
     "strict": true,
     "module": "commonjs",
@@ -26,6 +27,8 @@
     "src"
   ],
   "exclude": [
+    "node_modules",
+    "dist",
     "src/**/*.stories.tsx"
   ]
 }

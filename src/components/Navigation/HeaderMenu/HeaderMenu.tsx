@@ -2,11 +2,10 @@ import React, {
   FunctionComponent,
   ReactElement,
   Fragment,
-  SyntheticEvent,
   useState,
   useRef,
 } from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import {
   CurrentlyViewing,
@@ -19,31 +18,33 @@ import './HeaderMenu.scss';
 type HeaderMenuProps = {
   currentlyViewing: CurrentlyViewing;
   menuOptions: HeaderMenuOptions;
-  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   defaultTitle: string;
+  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
+  goDark?: boolean;
 };
+
+const getBaseClassName = (goDark: boolean | undefined): string =>
+  goDark ? 'fd-header-menu-dark' : 'fd-header-menu';
 
 const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   currentlyViewing,
   menuOptions,
   onNavigate,
   defaultTitle,
+  goDark,
 }: HeaderMenuProps) => {
+  const [baseClassName] = useState(getBaseClassName(goDark));
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const subOptionsMenu = useRef<HTMLDivElement>(null);
 
   const handleRemoveEventListener = (): void => {
-    document.removeEventListener(
-      'click',
-      (handleHeaderMenuOutsideClick as Function) as EventListener,
-      false
-    );
+    document.removeEventListener('click', handleHeaderMenuOutsideClick);
   };
 
-  const handleHeaderMenuOutsideClick = (event: SyntheticEvent): void => {
+  const handleHeaderMenuOutsideClick = (event: MouseEvent): void => {
     if (
       subOptionsMenu.current &&
-      !subOptionsMenu.current.contains(event.currentTarget)
+      !subOptionsMenu.current.contains(event.currentTarget as Node)
     ) {
       handleRemoveEventListener();
       setSelectedOption(null);
@@ -58,11 +59,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
 
     if (subOptions) {
       if (!selectedOption) {
-        document.addEventListener(
-          'click',
-          (handleHeaderMenuOutsideClick as Function) as EventListener,
-          false
-        );
+        document.addEventListener('click', handleHeaderMenuOutsideClick);
       }
 
       setSelectedOption(name);
@@ -81,12 +78,9 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         title,
       });
     }
-
     if (subOptionsMenu) {
       handleRemoveEventListener();
     }
-
-    setSelectedOption(null);
   };
 
   // RENDER METHODS
@@ -94,16 +88,15 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     title,
     subTitle,
   }: CurrentlyViewing): ReactElement => {
-    const titleClassNames = classNames({
-      'header-menu__location-title': true,
-      'header-menu__location-title-with-subtitle': subTitle,
+    const titleClassNames = classnames({
+      [`${baseClassName}__location-title`]: true,
     });
 
     return (
       <Fragment>
         <h2 className={titleClassNames}>{title || defaultTitle}</h2>
         {subTitle && (
-          <h4 className="header-menu__location-sub-title">{subTitle}</h4>
+          <h4 className={`${baseClassName}__location-sub-title`}>{subTitle}</h4>
         )}
       </Fragment>
     );
@@ -117,13 +110,13 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
       .map(({ label, icon, path, href }, index) => {
         const key = `${label}__${index}`;
         const isSelected = path === currentlyViewing.path;
-        const subOptionClassNames = classNames({
-          'header-menu__sub-option-link': true,
-          [`header-menu__sub-option-link-${label
+        const subOptionClassNames = classnames({
+          [`${baseClassName}__sub-option-link`]: true,
+          [`${baseClassName}__sub-option-link-${label
             .toLowerCase()
             .split(' ')
             .join('-')}`]: true,
-          'header-menu__sub-option-link-selected': isSelected,
+          [`${baseClassName}__sub-option-link-selected`]: isSelected,
         });
 
         if (href) {
@@ -141,7 +134,20 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 setSelectedOption(null);
               }}
             >
-              <i className="material-icons header-menu__sub-option-icon">
+              <div
+                className={classnames({
+                  [`${baseClassName}__sub-option-icon-background`]: true,
+                  [`${baseClassName}__sub-option-icon-background-selected`]: isSelected,
+                })}
+              />
+
+              <i
+                className={classnames({
+                  'material-icons': true,
+                  [`${baseClassName}__sub-option-icon`]: true,
+                  [`${baseClassName}__sub-option-icon-selected`]: isSelected,
+                })}
+              >
                 {icon}
               </i>
               {label}
@@ -167,7 +173,20 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                 }
               }}
             >
-              <i className="material-icons header-menu__sub-option-icon">
+              <div
+                className={classnames({
+                  [`${baseClassName}__sub-option-icon-background`]: true,
+                  [`${baseClassName}__sub-option-icon-background-selected`]: isSelected,
+                })}
+              />
+
+              <i
+                className={classnames({
+                  'material-icons': true,
+                  [`${baseClassName}__sub-option-icon`]: true,
+                  [`${baseClassName}__sub-option-icon-selected`]: isSelected,
+                })}
+              >
                 {icon}
               </i>
               {label}
@@ -179,23 +198,25 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
       });
 
   const renderMenuOptions = (): ReactElement => (
-    <div className="header-menu__menu-icon-container">
+    <div className={`${baseClassName}__menu-icon-container`}>
       {Object.keys(menuOptions).map((option, index) => {
         const key = `${option}__${index}`;
         const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
           option
         ] as HeaderMenuOption;
-        const menuOptionIconClassNames = classNames({
+
+        const isSelected = selectedOption === option || isActive;
+
+        const menuOptionIconClassNames = classnames({
           'material-icons': true,
-          'header-menu__menu-icon': true,
-          [`header-menu__menu-icon-${option}`]: true,
-          'header-menu__menu-icon-selected':
-            selectedOption === option || isActive,
+          [`${baseClassName}__menu-icon`]: true,
+          [`${baseClassName}__menu-icon-${option}`]: true,
+          [`${baseClassName}__menu-icon-selected`]: isSelected,
         });
 
         return (
           <Fragment key={key}>
-            <div className="header-menu__icon-container">
+            <div className={`${baseClassName}__icon-container`}>
               <i
                 className={menuOptionIconClassNames}
                 role="menuitem"
@@ -213,9 +234,17 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
               >
                 {icon}
               </i>
+
+              <div
+                className={classnames({
+                  [`${baseClassName}__menu-icon-background`]: true,
+                  [`${baseClassName}__menu-icon-background-selected`]: isSelected,
+                })}
+              />
+
               {indicator && (
                 <div
-                  className="header-menu__icon-indicator"
+                  className={`${baseClassName}__icon-indicator`}
                   role="menuitem"
                   tabIndex={-1}
                   onClick={(): void => {
@@ -232,14 +261,23 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
                   {typeof indicator === 'number' && indicator}
                 </div>
               )}
-              {subOptions && selectedOption === option && (
-                <div className="header-menu__sub-options" ref={subOptionsMenu}>
-                  <div className="header-menu__sub-options-header">
-                    <span className="header-menu__sub-options-title">
+              {subOptions && (
+                <div
+                  className={classnames({
+                    [`${baseClassName}__sub-options`]: true,
+                    [`${baseClassName}__sub-options-shown`]:
+                      selectedOption === option,
+                  })}
+                  ref={subOptionsMenu}
+                >
+                  <div className={`${baseClassName}__sub-options-header`}>
+                    <span className={`${baseClassName}__sub-options-title`}>
                       {option}
                     </span>
                     {subTitle && (
-                      <span className="header-menu__sub-options-sub-title">
+                      <span
+                        className={`${baseClassName}__sub-options-sub-title`}
+                      >
                         {subTitle}
                       </span>
                     )}
@@ -255,14 +293,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   );
 
   return (
-    <div className="header-menu">
-      <div className="header-menu__left">
-        <div className="header-menu__location-container">
+    <div className={`${baseClassName}`}>
+      <div className={`${baseClassName}__left`}>
+        <div className={`${baseClassName}__location-container`}>
           {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
         </div>
       </div>
 
-      <div className="header-menu__right">
+      <div className={`${baseClassName}__right`}>
         {menuOptions && renderMenuOptions()}
       </div>
     </div>
@@ -273,6 +311,7 @@ HeaderMenu.defaultProps = {
   menuOptions: undefined,
   onNavigate: undefined,
   defaultTitle: undefined,
+  goDark: false,
 };
 
 export default HeaderMenu;

@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { checkA11y } from '@storybook/addon-a11y';
+import React from 'react';
+import { withA11Y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
 import HeaderMenu from './HeaderMenu';
 
 storiesOf('Navigation/Header Menu', module)
-  .addDecorator(checkA11y)
+  .addDecorator(withA11Y)
   .add('Default', () => (
     <HeaderMenu
       currentlyViewing={{
@@ -32,9 +32,8 @@ storiesOf('Navigation/Header Menu', module)
   .add('With sub-options', () => (
     <HeaderMenu
       currentlyViewing={{
-        title: 'Lalapalooza',
-        subTitle: 'Get Wild',
-        path: '/lalapalooza',
+        title: 'Permissions',
+        path: '/permissions',
       }}
       menuOptions={{
         settings: {
@@ -42,45 +41,27 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'settings',
           subOptions: [
             {
-              icon: 'notifications',
-              label: 'Notification Preferences',
-              path: '/notifications/preferences',
+              icon: 'group',
+              label: 'User Management',
+              path: '/user-management',
               hasAccess: true,
             },
             {
               icon: 'account_tree',
-              label: 'Override Management',
-              path: '/override-management/id',
+              label: 'Permissions',
+              path: '/permissions',
               hasAccess: true,
             },
             {
               icon: 'mail',
-              label: 'Feature Request',
-              path: '/feature-request',
-              hasAccess: true,
-            },
-            {
-              icon: 'info',
               label: 'Support',
               path: '/support',
               hasAccess: true,
             },
             {
-              icon: 'person',
-              label: 'Profile',
-              path: `/profile/:userId`,
-              hasAccess: true,
-            },
-            {
-              icon: 'group',
-              label: 'Administration',
-              path: '/administration',
-              hasAccess: true,
-            },
-            {
-              icon: 'network_check',
-              label: 'Subscriptions',
-              path: '/subscriptions',
+              icon: 'info',
+              label: 'Info',
+              path: '/info',
               hasAccess: true,
             },
           ],
@@ -104,6 +85,48 @@ storiesOf('Navigation/Header Menu', module)
         },
         search: {
           icon: 'search',
+        },
+      }}
+      defaultTitle="Dashboard"
+    />
+  ))
+  .add('Dark theme', () => (
+    <HeaderMenu
+      goDark
+      currentlyViewing={{
+        title: 'Permissions',
+        path: '/permissions',
+      }}
+      menuOptions={{
+        settings: {
+          subTitle: 'Bob H.',
+          icon: 'settings',
+          subOptions: [
+            {
+              icon: 'group',
+              label: 'User Management',
+              path: '/user-management',
+              hasAccess: true,
+            },
+            {
+              icon: 'account_tree',
+              label: 'Permissions',
+              path: '/permissions',
+              hasAccess: true,
+            },
+            {
+              icon: 'mail',
+              label: 'Support',
+              path: '/support',
+              hasAccess: true,
+            },
+            {
+              icon: 'info',
+              label: 'Info',
+              path: '/info',
+              hasAccess: true,
+            },
+          ],
         },
       }}
       defaultTitle="Dashboard"

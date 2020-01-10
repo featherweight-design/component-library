@@ -1,12 +1,14 @@
-.side-navigation {
+@import '../../../styles/main';
+
+.fd-side-navigation, .fd-side-navigation-dark {
   top: 0;
   left: 0;
   right: auto;
   display: flex;
   flex-direction: column;
   width: 230px;
-  border: 1px solid #d8dde6;
-  background-color: #fff;
+  border: 1px solid $gray-04;
+  background-color: $white;
   box-shadow: rgba(99, 115, 138, 0.2) 0px 5px 5px -3px,
     rgba(99, 115, 138, 0.14) 0px 8px 10px 1px,
     rgba(99, 115, 138, 0.12) 0px 3px 14px 2px;
@@ -16,7 +18,7 @@
   transition: width 0.3s ease-in-out;
   outline: none;
   z-index: 1200;
-  &.collapsed {
+  &-collapsed {
     width: 90px;
   }
   *:focus {
@@ -32,6 +34,10 @@
     width: 100%;
     height: 88px;
     padding: 1.5rem;
+    box-sizing: border-box;
+    &-image-only {
+      height: unset;
+    }
   }
   &__logo-link {
     flex: 1;
@@ -41,14 +47,17 @@
     text-decoration: none;
     outline: none;
     cursor: pointer;
+    &-image-only {
+      justify-content: flex-start;
+    }
   }
   &__logo-back {
     position: relative;
     left: 0;
-    color: #63738a;
+    color: $cool-gray-11;
     transition: 0.3s ease-in-out;
     &-hidden {
-      color: rgba(0, 0, 0, 0);
+      color: transparent;
     }
     &-collapsed-away {
       left: -1rem;
@@ -72,16 +81,26 @@
   }
   &__logo-image {
     height: 1.75rem;
+    &-large {
+      height: unset;
+      width: 100%;
+      min-width: 2rem;
+      max-width: 5rem;
+    }
   }
   &__logo-text {
+    width: 8.25rem;
     margin-left: 0.65rem;
-    color: #4a4a4a;
-    font-size: 1.5rem;
+    color: $cool-gray-15;
+    font-size: 1rem;
     text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     visibility: visible;
     transition: color 0.1s ease-in-out;
-    &.hidden-text {
-      color: rgba(0, 0, 0, 0);
+    &-hidden {
+      color: transparent;
     }
   }
   &__menu {
@@ -95,10 +114,41 @@
     align-items: flex-start;
     padding: 0.5rem;
     &-selected {
-      background-color: #f8f8f8;
+      background-color: $gray-02;
     }
     &-collapsed {
       padding: 0.5rem;
+    }
+  }
+  &__floating-icon-background {
+    position: absolute;
+    left: 2.1875rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: top 0.2s ease-in-out, left 0.2s ease-in-out 0.1s;
+    &-collapsed {
+      left: 2.6875rem;
+    }
+    &-transitioning {
+      background: $brand-color;
+    }
+  }
+  &__icon-background {
+    position: absolute;
+    left: 1.125rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    background: transparent;
+    border-radius: 50%;
+    transition: top 0.2s ease-in-out, background-color 0.01s;
+    &-collapsed {
+      left: 1.625rem;
+    }
+    &-selected {
+      background: $brand-color;
+      transition: background-color 0.01s ease 1s, left 0.2s ease-in-out 0.1s;
     }
   }
   &__option-title {
@@ -112,24 +162,28 @@
     cursor: pointer;
     transition: color 0.1s ease-in-out;
     &-selected {
-      color: #0073d1;
+      color: $brand-color;
       cursor: default;
     }
     &-hidden {
-      color: rgba(0, 0, 0, 0);
+      color: transparent;
     }
   }
   &__option-icon {
     position: absolute;
     left: 1.25rem;
-    color: rgba(99, 115, 138, 0.8);
+    color: $brand-color;
+    opacity: 0.8;
     font-size: 1rem;
     transition: 0.2s 0.1s ease-in-out;
     &-selected {
-      color: #0073d1;
+      color: $white;
+      opacity: 1;
+      transition: left 0.2s 0.1s ease-in-out, color 0.1s ease-in-out 0.7s;
     }
     &-hidden {
       left: 1.75rem;
+      transition: left 0.2s 0.1s ease-in-out, color 0.1s ease-in-out 0.3s;
     }
   }
   &__option-hover-menu {
@@ -138,19 +192,19 @@
     min-width: 150px;
     margin-top: -0.5rem;
     padding-bottom: 0.25rem;
-    border: 1px solid #eee;
-    background-color: #fff;
+    border: 1px solid $gray-03;
+    background-color: $white;
     box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.1);
   }
   &__option-hover-title {
     padding: 1rem;
-    border-bottom: 1px solid rgb(216, 221, 230);
+    border-bottom: 1px solid $gray-04;
     margin-bottom: 0.25rem;
     font-size: 1rem;
     font-weight: 500;
     text-transform: capitalize;
     &-selected {
-      color: #0073d1;
+      color: $brand-color;
     }
   }
   &__option-expansion-panel {
@@ -162,27 +216,28 @@
     text-transform: capitalize;
     cursor: pointer;
     &-selected {
-      background-color: #ebecee;
+      background-color: $gray-03;
     }
     &-hover {
       margin: 0 auto;
       padding: 0.5rem 1rem;
       border-radius: 0.125rem;
+      transition: padding 0.05s ease-in-out;
     }
     &:hover {
-      background-color: #ebecee;
-      > .side-navigation__sub-option-text {
-        color: #0073d1;
+      background-color: $gray-03;
+      > .fd-side-navigation__sub-option-text {
+        color: $brand-color;
       }
     }
   }
   &__sub-option-text {
-    color: #6c7b91;
+    color: $cool-gray-10;
     font-size: 1rem;
     font-weight: normal;
     transition: none !important;
-    &.selected {
-      color: #000;
+    &-selected {
+      color: $black;
       font-weight: 500;
     }
   }
@@ -194,28 +249,27 @@
     padding: 1.5rem 0.5rem;
     cursor: pointer;
     &:hover {
-      color: #0073d1;
+      color: $brand-color;
       > * {
-        color: #0073d1;
+        color: $brand-color;
+      }
+    }
+    &-collapsed:hover {
+      > .fd-side-navigation__collapse-text,
+      > .fd-side-navigation-dark__collapse-text {
+        color: transparent;
       }
     }
     &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      width: 11.25rem;
-      border-top: 1px solid rgb(216, 221, 230);
-      transition: width 0.3s ease-in-out;
-    }
-    &.collapsed::before {
-      width: 2.5rem;
+      @include gradientPseudoBorderTop($white, $gray-04);
+      width: 80%;
     }
   }
   &__collapse-icon {
     position: absolute;
     left: 2rem;
     font-size: 1rem;
-    color: #63738a;
+    color: $cool-gray-11;
     transition: 0.2s 0.1s ease-in-out;
     &-collapsed {
       left: 2rem;
@@ -226,8 +280,12 @@
     width: 100%;
     margin-left: 3.375rem;
     transition: color 0.1s ease-in-out;
-    &.hidden-text {
-      color: rgba(0, 0, 0, 0);
+    &-hidden {
+      color: transparent;
     }
   }
+}
+
+.fd-side-navigation-dark {
+  @include side-navigation-dark;
 }
