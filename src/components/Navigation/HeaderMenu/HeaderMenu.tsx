@@ -198,12 +198,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
         const { icon, subOptions, subTitle, indicator, isActive } = menuOptions[
           option
         ] as HeaderMenuOption;
+
+        const isSelected = selectedOption === option || isActive;
+
         const menuOptionIconClassNames = classnames({
           'material-icons': true,
           'fd-header-menu__menu-icon': true,
           [`fd-header-menu__menu-icon-${option}`]: true,
-          'fd-header-menu__menu-icon-selected':
-            selectedOption === option || isActive,
+          'fd-header-menu__menu-icon-selected': isSelected,
         });
 
         return (
@@ -226,6 +228,14 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
               >
                 {icon}
               </i>
+
+              <div
+                className={classnames({
+                  'fd-header-menu__menu-icon-background': true,
+                  'fd-header-menu__menu-icon-background-selected': isSelected,
+                })}
+              />
+
               {indicator && (
                 <div
                   className="fd-header-menu__icon-indicator"
