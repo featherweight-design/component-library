@@ -105,6 +105,69 @@
   }
 }
 
+@mixin header-menu-dark {
+  border: 1px solid $cool-gray-17;
+  background-color: $cool-gray-11;
+  color: $white;
+  &__location-sub-title {
+    color: $brand-xx-light;
+  }
+  &__menu-icon {
+    color: $white;
+    &:hover,
+    &-selected {
+      color: $brand-color;
+      + .fd-header-menu-dark__menu-icon-background {
+        background-color: $white;
+      }
+    }
+  }
+  &__icon-indicator {
+    background: #ff4d4a;
+    border: 1px solid $white;
+  }
+  &__sub-options {
+    border: 0px solid transparent;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    background-color: $cool-gray-14;
+    &-shown {
+      border: 1px solid $cool-gray-17;
+      box-shadow: 0 3px 14px 2px rgba(99, 115, 138, 0.12),
+        0 8px 10px 1px rgba(99, 115, 138, 0.14),
+        0 5px 5px 0 rgba(99, 115, 138, 0.2);
+    }
+  }
+  &__sub-options-header {
+    border-bottom: 1px solid $gray-04;
+  }
+  &__sub-options-sub-title {
+    color: $brand-xx-light;
+  }
+  &__sub-option-icon {
+    color: $white;
+    &-selected {
+      color: $brand-color;
+    }
+  }
+  &__sub-option-icon-background {
+    background-color: $cool-gray-14;
+    &-selected {
+      background-color: $white;
+    }
+  }
+  &__sub-option-link {
+    &:hover,
+    &-selected {
+      color: $brand-white;
+      background-color: $cool-gray-17;
+    }
+    &:hover > .fd-header-menu-dark__sub-option-icon {
+      color: $white;
+      opacity: 1;
+    }
+  }
+}
+
 @mixin side-navigation-dark {
   border: 1px solid $cool-gray-17;
   background-color: $cool-gray-11;
