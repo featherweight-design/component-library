@@ -32,9 +32,8 @@ storiesOf('Navigation/Header Menu', module)
   .add('With sub-options', () => (
     <HeaderMenu
       currentlyViewing={{
-        title: 'Lalapalooza',
-        subTitle: 'Get Wild',
-        path: '/lalapalooza',
+        title: 'User Management',
+        path: '/user-management',
       }}
       menuOptions={{
         settings: {
@@ -42,45 +41,27 @@ storiesOf('Navigation/Header Menu', module)
           icon: 'settings',
           subOptions: [
             {
-              icon: 'notifications',
-              label: 'Notification Preferences',
-              path: '/notifications/preferences',
+              icon: 'group',
+              label: 'User Management',
+              path: '/user-management',
               hasAccess: true,
             },
             {
               icon: 'account_tree',
-              label: 'Override Management',
-              path: '/override-management/id',
+              label: 'Permissions',
+              path: '/permissions',
               hasAccess: true,
             },
             {
               icon: 'mail',
-              label: 'Feature Request',
-              path: '/feature-request',
-              hasAccess: true,
-            },
-            {
-              icon: 'info',
               label: 'Support',
               path: '/support',
               hasAccess: true,
             },
             {
-              icon: 'person',
-              label: 'Profile',
-              path: `/profile/:userId`,
-              hasAccess: true,
-            },
-            {
-              icon: 'group',
-              label: 'Administration',
-              path: '/administration',
-              hasAccess: true,
-            },
-            {
-              icon: 'network_check',
-              label: 'Subscriptions',
-              path: '/subscriptions',
+              icon: 'info',
+              label: 'Info',
+              path: '/info',
               hasAccess: true,
             },
           ],
