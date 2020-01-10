@@ -222,6 +222,7 @@
       margin: 0 auto;
       padding: 0.5rem 1rem;
       border-radius: 0.125rem;
+      transition: padding 0.05s ease-in-out;
     }
     &:hover {
       background-color: $gray-03;
