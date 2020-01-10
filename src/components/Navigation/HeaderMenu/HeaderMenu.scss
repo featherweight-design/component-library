@@ -1,6 +1,7 @@
 @import '../../../styles/main';
 
-.fd-header-menu {
+.fd-header-menu,
+.fd-header-menu-dark {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -99,6 +100,7 @@
     background: #ff4d4a;
     border: 1px solid $white;
     cursor: pointer;
+    z-index: 2;
   }
   &__sub-options {
     position: absolute;
@@ -248,4 +250,8 @@
       transform: rotate(0deg) scale(1);
     }
   }
+}
+
+.fd-header-menu-dark {
+  @include header-menu-dark;
 }
