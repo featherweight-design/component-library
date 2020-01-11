@@ -104,6 +104,7 @@
     }
   }
   &__menu {
+    position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -122,14 +123,14 @@
   }
   &__floating-icon-background {
     position: absolute;
-    left: 2.1875rem;
+    left: 1.6rem;
     width: 1.25rem;
     height: 1.25rem;
     border-radius: 50%;
     background-color: transparent;
     transition: top 0.2s ease-in-out, left 0.2s ease-in-out 0.1s;
     &-collapsed {
-      left: 2.6875rem;
+      left: 2.1rem;
     }
     &-transitioning {
       background: $brand-color;
@@ -183,12 +184,11 @@
     }
     &-hidden {
       left: 1.75rem;
-      transition: left 0.2s 0.1s ease-in-out, color 0.1s ease-in-out 0.3s;
     }
   }
   &__option-hover-menu {
     position: absolute;
-    left: 6.5rem;
+    left: 6rem;
     min-width: 150px;
     margin-top: -0.5rem;
     padding-bottom: 0.25rem;
