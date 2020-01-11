@@ -110,7 +110,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
   const [baseClassName] = useState(getBaseClassName(goDark));
   const [isTransitioning, toggleIsTransitioning] = useState(false);
-  const [iconBackgroundTop, setIconBackgroundTop] = useState('26px');
+  const [iconBackgroundTop, setIconBackgroundTop] = useState('17px');
+  const [collapsedOptionOffsets, setCollapsedOptionOffsets] = useState<
+    number[]
+  >([]);
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
   const [selection, setSelection] = useState<SideNavigationSelection>(
     getInitialSelection(props)
@@ -135,23 +138,52 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   }, [currentlyViewing]);
 
   useEffect(() => {
-    setTimeout(() => {
-      const { top } = document
-        .getElementsByClassName(`${baseClassName}__option-icon-selected`)[0]
-        .getBoundingClientRect();
-
-      const iconTop = `${top - 2}px`;
-      setIconBackgroundTop(iconTop);
-    }, 500);
-  }, [selection]);
-
-  useEffect(() => {
     if (isTransitioning) {
       setTimeout(() => toggleIsTransitioning(false), 1250);
     }
   }, [isTransitioning]);
 
+  useEffect(() => {
+    if (isCollapsed && !collapsedOptionOffsets.length) {
+      setTimeout(() => {
+        const optionElements = document.getElementsByClassName(
+          `${baseClassName}__option-menu`
+        );
+        const headerElement = document.getElementsByClassName(
+          `${baseClassName}__header`
+        )[0] as HTMLElement;
+
+        const addedOffset = headerElement ? headerElement.offsetHeight + 8 : 8;
+
+        const optionOffsets = [];
+
+        for (let i = 0; i < optionElements.length; i++) {
+          optionOffsets.push(
+            (optionElements[i] as HTMLElement).offsetTop + addedOffset
+          );
+        }
+
+        setCollapsedOptionOffsets(optionOffsets);
+      }, 500);
+    }
+  }, [isCollapsed, collapsedOptionOffsets]);
+
   // LOCAL STATE CHANGE/TOGGLE METHODS
+  const handleSetFloatingBackgroundOffset = (): void => {
+    setTimeout(() => {
+      const element = document.getElementsByClassName(
+        `${baseClassName}__option-title-selected`
+      )[0] as HTMLElement;
+
+      if (element) {
+        const { offsetTop } = element;
+
+        const iconTop = `${offsetTop + 9}px`;
+        setIconBackgroundTop(iconTop);
+      }
+    }, 500);
+  };
+
   const handleUpdateSelection = (
     newOption: string | null,
     newSubOption: string | null
@@ -187,6 +219,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         option: null,
       });
     } else {
+      handleSetFloatingBackgroundOffset();
       setSelection({
         ...selection,
         option,
@@ -194,7 +227,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     }
   };
 
-  const getSubOptionParent = (subOption: string): string | undefined => {
+  const handleFindSubOptionParent = (subOption: string): string | undefined => {
     const subOptionParent = Object.keys(menuOptions).find(option => {
       const match = menuOptions[option].subOptions.find(
         sub => sub === subOption
@@ -211,11 +244,12 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const handleSelectSubOption = (subOption: string): void => {
-    const subOptionParent = getSubOptionParent(subOption);
+    const subOptionParent = handleFindSubOptionParent(subOption);
     const currentSelectedSubOptionParent =
-      selection.subOption && getSubOptionParent(selection.subOption);
+      selection.subOption && handleFindSubOptionParent(selection.subOption);
 
     if (subOptionParent !== currentSelectedSubOptionParent) {
+      handleSetFloatingBackgroundOffset();
       toggleIsTransitioning(true);
     }
 
@@ -304,11 +338,6 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
             [`${baseClassName}__option-icon-hidden`]: isCollapsed,
           });
 
-          const optionHoverTitleClassNames = classnames({
-            [`${baseClassName}__option-hover-title`]: true,
-            [`${baseClassName}__option-hover-title-selected`]: isOptionSelected,
-          });
-
           const optionExpansionPanelClassNames = classnames({
             [`${baseClassName}__option-expansion-panel`]: true,
             [`${baseClassName}__option-expansion-panel-${option}`]: true,
@@ -344,19 +373,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                 <i className={optionIconClassNames}>{optionObject.icon}</i>
                 {option}
               </div>
-              {isCollapsed && selection.option === option && (
-                <div
-                  className={`${baseClassName}__option-hover-menu`}
-                  onMouseLeave={(): void => {
-                    if (isCollapsed) {
-                      handleSelectOption(null);
-                    }
-                  }}
-                >
-                  <div className={optionHoverTitleClassNames}>{option}</div>
-                  {renderSubOptions(optionObject.subOptions)}
-                </div>
-              )}
+
               <ExpansionPanel
                 className={optionExpansionPanelClassNames}
                 expanded={
@@ -405,6 +422,42 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         </div>
       );
     });
+  };
+
+  const renderHoverSubOptions = (): ReactElement | null => {
+    const optionObject =
+      selection.option &&
+      (menuOptions[selection.option] as SideNavigationOption);
+
+    const optionIndex =
+      selection.option && Object.keys(menuOptions).indexOf(selection.option);
+
+    if (optionObject && optionIndex !== -1) {
+      const isOptionSelected = optionObject.subOptions.find(
+        subOption => subOption === selection.subOption
+      );
+      const optionHoverTitleClassNames = classnames({
+        [`${baseClassName}__option-hover-title`]: true,
+        [`${baseClassName}__option-hover-title-selected`]: isOptionSelected,
+      });
+
+      return (
+        <div
+          className={`${baseClassName}__option-hover-menu`}
+          style={{ top: collapsedOptionOffsets[optionIndex as number] }}
+          onMouseLeave={(): void => {
+            if (isCollapsed) {
+              handleSelectOption(null);
+            }
+          }}
+        >
+          <div className={optionHoverTitleClassNames}>{selection.option}</div>
+          {renderSubOptions(optionObject.subOptions)}
+        </div>
+      );
+    }
+
+    return null;
   };
 
   const logoWrapperClassNames = classnames({
@@ -501,6 +554,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         />
         {renderMenuOptions()}
       </div>
+
+      {isCollapsed && selection.option && renderHoverSubOptions()}
 
       <div
         role="switch"
