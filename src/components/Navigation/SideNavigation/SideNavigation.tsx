@@ -178,7 +178,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       if (element) {
         const { offsetTop } = element;
 
-        const iconTop = `${offsetTop + 9}px`;
+        const iconTop = `${offsetTop + 7}px`;
         setIconBackgroundTop(iconTop);
       }
     }, 500);
