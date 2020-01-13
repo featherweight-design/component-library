@@ -1,6 +1,8 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
+import OtherOption from '../OtherOption/OtherOption';
+import { OtherOptionType } from '../../types';
 import './Radio.scss';
 
 type RadioProps = {
@@ -8,6 +10,7 @@ type RadioProps = {
   selected: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
+  other?: OtherOptionType;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
@@ -15,6 +18,7 @@ const Radio: FunctionComponent<RadioProps> = ({
   selected,
   onChange,
   label,
+  other,
 }: RadioProps) => (
   <div className="fd-radio">
     {label && <span className="fd-label">{label}</span>}
@@ -31,6 +35,14 @@ const Radio: FunctionComponent<RadioProps> = ({
           checked={option === selected}
         />
         <div className="fd-radio__styled">{option}</div>
+        {option.toLowerCase() === 'other' && other && (
+          <OtherOption
+            name={option}
+            value={other.value}
+            selected={option === selected}
+            onChange={other.onChange}
+          />
+        )}
       </label>
     ))}
   </div>
