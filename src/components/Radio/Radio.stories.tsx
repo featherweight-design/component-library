@@ -13,6 +13,7 @@ storiesOf('Radio', module)
     return (
       <div style={{ display: 'flex' }}>
         <Radio
+          label="Baby Names"
           selected={selected}
           options={['Torin', 'Juniper', 'Pooch', 'Luna']}
           onChange={(event): void => {

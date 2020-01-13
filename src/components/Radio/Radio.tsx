@@ -7,14 +7,18 @@ type RadioProps = {
   options: string[];
   selected: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
   options,
   selected,
   onChange,
+  label,
 }: RadioProps) => (
   <div className="fd-radio">
+    {label && <span className="fd-label">{label}</span>}
+
     {options.map(option => (
       <label key={option} className="fd-radio__container">
         <input
@@ -31,5 +35,9 @@ const Radio: FunctionComponent<RadioProps> = ({
     ))}
   </div>
 );
+
+Radio.defaultProps = {
+  label: undefined,
+};
 
 export default Radio;
