@@ -60,6 +60,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
             value={other.value}
             selected={checked}
             onChange={other.onChange}
+            disabled={disabled}
           />
         )}
       </label>

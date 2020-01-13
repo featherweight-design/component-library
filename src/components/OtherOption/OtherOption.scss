@@ -14,6 +14,10 @@
     &:focus {
       @include focus-styles;
     }
+    &:disabled {
+      background-color: $gray-03;
+      cursor: not-allowed;
+    }
   }
   &__underline {
     position: absolute;

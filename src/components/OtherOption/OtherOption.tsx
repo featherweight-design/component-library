@@ -7,6 +7,7 @@ import './OtherOption.scss';
 type OtherOptionProps = OtherOptionType & {
   name: string;
   selected: boolean;
+  disabled?: boolean;
 };
 
 const OtherOption: FunctionComponent<OtherOptionProps> = ({
@@ -14,6 +15,7 @@ const OtherOption: FunctionComponent<OtherOptionProps> = ({
   value,
   name,
   selected,
+  disabled,
 }: OtherOptionProps) => (
   <div className="fd-other-option">
     <input
@@ -22,6 +24,7 @@ const OtherOption: FunctionComponent<OtherOptionProps> = ({
       name={name}
       onChange={onChange}
       value={value}
+      disabled={disabled}
     />
     <span
       className={classnames({
