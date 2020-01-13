@@ -1,7 +1,14 @@
+import { ChangeEvent } from 'react';
+
 // FORM
 export interface SelectOptionType {
   value: string;
   label: string;
+}
+
+export interface OtherOptionType {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 }
 
 // NAVIGATION
