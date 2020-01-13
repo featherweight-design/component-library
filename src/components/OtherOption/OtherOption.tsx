@@ -17,22 +17,25 @@ const OtherOption: FunctionComponent<OtherOptionProps> = ({
   selected,
   disabled,
 }: OtherOptionProps) => (
-  <div className="fd-other-option">
-    <input
-      className="fd-other-option__input"
-      type="text"
-      name={name}
-      onChange={onChange}
-      value={value}
-      disabled={disabled}
-    />
-    <span
-      className={classnames({
-        'fd-other-option__underline': true,
-        'fd-other-option__underline-selected': selected,
-      })}
-    />
-  </div>
+  <>
+    :
+    <div className="fd-other-option">
+      <input
+        className="fd-other-option__input"
+        type="text"
+        name={name}
+        onChange={onChange}
+        value={value}
+        disabled={disabled}
+      />
+      <span
+        className={classnames({
+          'fd-other-option__underline': true,
+          'fd-other-option__underline-selected': selected,
+        })}
+      />
+    </div>
+  </>
 );
 
 export default OtherOption;
