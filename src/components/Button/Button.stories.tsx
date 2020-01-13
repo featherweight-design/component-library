@@ -9,7 +9,7 @@ const mockClick = (): void => console.log("I've been clicked!");
 storiesOf('Button', module)
   .addDecorator(withA11Y)
   .add('Types', () => (
-    <div>
+    <div className="story__button-container">
       <Button onClick={mockClick}>Default</Button>
       <Button onClick={mockClick} type="default-destructive">
         Default Destructive
