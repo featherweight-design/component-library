@@ -13,5 +13,23 @@ body {
     margin-bottom: 0.25rem;
     padding-left: 0.25rem;
     font-size: 0.75rem;
+    + .fd-checkbox__container, + .fd-radio__container {
+      margin-top: 0.25rem;
+    }
   }
 }
+
+.story {
+  &__button-container,
+  &__input-container,
+  &__select-container {
+    > * {
+      margin-right: 0.5rem;
+    }
+  }
+  &__input-container,
+  &__select-container {
+    display: flex;
+  }
+}
+
