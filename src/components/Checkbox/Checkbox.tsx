@@ -1,11 +1,14 @@
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import classnames from 'classnames';
 
+import { OtherOptionType } from '../../types';
 import './Checkbox.scss';
 
 type CheckboxProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   options: CheckboxOption[];
+  label?: string;
+  other?: OtherOptionType;
 };
 
 type CheckboxOption = {
@@ -17,8 +20,12 @@ type CheckboxOption = {
 const Checkbox: FunctionComponent<CheckboxProps> = ({
   onChange,
   options,
+  label,
+  other,
 }: CheckboxProps) => (
   <div className="fd-checkbox">
+    {label && <span className="fd-label">{label}</span>}
+
     {options.map(({ label, checked, disabled }) => (
       <label
         key={`fd-checkbox__${label}`}
@@ -45,9 +52,31 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
           {checked && <div className="fd-checkbox__icon" />}
         </div>
         <span>{label}</span>
+
+        {label.toLowerCase() === 'other' && other && (
+          <div className="fd-checkbox__other-container">
+            <input
+              className="fd-checkbox__other-input"
+              type="text"
+              name={label}
+              onChange={other.onChange}
+              value={other.value}
+            />
+            <span
+              className={classnames({
+                'fd-checkbox__other-underline': true,
+                'fd-checkbox__other-underline-selected': checked,
+              })}
+            />
+          </div>
+        )}
       </label>
     ))}
   </div>
 );
+
+Checkbox.defaultProps = {
+  label: undefined,
+};
 
 export default Checkbox;
