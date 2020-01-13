@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import classnames from 'classnames';
 
+import OtherOption from '../OtherOption/OtherOption';
 import { OtherOptionType } from '../../types';
 import './Checkbox.scss';
 
@@ -54,21 +55,12 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
         <span>{label}</span>
 
         {label.toLowerCase() === 'other' && other && (
-          <div className="fd-checkbox__other-container">
-            <input
-              className="fd-checkbox__other-input"
-              type="text"
-              name={label}
-              onChange={other.onChange}
-              value={other.value}
-            />
-            <span
-              className={classnames({
-                'fd-checkbox__other-underline': true,
-                'fd-checkbox__other-underline-selected': checked,
-              })}
-            />
-          </div>
+          <OtherOption
+            name={label}
+            value={other.value}
+            selected={checked}
+            onChange={other.onChange}
+          />
         )}
       </label>
     ))}
