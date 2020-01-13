@@ -24,7 +24,7 @@ storiesOf('Input', module)
     };
 
     return (
-      <div style={{ display: 'flex' }}>
+      <div className="story__input-container">
         <Input
           value={value}
           name="default"

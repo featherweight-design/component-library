@@ -18,7 +18,7 @@ storiesOf('Select', module)
     };
 
     return (
-      <div style={{ display: 'flex' }}>
+      <div className="story__select-container">
         <Select
           label="Label"
           selected={selected}
