@@ -139,7 +139,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
   useEffect(() => {
     if (isTransitioning) {
-      setTimeout(() => toggleIsTransitioning(false), 1250);
+      setTimeout(() => toggleIsTransitioning(false), 1000);
     }
   }, [isTransitioning]);
 
@@ -178,7 +178,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       if (element) {
         const { offsetTop } = element;
 
-        const iconTop = `${offsetTop + 7}px`;
+        const iconTop = `${offsetTop + 9}px`;
         setIconBackgroundTop(iconTop);
       }
     }, 500);
