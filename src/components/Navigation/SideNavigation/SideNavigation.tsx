@@ -139,7 +139,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
   useEffect(() => {
     if (isTransitioning) {
-      setTimeout(() => toggleIsTransitioning(false), 1000);
+      setTimeout(() => toggleIsTransitioning(false), 1125);
     }
   }, [isTransitioning]);
 
