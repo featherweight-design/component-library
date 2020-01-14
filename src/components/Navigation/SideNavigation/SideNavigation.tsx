@@ -172,13 +172,21 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   const handleSetFloatingBackgroundOffset = (): void => {
     setTimeout(() => {
       const element = document.getElementsByClassName(
-        `${baseClassName}__option-title-selected`
+        `${baseClassName}__icon-background-selected`
       )[0] as HTMLElement;
 
       if (element) {
-        const { offsetTop } = element;
+        const { top } = element.getBoundingClientRect();
 
-        const iconTop = `${offsetTop + 9}px`;
+        const headerElement = document.getElementsByClassName(
+          `${baseClassName}__header`
+        )[0] as HTMLElement;
+
+        const offset = headerElement
+          ? top - headerElement.offsetHeight - 1
+          : top - 1;
+
+        const iconTop = `${offset}px`;
         setIconBackgroundTop(iconTop);
       }
     }, 500);
