@@ -51,18 +51,15 @@ export interface HeaderMenuSubOption {
   href?: string;
 }
 
-export interface SideNavigationOptions {
-  [key: string]: SideNavigationOption;
-}
-
 export interface SideNavigationOption {
+  label: string;
   icon: string;
   path?: string;
   title?: string;
-  subOptions?: SideNavigationSupOption[];
+  subOptions?: SideNavigationSubOption[];
 }
 
-export interface SideNavigationSupOption {
+export interface SideNavigationSubOption {
   path: string;
   title: string;
 }
