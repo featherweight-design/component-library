@@ -4,8 +4,9 @@ import { storiesOf } from '@storybook/react';
 
 import SideNavigation from './SideNavigation';
 
-const sideNavigationMenuOptions = {
-  user: {
+const sideNavigationMenuOptions = [
+  {
+    label: 'user',
     icon: 'person',
     subOption: [
       {
@@ -22,7 +23,8 @@ const sideNavigationMenuOptions = {
       },
     ],
   },
-  help: {
+  {
+    label: 'help',
     icon: 'help',
     subOptions: [
       {
@@ -35,12 +37,13 @@ const sideNavigationMenuOptions = {
       },
     ],
   },
-  settings: {
+  {
+    label: 'settings',
     icon: 'settings_applications',
     path: '/settings',
     title: 'Settings',
   },
-};
+];
 
 const currentlyViewing = {
   path: '/user/my info',
