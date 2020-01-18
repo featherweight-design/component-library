@@ -33,5 +33,8 @@
       left: 0.5rem;
       opacity: 1;
     }
+    &-disabled {
+      background-color: $gray-09;
+    }
   }
 }

@@ -32,6 +32,7 @@ const OtherOption: FunctionComponent<OtherOptionProps> = ({
         className={classnames({
           'fd-other-option__underline': true,
           'fd-other-option__underline-selected': selected,
+          'fd-other-option__underline-disabled': disabled,
         })}
       />
     </div>
