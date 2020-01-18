@@ -46,4 +46,30 @@ storiesOf('Radio', module)
         />
       </div>
     );
+  })
+  .add('Disabled', () => {
+    const [selected, handleChangeSelected] = useState('Other');
+    const [otherValue, updateOther] = useState('Butterfinger, duh');
+
+    const handleChangeOther = ({
+      target: { value },
+    }: ChangeEvent<HTMLInputElement>): void => updateOther(value);
+
+    return (
+      <div>
+        <Radio
+          disabled
+          label="Best Candy Bar"
+          selected={selected}
+          options={['Snickers', 'Three Musketeers', 'Baby Ruth', 'Other']}
+          other={{
+            value: otherValue,
+            onChange: handleChangeOther,
+          }}
+          onChange={(event): void => {
+            handleChangeSelected(event.target.name);
+          }}
+        />
+      </div>
+    );
   });

@@ -11,6 +11,7 @@ type RadioProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   label?: string;
   other?: OtherOptionType;
+  disabled?: boolean;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
@@ -19,6 +20,7 @@ const Radio: FunctionComponent<RadioProps> = ({
   onChange,
   label,
   other,
+  disabled,
 }: RadioProps) => (
   <div className="fd-radio">
     {label && <span className="fd-label">{label}</span>}
@@ -33,14 +35,23 @@ const Radio: FunctionComponent<RadioProps> = ({
           name={option}
           onChange={onChange}
           checked={option === selected}
+          disabled={disabled}
         />
-        <div className="fd-radio__styled">{option}</div>
+        <div
+          className={classnames({
+            'fd-radio__styled': true,
+            'fd-radio__styled-disabled': disabled,
+          })}
+        >
+          {option}
+        </div>
         {option.toLowerCase() === 'other' && other && (
           <OtherOption
             name={option}
             value={other.value}
             selected={option === selected}
             onChange={other.onChange}
+            disabled={disabled}
           />
         )}
       </label>

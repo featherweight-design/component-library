@@ -20,6 +20,9 @@
     &:checked + .fd-radio__styled:after {
       transform: scale(1);
     }
+    &:disabled + .fd-radio__styled:before {
+      border-color: $gray-09
+    }
   }
   &__styled {
     display: inline-block;
@@ -54,6 +57,9 @@
       height: 0.75rem;
       transform: scale(0);
       background: $brand-color;
+    }
+    &-disabled:after {
+      background: $gray-09;
     }
   }
 }
