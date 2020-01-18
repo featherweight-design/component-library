@@ -7,13 +7,38 @@ import SideNavigation from './SideNavigation';
 const sideNavigationMenuOptions = {
   user: {
     icon: 'person',
-    titleType: 'subOption option',
-    subOptions: ['my info', 'notifications', 'logout'],
+    subOption: [
+      {
+        title: 'My Info',
+        path: '/user/my-info',
+      },
+      {
+        title: 'Notifications',
+        path: '/user/notifications',
+      },
+      {
+        title: 'Logout',
+        path: '/logout',
+      },
+    ],
+  },
+  help: {
+    icon: 'help',
+    subOptions: [
+      {
+        title: 'Contact Us',
+        path: '/help/contact',
+      },
+      {
+        title: 'Feedback',
+        path: '/help/feedback',
+      },
+    ],
   },
   settings: {
     icon: 'settings_applications',
-    titleType: 'subOption',
-    subOptions: ['preferences', 'help', 'feedback'],
+    path: '/settings',
+    title: 'Settings',
   },
 };
 
