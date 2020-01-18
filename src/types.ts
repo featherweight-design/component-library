@@ -57,6 +57,12 @@ export interface SideNavigationOptions {
 
 export interface SideNavigationOption {
   icon: string;
-  subOptions: string[];
-  titleType: string;
+  path?: string;
+  title?: string;
+  subOptions?: SideNavigationSupOption[];
+}
+
+export interface SideNavigationSupOption {
+  path: string;
+  title: string;
 }
