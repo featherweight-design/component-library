@@ -8,7 +8,7 @@ const sideNavigationMenuOptions = [
   {
     label: 'user',
     icon: 'person',
-    subOption: [
+    subOptions: [
       {
         title: 'My Info',
         path: '/user/my-info',
@@ -46,7 +46,7 @@ const sideNavigationMenuOptions = [
 ];
 
 const currentlyViewing = {
-  path: '/user/my info',
+  path: '/user/my-info',
   title: 'user',
   backPath: '/',
   backTitle: 'Home',
