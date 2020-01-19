@@ -5,7 +5,6 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classnames from 'classnames';
-import isEmpty from 'lodash/isEmpty';
 
 import {
   CurrentlyViewing,
@@ -33,7 +32,7 @@ type SideNavigationProps = {
 };
 
 type SideNavigationSelection = {
-  option?: string | undefined;
+  option: string;
   subOption?: string | undefined;
 };
 
@@ -64,10 +63,10 @@ const getSelection = (props: SideNavigationProps): SideNavigationSelection => {
 
       return accumulator;
     },
-    {}
+    defaultSelected as SideNavigationSelection
   );
 
-  return isEmpty(preSelection) ? defaultSelected : preSelection;
+  return preSelection;
 };
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
@@ -91,6 +90,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
   const [baseClassName] = useState(getBaseClassName(goDark));
   const [isTransitioning, toggleIsTransitioning] = useState(false);
+  const [openOption, setIsOpen] = useState('');
   const [iconBackgroundTop, setIconBackgroundTop] = useState('17px');
   const [collapsedOptionOffsets, setCollapsedOptionOffsets] = useState<
     number[]
@@ -169,30 +169,18 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const handleUpdateSelection = (
-    newOption: string | undefined,
+    newOption: string,
     newSubOption: string | undefined
   ): void => {
     setSelection({
-      option: isCollapsed ? undefined : newOption,
+      option: newOption,
       subOption: newSubOption,
     });
   };
 
   const handleToggleCollapse = (): void => {
-    const selectedOption = menuOptions.find(({ label, subOptions }) => {
-      if (subOptions) {
-        return subOptions.find(({ title }) => title === selection.subOption);
-      }
-
-      return label;
-    });
-
+    setIsOpen('');
     toggleCollapsed(!isCollapsed);
-    setSelection({
-      ...selection,
-      option:
-        !isCollapsed || !selectedOption ? undefined : selectedOption.label,
-    });
 
     if (onCollapse) {
       onCollapse(!isCollapsed);
@@ -200,27 +188,28 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const handleSelectOption = (option: SideNavigationOption): void => {
-    const { label } = option;
+    const { label, path, title, subOptions } = option;
 
-    if (!isCollapsed && selection.option === label) {
-      setSelection({
-        ...selection,
-        option: undefined,
-      });
+    if (!isCollapsed && openOption === label) {
+      setIsOpen('');
     } else {
-      const { label, path, title, subOptions } = option;
-
       const hasSubOptions = subOptions && subOptions.length;
 
-      if (!hasSubOptions && onNavigate && path && title) {
+      setIsOpen(label);
+
+      if (!hasSubOptions) {
+        toggleIsTransitioning(true);
+        setSelection({
+          option: label,
+          subOption: undefined,
+        });
+      }
+
+      if (onNavigate && path && title) {
         onNavigate({ path, title });
       }
 
       handleSetFloatingBackgroundOffset();
-      setSelection({
-        ...selection,
-        option: label,
-      });
     }
   };
 
@@ -254,10 +243,13 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       onNavigate({ path, title });
     }
 
-    setSelection({
-      subOption: title,
-      option: isCollapsed || !subOptionParent ? undefined : subOptionParent,
-    });
+    if (subOptionParent) {
+      setIsOpen('');
+      setSelection({
+        subOption: title,
+        option: subOptionParent,
+      });
+    }
   };
 
   const handleGoBack = (): void => {
@@ -279,21 +271,20 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     const { label, subOptions, icon } = option;
     const key = `${label}__${index}`;
 
-    const isOptionSelected =
-      subOptions &&
-      subOptions.find(({ title }) => title === selection.subOption);
+    const isOptionOpen = openOption === label;
+    const isSelected = selection.option === label;
 
     const optionMenuClassNames = classnames({
       [`${baseClassName}__option-menu`]: true,
       [`${baseClassName}__option-menu-${option}`]: true,
-      [`${baseClassName}__option-menu-selected`]: isOptionSelected,
+      [`${baseClassName}__option-menu-selected`]: isSelected,
       [`${baseClassName}__option-menu-collapsed`]: isCollapsed,
     });
 
     const optionTitleClassNames = classnames({
       [`${baseClassName}__option-title`]: true,
       [`${baseClassName}__option-title-${option}`]: true,
-      [`${baseClassName}__option-title-selected`]: isOptionSelected,
+      [`${baseClassName}__option-title-selected`]: isSelected,
       [`${baseClassName}__option-title-hidden`]: isCollapsed,
     });
 
@@ -301,7 +292,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       'material-icons': true,
       [`${baseClassName}__option-icon`]: true,
       [`${baseClassName}__option-icon-${option}`]: true,
-      [`${baseClassName}__option-icon-selected`]: isOptionSelected,
+      [`${baseClassName}__option-icon-selected`]: isSelected,
       [`${baseClassName}__option-icon-hidden`]: isCollapsed,
     });
 
@@ -316,7 +307,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         className={optionMenuClassNames}
         onMouseEnter={(): void => {
           if (isCollapsed) {
-            handleSelectOption(option);
+            setIsOpen(label);
           }
         }}
       >
@@ -325,7 +316,9 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           tabIndex={index}
           className={optionTitleClassNames}
           onClick={(): void => {
-            if (!isCollapsed && !isOptionSelected) {
+            if (!isCollapsed && selection.option !== label) {
+              handleSelectOption(option);
+            } else if (isCollapsed && !subOptions) {
               handleSelectOption(option);
             }
           }}
@@ -334,7 +327,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
             className={classnames({
               [`${baseClassName}__icon-background`]: true,
               [`${baseClassName}__icon-background-collapsed`]: isCollapsed,
-              [`${baseClassName}__icon-background-selected`]: isOptionSelected,
+              [`${baseClassName}__icon-background-selected`]: isSelected,
             })}
           />
           <i className={optionIconClassNames}>{icon}</i>
@@ -345,9 +338,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           <ExpansionPanel
             className={optionExpansionPanelClassNames}
             expanded={
-              isCollapsed
-                ? false
-                : (isOptionSelected && true) || selection.option === label
+              isCollapsed ? false : (isOptionOpen && true) || isSelected
             }
           >
             {renderSubOptions(subOptions)}
@@ -394,20 +385,16 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const renderHoverSubOptions = (
-    option: SideNavigationOption
+    option: SideNavigationOption,
+    optionIndex: number
   ): ReactElement | null => {
-    const { subOptions } = option;
-
-    const optionIndex =
-      selection.option && Object.keys(menuOptions).indexOf(selection.option);
+    const { label, subOptions } = option;
 
     if (option && optionIndex !== -1) {
-      const isOptionSelected =
-        subOptions &&
-        subOptions.find(({ title }) => title === selection.subOption);
+      const isOptionOpen = openOption === label;
       const optionHoverTitleClassNames = classnames({
         [`${baseClassName}__option-hover-title`]: true,
-        [`${baseClassName}__option-hover-title-selected`]: isOptionSelected,
+        [`${baseClassName}__option-hover-title-selected`]: isOptionOpen,
       });
 
       return (
@@ -416,14 +403,11 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
           style={{ top: collapsedOptionOffsets[optionIndex as number] }}
           onMouseLeave={(): void => {
             if (isCollapsed) {
-              setSelection({
-                ...selection,
-                option: undefined,
-              });
+              setIsOpen('');
             }
           }}
         >
-          <div className={optionHoverTitleClassNames}>{selection.option}</div>
+          <div className={optionHoverTitleClassNames}>{label}</div>
           {subOptions && renderSubOptions(subOptions)}
         </div>
       );
@@ -456,8 +440,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
   const hasHeader = logoAssetPath || logoTitle;
   const selectedOptionObject =
-    selection.option &&
-    menuOptions.find(({ label }) => label === selection.option);
+    openOption && menuOptions.find(({ label }) => label === openOption);
+  const optionIndex = menuOptions.map(({ label }) => label).indexOf(openOption);
 
   const renderedOptions = menuOptions.map((option, index) =>
     renderMenuOptions(option, index)
@@ -500,7 +484,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
                   <img
                     className={classnames({
                       [`${baseClassName}__logo-image`]: true,
-                      [`${baseClassName}__logo-image-large`]: !logoTitle,
+                      [`${baseClassName}__logo-image-large`]:
+                        !logoTitle && !isCollapsed,
                     })}
                     alt={logoTitle}
                     src={logoAssetPath}
@@ -535,9 +520,10 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       </div>
 
       {isCollapsed &&
-        selection.option &&
+        openOption &&
         selectedOptionObject &&
-        renderHoverSubOptions(selectedOptionObject)}
+        selectedOptionObject.subOptions &&
+        renderHoverSubOptions(selectedOptionObject, optionIndex)}
 
       <div
         role="switch"
