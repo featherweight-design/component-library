@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -19,8 +19,9 @@
   "author": "Featherweight Design",
   "license": "ISC",
   "scripts": {
+    "prebuild": "rm -rf ./dist",
     "build": "npx webpack",
-    "postbuild": "mkdir ./dist/scss && cp ./src/styles/main.scss ./dist/scss",
+    "postbuild": "mkdir ./dist/scss && cp -a ./src/styles/. ./dist/scss",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
