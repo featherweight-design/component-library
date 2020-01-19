@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import classnames from 'classnames';
 
-import Label from '../Label/Label';
 import { SelectOptionType } from '../../types';
 
 type SelectProps = {
@@ -28,7 +27,7 @@ const Select: FunctionComponent<SelectProps> = ({
 
   return (
     <div id={id} className="fd-select">
-      {label && <Label label={label} />}
+      {label && <span className="fd-label">{label}</span>}
 
       <div
         className={classnames({

@@ -1,7 +1,6 @@
 import React, { ChangeEvent, FunctionComponent } from 'react';
 import classnames from 'classnames';
 
-import Label from '../Label/Label';
 import OtherOption from '../OtherOption/OtherOption';
 import { OtherOptionType } from '../../types';
 
@@ -25,7 +24,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   other,
 }: CheckboxProps) => (
   <div className="fd-checkbox">
-    {label && <Label label={label} />}
+    {label && <span className="fd-label">{label}</span>}
 
     {options.map(({ label, checked, disabled }) => (
       <label

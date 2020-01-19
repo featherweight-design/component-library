@@ -1,7 +1,6 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-import Label from '../Label/Label';
 import OtherOption from '../OtherOption/OtherOption';
 import { OtherOptionType } from '../../types';
 
@@ -23,7 +22,7 @@ const Radio: FunctionComponent<RadioProps> = ({
   disabled,
 }: RadioProps) => (
   <div className="fd-radio">
-    {label && <Label label={label} />}
+    {label && <span className="fd-label">{label}</span>}
 
     {options.map(option => (
       <label key={option} className="fd-radio__container">

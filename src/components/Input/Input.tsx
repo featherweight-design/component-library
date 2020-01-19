@@ -1,8 +1,6 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-import Label from '../Label/Label';
-
 type InputProps = {
   name: string;
   value: string;
@@ -33,7 +31,7 @@ const Input: FunctionComponent<InputProps> = ({
       'fd-input': true,
     })}
   >
-    {label && <Label label={label} />}
+    {label && <span className="fd-label">{label}</span>}
     <input
       id={id}
       name={name}
