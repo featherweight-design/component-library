@@ -24,6 +24,28 @@ const sideNavigationMenuOptions = [
     ],
   },
   {
+    label: 'games',
+    icon: 'games',
+    subOptions: [
+      {
+        title: 'All Games',
+        path: '/games/all',
+      },
+      {
+        title: 'RPG',
+        path: '/games/rpg',
+      },
+      {
+        title: 'Racing',
+        path: '/games/racing',
+      },
+      {
+        title: 'Puzzle',
+        path: '/games/puzzle',
+      },
+    ],
+  },
+  {
     label: 'help',
     icon: 'help',
     subOptions: [
