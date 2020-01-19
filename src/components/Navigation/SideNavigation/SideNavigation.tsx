@@ -5,6 +5,7 @@ import React, {
   FunctionComponent,
 } from 'react';
 import classnames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
 
 import {
   CurrentlyViewing,
@@ -32,65 +33,41 @@ type SideNavigationProps = {
 };
 
 type SideNavigationSelection = {
-  option?: string | null;
-  subOption?: string | null;
+  option?: string | undefined;
+  subOption?: string | undefined;
 };
 
-const getPreSelection = (
-  options: string[],
-  currentlyViewing = { path: '/' }
-): string | null => {
-  const locationArray = currentlyViewing.path.split('/');
-  const preSelection = locationArray.find(path => {
-    const match = options.find((subOption: string) => subOption === path);
+const getSelection = (props: SideNavigationProps): SideNavigationSelection => {
+  const { currentlyViewing, menuOptions, defaultSelected } = props;
 
-    if (match) {
-      return match;
-    }
+  const preSelection = menuOptions.reduce(
+    (accumulator, { path, label, subOptions }: SideNavigationOption) => {
+      if (path && path === currentlyViewing.path) {
+        return {
+          option: label,
+          subOption: undefined,
+        };
+      }
 
-    return false;
-  });
+      if (subOptions && subOptions.length) {
+        const match = subOptions.find(
+          ({ path }) => path === currentlyViewing.path
+        );
 
-  return preSelection || null;
-};
+        if (match) {
+          return {
+            option: label,
+            subOption: match.title,
+          };
+        }
+      }
 
-const getSubOptions = (options: SideNavigationOption[]): string[] =>
-  options.reduce((accumulator, { subOptions }) => {
-    if (subOptions) {
-      const subOptionTitles = subOptions.map(subOption => subOption.title);
+      return accumulator;
+    },
+    {}
+  );
 
-      return [...accumulator, ...subOptionTitles];
-    }
-
-    return accumulator;
-  }, [] as string[]);
-
-const getInitialSelection = (
-  props: SideNavigationProps
-): SideNavigationSelection => {
-  const { collapsed, currentlyViewing, menuOptions, defaultSelected } = props;
-  if (collapsed) {
-    const selectedSubOption = currentlyViewing
-      ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-      : defaultSelected.option;
-
-    return {
-      option: undefined,
-      subOption: selectedSubOption,
-    };
-  } else {
-    const selectedOption = currentlyViewing
-      ? getPreSelection(Object.keys(menuOptions), currentlyViewing)
-      : defaultSelected.option;
-    const selectedSubOption = currentlyViewing
-      ? getPreSelection(getSubOptions(menuOptions), currentlyViewing)
-      : defaultSelected.subOption;
-
-    return {
-      option: selectedOption,
-      subOption: selectedSubOption,
-    };
-  }
+  return isEmpty(preSelection) ? defaultSelected : preSelection;
 };
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
@@ -120,24 +97,19 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   >([]);
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
   const [selection, setSelection] = useState<SideNavigationSelection>(
-    getInitialSelection(props)
+    getSelection(props)
   );
 
   useEffect(() => {
-    const newOption = getPreSelection(
-      Object.keys(menuOptions),
-      currentlyViewing
-    );
-    const newSubOption = getPreSelection(
-      getSubOptions(menuOptions),
-      currentlyViewing
-    );
+    const newSelection = getSelection(props);
 
     if (
-      newOption !== selection.option ||
-      newSubOption !== selection.subOption
+      newSelection.option !== selection.option ||
+      newSelection.subOption !== selection.subOption
     ) {
-      handleUpdateSelection(newOption, newSubOption);
+      const { option, subOption } = newSelection;
+
+      handleUpdateSelection(option, subOption);
     }
   }, [currentlyViewing]);
 
@@ -197,11 +169,11 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const handleUpdateSelection = (
-    newOption: string | null,
-    newSubOption: string | null
+    newOption: string | undefined,
+    newSubOption: string | undefined
   ): void => {
     setSelection({
-      option: isCollapsed ? null : newOption,
+      option: isCollapsed ? undefined : newOption,
       subOption: newSubOption,
     });
   };
@@ -218,7 +190,8 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     toggleCollapsed(!isCollapsed);
     setSelection({
       ...selection,
-      option: !isCollapsed || !selectedOption ? null : selectedOption.label,
+      option:
+        !isCollapsed || !selectedOption ? undefined : selectedOption.label,
     });
 
     if (onCollapse) {
@@ -232,7 +205,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     if (!isCollapsed && selection.option === label) {
       setSelection({
         ...selection,
-        option: null,
+        option: undefined,
       });
     } else {
       const { label, path, title, subOptions } = option;
@@ -283,7 +256,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 
     setSelection({
       subOption: title,
-      option: isCollapsed || !subOptionParent ? null : subOptionParent,
+      option: isCollapsed || !subOptionParent ? undefined : subOptionParent,
     });
   };
 
@@ -445,7 +418,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
             if (isCollapsed) {
               setSelection({
                 ...selection,
-                option: null,
+                option: undefined,
               });
             }
           }}
