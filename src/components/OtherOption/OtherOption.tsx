@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 
 import { OtherOptionType } from '../../types';
-import './OtherOption.scss';
 
 type OtherOptionProps = OtherOptionType & {
   name: string;

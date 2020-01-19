@@ -1,4 +1,5 @@
-@import '../../styles/main';
+@import '../colors';
+@import '../mixins';
 
 // Ripple layout/animation inspired by
 // https://codepen.io/hansmaad/pen/zBdzxp
@@ -21,7 +22,7 @@
       transform: scale(1);
     }
     &:disabled + .fd-radio__styled:before {
-      border-color: $gray-09
+      border-color: $gray-09;
     }
   }
   &__styled {

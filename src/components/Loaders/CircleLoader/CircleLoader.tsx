@@ -1,7 +1,5 @@
 import React, { FunctionComponent } from 'react';
 
-import './CircleLoader.scss';
-
 type CircleLoaderProps = {
   size?: string | number;
   color?: string;

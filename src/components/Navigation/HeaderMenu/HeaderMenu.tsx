@@ -13,7 +13,6 @@ import {
   HeaderMenuOption,
   HeaderMenuSubOption,
 } from '../../../types';
-import './HeaderMenu.scss';
 
 type HeaderMenuProps = {
   currentlyViewing: CurrentlyViewing;

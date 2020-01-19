@@ -1,8 +1,6 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-import './Input.scss';
-
 type InputProps = {
   name: string;
   value: string;

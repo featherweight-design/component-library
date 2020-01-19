@@ -1,5 +1,6 @@
-@import './colors.scss';
-@import './mixins.scss';
+@use './components/all';
+@import './colors';
+@import './mixins';
 
 * {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;

@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 import OtherOption from '../OtherOption/OtherOption';
 import { OtherOptionType } from '../../types';
-import './Checkbox.scss';
 
 type CheckboxProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;

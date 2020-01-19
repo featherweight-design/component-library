@@ -2,7 +2,6 @@ import React, { FunctionComponent, ReactChild } from 'react';
 import classnames from 'classnames';
 
 import { CircleLoader } from '../Loaders';
-import './Button.scss';
 
 type ButtonProps = {
   children: string | number | ReactChild | ReactChild[];

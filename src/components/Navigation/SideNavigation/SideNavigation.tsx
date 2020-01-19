@@ -12,7 +12,6 @@ import {
   SideNavigationSubOption,
 } from 'types';
 import ExpansionPanel from '../../ExpansionPanel/ExpansionPanel';
-import './SideNavigation.scss';
 
 type SideNavigationProps = {
   menuOptions: SideNavigationOption[];
