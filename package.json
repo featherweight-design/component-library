@@ -20,6 +20,7 @@
   "license": "ISC",
   "scripts": {
     "build": "npx webpack",
+    "postbuild": "mkdir ./dist/scss && cp ./src/styles/main.scss ./dist/scss",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
