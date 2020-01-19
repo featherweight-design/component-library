@@ -4,21 +4,71 @@ import { storiesOf } from '@storybook/react';
 
 import SideNavigation from './SideNavigation';
 
-const sideNavigationMenuOptions = {
-  user: {
+const sideNavigationMenuOptions = [
+  {
+    label: 'user',
     icon: 'person',
-    titleType: 'subOption option',
-    subOptions: ['my info', 'notifications', 'logout'],
+    subOptions: [
+      {
+        title: 'My Info',
+        path: '/user/my-info',
+      },
+      {
+        title: 'Notifications',
+        path: '/user/notifications',
+      },
+      {
+        title: 'Logout',
+        path: '/logout',
+      },
+    ],
   },
-  settings: {
+  {
+    label: 'games',
+    icon: 'games',
+    subOptions: [
+      {
+        title: 'All Games',
+        path: '/games/all',
+      },
+      {
+        title: 'RPG',
+        path: '/games/rpg',
+      },
+      {
+        title: 'Racing',
+        path: '/games/racing',
+      },
+      {
+        title: 'Puzzle',
+        path: '/games/puzzle',
+      },
+    ],
+  },
+  {
+    label: 'help',
+    icon: 'help',
+    subOptions: [
+      {
+        title: 'Contact Us',
+        path: '/help/contact',
+      },
+      {
+        title: 'Feedback',
+        path: '/help/feedback',
+      },
+    ],
+  },
+  {
+    label: 'settings',
     icon: 'settings_applications',
-    titleType: 'subOption',
-    subOptions: ['preferences', 'help', 'feedback'],
+    path: '/settings',
+    title: 'Settings',
   },
-};
+];
 
 const currentlyViewing = {
-  path: '/user/my info',
+  path: '/user/my-info',
   title: 'user',
   backPath: '/',
   backTitle: 'Home',

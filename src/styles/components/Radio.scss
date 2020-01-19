@@ -1,12 +1,16 @@
-@import '../../styles/main';
+@import '../colors';
+@import '../mixins';
 
 // Ripple layout/animation inspired by
 // https://codepen.io/hansmaad/pen/zBdzxp
 .fd-radio {
   display: flex;
   flex-direction: column;
-  &__container + .fd-radio__container {
-    margin-top: 0.5rem;
+  &__container {
+    display: flex;
+    + .fd-radio__container {
+      margin-top: 0.5rem;
+    }
   }
   &__input {
     display: none;
@@ -17,12 +21,15 @@
     &:checked + .fd-radio__styled:after {
       transform: scale(1);
     }
+    &:disabled + .fd-radio__styled:before {
+      border-color: $gray-09;
+    }
   }
   &__styled {
     display: inline-block;
     height: 1.25rem;
     position: relative;
-    padding: 0 1.875rem;
+    padding-left: 1.875rem;
     margin-bottom: 0;
     cursor: pointer;
     vertical-align: bottom;
@@ -52,12 +59,15 @@
       transform: scale(0);
       background: $brand-color;
     }
+    &-disabled:after {
+      background: $gray-09;
+    }
   }
 }
 
 @keyframes ripple {
   0% {
-    box-shadow: 0px 0px 0px 1px  rgba(22, 73, 99, 0);
+    box-shadow: 0px 0px 0px 1px rgba(22, 73, 99, 0);
   }
 
   50% {

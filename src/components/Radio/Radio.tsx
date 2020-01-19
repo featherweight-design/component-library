@@ -1,20 +1,29 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-import './Radio.scss';
+import OtherOption from '../OtherOption/OtherOption';
+import { OtherOptionType } from '../../types';
 
 type RadioProps = {
   options: string[];
   selected: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  other?: OtherOptionType;
+  disabled?: boolean;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
   options,
   selected,
   onChange,
+  label,
+  other,
+  disabled,
 }: RadioProps) => (
   <div className="fd-radio">
+    {label && <span className="fd-label">{label}</span>}
+
     {options.map(option => (
       <label key={option} className="fd-radio__container">
         <input
@@ -25,11 +34,32 @@ const Radio: FunctionComponent<RadioProps> = ({
           name={option}
           onChange={onChange}
           checked={option === selected}
+          disabled={disabled}
         />
-        <div className="fd-radio__styled">{option}</div>
+        <div
+          className={classnames({
+            'fd-radio__styled': true,
+            'fd-radio__styled-disabled': disabled,
+          })}
+        >
+          {option}
+        </div>
+        {option.toLowerCase() === 'other' && other && (
+          <OtherOption
+            name={option}
+            value={other.value}
+            selected={option === selected}
+            onChange={other.onChange}
+            disabled={disabled}
+          />
+        )}
       </label>
     ))}
   </div>
 );
+
+Radio.defaultProps = {
+  label: undefined,
+};
 
 export default Radio;

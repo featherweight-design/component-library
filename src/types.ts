@@ -1,7 +1,14 @@
+import { ChangeEvent } from 'react';
+
 // FORM
 export interface SelectOptionType {
   value: string;
   label: string;
+}
+
+export interface OtherOptionType {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
 }
 
 // NAVIGATION
@@ -44,12 +51,15 @@ export interface HeaderMenuSubOption {
   href?: string;
 }
 
-export interface SideNavigationOptions {
-  [key: string]: SideNavigationOption;
+export interface SideNavigationOption {
+  label: string;
+  icon: string;
+  path?: string;
+  title?: string;
+  subOptions?: SideNavigationSubOption[];
 }
 
-export interface SideNavigationOption {
-  icon: string;
-  subOptions: string[];
-  titleType: string;
+export interface SideNavigationSubOption {
+  path: string;
+  title: string;
 }

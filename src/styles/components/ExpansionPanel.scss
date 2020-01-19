@@ -1,4 +1,5 @@
-@import '../../styles/main';
+@import '../colors';
+@import '../mixins';
 
 .fd-expansion-panel {
   position: relative;
@@ -19,7 +20,7 @@
     padding: 0.75rem;
     border: none;
     color: $cool-gray-19;
-    background-color: $gray-03;
+    background-color: $gray-02;
     box-shadow: $brand-color 0.25rem 0 0 inset;
     transition: box-shadow 0.2s ease-in-out;
     &:focus {
@@ -37,7 +38,7 @@
     }
   }
   &__title {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   &__content {
     position: relative;

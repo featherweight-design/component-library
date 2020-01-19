@@ -1,0 +1,41 @@
+@import '../colors';
+@import '../mixins';
+
+.fd-other-option {
+  position: relative;
+  margin-right: 0.5rem;
+  &__input {
+    position: relative;
+    max-width: 16.75rem;
+    margin-left: 0.5rem;
+    border: none;
+    border-bottom: 1px solid $gray-09;
+    font-size: 0.825rem;
+    transition: max-width 0.2s ease-in;
+    &:focus {
+      @include focus-styles;
+    }
+    &:disabled {
+      background-color: $gray-03;
+      cursor: not-allowed;
+    }
+  }
+  &__underline {
+    position: absolute;
+    right: 35%;
+    bottom: -1px;
+    left: 40%;
+    height: 1px;
+    background-color: $brand-color;
+    opacity: 0;
+    transition: 0.2s ease-in-out;
+    &-selected {
+      right: 0;
+      left: 0.5rem;
+      opacity: 1;
+    }
+    &-disabled {
+      background-color: $gray-09;
+    }
+  }
+}

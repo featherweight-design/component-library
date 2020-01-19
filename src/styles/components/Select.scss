@@ -1,4 +1,5 @@
-@import '../../styles//mixins.scss';
+@import '../colors';
+@import '../mixins';
 
 .fd-select {
   position: relative;
@@ -6,9 +7,6 @@
   flex-direction: column;
   max-width: 16.75rem;
   cursor: pointer;
-  + .fd-select {
-    margin-left: 0.5rem;
-  }
   &__container {
     @include input-base-styles;
     display: flex;

@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.19",
+  "version": "0.1.29",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,9 @@
   "author": "Featherweight Design",
   "license": "ISC",
   "scripts": {
+    "prebuild": "rm -rf ./dist",
     "build": "npx webpack",
+    "postbuild": "mkdir ./dist/scss && cp -a ./src/styles/. ./dist/scss",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -72,6 +74,7 @@
     "react-docgen-typescript-loader": "^3.6.0",
     "react-test-renderer": "^16.12.0",
     "require-context.macro": "^1.2.2",
+    "sass": "^1.25.0",
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.0.1",

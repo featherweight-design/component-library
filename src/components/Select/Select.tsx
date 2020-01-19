@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState } from 'react';
 import classnames from 'classnames';
 
 import { SelectOptionType } from '../../types';
-import './Select.scss';
 
 type SelectProps = {
   onClick: (option: SelectOptionType) => void;

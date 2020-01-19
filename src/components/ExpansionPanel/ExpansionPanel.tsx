@@ -6,8 +6,6 @@ import React, {
 } from 'react';
 import classnames from 'classnames';
 
-import './ExpansionPanel.scss';
-
 type ExpansionPanelProps = {
   children: ReactChild | ReactChild[];
   title?: string;
