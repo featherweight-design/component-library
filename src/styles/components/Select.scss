@@ -11,8 +11,8 @@
     @include input-base-styles;
     display: flex;
     align-items: center;
+    min-width: 16.75rem;
     padding-right: 0.5rem;
-    display: flex;
     // Closing transition
     transition: border-radius 0.01s ease-in-out 0.2s;
     &-disabled {
@@ -41,6 +41,8 @@
     }
   }
   &__options-container {
+    position: absolute;
+    top: 2.5rem;
     display: flex;
     flex-direction: column;
     min-width: 16.75rem;
@@ -71,6 +73,9 @@
         padding: 0.5rem 1rem;
         visibility: visible;
       }
+    }
+    &-with-label {
+      top: 61px;
     }
   }
   &__option {

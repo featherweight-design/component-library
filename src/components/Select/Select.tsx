@@ -74,6 +74,7 @@ const Select: FunctionComponent<SelectProps> = ({
         className={classnames({
           'fd-select__options-container': true,
           'fd-select__options-container-open': areOptionsShown,
+          'fd-select__options-container-with-label': label,
         })}
       >
         {options &&
