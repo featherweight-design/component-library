@@ -12,6 +12,7 @@ type SelectProps = {
   placeholder?: string;
   disabled?: boolean;
   multiple?: boolean;
+  className?: string;
 };
 
 const Select: FunctionComponent<SelectProps> = ({
@@ -22,11 +23,18 @@ const Select: FunctionComponent<SelectProps> = ({
   label,
   placeholder,
   disabled,
+  className,
 }: SelectProps) => {
   const [areOptionsShown, toggleShowOptions] = useState(false);
 
   return (
-    <div id={id} className="fd-select">
+    <div
+      id={id}
+      className={classnames({
+        'fd-select': true,
+        [className as string]: className,
+      })}
+    >
       {label && <span className="fd-label">{label}</span>}
 
       <div
