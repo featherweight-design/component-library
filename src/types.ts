@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 // FORM
 export interface SelectOptionType {
-  value: string;
+  value: any /*eslint-disable-line @typescript-eslint/no-explicit-any*/;
   label: string;
 }
 
