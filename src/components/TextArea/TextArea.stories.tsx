@@ -13,5 +13,31 @@ storiesOf('TextArea', module)
       target: { value },
     }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
 
-    return <TextArea name="default" value={value} onChange={handleChange} />;
+    return (
+      <TextArea
+        name="default"
+        label="Label"
+        value={value}
+        onChange={handleChange}
+      />
+    );
+  })
+  .add('Disabled', () => {
+    const [value, updateValue] = useState(
+      'You will never change me! MWAAAAHAHAHAHAHAHA!'
+    );
+
+    const handleChange = ({
+      target: { value },
+    }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+
+    return (
+      <TextArea
+        disabled
+        name="default"
+        label="Label"
+        value={value}
+        onChange={handleChange}
+      />
+    );
   });
