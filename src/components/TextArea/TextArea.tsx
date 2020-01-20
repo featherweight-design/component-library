@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
+import classnames from 'classnames';
 
 type TextAreaProps = {
   name: string;
@@ -10,6 +11,7 @@ type TextAreaProps = {
   min?: number;
   max?: number;
   disabled?: boolean;
+  className?: string;
 };
 
 const TextArea: FunctionComponent<TextAreaProps> = ({
@@ -22,8 +24,14 @@ const TextArea: FunctionComponent<TextAreaProps> = ({
   min,
   max,
   disabled,
+  className,
 }: TextAreaProps) => (
-  <div className="fd-textarea">
+  <div
+    className={classnames({
+      'fd-textarea': true,
+      [className as string]: className,
+    })}
+  >
     {label && <span className="fd-label">{label}</span>}
 
     <textarea
