@@ -25,10 +25,12 @@ const Input: FunctionComponent<InputProps> = ({
   min,
   max,
   disabled,
+  className,
 }: InputProps) => (
   <div
     className={classnames({
       'fd-input': true,
+      [className as string]: className,
     })}
   >
     {label && <span className="fd-label">{label}</span>}
