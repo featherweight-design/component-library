@@ -11,6 +11,7 @@ type RadioProps = {
   label?: string;
   other?: OtherOptionType;
   disabled?: boolean;
+  className?: string;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
@@ -20,8 +21,14 @@ const Radio: FunctionComponent<RadioProps> = ({
   label,
   other,
   disabled,
+  className,
 }: RadioProps) => (
-  <div className="fd-radio">
+  <div
+    className={classnames({
+      'fd-radio': true,
+      [className as string]: className,
+    })}
+  >
     {label && <span className="fd-label">{label}</span>}
 
     {options.map(option => (
