@@ -1,0 +1,23 @@
+@import '../colors';
+@import '../mixins';
+
+.fd-textarea {
+  display: flex;
+  flex-direction: column;
+  &__input {
+    @include input-base-styles;
+    min-height: 7rem;
+    max-width: 32rem;
+    resize: vertical;
+    &:disabled {
+      background-color: $gray-03;
+      cursor: not-allowed;
+    }
+    &::placeholder {
+      color: $gray-06;
+    }
+    &:focus {
+      @include focus-styles;
+    }
+  }
+}
