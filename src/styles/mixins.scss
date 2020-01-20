@@ -43,6 +43,20 @@
   top: 0;
 }
 
+@mixin hide-visually {
+  // Hide checkbox visually but remain accessible to screen readers.
+  // Source: https://polished.js.org/docs/#hidevisually
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 // Check-mark animation influenced by and tweaked from
 // https://codepen.io/scottloway/pen/zqoLyQ
 @mixin check-mark-animation(

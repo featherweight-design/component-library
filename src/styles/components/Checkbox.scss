@@ -22,17 +22,7 @@
     }
   }
   &__input {
-    // Hide checkbox visually but remain accessible to screen readers.
-    // Source: https://polished.js.org/docs/#hidevisually
-    position: absolute;
-    height: 1px;
-    width: 1px;
-    margin: -1px;
-    padding: 0;
-    border: 0;
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-    white-space: nowrap;
+    @include hide-visually;
     &:focus + .fd-checkbox__styled {
       @include focus-styles;
     }
