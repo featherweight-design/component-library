@@ -9,6 +9,7 @@ type CheckboxProps = {
   options: CheckboxOption[];
   label?: string;
   other?: OtherOptionType;
+  className?: string;
 };
 
 type CheckboxOption = {
@@ -22,8 +23,14 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   options,
   label,
   other,
+  className,
 }: CheckboxProps) => (
-  <div className="fd-checkbox">
+  <div
+    className={classnames({
+      'fd-checkbox': true,
+      [className as string]: className,
+    })}
+  >
     {label && <span className="fd-label">{label}</span>}
 
     {options.map(({ label, checked, disabled }) => (

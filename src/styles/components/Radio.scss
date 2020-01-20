@@ -13,7 +13,7 @@
     }
   }
   &__input {
-    display: none;
+    @include hide-visually;
     &:checked + .fd-radio__styled:before {
       border-color: $brand-color;
       animation: ripple 0.2s linear forwards;

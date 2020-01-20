@@ -9,7 +9,7 @@
     + .fd-expansion-panel::before {
       @include gradientPseudoBorderTop;
     }
-    &:last-of-type::after {
+    &:last-child::after {
       @include gradientPseudoBorderBottom;
     }
   }

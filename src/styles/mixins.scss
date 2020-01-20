@@ -12,7 +12,7 @@
 
 @mixin input-base-styles {
   height: 2.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
   border: 1px solid $gray-09;
   border-radius: 0.25rem;
   font-size: 1rem;
@@ -41,6 +41,20 @@
 @mixin gradientPseudoBorderTop($color-1: $gray-04, $color-2: $gray-07) {
   @include gradientPseudoBorder($color-1, $color-2);
   top: 0;
+}
+
+@mixin hide-visually {
+  // Hide checkbox visually but remain accessible to screen readers.
+  // Source: https://polished.js.org/docs/#hidevisually
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 // Check-mark animation influenced by and tweaked from

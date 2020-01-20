@@ -28,16 +28,19 @@ type SideNavigationProps = {
   logoAssetPath?: string;
   logoTitle?: string;
   goDark?: boolean;
+  className?: string;
 };
 
 type SideNavigationSelection = {
-  option: string;
-  subOption?: string | undefined;
+  option?: string;
+  subOption?: string;
 };
 
-const getSelection = (props: SideNavigationProps): SideNavigationSelection => {
-  const { currentlyViewing, menuOptions, defaultSelected } = props;
-
+const getSelection = (
+  currentlyViewing: CurrentlyViewing,
+  menuOptions: SideNavigationOption[],
+  fallBack: SideNavigationSelection
+): SideNavigationSelection => {
   const preSelection = menuOptions.reduce(
     (accumulator, { path, label, subOptions }: SideNavigationOption) => {
       if (path && path === currentlyViewing.path) {
@@ -62,7 +65,7 @@ const getSelection = (props: SideNavigationProps): SideNavigationSelection => {
 
       return accumulator;
     },
-    defaultSelected as SideNavigationSelection
+    fallBack as SideNavigationSelection
   );
 
   return preSelection;
@@ -84,7 +87,9 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     onNavigate,
     logoAssetPath,
     logoTitle,
+    defaultSelected,
     goDark,
+    className,
   } = props;
 
   const [baseClassName] = useState(getBaseClassName(goDark));
@@ -96,11 +101,14 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   >([]);
   const [isCollapsed, toggleCollapsed] = useState(collapsed);
   const [selection, setSelection] = useState<SideNavigationSelection>(
-    getSelection(props)
+    getSelection(currentlyViewing, menuOptions, defaultSelected)
   );
 
   useEffect(() => {
-    const newSelection = getSelection(props);
+    const newSelection = getSelection(currentlyViewing, menuOptions, {
+      option: undefined,
+      subOption: undefined,
+    });
 
     if (
       newSelection.option !== selection.option ||
@@ -168,7 +176,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
   };
 
   const handleUpdateSelection = (
-    newOption: string,
+    newOption: string | undefined,
     newSubOption: string | undefined
   ): void => {
     setSelection({
@@ -451,6 +459,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       className={classnames({
         [`${baseClassName}`]: true,
         [`${baseClassName}-collapsed`]: isCollapsed,
+        [className as string]: className,
       })}
     >
       {hasHeader && (

@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { SelectOptionType } from '../../types';
 
 type SelectProps = {
-  onClick: (option: SelectOptionType) => void;
+  onSelect: (option: SelectOptionType) => void;
   selected?: SelectOptionType;
   options?: SelectOptionType[];
   id?: string;
@@ -12,21 +12,29 @@ type SelectProps = {
   placeholder?: string;
   disabled?: boolean;
   multiple?: boolean;
+  className?: string;
 };
 
 const Select: FunctionComponent<SelectProps> = ({
   selected,
-  onClick,
+  onSelect,
   options,
   id,
   label,
   placeholder,
   disabled,
+  className,
 }: SelectProps) => {
   const [areOptionsShown, toggleShowOptions] = useState(false);
 
   return (
-    <div id={id} className="fd-select">
+    <div
+      id={id}
+      className={classnames({
+        'fd-select': true,
+        [className as string]: className,
+      })}
+    >
       {label && <span className="fd-label">{label}</span>}
 
       <div
@@ -78,7 +86,7 @@ const Select: FunctionComponent<SelectProps> = ({
               })}
               onClick={(): void => {
                 toggleShowOptions(false);
-                onClick(option);
+                onSelect(option);
               }}
               value={option.value}
             >

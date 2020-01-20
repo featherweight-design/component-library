@@ -1,61 +1,55 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-type InputProps = {
+type TextAreaProps = {
   name: string;
   value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   id?: string;
-  type?: string;
   label?: string;
   placeholder?: string;
-  min?: string;
-  max?: string;
+  min?: number;
+  max?: number;
   disabled?: boolean;
   className?: string;
 };
 
-const Input: FunctionComponent<InputProps> = ({
+const TextArea: FunctionComponent<TextAreaProps> = ({
   name,
   value,
   onChange,
   id,
-  type,
   label,
   placeholder,
   min,
   max,
   disabled,
   className,
-}: InputProps) => (
+}: TextAreaProps) => (
   <div
     className={classnames({
-      'fd-input': true,
+      'fd-textarea': true,
       [className as string]: className,
     })}
   >
     {label && <span className="fd-label">{label}</span>}
-    <input
+
+    <textarea
       id={id}
       name={name}
       value={value}
-      type={type}
       placeholder={placeholder}
       onChange={onChange}
-      min={min}
-      max={max}
+      minLength={min}
+      maxLength={max}
       disabled={disabled}
-      className={classnames({
-        'fd-input__input': true,
-      })}
+      className="fd-textarea__input"
     />
   </div>
 );
 
-Input.defaultProps = {
-  id: '',
-  type: 'text',
+TextArea.defaultProps = {
   placeholder: 'Enter a value...',
 };
 
-export default Input;
+export default TextArea;

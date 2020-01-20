@@ -20,6 +20,7 @@ type HeaderMenuProps = {
   defaultTitle: string;
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   goDark?: boolean;
+  className?: string;
 };
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
@@ -31,6 +32,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   onNavigate,
   defaultTitle,
   goDark,
+  className,
 }: HeaderMenuProps) => {
   const [baseClassName] = useState(getBaseClassName(goDark));
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -292,7 +294,12 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
   );
 
   return (
-    <div className={`${baseClassName}`}>
+    <div
+      className={classnames({
+        [`${baseClassName}`]: true,
+        [className as string]: className,
+      })}
+    >
       <div className={`${baseClassName}__left`}>
         <div className={`${baseClassName}__location-container`}>
           {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
