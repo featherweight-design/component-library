@@ -23,6 +23,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   options,
   label,
   other,
+  className,
 }: CheckboxProps) => (
   <div
     className={classnames({

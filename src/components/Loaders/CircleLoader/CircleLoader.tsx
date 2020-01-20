@@ -1,13 +1,16 @@
 import React, { FunctionComponent } from 'react';
+import classnames from 'classnames';
 
 type CircleLoaderProps = {
   size?: string | number;
   color?: string;
+  className?: string;
 };
 
 const CircleLoader: FunctionComponent<CircleLoaderProps> = ({
   size,
   color,
+  className,
 }: CircleLoaderProps) => {
   const wrapperStyles = {
     height: `${size}`,
@@ -15,7 +18,15 @@ const CircleLoader: FunctionComponent<CircleLoaderProps> = ({
   };
 
   return (
-    <div className="fd-circle-loader" style={wrapperStyles}>
+    <div
+      className={
+        (classname = {
+          'fd-circle-loader': true,
+          [className as string]: className,
+        })
+      }
+      style={wrapperStyles}
+    >
       <div className="fd-circle-loader__container">
         <svg className="fd-circle-loader__svg" viewBox=" 25 25 50 50">
           <circle

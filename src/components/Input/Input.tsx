@@ -12,6 +12,7 @@ type InputProps = {
   min?: string;
   max?: string;
   disabled?: boolean;
+  className?: string;
 };
 
 const Input: FunctionComponent<InputProps> = ({
