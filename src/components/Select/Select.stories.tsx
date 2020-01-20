@@ -22,7 +22,7 @@ storiesOf('Select', module)
         <Select
           label="Label"
           selected={selected}
-          onClick={mockOnClick}
+          onSelect={mockOnClick}
           options={[
             { value: 'huey', label: 'Huhu' },
             { value: 'juliana', label: 'Juju' },
@@ -38,7 +38,7 @@ storiesOf('Select', module)
             value: 'disabled',
             label: 'Locked',
           }}
-          onClick={mockOnClick}
+          onSelect={mockOnClick}
           options={[
             { value: 'huey', label: 'Huhu' },
             { value: 'juliana', label: 'Juju' },

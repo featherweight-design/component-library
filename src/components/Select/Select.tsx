@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { SelectOptionType } from '../../types';
 
 type SelectProps = {
-  onClick: (option: SelectOptionType) => void;
+  onSelect: (option: SelectOptionType) => void;
   selected?: SelectOptionType;
   options?: SelectOptionType[];
   id?: string;
@@ -17,7 +17,7 @@ type SelectProps = {
 
 const Select: FunctionComponent<SelectProps> = ({
   selected,
-  onClick,
+  onSelect,
   options,
   id,
   label,
@@ -86,7 +86,7 @@ const Select: FunctionComponent<SelectProps> = ({
               })}
               onClick={(): void => {
                 toggleShowOptions(false);
-                onClick(option);
+                onSelect(option);
               }}
               value={option.value}
             >
