@@ -32,7 +32,7 @@ storiesOf('Button', module)
     </div>
   ))
   .add('Disabled', () => (
-    <div>
+    <div className="story__button-container">
       <Button onClick={mockClick} disabled>
         Default
       </Button>
@@ -57,7 +57,7 @@ storiesOf('Button', module)
     </div>
   ))
   .add('Loading', () => (
-    <div>
+    <div className="story__button-container">
       <Button onClick={mockClick} loading>
         Default
       </Button>

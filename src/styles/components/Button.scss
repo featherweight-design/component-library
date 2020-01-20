@@ -163,4 +163,8 @@
       top: 0.25rem;
     }
   }
+  &__value {
+    display: flex;
+    align-content: center;
+  }
 }
