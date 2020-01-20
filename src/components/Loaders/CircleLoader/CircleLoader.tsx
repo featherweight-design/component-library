@@ -19,12 +19,10 @@ const CircleLoader: FunctionComponent<CircleLoaderProps> = ({
 
   return (
     <div
-      className={
-        (classname = {
-          'fd-circle-loader': true,
-          [className as string]: className,
-        })
-      }
+      className={classnames({
+        'fd-circle-loader': true,
+        [className as string]: className,
+      })}
       style={wrapperStyles}
     >
       <div className="fd-circle-loader__container">

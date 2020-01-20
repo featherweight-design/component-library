@@ -28,6 +28,7 @@ type SideNavigationProps = {
   logoAssetPath?: string;
   logoTitle?: string;
   goDark?: boolean;
+  className?: string;
 };
 
 type SideNavigationSelection = {
@@ -88,6 +89,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     logoTitle,
     defaultSelected,
     goDark,
+    className,
   } = props;
 
   const [baseClassName] = useState(getBaseClassName(goDark));
@@ -457,6 +459,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       className={classnames({
         [`${baseClassName}`]: true,
         [`${baseClassName}-collapsed`]: isCollapsed,
+        [className as string]: className,
       })}
     >
       {hasHeader && (
