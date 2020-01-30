@@ -87,4 +87,38 @@ storiesOf('Checkbox', module)
         />
       </div>
     );
+  })
+  .add('Error', () => {
+    const [options, updateOptions] = useState([
+      { checked: false, label: 'Cat' },
+      { checked: false, label: 'Dog' },
+      { checked: false, label: 'Gold Fish' },
+      { checked: false, label: 'Guinea Pig' },
+      { checked: false, label: 'Hedgehog' },
+      { checked: false, label: 'Ocelot' },
+      { checked: false, label: 'Cthulhu' },
+    ]);
+
+    const handleChange = ({
+      target: { name, checked },
+    }: ChangeEvent<HTMLInputElement>): void => {
+      const newOptions = options.map(option =>
+        option.label === name ? { ...option, checked } : option
+      );
+
+      updateOptions(newOptions);
+    };
+
+    const hasOptionChecked = options.find(({ checked }) => checked);
+
+    return (
+      <div style={{ display: 'flex ' }}>
+        <Checkbox
+          label="Label"
+          onChange={handleChange}
+          options={options}
+          errorMessage={!hasOptionChecked ? 'Please pick a favorite pet' : ''}
+        />
+      </div>
+    );
   });
