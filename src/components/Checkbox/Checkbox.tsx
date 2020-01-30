@@ -10,6 +10,7 @@ type CheckboxProps = {
   label?: string;
   other?: OtherOptionType;
   className?: string;
+  errorMessage?: string;
 };
 
 type CheckboxOption = {
@@ -24,6 +25,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   label,
   other,
   className,
+  errorMessage,
 }: CheckboxProps) => (
   <div
     className={classnames({
@@ -33,44 +35,53 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
   >
     {label && <span className="fd-label">{label}</span>}
 
-    {options.map(({ label, checked, disabled }) => (
-      <label
-        key={`fd-checkbox__${label}`}
-        className={classnames({
-          'fd-checkbox__container': true,
-          'fd-checkbox__container-disabled': disabled,
-        })}
-      >
-        <input
-          className="fd-checkbox__input"
-          type="checkbox"
-          name={label}
-          checked={checked}
-          onChange={onChange}
-          disabled={disabled}
-        />
-        <div
+    <div
+      className={classnames({
+        'fd-checkbox__inputs-container': true,
+        'fd-checkbox__inputs-container-error': errorMessage,
+      })}
+    >
+      {options.map(({ label, checked, disabled }) => (
+        <label
+          key={`fd-checkbox__${label}`}
           className={classnames({
-            'fd-checkbox__styled': true,
-            'fd-checkbox__styled-checked': checked,
-            'fd-checkbox__styled-disabled': disabled,
+            'fd-checkbox__container': true,
+            'fd-checkbox__container-disabled': disabled,
           })}
         >
-          {checked && <div className="fd-checkbox__icon" />}
-        </div>
-        <span>{label}</span>
-
-        {label.toLowerCase() === 'other' && other && (
-          <OtherOption
+          <input
+            className="fd-checkbox__input"
+            type="checkbox"
             name={label}
-            value={other.value}
-            selected={checked}
-            onChange={other.onChange}
+            checked={checked}
+            onChange={onChange}
             disabled={disabled}
           />
-        )}
-      </label>
-    ))}
+          <div
+            className={classnames({
+              'fd-checkbox__styled': true,
+              'fd-checkbox__styled-checked': checked,
+              'fd-checkbox__styled-disabled': disabled,
+            })}
+          >
+            {checked && <div className="fd-checkbox__icon" />}
+          </div>
+          <span>{label}</span>
+
+          {label.toLowerCase() === 'other' && other && (
+            <OtherOption
+              name={label}
+              value={other.value}
+              selected={checked}
+              onChange={other.onChange}
+              disabled={disabled}
+            />
+          )}
+        </label>
+      ))}
+    </div>
+
+    <p className="fd-checkbox__error">{errorMessage}</p>
   </div>
 );
 
