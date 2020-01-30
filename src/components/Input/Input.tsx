@@ -13,6 +13,7 @@ type InputProps = {
   max?: string;
   disabled?: boolean;
   className?: string;
+  errorMessage?: string;
 };
 
 const Input: FunctionComponent<InputProps> = ({
@@ -27,6 +28,7 @@ const Input: FunctionComponent<InputProps> = ({
   max,
   disabled,
   className,
+  errorMessage,
 }: InputProps) => (
   <div
     className={classnames({
@@ -47,8 +49,11 @@ const Input: FunctionComponent<InputProps> = ({
       disabled={disabled}
       className={classnames({
         'fd-input__input': true,
+        'fd-input__input-error': errorMessage,
       })}
     />
+
+    <p className="fd-input-error">{errorMessage}</p>
   </div>
 );
 
