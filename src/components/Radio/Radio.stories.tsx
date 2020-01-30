@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
+import Button from '../Button/Button';
 import Radio from './Radio';
 
 storiesOf('Radio', module)
@@ -70,6 +71,32 @@ storiesOf('Radio', module)
             handleChangeSelected(event.target.name);
           }}
         />
+      </div>
+    );
+  })
+  .add('Error', () => {
+    const [selected, handleChangeSelected] = useState('');
+
+    return (
+      <div>
+        <Radio
+          label="Pick me!"
+          selected={selected}
+          options={['ME!', 'No, ME!', 'Me, me, me!', 'MEEEEeeeEEE']}
+          onChange={(event): void => {
+            handleChangeSelected(event.target.name);
+          }}
+          errorMessage={selected ? '' : 'You HAVE to pick someone'}
+        />
+
+        <div style={{ marginTop: '1rem' }}>
+          <Button
+            type="destructive"
+            onClick={(): void => handleChangeSelected('')}
+          >
+            Pick no one!
+          </Button>
+        </div>
       </div>
     );
   });

@@ -6,6 +6,14 @@
 .fd-radio {
   display: flex;
   flex-direction: column;
+  &__inputs-container {
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    &-error {
+      border-color: $destructive;
+    }
+  }
   &__container {
     display: flex;
     + .fd-radio__container {

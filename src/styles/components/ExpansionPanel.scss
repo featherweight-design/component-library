@@ -7,10 +7,10 @@
   flex-direction: column;
   &-with-title {
     + .fd-expansion-panel::before {
-      @include gradientPseudoBorderTop;
+      @include gradient-pseudo-border-top;
     }
     &:last-child::after {
-      @include gradientPseudoBorderBottom;
+      @include gradient-pseudo-border-bottom;
     }
   }
   &__button {

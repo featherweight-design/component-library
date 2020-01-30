@@ -19,5 +19,8 @@
     &:focus {
       @include focus-styles;
     }
+    &-error {
+      border-color: $destructive;
+    }
   }
 }

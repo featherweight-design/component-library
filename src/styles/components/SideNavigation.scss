@@ -1,7 +1,8 @@
 @import '../colors';
 @import '../mixins';
 
-.fd-side-navigation, .fd-side-navigation-dark {
+.fd-side-navigation,
+.fd-side-navigation-dark {
   top: 0;
   left: 0;
   right: auto;
@@ -262,7 +263,7 @@
       }
     }
     &::before {
-      @include gradientPseudoBorderTop($white, $gray-04);
+      @include gradient-pseudo-border-top($white, $gray-04);
       width: 80%;
     }
   }

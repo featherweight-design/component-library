@@ -7,7 +7,7 @@ import React, {
 import classnames from 'classnames';
 
 type ExpansionPanelProps = {
-  children: ReactChild | ReactChild[] | boolean;
+  children: ReactChild | ReactChild[] | (boolean | ReactChild)[];
   title?: string;
   expanded?: boolean;
   className?: string;

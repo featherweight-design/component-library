@@ -12,6 +12,7 @@ type TextAreaProps = {
   max?: number;
   disabled?: boolean;
   className?: string;
+  errorMessage?: string;
 };
 
 const TextArea: FunctionComponent<TextAreaProps> = ({
@@ -25,6 +26,7 @@ const TextArea: FunctionComponent<TextAreaProps> = ({
   max,
   disabled,
   className,
+  errorMessage,
 }: TextAreaProps) => (
   <div
     className={classnames({
@@ -43,8 +45,13 @@ const TextArea: FunctionComponent<TextAreaProps> = ({
       minLength={min}
       maxLength={max}
       disabled={disabled}
-      className="fd-textarea__input"
+      className={classnames({
+        'fd-textarea__input': true,
+        'fd-textarea__input-error': errorMessage,
+      })}
     />
+
+    <p className="fd-input-error">{errorMessage}</p>
   </div>
 );
 
