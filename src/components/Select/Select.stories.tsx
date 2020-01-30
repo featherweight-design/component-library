@@ -46,6 +46,19 @@ storiesOf('Select', module)
             { value: 'juniper', label: 'Jean-june' },
           ]}
         />
+
+        <Select
+          label="Label"
+          selected={selected}
+          onSelect={mockOnClick}
+          errorMessage="Please pick a Hartigan"
+          options={[
+            { value: 'huey', label: 'Huhu' },
+            { value: 'juliana', label: 'Juju' },
+            { value: 'torin', label: 'Tor-bear' },
+            { value: 'juniper', label: 'Jean-june' },
+          ]}
+        />
       </div>
     );
   });
