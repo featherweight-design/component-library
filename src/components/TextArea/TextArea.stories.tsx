@@ -40,4 +40,22 @@ storiesOf('TextArea', module)
         onChange={handleChange}
       />
     );
+  })
+  .add('Error', () => {
+    const [value, updateValue] = useState('');
+
+    const handleChange = ({
+      target: { value },
+    }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+
+    return (
+      <TextArea
+        name="default"
+        label="Pirate lore"
+        placeholder="Yarrrr... t'was many moons ago when I..."
+        value={value}
+        onChange={handleChange}
+        errorMessage={value ? '' : 'Write me a story, ye heathen!'}
+      />
+    );
   });
