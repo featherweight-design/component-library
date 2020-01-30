@@ -81,7 +81,7 @@ const Checkbox: FunctionComponent<CheckboxProps> = ({
       ))}
     </div>
 
-    <p className="fd-checkbox__error">{errorMessage}</p>
+    <p className="fd-input-error">{errorMessage}</p>
   </div>
 );
 
