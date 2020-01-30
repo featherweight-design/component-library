@@ -10,14 +10,6 @@
   box-shadow: 0 0 3px 2px $destructive-focus-outline;
 }
 
-@mixin error-message-styles {
-  margin: 0;
-  margin-top: 0.25rem;
-  padding-left: 0.25rem;
-  color: $destructive;
-  font-size: 0.75rem;
-}
-
 @mixin input-base-styles {
   height: 2.5rem;
   padding: 0.5rem;
