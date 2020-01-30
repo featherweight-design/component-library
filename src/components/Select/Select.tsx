@@ -13,6 +13,7 @@ type SelectProps = {
   disabled?: boolean;
   multiple?: boolean;
   className?: string;
+  errorMessage?: string;
 };
 
 const Select: FunctionComponent<SelectProps> = ({
@@ -24,6 +25,7 @@ const Select: FunctionComponent<SelectProps> = ({
   placeholder,
   disabled,
   className,
+  errorMessage,
 }: SelectProps) => {
   const [areOptionsShown, toggleShowOptions] = useState(false);
 
@@ -42,6 +44,7 @@ const Select: FunctionComponent<SelectProps> = ({
           'fd-select__container': true,
           'fd-select__container-open': areOptionsShown,
           'fd-select__container-disabled': disabled,
+          'fd-select__container-error': errorMessage,
         })}
         onClick={(): void => {
           if (!disabled) {
@@ -70,11 +73,14 @@ const Select: FunctionComponent<SelectProps> = ({
         </i>
       </div>
 
+      <p className="fd-input-error">{errorMessage}</p>
+
       <div
         className={classnames({
           'fd-select__options-container': true,
           'fd-select__options-container-open': areOptionsShown,
           'fd-select__options-container-with-label': label,
+          'fd-select__options-container-error': errorMessage,
         })}
       >
         {options &&
