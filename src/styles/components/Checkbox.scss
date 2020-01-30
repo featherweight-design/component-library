@@ -2,6 +2,14 @@
 @import '../mixins';
 
 .fd-checkbox {
+  &__inputs-container {
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    &-error {
+      border-color: $destructive;
+    }
+  }
   &__container {
     position: relative;
     display: flex;
@@ -51,5 +59,8 @@
   }
   &__icon {
     @include check-mark-animation(0.2rem, 0.5rem, 0.125rem);
+  }
+  &__error {
+    @include error-message-styles;
   }
 }
