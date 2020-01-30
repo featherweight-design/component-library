@@ -24,6 +24,9 @@
       border-radius: 0.25rem 0.25rem 0 0;
       transition: border-radius 0.01s;
     }
+    &-error {
+      border-color: $destructive;
+    }
   }
   &__input {
     flex: 1;
@@ -56,7 +59,9 @@
       min-height: 0;
       max-height: 0;
       padding: 0;
-      visibility: hidden;
+      opacity: 0;
+      transition: min-height 0.01s ease-in-out 0.2s,
+        max-height 0.01s ease-in-out 0.2s, padding 0.01s ease-in-out 0.2s;
     }
     &-open {
       max-height: 12.5rem;
@@ -71,11 +76,15 @@
         min-height: 1.375rem;
         max-height: 1.375rem;
         padding: 0.5rem 1rem;
-        visibility: visible;
+        opacity: 1;
+        transition: 0.01s ease-in-out;
       }
     }
     &-with-label {
       top: 61px;
+    }
+    &-error {
+      border-color: $destructive;
     }
   }
   &__option {
