@@ -12,6 +12,7 @@ type RadioProps = {
   other?: OtherOptionType;
   disabled?: boolean;
   className?: string;
+  errorMessage?: string;
 };
 
 const Radio: FunctionComponent<RadioProps> = ({
@@ -22,6 +23,7 @@ const Radio: FunctionComponent<RadioProps> = ({
   other,
   disabled,
   className,
+  errorMessage,
 }: RadioProps) => (
   <div
     className={classnames({
@@ -31,37 +33,46 @@ const Radio: FunctionComponent<RadioProps> = ({
   >
     {label && <span className="fd-label">{label}</span>}
 
-    {options.map(option => (
-      <label key={option} className="fd-radio__container">
-        <input
-          type="radio"
-          className={classnames({
-            'fd-radio__input': true,
-          })}
-          name={option}
-          onChange={onChange}
-          checked={option === selected}
-          disabled={disabled}
-        />
-        <div
-          className={classnames({
-            'fd-radio__styled': true,
-            'fd-radio__styled-disabled': disabled,
-          })}
-        >
-          {option}
-        </div>
-        {option.toLowerCase() === 'other' && other && (
-          <OtherOption
+    <div
+      className={classnames({
+        'fd-radio__inputs-container': true,
+        'fd-radio__inputs-container-error': errorMessage,
+      })}
+    >
+      {options.map(option => (
+        <label key={option} className="fd-radio__container">
+          <input
+            type="radio"
+            className={classnames({
+              'fd-radio__input': true,
+            })}
             name={option}
-            value={other.value}
-            selected={option === selected}
-            onChange={other.onChange}
+            onChange={onChange}
+            checked={option === selected}
             disabled={disabled}
           />
-        )}
-      </label>
-    ))}
+          <div
+            className={classnames({
+              'fd-radio__styled': true,
+              'fd-radio__styled-disabled': disabled,
+            })}
+          >
+            {option}
+          </div>
+          {option.toLowerCase() === 'other' && other && (
+            <OtherOption
+              name={option}
+              value={other.value}
+              selected={option === selected}
+              onChange={other.onChange}
+              disabled={disabled}
+            />
+          )}
+        </label>
+      ))}
+    </div>
+
+    <p className="fd-input-error">{errorMessage}</p>
   </div>
 );
 
