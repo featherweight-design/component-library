@@ -9,6 +9,7 @@ storiesOf('Input', module)
   .add('Types', () => {
     const [value, handleChangeTextValue] = useState('');
     const [percentage, handleChangePercentage] = useState('');
+    const [errorValue, handleChangeErrorValue] = useState('');
 
     const mockOnChange = ({
       target: { value, name },
@@ -20,6 +21,10 @@ storiesOf('Input', module)
 
       if (name === 'number') {
         handleChangePercentage(value);
+      }
+
+      if (name === 'errorValue') {
+        handleChangeErrorValue(value);
       }
     };
 
@@ -44,11 +49,19 @@ storiesOf('Input', module)
         />
 
         <Input
-          value={value}
+          value={''}
           name="disabled"
           label="Disabled"
-          onChange={mockOnChange}
+          onChange={(): void => console.log('Disabled')}
           disabled
+        />
+
+        <Input
+          value={errorValue}
+          name="errorValue"
+          label="Label"
+          errorMessage={errorValue ? '' : 'Please enter a value'}
+          onChange={mockOnChange}
         />
       </div>
     );
