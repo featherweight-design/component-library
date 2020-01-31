@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.36",
+  "version": "0.1.37",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -87,7 +87,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint",
       "pre-push": "yarn run lint"
     }
   }
