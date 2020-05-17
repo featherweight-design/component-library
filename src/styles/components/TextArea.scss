@@ -7,7 +7,6 @@
   &__input {
     @include input-base-styles;
     min-height: 7rem;
-    max-width: 32rem;
     resize: vertical;
     &:disabled {
       background-color: $gray-03;
