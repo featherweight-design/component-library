@@ -4,7 +4,7 @@
 
 - [Wiki](https://github.com/featherweight-design/component-library/wiki/<GH_WIKI_PAGE>)
 - Issues:
-  - [GH_ISSUE_TITLE](https://github.com/featherweight-design/component-library/issues/<ISSUE_NUMBER>)
+  - Resolves featherweight-design/component-library/<ISSUE_NUMBER>
 
 ## Changes
 
