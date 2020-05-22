@@ -1,1 +1,1 @@
-# Featherweight Design Componenet Library
+# Featherweight Design Component Library
