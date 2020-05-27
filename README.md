@@ -27,7 +27,7 @@ yarn storybook
 
 ## Contributing
 
-See our [`CONTRIBUTING.md`](https://github.com/featherweight-design/component-library/blob/hugh%2Fchangelog-automation/CONTIBUTING.md)
+See our [`CONTRIBUTING.md`](CONTRIBUTING.md)
 
 ## LICENSE
 
