@@ -17,7 +17,7 @@
   ],
   "keywords": [],
   "author": "Featherweight Design",
-  "license": "ISC",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "npx webpack",
