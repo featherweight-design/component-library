@@ -17,7 +17,7 @@
 
 ## Screenshots
 
-## Checks
+## Sanity Checks
 
 - [ ] All tests are passing
 - [ ] There are no linting errors
