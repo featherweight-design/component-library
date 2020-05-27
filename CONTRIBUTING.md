@@ -21,6 +21,7 @@ This document contains a number of guidelines for contributing to this library. 
     - [Testing Styleguide](#testing-styleguide)
   - [Your First Contribution](#your-first-contribution)
     - [Picking Up an Issue](#picking-up-an-issue)
+    - [During Development](#during-development)
     - [I'm done, now what?](#im-done-now-what)
     - [Receiving Feedback](#receiving-feedback)
     - [After Approval](#after-approval)
@@ -121,6 +122,19 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 - Ask to pick it up by either commenting on the issue itself or posting in #component-library
 - Once approved, move your issue to the "In Progress" column of the project board
 - Pull down the latest changes from `master` and checkout a new branch prefaced with your name (e.g. `hugh/icon-component`)
+
+### During Development
+
+- We use `yarn` as our package manager
+- Each new component should have a corresponding stylesheet and Storybook file
+- Integrated components should be cross tested
+- Useful commands:
+  - `yarn storybook`: Launches our component library Storybook
+  - `yarn clean`: Wipes `node_modules/yarn.lock` and reinstalls packages
+  - `yarn format`: Formats all files according to our Prettier standards
+  - `yarn lint`: Checks all files for linting errors
+  - `yarn test`: Runs our Jest test suite
+  - `yarn release`: Updates the package version and `CHANGELOG.md` according to your `git history` (_Note: This should only be run once you are done with your PR_)
 
 ### I'm done, now what?
 
