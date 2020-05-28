@@ -134,7 +134,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
   - `yarn format`: Formats all files according to our Prettier standards
   - `yarn lint`: Checks all files for linting errors
   - `yarn test`: Runs our Jest test suite
-  - `yarn release`: Updates the package version and `CHANGELOG.md` according to your `git history` 
+  - `yarn release`: Updates the package version and `CHANGELOG.md` according to your `git history`
     - _Note: This should only be run if you make codebase changes and once you are done with your PR; There is no need to run this command for documentation changes_
 
 ### I'm done, now what?
