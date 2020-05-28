@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.37",
+  "version": "0.1.38",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -26,8 +26,8 @@
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint './src/**/*.{js,ts,tsx}'",
-    "release-beta": "yarn release -- --prerelease beta",
-    "release": "standard-version",
+    "release": "standard-version -t @f-design/component-libraryy@",
+    "release-beta": "yarn release -- --prerelease beta --skip.changelog --skip.tag",
     "storybook": "start-storybook -p 6006",
     "test": "jest --config jestconfig.json",
     "version": "yarn run format && git add -A src"
