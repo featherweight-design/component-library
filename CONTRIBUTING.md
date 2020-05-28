@@ -1,3 +1,4 @@
+<!-- omit in toc -->
 # Contributing to Featherweight Design's Component Library
 
 First and foremost...
@@ -6,26 +7,25 @@ First and foremost...
 
 This document contains a number of guidelines for contributing to this library. It is an ever changing and constantly growing document, so if you have any questions reach out to one of our team members. If you think something needs to be tweaked or want to propose a change, feel free to submit a pull request updating this document.
 
+<!-- omit in toc -->
 ## Table of Contents
 
-- [Contributing to Featherweight Design's Component Library](#contributing-to-featherweight-designs-component-library)
-  - [Table of Contents](#table-of-contents)
-  - [Code of Conduct](#code-of-conduct)
-  - [I have a question](#i-have-a-question)
-  - [Styleguides](#styleguides)
-    - [Git Commit Messages](#git-commit-messages)
-    - [JavaScript Styleguide](#javascript-styleguide)
-    - [TypeScript Styleguide](#typescript-styleguide)
-    - [CSS Styleguide](#css-styleguide)
-    - [React Styleguide](#react-styleguide)
-    - [Testing Styleguide](#testing-styleguide)
-  - [Your First Contribution](#your-first-contribution)
-    - [Picking Up an Issue](#picking-up-an-issue)
-    - [During Development](#during-development)
-    - [I'm done, now what?](#im-done-now-what)
-    - [Receiving Feedback](#receiving-feedback)
-    - [After Approval](#after-approval)
-  - [Attribution](#attribution)
+- [Code of Conduct](#code-of-conduct)
+- [I have a question](#i-have-a-question)
+- [Styleguides](#styleguides)
+  - [Git Commit Messages](#git-commit-messages)
+  - [JavaScript Styleguide](#javascript-styleguide)
+  - [TypeScript Styleguide](#typescript-styleguide)
+  - [CSS Styleguide](#css-styleguide)
+  - [React Styleguide](#react-styleguide)
+  - [Testing Styleguide](#testing-styleguide)
+- [Your First Contribution](#your-first-contribution)
+  - [Picking Up an Issue](#picking-up-an-issue)
+  - [During Development](#during-development)
+  - [I'm done, now what?](#im-done-now-what)
+  - [Receiving Feedback](#receiving-feedback)
+  - [After Approval](#after-approval)
+- [Attribution](#attribution)
 
 ## Code of Conduct
 
@@ -93,7 +93,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 ### CSS Styleguide
 
 - Component specific stylesheets should live in `/src/styles/components`
-  - *Note: We do this to enable consumers of `@f-design/component-library` to override default SCSS variables*
+  - _Note: We do this to enable consumers of `@f-design/component-library` to override default SCSS variables_
 - Components should be namespaced with `fd-` (e.g. `fd-button`)
 - HEX values should be referenced as variables through `colors.scss`
 - A loose BEM formatting should be used for classes:
