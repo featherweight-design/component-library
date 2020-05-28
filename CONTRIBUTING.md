@@ -156,7 +156,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 
 ### After Approval
 
-- Checkout `master`
+- Checkout `develop`
 - Pull down any changes
 - Run `npm publish` to release the new version of our component library
 - Another team member will be assigned to test your changes and once it passes QA, your PR will be moved to the **"Done"** column in the project board
