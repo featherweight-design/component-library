@@ -121,7 +121,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 - Find an issue that you are interested in the **"To Do"** column of the [Component Library project board](https://github.com/featherweight-design/component-library/projects/1)
 - Ask to pick it up by commenting on the issue itself or posting in the `#component-library` Slack channel (an admin must approve your request)
 - Once approved, move your issue to the **"In Progress"** column of the project board
-- Pull down the latest changes from `master` and checkout a new branch prefaced with your name (e.g. `hugh/icon-component`)
+- Pull down the latest changes from `development` and checkout a new branch prefaced with your name (e.g. `hugh/icon-component`)
 
 ### During Development
 
@@ -140,8 +140,9 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 ### I'm done, now what?
 
 - Celebrate! 🎉
-- Rebase with `master`
-- Run `yarn release` to update the package version and `CHANGELOG.md`
+- Rebase with `development`
+- Run `yarn release-beta` to update the package version for a beta release
+- Run `npm publish` to publish the `beta` version of your changes for testing (e.g. `@f-design/component-library@0.1.38-beta.0`)
 - Push your changes to GitHub and open a new PR
 - Fill out any relevant sections in the PR Template and remove those that are unused
 - Run through the **"Sanity Checks"**
@@ -157,10 +158,10 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 
 ### After Approval
 
-- Checkout `develop`
-- Pull down any changes
-- Run `npm publish` to release the new version of our component library
-- Another team member will be assigned to test your changes and once it passes QA, your PR will be moved to the **"Done"** column in the project board
+- Once your PR is merged into `development` a new version will be released and the `CHANGELOG.md` will be updated
+- Another team member will be assigned to test your changes though you are encouraged to test them as well using the new release version of the component library
+- If any bugs are found during testing, open a new **"🐛 Bug"** issue (you are welcome to tackle this afterward if you wish)
+- Once your changes pass QA, your PR will be moved to the **"Done"** column in the project board
 - 🔥 You did it! 🔥
 
 ## Attribution
