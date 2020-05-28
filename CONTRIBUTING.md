@@ -118,10 +118,10 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 
 ### Picking Up an Issue
 
-- Find an issue that you are interested in the **"To Do"** column of the [Component Library project board](https://github.com/featherweight-design/component-library/projects/1)
-- Ask to pick it up by commenting on the issue itself or posting in the `#component-library` Slack channel (an admin must approve your request)
+- Find an issue of interest in the **"To Do"** column of the [Component Library project board](https://github.com/featherweight-design/component-library/projects/1)
+- To have this issue assigned to you, leave a comment on the issue itself or post in the `#component-library` Slack channel (an admin must approve your request)
 - Once approved, move your issue to the **"In Progress"** column of the project board
-- Pull down the latest changes from `development` and checkout a new branch prefaced with your name (e.g. `hugh/icon-component`)
+- Pull down the latest changes from `development` and checkout a new branch prefaced with your first name (e.g. `hugh/icon-component`)
 
 ### During Development
 
@@ -134,8 +134,6 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
   - `yarn format`: Formats all files according to our Prettier standards
   - `yarn lint`: Checks all files for linting errors
   - `yarn test`: Runs our Jest test suite
-  - `yarn release`: Updates the package version and `CHANGELOG.md` according to your `git history`
-    - _Note: This should only be run if you make codebase changes and once you are done with your PR; There is no need to run this command for documentation changes_
 
 ### I'm done, now what?
 
@@ -143,6 +141,9 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 - Rebase with `development`
 - Run `yarn release-beta` to update the package version for a beta release
 - Run `npm publish` to publish the `beta` version of your changes for testing (e.g. `@f-design/component-library@0.1.38-beta.0`)
+
+> _Note: The above two commands should only be run once you are done with your PR to avoid redundant beta release versions; There is no need to run these commands for documentation changes_
+
 - Push your changes to GitHub and open a new PR
 - Fill out any relevant sections in the PR Template and remove those that are unused
 - Run through the **"Sanity Checks"**
@@ -151,7 +152,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 ### Receiving Feedback
 
 - Feedback is non-objective and in the best interest of the library
-- Comments are meant to foster dialog, you are free to communicate your thought process and explain any reasoning to reach a joint decision
+- Comments are meant to foster dialog; you are free to communicate your thought process and explain any reasoning to reach a joint decision
 - When changes are requested, implement them to the best of your ability
 - If you have questions, reach out to whomever requested changes or in Slack
 - Admins reserve the right to dismiss PR approvals and change requests
