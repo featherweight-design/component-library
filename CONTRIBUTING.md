@@ -56,6 +56,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
   - `docs`
   - `style`
   - `refactor`
+  - `revert`
   - `test`
   - `optimization`
 - Use the present tense ("Add feature" not "Added feature")

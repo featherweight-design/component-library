@@ -15,6 +15,7 @@ module.exports = {
         'docs',
         'style',
         'refactor',
+        'revert',
         'test',
         'optimization',
       ],
