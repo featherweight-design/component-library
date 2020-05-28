@@ -5,7 +5,7 @@
 - Release version: [<VERSION_NUMBER>](https://www.npmjs.com/package/@f-design/component-library)
 - [Wiki](https://github.com/featherweight-design/component-library/wiki/<GH_WIKI_PAGE>)
 - Issues:
-  - Resolves featherweight-design/component-library#<ISSUE_NUMBER>
+  - Resolves #<ISSUE_NUMBER>
 
 ## Changes
 
