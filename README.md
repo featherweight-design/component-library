@@ -33,7 +33,7 @@ yarn add @f-design/component-library
 npm install @f-design/component-library
 ```
 
-To override style variables in your project add the below `@import` to your `main.scss` or equivalent file:
+To override style variables in your project, add the below `@import` to your `main.scss` or equivalent file:
 
 ```scss
 // colors.scss
