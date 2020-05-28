@@ -26,6 +26,7 @@
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint './src/**/*.{js,ts,tsx}'",
+    "release-beta": "yarn release -- --prerelease beta",
     "release": "standard-version",
     "storybook": "start-storybook -p 6006",
     "test": "jest --config jestconfig.json",
