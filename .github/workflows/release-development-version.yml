@@ -30,6 +30,9 @@ jobs:
       - name: Create a new release branch
         run: git checkout -b development-release-branch
 
+      - name: Echo branch name
+        run:  git rev-parse --abbrev-ref HEAD
+
       # - name: Create a new build branch
       #   uses: peterjgrainger/action-create-branch@v1.0.0
       #   env:
@@ -37,11 +40,11 @@ jobs:
       #   with:
       #     branch: "development-release-branch"
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      # - name: Install dependencies
+      #   run: yarn install --frozen-lockfile
 
-      - name: Update CHANGELOG/version
-        run: yarn release
+      # - name: Update CHANGELOG/version
+      #   run: yarn release
 
       # - name: Build new package
       #   run: yarn run build
@@ -56,8 +59,8 @@ jobs:
       #   with:
       #     ref: development
 
-      - name: Merge release branch with development
-        run: git checkout origin/development && git merge origin/development-release-branch
+      # - name: Merge release branch with development
+      #   run: git checkout origin/development && git merge origin/development-release-branch
 
       # - name: Delete release branch
       #   run: git push origin --delete development-release-branch
