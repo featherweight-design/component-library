@@ -11,10 +11,11 @@ jobs:
     name: Publish new release from development
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-        with:
-          persist-credentials: false
-          fetch-depth: 0
+      - uses: actions/checkout@v1
+      # - uses: actions/checkout@master
+      #   with:
+      #     persist-credentials: false
+      #     fetch-depth: 0
 
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
@@ -26,9 +27,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-
-      - name: Create a new release branch
-        run: git checkout -b development-release-branch
 
       - name: Echo branch name
         run:  git rev-parse --abbrev-ref HEAD
@@ -46,8 +44,8 @@ jobs:
       - name: Update CHANGELOG/version
         run: yarn release
 
-      - name: Echo diff between development
-        run: git diff development
+      - name: Echo diff
+        run: git diff
 
       # - name: Build new package
       #   run: yarn run build
@@ -62,10 +60,10 @@ jobs:
       #   with:
       #     ref: development
 
-      - name: Merge release branch with development
-        run: git checkout development && git rebase development-release-branch && git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Merge release branch with development
+      #   run: git checkout development && git rebase development-release-branch && git push
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Delete release branch
       #   run: git push origin --delete development-release-branch
