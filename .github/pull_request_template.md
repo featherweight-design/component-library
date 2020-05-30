@@ -23,4 +23,3 @@
 - [ ] There are no linting errors
 - [ ] There are no build errors
 - [ ] There are no incidental style changes
-- [ ] The `CHANGELOG` and version have been updated
