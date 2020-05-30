@@ -12,10 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      # - uses: actions/checkout@master
-      #   with:
-      #     persist-credentials: false
-      #     fetch-depth: 0
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Checkout development branch
+        uses: actions/checkout@v2
+        with:
+          ref: development
 
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
@@ -54,11 +59,6 @@ jobs:
       #   run: npm publish --access public
       #   env:
       #     NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      # - name: Checkout development branch
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: development
 
       # - name: Merge release branch with development
       #   run: git checkout development && git rebase development-release-branch && git push
