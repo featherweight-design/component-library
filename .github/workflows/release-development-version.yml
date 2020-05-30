@@ -11,6 +11,11 @@ jobs:
     name: Publish new release from development
     runs-on: ubuntu-latest
     steps:
+      uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
     - name: Create a new build branch
       uses: peterjgrainger/action-create-branch@v1.0.0
       env:
