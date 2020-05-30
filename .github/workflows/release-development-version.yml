@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - development
+  # pull_request:
+  #   types: [closed]
 
 jobs:
   update-version-changelog:
@@ -16,7 +18,7 @@ jobs:
         run: echo ${{ github.event_name }}
 
       - name: Echo event action
-        run: echo ${{ github }}
+        run: echo ${{ github.action }}
 
       - name: Echo PR merged
         run: echo ${{ github.event.pull_request.merged }}
