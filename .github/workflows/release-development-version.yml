@@ -11,44 +11,51 @@ jobs:
     name: Publish new release from development
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      with:
-        persist-credentials: false
-        fetch-depth: 0
+      - uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0
 
-    - name: Create a new build branch
-      uses: peterjgrainger/action-create-branch@v1.0.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        branch: 'development-release-branch'
+      - name: Set GitHub Action user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      - name: Add auth to .npmrc
+        run: echo '_authToken=${{ secrets.NPM_PUBLISH_TOKEN }}' >> ./.npmrc
 
-    - name: Set GitHub Action user
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+      - name: Create a new build branch
+        uses: peterjgrainger/action-create-branch@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: "development-release-branch"
 
-    - name: Update CHANGELOG/version
-      run: yarn release
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
 
-    - name: Build new package
-      run: yarn run build
+      - name: Update CHANGELOG/version
+        run: yarn release
 
-    - name: Publish @f-design/component-library from development
-      run: npm publish --access public
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Build new package
+        run: yarn run build
 
-    - name: Checkout development branch
-      uses: actions/checkout@v2
-      with:
-        ref: development
+      - name: Publish @f-design/component-library from development
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-    - name: Merge release branch with development
-      run: git merge development-release-branch
+      - name: Checkout development branch
+        uses: actions/checkout@v2
+        with:
+          ref: development
 
-    - name: Delete release branch
-      run: git branch -D development-release-branch
+      - name: Merge release branch with development
+        run: git merge development-release-branch
+
+      - name: Delete release branch
+        run: git branch -D development-release-branch
+
+      - name: Delete release branch on failure
+        if: failure()
+        run: git branch -D development-release-branch
