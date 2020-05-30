@@ -55,11 +55,11 @@ jobs:
           ref: development
 
       - name: Merge release branch with development
-        run: git merge origin/development-release-branch
+        run: git checkout origin/development && git merge origin/development-release-branch
 
-      - name: Delete release branch
-        run: git push origin --delete development-release-branch
+      # - name: Delete release branch
+      #   run: git push origin --delete development-release-branch
 
-      - name: Delete release branch on failure
-        if: failure()
-        run: git push origin --delete development-release-branch
+      # - name: Delete release branch on failure
+      #   if: failure()
+      #   run: git push origin --delete development-release-branch
