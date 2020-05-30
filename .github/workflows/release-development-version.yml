@@ -16,7 +16,7 @@ jobs:
         run: echo ${{ github.event_name }}
 
       - name: Echo event action
-        run: echo ${{ github.event.action }}
+        run: echo ${{ github }}
 
       - name: Echo PR merged
         run: echo ${{ github.event.pull_request.merged }}
