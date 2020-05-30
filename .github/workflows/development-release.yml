@@ -15,11 +15,11 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # - name: Setup .npmrc file to publish to npm
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: "12.x"
-      #     registry-url: "https://registry.npmjs.org"
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Set GitHub Action user
         run: |
@@ -37,17 +37,11 @@ jobs:
         with:
           github_token: ${{ secrets.GH_ACTION_PAT }}
           branch: development
-      # - name: Echo file changes
-      #   run: git status
-      # - name: Echo diff
-      #   run: git diff
-      # - name: Build new package
-      #   run: yarn run build
-      # - name: Publish @f-design/component-library from development
-      #   run: npm publish --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-      # - name: Merge release branch with development
-      #   run: git checkout development && git rebase development-release-branch && git push
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build new package
+        run: yarn run build
+
+      - name: Publish @f-design/component-library from development
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
