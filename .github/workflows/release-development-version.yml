@@ -63,7 +63,7 @@ jobs:
       #     ref: development
 
       - name: Merge release branch with development
-        run: git checkout development && git rebase development-release-branch && git push origin origin/development
+        run: git checkout development && git rebase development-release-branch && git push
 
       # - name: Delete release branch
       #   run: git push origin --delete development-release-branch
