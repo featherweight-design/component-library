@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout development
-      uses: actions/checkout@development
+      uses: actions/checkout@master
       with:
         persist-credentials: false
         fetch-depth: 0
@@ -26,9 +26,10 @@ jobs:
       run: yarn release
 
     - name: Push to development
-      uses: ad-m/github-push-action@development
+      uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: development
 
     - name: Build new package
       run: yarn run build
