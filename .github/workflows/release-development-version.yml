@@ -1,0 +1,41 @@
+# Push to development help from yanjingzhu https://github.community/t/push-to-restricted-master-branch/18191
+
+name: Publish new release from development
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  update-version-changelog:
+    name: Publish new release from development
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout development
+      uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+
+    - name: Set GitHub Action user
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+
+    - name: Update CHANGELOG/version
+      run: yarn release
+
+    - name: Push to development
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: development
+
+    - name: Build new package
+      run: yarn run build
+
+    - name: Publish @f-design/component-library from development
+      run: npm publish
