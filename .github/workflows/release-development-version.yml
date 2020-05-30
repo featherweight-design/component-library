@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout development
-      uses: actions/checkout@v2
+      uses: actions/checkout@development
       with:
         persist-credentials: false
+        fetch-depth: 0
     
     - name: Install dependencies
       run: yarn install --frozen-lockfile
@@ -25,7 +26,7 @@ jobs:
       run: yarn release
 
     - name: Push to development
-      run: git push -u origin development
+      uses: ad-m/github-push-action@development
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
