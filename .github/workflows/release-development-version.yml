@@ -54,8 +54,8 @@ jobs:
         run: git merge development-release-branch
 
       - name: Delete release branch
-        run: git branch -D development-release-branch
+        run: git push origin --delete development-release-branch
 
       - name: Delete release branch on failure
         if: failure()
-        run: git branch -D development-release-branch
+        run: git push origin --delete development-release-branch
