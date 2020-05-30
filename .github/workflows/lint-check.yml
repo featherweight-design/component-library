@@ -1,0 +1,14 @@
+name: Linting check
+on:
+  push
+
+jobs:
+  lint-check:
+    name: Linting check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Run Linting
+        run: yarn run lint
