@@ -4,18 +4,19 @@ name: Publish new release from development
 on:
   push:
     branches:
-      - master
+      - development
 
 jobs:
   update-version-changelog:
     name: Publish new release from development
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout development
-      uses: actions/checkout@master
+    - name: Create a new build branch
+      uses: peterjgrainger/action-create-branch@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        persist-credentials: false
-        fetch-depth: 0
+        branch: 'development-release-branch'
 
     - name: Install dependencies
       run: yarn install --frozen-lockfile
@@ -28,12 +29,6 @@ jobs:
     - name: Update CHANGELOG/version
       run: yarn release
 
-    - name: Push to development
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GH_ACTION_PAT }}
-        branch: master
-
     - name: Build new package
       run: yarn run build
 
@@ -41,3 +36,14 @@ jobs:
       run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+    - name: Checkout development branch
+      uses: actions/checkout@v2
+      with:
+        ref: development
+
+    - name: Merge release branch with development
+      run: git merge development-release-branch
+
+    - name: Delete release branch
+      run: git branch -D development-release-branch
