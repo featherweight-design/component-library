@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.56](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.55...@f-design/component-library@0.1.56) (2020-05-30)
+
+### [0.1.55](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.54...@f-design/component-library@0.1.55) (2020-05-30)
+
+### [0.1.54](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.53...@f-design/component-library@0.1.54) (2020-05-30)
+
+### [0.1.53](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.52...@f-design/component-library@0.1.53) (2020-05-30)
+
+### [0.1.52](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.51...@f-design/component-library@0.1.52) (2020-05-30)
+
+### [0.1.51](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.50...@f-design/component-library@0.1.51) (2020-05-30)
+
+### [0.1.50](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.49...@f-design/component-library@0.1.50) (2020-05-30)
+
+### [0.1.49](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.48...@f-design/component-library@0.1.49) (2020-05-30)
+
 ### [0.1.48](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.47...@f-design/component-library@0.1.48) (2020-05-30)
 
 ### [0.1.47](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.46...@f-design/component-library@0.1.47) (2020-05-30)
