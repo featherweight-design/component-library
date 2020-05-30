@@ -11,6 +11,14 @@ jobs:
     name: Publish new release from development
     runs-on: ubuntu-latest
     steps:
+      - run: echo ${{ github.event_name }}
+      - run: echo ${{ github.event.action }}
+      - run: echo ${{ github.event.pull_request.merged }}
+
+      - name: Exit early if not merging to development via PR
+        if: github.event_name != 'pull_request' && github.event.action != 'closed' && github.event.pull_request.merged != true
+        run: exit 1
+
       - uses: actions/checkout@v1
       - uses: actions/checkout@master
         with:
@@ -36,24 +44,23 @@ jobs:
       - name: Echo branch name
         run:  git rev-parse --abbrev-ref HEAD
 
-      # - name: Create a new build branch
-      #   uses: peterjgrainger/action-create-branch@v1.0.0
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     branch: "development-release-branch"
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
       - name: Update CHANGELOG/version
         run: yarn release
 
-      - name: Echo file changes
-        run: git status
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: development
 
-      - name: Echo diff
-        run: git diff
+      # - name: Echo file changes
+      #   run: git status
+
+      # - name: Echo diff
+      #   run: git diff
 
       # - name: Build new package
       #   run: yarn run build
@@ -68,9 +75,3 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Delete release branch
-      #   run: git push origin --delete development-release-branch
-
-      # - name: Delete release branch on failure
-      #   if: failure()
-      #   run: git push origin --delete development-release-branch
