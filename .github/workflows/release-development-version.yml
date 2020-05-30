@@ -30,30 +30,22 @@ jobs:
         if: github.event_name != 'pull_request' && github.event.action != 'closed' && github.event.pull_request.merged != true
         run: exit 1
 
-      - uses: actions/checkout@v1
-      - uses: actions/checkout@master
+      - name: Checkout development
+        uses: actions/checkout@master
         with:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Checkout development branch
-        uses: actions/checkout@v2
-        with:
-          ref: development
-
-      - name: Setup .npmrc file to publish to npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-          registry-url: "https://registry.npmjs.org"
+      # - name: Setup .npmrc file to publish to npm
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: "12.x"
+      #     registry-url: "https://registry.npmjs.org"
 
       - name: Set GitHub Action user
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-
-      - name: Echo branch name
-        run: git rev-parse --abbrev-ref HEAD
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -61,7 +53,7 @@ jobs:
       - name: Update CHANGELOG/version
         run: yarn release
 
-      - name: Push changes to development
+      - name: Push to development
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_ACTION_PAT }}
