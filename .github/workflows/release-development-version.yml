@@ -2,11 +2,11 @@
 
 name: Publish new release from development
 on:
-  push:
-    branches:
-      - development
-  # pull_request:
-  #   types: [closed]
+  # push:
+  #   branches:
+  #     - development
+  pull_request:
+    types: [closed]
 
 jobs:
   update-version-changelog:
@@ -19,6 +19,9 @@ jobs:
 
       - name: Echo ref
         run: echo ${{ github.ref }}
+
+      - name: Echo action
+        run: echo ${{ github.event.action }}
 
       - name: Echo PR merged
         run: echo ${{ github.event.pull_request.merged }}
