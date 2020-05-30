@@ -46,11 +46,8 @@ jobs:
       - name: Update CHANGELOG/version
         run: yarn release
 
-      - name: Echo files changed
-        run: git status
-
-      - name: Echo diff
-        run: git diff
+      - name: Echo diff between development
+        run: git diff development
 
       # - name: Build new package
       #   run: yarn run build
