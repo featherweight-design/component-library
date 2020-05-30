@@ -61,10 +61,10 @@ jobs:
       - name: Update CHANGELOG/version
         run: yarn release
 
-      - name: Push changes
+      - name: Push changes to development
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_ACTION_PAT }}
           branch: development
       # - name: Echo file changes
       #   run: git status
