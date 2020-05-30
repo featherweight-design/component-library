@@ -1,10 +1,10 @@
-name: Linting check
+name: Pull request checks
 on:
   push
 
 jobs:
   lint-check:
-    name: Linting check
+    name: Pull request checks
     runs-on: ubuntu-latest
     steps:
       - name: Install dependencies
@@ -12,3 +12,6 @@ jobs:
 
       - name: Run Linting
         run: yarn run lint
+
+      - name: Run commit lint
+        run: yarn 
