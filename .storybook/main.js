@@ -24,7 +24,7 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: require.resolve('ts-loader'),
+            loader: require.resolve('awesome-typescript-oader'),
           },
           {
             loader: require.resolve('react-docgen-typescript-loader'),
@@ -55,7 +55,7 @@ module.exports = {
       utilities: path.resolve(__dirname, '../src/utilities'),
       components: path.resolve(__dirname, '../src/components'),
     };
-    
+
     return config;
   },
 };
