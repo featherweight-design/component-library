@@ -16,13 +16,23 @@ body {
   &__button-container,
   &__input-container,
   &__select-container {
-    > * {
-      margin-right: 0.5rem;
-    }
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 1rem;
   }
-  &__input-container,
-  &__select-container {
+  &__delete-confirmation-container {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    height: 10rem;
+    padding: 1rem;
+    overflow: hidden;
+  }
+  &__loading-spinner-container {
+    padding: 1rem;
   }
 }
 
