@@ -28,13 +28,14 @@
     "lint": "eslint './src/**/*.{js,ts,tsx}'",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "yarn release -- --prerelease beta --skip.changelog --skip.tag",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./.storybook/public",
     "test": "jest --config jestconfig.json",
     "version": "yarn run format && git add -A src"
   },
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2"
   },
   "dependencies": {
     "@babel/core": "^7.7.5",
@@ -53,6 +54,7 @@
     "@commitlint/config-conventional": "^8.3.4",
     "@storybook/addon-a11y": "^5.2.8",
     "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.3.19",
     "@storybook/addon-links": "^5.2.8",
     "@storybook/addon-storyshots": "^5.2.8",
     "@storybook/addons": "^5.2.8",
