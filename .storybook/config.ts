@@ -1,5 +1,4 @@
 import { configure, addParameters } from '@storybook/react';
-import './main.scss';
 
 addParameters({
   options: {
