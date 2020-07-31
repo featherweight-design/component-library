@@ -3,10 +3,15 @@
 
 .fd-button {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.875rem;
   border: 2px solid transparent;
   border-radius: 2rem;
   box-sizing: border-box;
   font-size: 1rem;
+  background: none;
   color: $brand-color;
   cursor: pointer;
   transition: 0.1s ease-in-out;
