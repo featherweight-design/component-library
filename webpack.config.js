@@ -13,14 +13,16 @@ module.exports = {
     umdNamedDefine: true,
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js'],
+    extensions: ['.tsx', '.ts', '.js'],
     alias: {
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+      styles: path.resolve(__dirname, './src/styles'),
+      utilities: path.resolve(__dirname, './src/utilities'),
+      components: path.resolve(__dirname, './src/components'),
     },
   },
   externals: {
-    // Don't bundle react or react-dom
     react: {
       commonjs: 'react',
       commonjs2: 'react',
@@ -33,6 +35,10 @@ module.exports = {
       amd: 'ReactDOM',
       root: 'ReactDOM',
     },
+    'react-router-dom': {
+      commonjs: 'react-router-dom',
+      commonjs2: 'react-router-dom',
+    },
   },
   module: {
     rules: [
@@ -40,6 +46,9 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
+        options: {
+          configFile: 'tsconfig.build.json',
+        },
       },
       {
         enforce: 'pre',
@@ -58,6 +67,14 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: [/\.svg$/, /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        loader: require.resolve('url-loader'),
+        options: {
+          limit: 10000,
+          name: 'static/media/[name].[hash:8].[ext]',
+        },
       },
     ],
   },
