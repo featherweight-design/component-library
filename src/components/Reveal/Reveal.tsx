@@ -7,6 +7,7 @@ const Reveal: FC<RevealProps> = ({
   children,
   className,
   isShown,
+  padding,
 }: RevealProps) => {
   return (
     <div
@@ -21,6 +22,7 @@ const Reveal: FC<RevealProps> = ({
           'fd-reveal__drawer': true,
           'fd-reveal__drawer-shown': isShown,
         })}
+        style={{ padding: padding && !isShown ? padding : 'unset' }}
       />
       <div
         className={classnames({

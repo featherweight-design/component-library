@@ -18,7 +18,7 @@ export const Default = (): JSX.Element => {
         Toggle reveal
       </Button>
 
-      <Reveal isShown={isShown}>
+      <Reveal isShown={isShown} padding="5px">
         <Button
           type="destructive"
           onClick={(): void => console.log('destroy!')}

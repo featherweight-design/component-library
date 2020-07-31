@@ -66,6 +66,10 @@ export interface RevealProps {
    * Applied to the `div` container
    */
   className?: string;
+  /**
+   * Padding applied to the parent container to cover bleeding children styles such as box-shadow
+   */
+  padding?: string;
 }
 
 //* Select Types
