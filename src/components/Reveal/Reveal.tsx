@@ -3,8 +3,6 @@ import classnames from 'classnames';
 
 import { RevealProps } from 'types';
 
-import './Reveal.scss';
-
 const Reveal: FC<RevealProps> = ({
   children,
   className,
@@ -13,21 +11,21 @@ const Reveal: FC<RevealProps> = ({
   return (
     <div
       className={classnames({
-        'uic-reveal': true,
-        'uic-reveal-shown': isShown,
+        'fd-reveal': true,
+        'fd-reveal-shown': isShown,
         [className as string]: className,
       })}
     >
       <div
         className={classnames({
-          'uic-reveal__drawer': true,
-          'uic-reveal__drawer-shown': isShown,
+          'fd-reveal__drawer': true,
+          'fd-reveal__drawer-shown': isShown,
         })}
       />
       <div
         className={classnames({
-          'uic-reveal__cover': true,
-          'uic-reveal__cover-shown': isShown,
+          'fd-reveal__cover': true,
+          'fd-reveal__cover-shown': isShown,
         })}
       />
       {children}

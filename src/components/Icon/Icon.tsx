@@ -16,7 +16,7 @@ const Icon: FC<IconProps> = ({
     id={id}
     className={classnames({
       'material-icons': true,
-      'uic-icon': true,
+      'fd-icon': true,
       [className as string]: className,
     })}
     onClick={onClick}
