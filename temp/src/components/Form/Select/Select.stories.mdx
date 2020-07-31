@@ -1,0 +1,52 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Select from './Select.tsx';
+
+<Meta title="Components/Form/Select/README" component={Select} />
+
+# Select
+
+---
+
+<Story id="components-form-select--types" />
+
+---
+
+The `Input` component is a near one-for-one clone of that from Salesforce's Lighting Design System in terms of styling. Small updates have been made to simplify the developer experience, as well as minor enhancements that separate Conga's look from that of LDS (e.g. an initial focus, etc.).
+
+This component should completely fulfill LDS `<select>` functionality outside of the **"Multiple Selection"** pick-list styling, which will be developed as a separate `PickList` component in a future update.
+
+## Quick Start ⚡️
+
+```jsx
+import React, { useState } from 'react';
+import { Select } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  const [value, updateValue] = useState('');
+
+  const handleUpdateValue = ({ target: { value } }) => updateValue(value);
+
+  return (
+    <Select
+      label="Default"
+      name="default"
+      placeholder="Select a pet..."
+      value={value}
+      onChange={handleOnChange}
+    >
+      <option>Cat</option>
+      <option>Dog</option>
+      <option>Lizard</option>
+      <option>Ocelot</option>
+      <option>Hippogriff</option>
+    </Select>
+  );
+};
+```
+
+## API
+
+### [Select Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Form/Select/Select.tsx)
+
+<Props of={Select} />

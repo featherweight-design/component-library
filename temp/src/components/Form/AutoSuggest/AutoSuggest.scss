@@ -1,0 +1,42 @@
+@import 'scss/main';
+
+.uic-auto-suggest {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &__input {
+    > .uic-input__field:focus {
+      outline: none;
+    }
+    &-with-suggestions > .uic-input__field {
+      border-radius: 0.25rem 0.25rem 0 0;
+    }
+  }
+
+  &__suggestions-container {
+    position: absolute;
+    top: calc(3.25rem - 1px);
+    display: flex;
+    flex-direction: column;
+    max-height: 0;
+    width: 100%;
+    border: 0 solid transparent;
+    border-radius: 0 0 0.25rem 0.25rem;
+    background-color: $white;
+    overflow: auto;
+    &-open {
+      max-height: 8rem;
+      border: 1px solid $color-gray-5;
+      transition: max-height 0.2s ease-in-out;
+    }
+  }
+  &__suggestion {
+    padding: 0.5rem 1rem;
+    background-color: $white;
+    box-sizing: border-box;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-gray-3;
+    }
+  }
+}

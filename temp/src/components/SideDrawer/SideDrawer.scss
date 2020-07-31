@@ -1,0 +1,17 @@
+@import 'scss/main';
+
+.uic-side-drawer {
+  position: absolute;
+  right: -100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid $color-gray-5;
+  background-color: $white;
+  overflow: hidden;
+  transition: right 0.3s ease-in-out;
+  &-shown {
+    right: 0;
+  }
+}

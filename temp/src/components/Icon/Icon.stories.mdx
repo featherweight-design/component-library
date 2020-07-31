@@ -1,0 +1,40 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Icon from './Icon.tsx';
+
+<Meta title="Components/Icon/README" component={Icon} />
+
+# Icon
+
+---
+
+<Story id="components-icon--default" />
+
+---
+
+The `Icon` component can be used with two different design systems:
+
+- [Lightning Design System](https://www.lightningdesignsystem.com/icons/)
+  - `svg` based icons
+  - More icons forth coming in a future update
+- [Google Material](https://material.io/resources/icons/?style=baseline)
+  - Font based icons
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { Icon } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+
+  return <Icon icon="search" />;
+};
+```
+
+## API
+
+### [Icon Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Form/Icon/Icon.tsx)
+
+<Props of={Icon} />

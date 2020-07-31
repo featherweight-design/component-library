@@ -1,0 +1,131 @@
+@import 'scss/main.scss';
+// TODO: Refactor for icon styles
+
+.uic-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: $brand-accessible;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $brand-accessible-active;
+  }
+  &:focus {
+    @include focus-styles;
+  }
+  + .uic-button {
+    margin-left: 0.5rem;
+  }
+  > .uic-icon {
+    margin-right: 0.25rem;
+  }
+  &-neutral,
+  &-brand,
+  &-outline-brand,
+  &-destructive,
+  &-outline-destructive {
+    padding: 0.35rem 1rem;
+  }
+  &-brand,
+  &-outline-brand {
+    border-color: $brand-accessible;
+  }
+  &-brand,
+  &-destructive {
+    color: $white;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $white;
+    }
+  }
+  &-neutral,
+  &-outline-brand,
+  &-outline-destructive {
+    background-color: $white;
+    &:hover {
+      background-color: $color-gray-3;
+    }
+    &:active {
+      background-color: $color-gray-4;
+    }
+  }
+  &-brand {
+    background-color: $brand-accessible;
+    &:hover,
+    &:focus,
+    &:active {
+      border-color: $brand-accessible-active;
+      background-color: $brand-accessible-active;
+    }
+  }
+  &-neutral,
+  &-outline-destructive {
+    border-color: $color-gray-5;
+  }
+  &-destructive {
+    border-color: $color-background-destructive;
+    background-color: $color-background-destructive;
+    &:hover {
+      border-color: $color-background-destructive-hover;
+      background-color: $color-background-destructive-hover;
+    }
+    &:active {
+      border-color: $color-background-destructive-active;
+      background-color: $color-background-destructive-active;
+    }
+  }
+  &-default-destructive,
+  &-outline-destructive {
+    color: $color-background-destructive;
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color-text-destructive-hover;
+    }
+  }
+  &:disabled {
+    color: $color-gray-5;
+    background-color: $white;
+    border-color: $color-gray-5;
+    cursor: not-allowed;
+  }
+  &-brand,
+  &-destructive {
+    &:disabled {
+      color: $white;
+      background-color: $color-gray-5;
+    }
+  }
+  &-default,
+  &-default-destructive {
+    &:disabled {
+      background-color: transparent;
+      border: none;
+    }
+  }
+  &-loading {
+    cursor: wait;
+    > .uic-button__value {
+      color: transparent;
+    }
+    > .uic-button__loader-container {
+      position: absolute;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  }
+  &__value {
+    display: flex;
+    align-items: center;
+  }
+}
