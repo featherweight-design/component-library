@@ -36,7 +36,10 @@ export const LargeReveal = (): JSX.Element => {
   return (
     <div>
       <div className="story__button-container">
-        <Button type="brand" onClick={() => toggleLargeShown(!isLargeShown)}>
+        <Button
+          type="brand"
+          onClick={(): void => toggleLargeShown(!isLargeShown)}
+        >
           Toggle large reveal
         </Button>
       </div>
