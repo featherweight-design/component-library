@@ -1,0 +1,35 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Icon from './Icon.tsx';
+
+<Meta title="Components/Icon/README" component={Icon} />
+
+# Icon
+
+---
+
+<Story id="components-icon--default" />
+
+---
+
+The `Icon` component can be uses [Google Material](https://material.io/resources/icons/?style=baseline), which are font based icons.
+  - Font based icons
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { Icon } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+
+  return <Icon icon="search" />;
+};
+```
+
+## API
+
+### [Icon Component](https://github.com/featherweight-design/component-library/src/components/Form/Icon/Icon.tsx)
+
+<Props of={Icon} />
