@@ -13,7 +13,13 @@ export const Default = (): JSX.Element => {
   const [isShown, toggleReveal] = useState(false);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-around',
+        padding: '10px',
+      }}
+    >
       <Button type="brand" onClick={(): void => toggleReveal(!isShown)}>
         Toggle reveal
       </Button>
