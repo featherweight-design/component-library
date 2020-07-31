@@ -1,0 +1,93 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import AutoSuggest from './AutoSuggest.tsx';
+
+<Meta title="Components/Form/AutoSuggest/README" component={AutoSuggest} />
+
+# AutoSuggest
+
+---
+
+<Story id="components-form-autosuggest--default" />
+
+---
+
+The `AutoSuggest` component is styled exactly like the `Input` component with a few added bells and whistles that allow for asynchronous fetching of values to be rendered underneath the field.
+
+Developes have control over all `InputProps` as well as props specific to `AutoSuggest` such as the `searchThreshold` before the `onSearch` method is invoked and the inputs `loading` state.
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { AutoSuggest } from '@one-conga/ui-components';
+
+const mockSuggestions = [
+  {
+    label: 'A',
+    value: 'A',
+  },
+  {
+    label: 'B',
+    value: 'B',
+  },
+  {
+    label: 'C',
+    value: 'C',
+  },
+];
+
+const MyComponent = () => {
+  const [inputValue, updateInputValue] = useState('');
+  const [suggestions, updateSuggestions] = useState([]);
+  const [loading, updateLoading] = useState(false);
+
+  const handleChange = ({ target: { value } }) => {
+    updateInputValue(value);
+  };
+
+  const handleOnSearch = (searchValue: string) => {
+    updateLoading(true);
+
+    window.setTimeout(() => {
+      updateSuggestions(
+        mockSuggestions.filter(name =>
+          name.value.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      );
+
+      updateLoading(false);
+    }, 1500);
+  };
+
+  const handleSelectResult = suggestion => {
+    updateInputValue(suggestion.value);
+    updateSuggestions([]);
+  };
+
+  return (
+    <div style={{ padding: '1rem' }}>
+      <AutoSuggest
+        required
+        className="ai-clm-controls__input"
+        name="accountSearch"
+        value={inputValue}
+        label="Search"
+        placeholder="Type some stuff..."
+        onChange={handleChange}
+        onSearch={handleOnSearch}
+        onSelectResult={handleSelectResult}
+        suggestions={suggestions}
+        loading={loading}
+        searchThreshold={1}
+      />
+    </div>
+  );
+};
+```
+
+## API
+
+### [AutoSuggest Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Form/AutoSuggest/AutoSuggest.tsx)
+
+<Props of={AutoSuggest} />

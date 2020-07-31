@@ -1,0 +1,70 @@
+@import 'scss/main';
+
+.uic-accordion {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &-with-title {
+    + .uic-accordion::before {
+      @include gradient-pseudo-border-top;
+    }
+    &:last-of-type::after {
+      @include gradient-pseudo-border-bottom;
+    }
+  }
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.75rem;
+    border: none;
+    color: $brand-header-contrast-cool;
+    background-color: $color-gray-4;
+    box-shadow: $brand-accessible 0.25rem 0 0 inset;
+    transition: box-shadow 0.2s ease-in-out;
+    &:focus {
+      outline: none;
+    }
+    &-hidden {
+      box-shadow: $brand-accessible 0 0 0 inset;
+    }
+  }
+  &__icon {
+    margin-right: 0.5rem;
+    transition: 0.2s ease-in-out;
+    &-hidden {
+      transform: rotate(-90deg);
+    }
+  }
+  &__title {
+    font-size: 0.75rem;
+  }
+  &__content {
+    position: relative;
+    max-height: 1500px;
+    visibility: visible;
+    // Opening transitions
+    transition: 0.2s ease-in-out;
+    > * {
+      max-height: 1500px;
+      opacity: 1;
+      transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out 0.2s;
+    }
+    &-closing,
+    &-hidden {
+      max-height: 0;
+      // Closing transitions
+      transition: max-height 0.2s ease-in-out 0.3s, padding 0.2s ease-in-out;
+      > * {
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out;
+      }
+    }
+    &-hidden {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+  }
+}

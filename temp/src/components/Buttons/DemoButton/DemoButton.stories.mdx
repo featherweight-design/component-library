@@ -1,0 +1,39 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import DemoButton from './DemoButton.tsx';
+
+<Meta title="Components/Buttons/DemoButton/README" component={DemoButton} />
+
+# DemoButton
+
+---
+
+<Story id="components-buttons-demobutton--default" />
+
+---
+
+Some type of description for the component.
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { Input } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+
+  return (
+    <DemoButton
+      value="Click me!"
+      onClick={() => console.log("I've been clicked!")}
+    />
+  );
+};
+```
+
+## API
+
+### [DemoButton Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Buttons/DemoButton/DemoButton.tsx)
+
+<Props of={DemoButton} />

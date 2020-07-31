@@ -1,0 +1,45 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Input from './Input.tsx';
+
+<Meta title="Components/Form/Input/README" component={Input} />
+
+# Input
+
+---
+
+<Story id="components-form-input--types" />
+
+---
+
+The `Input` component is a near one-for-one clone of that from Salesforce's Lighting Design System in terms of styling. Small updates have been made to simplify the developer experience, as well as minor enhancements that separate Conga's look from that of LDS (e.g. an initial focus, maximum/minimum character limits, etc.).
+
+To completely fulfill LDS `<input>` functionality:
+
+- [ ] `leftIcon`
+- [ ] `icon` property changed to `rightIcon`
+- [ ] `readOnly`
+- [ ] `onClear`
+- [ ] `description`
+- [ ] `tooltip`
+
+## Quick Start ⚡️
+
+```jsx
+import React, { useState } from 'react';
+import { Input } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  const [value, updateValue] = useState('');
+
+  const handleChange = ({ target: { value } }) => updateValue(value);
+
+  return <Input name="input" value={value} onChange={handleChange} />;
+};
+```
+
+## API
+
+### [Input Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Form/Input/Input.tsx)
+
+<Props of={Input} />
