@@ -1,7 +1,7 @@
 import { create } from '@storybook/theming/create';
 
 const featherTheme = create({
-  base: 'dark',
+  base: 'light',
   brandImage: '/fwd-icon_32x32.png',
   brandTitle: 'Featherweight Design Component Library',
   brandUrl:
