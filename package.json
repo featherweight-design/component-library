@@ -25,11 +25,13 @@
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "eslint './src/**/*.{js,ts,tsx}'",
+    "lint": "eslint './src/**/*.{js,ts,tsx, mdx}'",
+    "lint-github-check": "eslint './src/**/*.{js, ts,tsx,mdx}'",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "yarn release -- --prerelease beta --skip.changelog --skip.tag",
     "storybook": "start-storybook -p 6006 -s ./.storybook/public",
     "test": "jest --config jestconfig.json",
+    "upgrade": "yarn upgrade-interactive --latest",
     "version": "yarn run format && git add -A src"
   },
   "peerDependencies": {
@@ -71,6 +73,7 @@
     "css-loader": "^3.3.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-mdx": "^1.7.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
