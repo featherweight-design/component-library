@@ -1,0 +1,83 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import SideDrawer from './SideDrawer.tsx';
+
+<Meta title="Components/SideDrawer/README" component={SideDrawer} />
+
+# SideDrawer
+
+---
+
+<Story id="components-sidedrawer--default" />
+
+---
+
+The `SideDrawer` component is similar in scope and functionality to the `Reveal` component but works particularly well with page layouts (see **"Form Example"**).
+
+In order to be properly hidden from view, the `SideDrawer` _must_ be wrapped in **two** containing elements:
+
+- A larger "grandparent" with `overflow: hidden` (see `.page-container`)
+- A "parent" with `position: relative` (see `.side-drawer-container`)
+
+Other display styles can be based on preference, but the component works particularly well with `display: grid` as seen in the "Quick Start" below.
+
+## Quick Start ⚡️
+
+```scss
+// MyComponent.scss
+
+.page-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: navy,
+  overflow: hidden;
+}
+
+.side-drawer-container {
+  position: relative;
+}
+
+.button-container {
+  display: flex;
+  justify-content: 'center';
+  align-items: 'center';
+  margin: 1rem;
+}
+```
+
+```jsx
+import React from 'react';
+import { Button, SideDrawer } from '@one-conga/ui-components';
+
+import './MyComponent.scss';
+
+const MyComponent = () => {
+  const [isShown, toggleIsShown] = useState(false);
+
+  return (
+    <div className="page-container">
+      <div className="button-container">
+        <Button type="neutral" onClick={() => toggleIsShown(!isShown)}>
+          Toggle SideDrawer
+        </Button>
+      </div>
+
+      <div className="side-drawer-container">
+        <SideDrawer shown={isShown}>
+          <div className="button-container">
+            <Button type="brand" onClick={() => toggleIsShown(false)}>
+              Secret Button!
+            </Button>
+          </div>
+        </SideDrawer>
+      </div>
+    </div>
+  );
+};
+```
+
+## API
+
+### [SideDrawer Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/SideDrawer/SideDrawer.tsx)
+
+<Props of={SideDrawer} />

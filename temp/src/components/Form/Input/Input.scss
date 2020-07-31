@@ -1,0 +1,61 @@
+@import 'scss/main';
+
+.uic-input {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  &__label {
+    color: $color-gray-11;
+    font-size: 0.75rem;
+    margin-bottom: 0.125rem;
+    &-required::before {
+      content: '*';
+      margin-right: 0.125rem;
+      color: $color-background-error;
+    }
+  }
+  &__field {
+    height: 2rem;
+    padding: 0 0.75rem;
+    border: 1px solid $color-gray-5;
+    border-radius: 0.25rem;
+    background-color: $white;
+    &::placeholder {
+      color: $color-gray-8;
+    }
+    &-error {
+      border: 2px solid $color-background-error;
+    }
+    &:disabled {
+      background-color: $color-gray-5;
+      border-color: $color-gray-6;
+      cursor: not-allowed;
+    }
+  }
+  &__loader {
+    position: absolute;
+    top: 1.6rem;
+    right: 0.5rem;
+  }
+  &__icon {
+    position: absolute;
+    top: 0.25rem;
+    right: 0.25rem;
+    color: $color-gray-7;
+    &-lightning {
+      top: 0.45rem;
+      right: 0.45rem;
+    }
+    &-with-label {
+      top: 1.5rem;
+    }
+    &-with-label.uic-input__icon-lightning {
+      top: 1.7rem;
+    }
+  }
+  &__error-message {
+    height: 19px;
+    color: $color-background-error;
+    font-size: 0.75rem;
+  }
+}

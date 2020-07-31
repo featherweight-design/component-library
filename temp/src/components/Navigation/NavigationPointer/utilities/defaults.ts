@@ -1,0 +1,80 @@
+// Prop variables
+const DEFAULT_HEIGHT = 55;
+const DEFAULT_WIDTH = 143;
+const DEFAULT_PADDING = 10;
+const DEFAULT_LOCATION = 'left';
+const DEFAULT_LANGUAGE = {
+  back: 'Back',
+  begin: 'Begin',
+  down: 'down',
+  next: 'Next',
+  of: 'of',
+  return: 'return',
+  up: 'up',
+};
+
+// Measurement calculation variables
+const DEFAULT_TOP = '16px';
+const DEFAULT_SCALE = 1;
+const MINIMUM_DISTANCE_FROM_EDGE = 10;
+const TOP_HEIGHT_DIVISOR = 2;
+const DOCUMENT_WIDTH_PADDING_DIVISOR = 2;
+const COUNTER_HEIGHT = 19;
+const POSITION_INDICATOR_ABOVE = 'above';
+const POSITION_INDICATOR_BELOW = 'below';
+const POSITION_INDICATOR_HEIGHT = 55;
+const DEFAULT_HEIGHT_DIFFERENCE = { top: 0, bottom: 0 };
+
+// Timing variables
+const THREE_SECONDS = 3000;
+const ONE_SECOND = 1000;
+const HALF_SECOND = 500;
+const QUARTER_SECOND = 250;
+const SCROLL_TIMEOUT_MAX = 1500;
+const SCROLL_TIMEOUT_MIN = 300;
+
+// Event listener variables
+const DOWN_CODE = 'ArrowDown';
+const KEYDOWN_TYPE_EVENT = 'keydown';
+const KEYUP_TYPE_EVENT = 'keyup';
+const ENTER_CODE = 'Enter';
+const NUMPAD_ENTER_CODE = 'NumpadEnter';
+const SCROLL_TYPE_EVENT = 'scroll';
+const SHIFT_CODE_LEFT = 'ShiftLeft';
+const SHIFT_CODE_RIGHT = 'ShiftRight';
+const TAB_CODE = 'Tab';
+const UP_CODE = 'ArrowUp';
+
+export {
+  COUNTER_HEIGHT,
+  DEFAULT_HEIGHT,
+  DEFAULT_HEIGHT_DIFFERENCE,
+  DEFAULT_LANGUAGE,
+  DEFAULT_LOCATION,
+  DEFAULT_PADDING,
+  DEFAULT_SCALE,
+  DEFAULT_TOP,
+  DEFAULT_WIDTH,
+  DOCUMENT_WIDTH_PADDING_DIVISOR,
+  THREE_SECONDS,
+  HALF_SECOND,
+  KEYDOWN_TYPE_EVENT,
+  KEYUP_TYPE_EVENT,
+  UP_CODE,
+  MINIMUM_DISTANCE_FROM_EDGE,
+  NUMPAD_ENTER_CODE,
+  ONE_SECOND,
+  POSITION_INDICATOR_ABOVE,
+  POSITION_INDICATOR_BELOW,
+  POSITION_INDICATOR_HEIGHT,
+  QUARTER_SECOND,
+  ENTER_CODE,
+  DOWN_CODE,
+  SCROLL_TIMEOUT_MAX,
+  SCROLL_TIMEOUT_MIN,
+  SCROLL_TYPE_EVENT,
+  SHIFT_CODE_LEFT,
+  SHIFT_CODE_RIGHT,
+  TAB_CODE,
+  TOP_HEIGHT_DIVISOR,
+};

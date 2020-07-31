@@ -1,0 +1,83 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Alert from './Alert.tsx';
+
+<Meta title="Components/Alert/README" component={Alert} />
+
+# Alert
+
+---
+
+<Story id="components-alert--types" />
+
+---
+
+The `Alert` component is a useful way to notify users with important messaging, with the added flexibility of timed or manual closes. Each "type" of `Alert` uses a color and icon from Salesforce's Lightning Design system.
+
+`Alert` components inherently sit within the regular document flow. If you would like them to appear on top of other page elements, wrap your alert in a container and style it with `position: absolute`.
+
+## Quick Start ⚡️
+
+### `Alert` in normal document flow
+
+```jsx
+import { Alert } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+
+  return (
+    <div>
+      <Alert
+        type="success"
+        title="I am a success alert:"
+        description="Nailed it!"
+      />
+
+      <h1>The Alert sits above me</h1>
+    </div>
+  );
+};
+```
+
+### `Alert` on top of sibling elements
+
+```scss
+// MyComponent.scss
+
+.alert-container {
+  position: absolute;
+  width: 100%;
+}
+```
+
+```jsx
+import React from 'react';
+import { Alert } from '@one-conga/ui-components';
+
+import './MyComponent.scss';
+
+const MyComponent = () => {
+  // ...things
+
+  return (
+    <div>
+      <div className="alert-container">
+        <Alert
+          type="success"
+          title="I am a success alert:"
+          description="Nailed it!"
+        />
+      </div>
+
+      <h1>The Alert sits above me</h1>
+    </div>
+  );
+};
+```
+
+## API
+
+### [Alert Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Alert/Alert.tsx)
+
+<Props of={Alert} />

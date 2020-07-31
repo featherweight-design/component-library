@@ -1,0 +1,173 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import NavigationControls from './NavigationControls.tsx';
+
+<Meta
+  title="Components/Navigation/NavigationControls/README"
+  component={NavigationControls}
+/>
+
+# NavigationControls
+
+---
+
+<Story id="components-navigation-navigationcontrols--default" />
+
+---
+
+The `NavigationControls` component is a mobile/tablet compliment to the `NavigationPointer` component, which performs best in a desktop format. While the overall look is very different, the general functionality/purpose is the same besides a few key differences:
+
+- An imbedded `ProgressBar` component can be rendered by passing the `progress` prop
+- Three additional, optional controls can be rendered: `onCancel`, `onComplete`, and `onLogoClick`
+
+This component's layout also changes based on two specific breakpoints which can be customized in the codebase through the `DEFAULT_TABLET_BREAKPOINT` and `DEFAULT_MOBILE_BREAKPOINT` variables in the `default.ts` file:
+
+- **Tablet**: > 660px
+- **Mobile**: 370 - 660px
+- **Small Mobile**: < 370 px
+
+## Quick Start ⚡️
+
+```scss
+// MyComponent.scss
+
+.navigation-controls-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 30rem;
+  margin: 0 auto;
+  border: 1px solid black;
+  &__bounding-element,
+  &__target-element {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  &__bounding-element {
+    width: 100%;
+    padding: 1rem;
+    background-color: #fff;
+    overflow-y: scroll;
+  }
+  &__target-element {
+    justify-content: center;
+    margin-bottom: 1rem;
+    background-color: aquamarine;
+    height: 50rem;
+    width: 30rem;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+```
+
+```jsx
+import React from 'react';
+import { NavigationControls } from '@one-conga/ui-components';
+
+import './MyComponent.scss';
+
+const initialItemsToComplete = [
+  {
+    isComplete: false,
+  },
+  {
+    isComplete: false,
+  },
+  {
+    isComplete: false,
+  },
+  {
+    isComplete: false,
+  },
+];
+
+const MyComponent = () => {
+  const [currentAnchor, updateCurrentAnchor] = useState<string>('');
+  const [itemsToComplete, updateCompleteItems] = useState<ProgressItem[]>(
+    initialItemsToComplete
+  );
+
+  useEffect(() => {
+    // This is purely illustrative to show how the `ProgressBar` component works
+    // You should implement your own strategy for determining "completeness"
+    if (currentAnchor) {
+      const numberComplete = anchorIdCollection.indexOf(currentAnchor);
+
+      const newCompleteItems = itemsToComplete.map(item => ({
+        isComplete: itemsToComplete.indexOf(item) <= numberComplete,
+      }));
+
+      updateCompleteItems(newCompleteItems);
+    }
+  }, [currentAnchor]);
+
+  const handleOnBack = (anchorId: string) => {
+    updateCurrentAnchor(anchorId);
+    console.log(`Move back to anchor ${anchorId}`);
+  };
+
+  const handleOnCancel = () => {
+    console.log('Cancel!');
+  };
+
+  const handleOnComplete = () => {
+    console.log('Complete!');
+  };
+
+  const handleOnNext = (anchorId: string) => {
+    updateCurrentAnchor(anchorId);
+    console.log(`Move next to anchor ${anchorId}`);
+  };
+
+    const renderTargetElement = () => (
+    <div
+      id="target-element"
+      className="navigation-controls-page__target-element"
+    >
+      {anchors.map(anchor => (
+        <div style={documentStyles}>
+          <p id={anchor}>{anchor}</p>
+        </div>
+      ))}
+    </div>
+  );
+
+  const anchor1 = 'anchor-1';
+  const anchor2 = 'anchor-2';
+  const anchor3 = 'anchor-3';
+  const anchor4 = 'anchor-4';
+  const anchorIdCollection = [anchor1, anchor2, anchor3, anchor4];
+
+  const isComplete =
+    !!currentAnchor && !itemsToComplete.find(({ isComplete }) => !isComplete);
+
+  return (
+    <div className="navigation-controls-page">
+      <div className="navigation-controls-page__bounding-element">
+        {renderTargetElement(anchorIdCollection)}
+      </div>
+
+      <NavigationControls
+        anchorId={currentAnchor}
+        anchorIdCollection={anchorIdCollection}
+        onCancel={handleOnCancel}
+        onComplete={handleOnComplete}
+        onBack={handleOnBack}
+        onNext={handleOnNext}
+        isComplete={isComplete}
+        progress={{
+          itemsToComplete,
+        }}
+      />
+    </div>
+  );
+};
+```
+
+## API
+
+### [NavigationControls Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Navigation/NavigationControls/NavigationControls.tsx)
+
+<Props of={NavigationControls} />

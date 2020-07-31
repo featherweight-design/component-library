@@ -1,0 +1,29 @@
+@import 'scss/main';
+
+.uic-reveal {
+  position: relative;
+  display: flex;
+  &__cover,
+  &__drawer {
+    position: absolute;
+    height: 100%;
+    background-color: $white;
+    z-index: 2000;
+  }
+  &__cover {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out, width 0.01s ease-in-out 0.2s;
+    &-shown {
+      width: 0%;
+      opacity: 0;
+    }
+  }
+  &__drawer {
+    width: 100%;
+    transition: width 0.2s ease-in-out;
+    &-shown {
+      width: 0%;
+    }
+  }
+}
