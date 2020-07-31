@@ -1,6 +1,6 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, ReactChild } from 'react';
 
-//* HeaderMenu
+//* HeaderMenu Types
 export interface HeaderMenuOptions {
   [key: string]: HeaderMenuOption;
 }
@@ -39,7 +39,7 @@ export interface IconArgsType {
   color?: string;
 }
 
-//* Navigation
+//* Navigation Types
 export interface CurrentlyViewingTab {
   label: string;
   path: string;
@@ -58,6 +58,16 @@ export interface CurrentlyViewing {
   };
 }
 
+//* Reveal Types
+export interface RevealProps {
+  children: ReactChild | ReactChild[];
+  isShown: boolean;
+  /**
+   * Applied to the `div` container
+   */
+  className?: string;
+}
+
 //* Select Types
 export interface SelectOptionType {
   value: any /*eslint-disable-line @typescript-eslint/no-explicit-any*/;
@@ -69,7 +79,7 @@ export interface OtherOptionType {
   value: string;
 }
 
-//* SideNavigation
+//* SideNavigation Types
 export interface SideNavigationOption {
   label: string;
   icon: string;
