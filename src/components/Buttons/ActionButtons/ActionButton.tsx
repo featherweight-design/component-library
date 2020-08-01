@@ -5,7 +5,6 @@ import { ActionButtonProps } from 'types';
 import Icon from 'components/Icon/Icon';
 import CircleLoader from 'components/Loaders/CircleLoader/CircleLoader';
 
-const DEFAULT_DESIGN_SYSTEM = 'lightning';
 const DEFAULT_SIZE = 'medium';
 const DEFAULT_TYPE = 'primary';
 
@@ -22,7 +21,6 @@ const ActionButton: FC<ActionButtonProps> = ({
   onClick,
   className,
   dataId,
-  designSystem = DEFAULT_DESIGN_SYSTEM,
   disabled = false,
   label,
   id,
@@ -69,7 +67,6 @@ const ActionButton: FC<ActionButtonProps> = ({
         <Icon
           className="fd-action-button__icon"
           icon={icon}
-          designSystem={designSystem}
           size={SIZES_ENUM[size]}
         />
       )}
@@ -80,7 +77,6 @@ const ActionButton: FC<ActionButtonProps> = ({
 );
 
 ActionButton.defaultProps = {
-  designSystem: DEFAULT_DESIGN_SYSTEM,
   disabled: false,
   type: DEFAULT_TYPE,
   loading: false,
