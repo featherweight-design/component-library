@@ -1,0 +1,35 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import ActionButton from './ActionButton.tsx';
+
+<Meta title="Components/Buttons/ActionButton/README" component={ActionButton} />
+
+# ActionButton
+
+---
+
+<Story id="components-buttons-actionbutton--default" />
+
+---
+
+The `ActionButton` component is a more mobile friendly button with a larger footprint than the `Button` component. Its primary use case is for specific call to actions (e.g. "complete", "cancel", "add", etc.).
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { ActionButton } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+  const handleOnClick = () => console.log('Click!');
+
+  return <ActionButton icon="check" onClick={handleOnClick} />;
+};
+```
+
+## API
+
+### [ActionButton Component](https://github.com/featherweight-design/component-library/src/components/Buttons/ActionButton/ActionButton.tsx)
+
+<Props of={ActionButton} />
