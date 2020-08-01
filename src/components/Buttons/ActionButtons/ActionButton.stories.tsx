@@ -2,7 +2,7 @@ import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import ActionButton from './ActionButton';
-import fwdLogo from 'styles/assets/Logo-Mock-1-Square.jpg';
+import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
 
 export default {
   title: 'Components/Buttons/ActionButton',
