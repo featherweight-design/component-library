@@ -1,5 +1,41 @@
 import { ChangeEvent, ReactChild } from 'react';
 
+//* ActionButton Types
+export interface ActionButtonProps {
+  onClick: () => void;
+  /**
+   * Applied to the outer container of the button
+   */
+  className?: string;
+  /**
+   * Useful for Pendo tracking
+   */
+  dataId?: string;
+  disabled?: boolean;
+  /**
+   * Text to appear beneath the button
+   */
+  label?: string;
+  loading?: boolean;
+  /**
+   * Icon to be rendered inside of the action button
+   */
+  icon?: string;
+  id?: string;
+  image?: string;
+  size?: ActionButtonSize;
+  type?: ActionButtonType;
+}
+
+export type ActionButtonSize =
+  | 'x-small'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'x-large';
+
+export type ActionButtonType = 'primary' | 'secondary';
+
 //* HeaderMenu Types
 export interface HeaderMenuOptions {
   [key: string]: HeaderMenuOption;
