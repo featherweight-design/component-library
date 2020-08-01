@@ -1,0 +1,110 @@
+@import '../colors';
+@import '../mixins';
+
+.fd-action-button {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &-primary {
+    color: $brand-color;
+  }
+  &-secondary {
+    color: $white;
+  }
+  &__button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 100%;
+    opacity: 1;
+    overflow: hidden;
+    transition: 0.1s ease-in-out;
+    &-x-small {
+      height: 2.25rem;
+      width: 2.25rem;
+    }
+    &-small {
+      height: 2.625rem;
+      width: 2.625rem;
+    }
+    &-medium {
+      height: 3rem;
+      width: 3rem;
+    }
+    &-large {
+      height: 3.375rem;
+      width: 3.375rem;
+    }
+    &-x-large {
+      height: 3.75rem;
+      width: 3.75rem;
+    }
+    &-primary {
+      background-color: $brand-color;
+      color: $white;
+      &:hover {
+        background-color: $brand-hover;
+      }
+      &:active {
+        background-color: $brand-active;
+      }
+    }
+    &-secondary {
+      background-color: $white;
+      color: $brand-color;
+      &:hover {
+        background-color: $gray-03;
+      }
+      &:active {
+        background-color: $gray-04;
+      }
+    }
+    &-loading {
+      cursor: not-allowed;
+    }
+    &-loading.fd-action-button__button-primary,
+    &:disabled.fd-action-button__button-primary {
+      &:hover,
+      &:active {
+        background-color: $brand-color;
+      }
+    }
+    &-loading.fd-action-button__button-secondary,
+    &:disabled.fd-action-button__button-secondary {
+      &:hover,
+      &:active {
+        background-color: $white;
+      }
+    }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      + .fd-action-button__label {
+        opacity: 0.4;
+      }
+    }
+    &:focus {
+      @include focus-styles();
+    }
+  }
+  &__loader-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  &__label {
+    font-size: 0.75rem;
+    opacity: 1;
+    white-space: nowrap;
+  }
+}
