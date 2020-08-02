@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
-import { ProgressItem, ProgressBarSizes, SelectOptionType } from 'types';
+import { ProgressItem, SelectOptionType } from 'types';
 import { SIZES_ENUM, DEFAULT_SIZE } from './utilities/defaults';
 import ProgressBar from './ProgressBar';
 import { Button } from 'components/Buttons';
