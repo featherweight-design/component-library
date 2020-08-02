@@ -1,0 +1,51 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import ProgressBar from './ProgressBar.tsx';
+
+<Meta title="Components/Progress/ProgressBar/README" component={ProgressBar} />
+
+# ProgressBar
+
+---
+
+<Story id="components-progress-progressbar--default" />
+
+---
+
+The `ProgressBar` component is a simple way to communicate a users progress for a given task. This component's width is determined by it's parent element and will fill 100% of that parent's width.
+
+## Quick Start ⚡️
+
+```scss
+// MyComponent.scss
+
+.progress-container {
+  width: 40rem;
+  padding: 1rem;
+}
+```
+
+```jsx
+import React from 'react';
+import { ProgressBar } from '@f-design/component-library';
+
+import './MyComponent.scss';
+
+const MyComponent = () => {
+  // ...things
+
+  return (
+    <div className="progress-container">
+      <ProgressBar
+        itemsToComplete={[{ isComplete: true }, { isComplete: false }]}
+      />
+    </div>
+  );
+};
+```
+
+## API
+
+### [ProgressBar Component](https://github.com/featherweight-design/component-library/src/components/Progress/ProgressBar/ProgressBar.tsx)
+
+<Props of={ProgressBar} />
