@@ -1,4 +1,4 @@
-import Button from './components/Button/Button';
+import { ActionButton, Button } from './components/Buttons';
 import Checkbox from './components/Checkbox/Checkbox';
 import ExpansionPanel from './components/ExpansionPanel/ExpansionPanel';
 import Input from './components/Input/Input';
@@ -9,6 +9,7 @@ import { CircleLoader } from './components/Loaders';
 import { HeaderMenu, SideNavigation } from './components/Navigation';
 
 export {
+  ActionButton,
   Button,
   Checkbox,
   CircleLoader,
