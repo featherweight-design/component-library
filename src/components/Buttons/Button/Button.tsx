@@ -1,7 +1,7 @@
 import React, { FunctionComponent, ReactChild } from 'react';
 import classnames from 'classnames';
 
-import { CircleLoader } from '../Loaders';
+import { CircleLoader } from 'components/Loaders';
 
 type ButtonProps = {
   children: string | number | ReactChild | ReactChild[];
