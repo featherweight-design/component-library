@@ -138,6 +138,19 @@ export interface RevealProps {
 }
 
 //* Select Types
+export interface SelectProps {
+  onSelect: (option: SelectOptionType) => void;
+  selected?: SelectOptionType;
+  options?: SelectOptionType[];
+  id?: string;
+  label?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  multiple?: boolean;
+  className?: string;
+  errorMessage?: string;
+}
+
 export interface SelectOptionType {
   value: any /*eslint-disable-line @typescript-eslint/no-explicit-any*/;
   label: string;

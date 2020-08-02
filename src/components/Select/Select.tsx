@@ -1,20 +1,7 @@
 import React, { FunctionComponent, useState } from 'react';
 import classnames from 'classnames';
 
-import { SelectOptionType } from '../../types';
-
-type SelectProps = {
-  onSelect: (option: SelectOptionType) => void;
-  selected?: SelectOptionType;
-  options?: SelectOptionType[];
-  id?: string;
-  label?: string;
-  placeholder?: string;
-  disabled?: boolean;
-  multiple?: boolean;
-  className?: string;
-  errorMessage?: string;
-};
+import { SelectProps } from 'types';
 
 const Select: FunctionComponent<SelectProps> = ({
   selected,
