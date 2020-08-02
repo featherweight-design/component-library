@@ -9,7 +9,6 @@ import {
   SIZES_ENUM,
 } from './utilities/defaults';
 import Icon from 'components/Icon/Icon';
-import './ProgressBar.scss';
 
 const ProgressBar: FC<ProgressBarProps> = ({
   itemsToComplete,
