@@ -94,6 +94,35 @@ export interface CurrentlyViewing {
   };
 }
 
+//* ProgressBar Types
+export interface ProgressBarProps {
+  itemsToComplete: ProgressItem[];
+  className?: string;
+  color?: string;
+  isRounded?: boolean;
+  language?: ProgressBarLanguage;
+  shouldShowCompleteIcon?: boolean;
+  shouldShowCountComplete?: boolean;
+  shouldShowPercentageComplete?: boolean;
+  size?: ProgressBarSizes;
+}
+
+export interface ProgressItem {
+  isComplete: boolean;
+}
+
+export interface ProgressBarLanguage {
+  complete: string;
+  of: string;
+}
+
+export type ProgressBarSizes =
+  | 'x-small'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'x-large';
+
 //* Reveal Types
 export interface RevealProps {
   children: ReactChild | ReactChild[];
