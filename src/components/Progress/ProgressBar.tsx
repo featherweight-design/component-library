@@ -65,7 +65,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
               'fd-progress-bar__completion-icon': true,
               'fd-progress-bar__completion-icon-hidden': !areAllItemsComplete,
             })}
-            icon="success"
+            icon="check_circle"
             color={color}
             size="1rem"
           />
