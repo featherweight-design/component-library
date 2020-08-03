@@ -14,7 +14,7 @@
   &__fill-container {
     width: 100%;
     border-radius: 1px;
-    background-color: $color-gray-5;
+    background-color: $gray-05;
     transition: background-color 0.2s ease-in-out;
     &-rounded {
       border-radius: 0.25rem;
@@ -33,10 +33,16 @@
     justify-content: space-between;
     margin-top: 1px;
     padding-right: 1.5rem;
-    color: $color-gray-10;
+    color: $gray-10;
     font-size: 11px;
     font-style: italic;
     font-weight: 300;
+  }
+  &__description-left, &__description-right {
+    margin: 0;
+  }
+  &__description-right {
+    padding-right: 0.125rem;
   }
   &__completion-icon {
     margin-left: 0.5rem;
