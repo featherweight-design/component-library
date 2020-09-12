@@ -1,11 +1,7 @@
-import React, { FC, ReactChild } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import { IconProps } from 'types';
-
-type UtilityIcon = {
-  [key: string]: ReactChild;
-};
 
 const Icon: FC<IconProps> = ({
   className,
