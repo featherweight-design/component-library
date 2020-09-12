@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "0.1.46",
+  "version": "0.1.47-beta.0",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
