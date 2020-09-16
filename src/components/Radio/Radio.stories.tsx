@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { storiesOf } from '@storybook/react';
 
-import Button from '../Button/Button';
+import { Button } from 'components/Buttons';
 import Radio from './Radio';
 
 storiesOf('Radio', module)
