@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Reveal from './Reveal';
-import Button from 'components/Button/Button';
+import { Button } from 'components/Buttons';
 
 export default {
   title: 'Components/Reveal',
