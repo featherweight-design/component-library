@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.52](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.51...@f-design/component-library@0.1.52) (2020-09-19)
+
+
+### Features
+
+* Add ProgressBar component ([885f861](https://github.com/featherweight-design/component-library/commit/885f8619b94a035d561041ad425605538f033a30))
+
 ### [0.1.51](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.50...@f-design/component-library@0.1.51) (2020-09-16)
 
 ### [0.1.50](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.49...@f-design/component-library@0.1.50) (2020-09-13)
