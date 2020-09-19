@@ -2,6 +2,7 @@ import { ActionButton, Button } from './components/Buttons';
 import Checkbox from './components/Checkbox/Checkbox';
 import ExpansionPanel from './components/ExpansionPanel/ExpansionPanel';
 import Input from './components/Input/Input';
+import ProgressBar from './components/ProgressBar/ProgressBar';
 import Radio from './components/Radio/Radio';
 import Select from './components/Select/Select';
 import TextArea from './components/TextArea/TextArea';
@@ -16,6 +17,7 @@ export {
   ExpansionPanel,
   Input,
   HeaderMenu,
+  ProgressBar,
   Radio,
   Select,
   SideNavigation,
