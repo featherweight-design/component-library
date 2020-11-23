@@ -1,6 +1,6 @@
+import Accordion from './components/Accordion/Accordion';
 import { ActionButton, Button } from './components/Buttons';
 import Checkbox from './components/Checkbox/Checkbox';
-import ExpansionPanel from './components/ExpansionPanel/ExpansionPanel';
 import Input from './components/Input/Input';
 import ProgressBar from './components/ProgressBar/ProgressBar';
 import Radio from './components/Radio/Radio';
@@ -12,9 +12,9 @@ import { HeaderMenu, SideNavigation } from './components/Navigation';
 export {
   ActionButton,
   Button,
+  Accordion,
   Checkbox,
   CircleLoader,
-  ExpansionPanel,
   Input,
   HeaderMenu,
   ProgressBar,
