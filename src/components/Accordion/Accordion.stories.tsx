@@ -19,19 +19,19 @@ export const Default = (): JSX.Element => (
   <Accordion title="Contacts">
     <div style={{ display: 'flex', flexDirection: 'column' }}>
       <span style={listItemStyles}>
-        <Icon designSystem="material" icon="person" /> Andre
+        <Icon icon="person" /> Andre
       </span>
       <span style={listItemStyles}>
-        <Icon designSystem="material" icon="person" /> José
+        <Icon icon="person" /> José
       </span>
       <span style={listItemStyles}>
-        <Icon designSystem="material" icon="person" /> Jane
+        <Icon icon="person" /> Jane
       </span>
       <span style={listItemStyles}>
-        <Icon designSystem="material" icon="person" /> Ariana
+        <Icon icon="person" /> Ariana
       </span>
       <span style={{ ...listItemStyles, borderBottomColor: 'transparent' }}>
-        <Icon designSystem="material" icon="person" /> Darth Vader
+        <Icon icon="person" /> Darth Vader
       </span>
     </div>
   </Accordion>
