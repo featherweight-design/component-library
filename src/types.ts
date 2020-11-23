@@ -1,5 +1,34 @@
 import { ChangeEvent, ReactChild } from 'react';
 
+//* Accordion Types
+export interface AccordionProps {
+  children: ReactChild | ReactChild[];
+  /**
+   * Applied to parent container
+   */
+  className?: string;
+  /**
+   * Applied to content container
+   */
+  contentClassName?: string;
+  /**
+   * Useful for Pendo tracking
+   */
+  dataId?: string;
+  /**
+   * Developer control over expansion
+   */
+  expanded?: boolean;
+  /**
+   * Adjust height by given value; should be in CSS approved unit of measure (e.g. 'px', 'em', 'rem', etc.)
+   */
+  maxHeight?: string;
+  /**
+   * Content grouping label
+   */
+  title?: string;
+}
+
 //* ActionButton Types
 export interface ActionButtonProps {
   onClick: () => void;
