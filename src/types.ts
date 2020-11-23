@@ -12,10 +12,6 @@ export interface AccordionProps {
    */
   contentClassName?: string;
   /**
-   * Useful for Pendo tracking
-   */
-  dataId?: string;
-  /**
    * Developer control over expansion
    */
   expanded?: boolean;
