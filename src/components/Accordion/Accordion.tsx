@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 import { AccordionProps } from 'types';
 import Icon from 'components/Icon/Icon';
-import './Accordion.scss';
 
 const Accordion: FC<AccordionProps> = ({
   expanded,
@@ -12,7 +11,6 @@ const Accordion: FC<AccordionProps> = ({
   contentClassName,
   children,
   maxHeight,
-  dataId,
 }: AccordionProps) => {
   const [isExpanded, setIsExpanded] = useState(expanded);
   const [isClosing, setIsClosing] = useState(false);
@@ -20,11 +18,11 @@ const Accordion: FC<AccordionProps> = ({
 
   useEffect(() => {
     if (expanded !== isExpanded) {
-      handleToggleAccordion();
+      handleToggleExpansion();
     }
   }, [expanded]);
 
-  const handleToggleAccordion = () => {
+  const handleToggleExpansion = (): void => {
     if (isExpanded) {
       setIsClosing(true);
       setTimeout(() => {
@@ -34,7 +32,6 @@ const Accordion: FC<AccordionProps> = ({
     } else {
       setIsHidden(false);
     }
-
     setIsExpanded(!isExpanded);
   };
 
@@ -49,28 +46,26 @@ const Accordion: FC<AccordionProps> = ({
     >
       {title && (
         <button
-          data-id={dataId}
           className={classnames({
             'fd-accordion__button': true,
             'fd-accordion__button-hidden': !isExpanded,
           })}
           aria-controls="accordion-details-01"
           aria-expanded={isExpanded}
-          onClick={handleToggleAccordion}
+          onClick={handleToggleExpansion}
         >
           <Icon
             className={classnames({
               'fd-accordion__icon': true,
               'fd-accordion__icon-hidden': !isExpanded,
             })}
-            icon="chevronDown"
+            icon="keyboard_arrow_down"
             size="0.875rem"
           />
-
-          <span className="fd-accordion__title">{title}</span>
+          ​<span className="fd-accordion__title">{title}</span>
         </button>
       )}
-
+      ​
       <div
         aria-hidden={isExpanded}
         className={classnames({
@@ -90,5 +85,4 @@ Accordion.defaultProps = {
   expanded: false,
   maxHeight: 'unset',
 };
-
 export default Accordion;

@@ -6,10 +6,10 @@
   display: flex;
   flex-direction: column;
   &-with-title {
-    + .uic-accordion::before {
+    + .fd-accordion::before {
       @include gradient-pseudo-border-top;
     }
-    &:last-of-type::after {
+    &:last-child::after {
       @include gradient-pseudo-border-bottom;
     }
   }
@@ -19,15 +19,15 @@
     justify-content: flex-start;
     padding: 0.75rem;
     border: none;
-    color: $brand-header-contrast-cool;
-    background-color: $color-gray-4;
-    box-shadow: $brand-accessible 0.25rem 0 0 inset;
+    color: $cool-gray-19;
+    background-color: $gray-02;
+    box-shadow: $brand-color 0.25rem 0 0 inset;
     transition: box-shadow 0.2s ease-in-out;
     &:focus {
       outline: none;
     }
     &-hidden {
-      box-shadow: $brand-accessible 0 0 0 inset;
+      box-shadow: $brand-color 0 0 0 inset;
     }
   }
   &__icon {
@@ -38,10 +38,11 @@
     }
   }
   &__title {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   &__content {
     position: relative;
+    padding-bottom: 0.5rem;
     max-height: 1500px;
     visibility: visible;
     // Opening transitions
@@ -54,8 +55,9 @@
     &-closing,
     &-hidden {
       max-height: 0;
+      padding-bottom: 0;
       // Closing transitions
-      transition: max-height 0.2s ease-in-out 0.3s, padding 0.2s ease-in-out;
+      transition: max-height 0.2s ease-in-out 0.1s, padding 0.2s ease-in-out;
       > * {
         max-height: 0;
         opacity: 0;

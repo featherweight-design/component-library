@@ -11,7 +11,7 @@ import {
   SideNavigationOption,
   SideNavigationSubOption,
 } from 'types';
-import ExpansionPanel from '../../ExpansionPanel/ExpansionPanel';
+import Accordion from '../../Accordion/Accordion';
 
 type SideNavigationProps = {
   menuOptions: SideNavigationOption[];
@@ -303,9 +303,9 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
       [`${baseClassName}__option-icon-hidden`]: isCollapsed,
     });
 
-    const optionExpansionPanelClassNames = classnames({
-      [`${baseClassName}__option-expansion-panel`]: true,
-      [`${baseClassName}__option-expansion-panel-${option}`]: true,
+    const optionAccordionClassNames = classnames({
+      [`${baseClassName}__option-accordion`]: true,
+      [`${baseClassName}__option-accordion-${option}`]: true,
     });
 
     return (
@@ -342,14 +342,14 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
         </div>
 
         {subOptions && (
-          <ExpansionPanel
-            className={optionExpansionPanelClassNames}
+          <Accordion
+            className={optionAccordionClassNames}
             expanded={
               isCollapsed ? false : (isOptionOpen && true) || isSelected
             }
           >
             {renderSubOptions(subOptions)}
-          </ExpansionPanel>
+          </Accordion>
         )}
       </div>
     );
