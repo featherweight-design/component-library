@@ -30,7 +30,7 @@ export const Default = (): JSX.Element => (
       <span style={listItemStyles}>
         <Icon designSystem="material" icon="person" /> Ariana
       </span>
-      <span style={listItemStyles}>
+      <span style={{ ...listItemStyles, borderBottomColor: 'transparent' }}>
         <Icon designSystem="material" icon="person" /> Darth Vader
       </span>
     </div>
