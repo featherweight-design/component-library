@@ -1,0 +1,37 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Accordion from './Accordion.tsx';
+
+<Meta title="Components/Accordion/README" component={Accordion} />
+
+# Accordion
+
+---
+
+<Story id="components-accordion--default" />
+
+---
+
+The `Accordion` component can be used in two specific ways:
+
+1. **Default**: Hiding content by some specific grouping ("Contacts", "Emails", etc.) when the `title` prop exists
+2. **With no title**: Contextually hiding content that will be revealed via a met condition (alert messages, conditionally rendered inputs, etc.) when the `title` prop is omitted
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { Accordion } from '@one-conga/ui-components';
+
+const MyComponent = () => {
+  // ...things
+
+  return <Accordion title="Grouping">{/*children*/}</Accordion>;
+};
+```
+
+## API
+
+### [Accordion Component](https://github.com/getconga/ai-analyze/blob/develop/Apps/ui-components/src/components/Accordion/Accordion.tsx)
+
+<Props of={Accordion} />
