@@ -64,7 +64,6 @@ const Accordion: FC<AccordionProps> = ({
               'fd-accordion__icon-hidden': !isExpanded,
             })}
             icon="chevronDown"
-            title="fd-accordion-icon"
             size="0.875rem"
           />
 
