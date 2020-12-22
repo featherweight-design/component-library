@@ -61,6 +61,28 @@ export type ActionButtonSize =
 
 export type ActionButtonType = 'primary' | 'secondary';
 
+//* Button Types
+
+export type ButtonProps = {
+  children: string | number | ReactChild | ReactChild[];
+  onClick: () => void;
+  id?: string;
+  variant?: ButtonVariant;
+  name?: string;
+  className?: string;
+  disabled?: boolean;
+  loading?: boolean;
+  type?: string;
+};
+
+export type ButtonVariant =
+  | 'default-destructive'
+  | 'brand'
+  | 'neutral'
+  | 'outline'
+  | 'destructive'
+  | 'outline-destructive';
+
 //* HeaderMenu Types
 export interface HeaderMenuOptions {
   [key: string]: HeaderMenuOption;
