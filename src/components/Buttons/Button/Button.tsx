@@ -1,28 +1,10 @@
-import React, { FunctionComponent, ReactChild } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import { CircleLoader } from 'components/Loaders';
+import { ButtonProps } from 'types';
 
-type ButtonProps = {
-  children: string | number | ReactChild | ReactChild[];
-  onClick: () => void;
-  id?: string;
-  type?: ButtonType;
-  name?: string;
-  className?: string;
-  disabled?: boolean;
-  loading?: boolean;
-};
-
-type ButtonType =
-  | 'default-destructive'
-  | 'brand'
-  | 'neutral'
-  | 'outline'
-  | 'destructive'
-  | 'outline-destructive';
-
-const Button: FunctionComponent<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   children,
   onClick,
   id,
