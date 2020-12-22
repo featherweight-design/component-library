@@ -10,6 +10,12 @@ export default {
 
 const mockClick = (): void => console.log("I've been clicked!");
 
+export const Default = (): JSX.Element => (
+  <Button onClick={mockClick} type="brand">
+    Click Me!
+  </Button>
+);
+
 export const Types = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick}>Default</Button>
