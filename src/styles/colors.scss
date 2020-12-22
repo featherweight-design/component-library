@@ -13,6 +13,15 @@ $brand-xx-dark: #0E2C3C !default;
 $brand-black: #050F14 !default;
 $brand-focus-outline: #3178C4 !default;
 
+// GLASS BRAND
+$glass-blur: 7px;
+$glass-opacity: 0.25 !default;
+$glass-main: rgba(255, 255, 255, $glass-opacity) !default;
+$glass-brand-color: rgba(48, 159, 217, $glass-opacity) !default;
+$glass-brand-hover: rgba(44, 145, 198, $glass-opacity) !default;
+$glass-brand-active: rgba(40, 131, 178, $glass-opacity) !default;
+$glass-shadow: rgba(31, 38, 135, 0.37) !default;
+
 // GRAYS
 $black: #000;
 $gray-01: #F9F9F9;
