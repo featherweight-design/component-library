@@ -1,0 +1,35 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Button from './Button.tsx';
+
+<Meta title="Components/Buttons/Button/README" component={Button} />
+
+# Button
+
+---
+
+<Story id="components-buttons-button--default" />
+
+---
+
+The `Button` component is a basic button compon.
+
+## Quick Start ⚡️
+
+```jsx
+import React from 'react';
+import { Button } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const handleOnClick = () => console.log('Click!');
+
+  return <Button icon="check" onClick={handleOnClick} />;
+};
+```
+
+## API
+
+### [Button Component](https://github.com/featherweight-design/component-library/src/components/Buttons/Button/Button.tsx)
+
+<Props of={Button} />
