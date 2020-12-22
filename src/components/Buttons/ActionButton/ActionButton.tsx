@@ -6,7 +6,7 @@ import Icon from 'components/Icon/Icon';
 import CircleLoader from 'components/Loaders/CircleLoader/CircleLoader';
 
 const DEFAULT_SIZE = 'medium';
-const DEFAULT_TYPE = 'primary';
+const DEFAULT_VARIANT = 'primary';
 
 const SIZES_ENUM = {
   'x-small': '1.125rem',
@@ -20,28 +20,28 @@ const ActionButton: FC<ActionButtonProps> = ({
   icon,
   onClick,
   className,
-  dataId,
   disabled = false,
   label,
   id,
   image,
   loading = false,
   size = DEFAULT_SIZE,
-  type = DEFAULT_TYPE,
+  variant = DEFAULT_VARIANT,
+  type,
 }: ActionButtonProps): ReactElement => (
   <div
     id={id}
     className={classnames({
       'fd-action-button': true,
-      [`fd-action-button-${type}`]: true,
+      [`fd-action-button-${variant}`]: true,
       [className as string]: className,
     })}
   >
     <button
-      data-id={dataId}
+      type={type}
       className={classnames({
         'fd-action-button__button': true,
-        [`fd-action-button__button-${type}`]: true,
+        [`fd-action-button__button-${variant}`]: true,
         [`fd-action-button__button-${size}`]: true,
         'fd-action-button__button-loading': loading,
         'fd-action-button__button-has-image': image,
@@ -78,9 +78,9 @@ const ActionButton: FC<ActionButtonProps> = ({
 
 ActionButton.defaultProps = {
   disabled: false,
-  type: DEFAULT_TYPE,
   loading: false,
   size: DEFAULT_SIZE,
+  variant: DEFAULT_VARIANT,
 };
 
 export default ActionButton;

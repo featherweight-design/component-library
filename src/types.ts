@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactChild } from 'react';
+import { ChangeEvent, ReactChild, ButtonHTMLAttributes } from 'react';
 
 //* Accordion Types
 export interface AccordionProps {
@@ -26,16 +26,13 @@ export interface AccordionProps {
 }
 
 //* ActionButton Types
-export interface ActionButtonProps {
+export interface ActionButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   /**
    * Applied to the outer container of the button
    */
   className?: string;
-  /**
-   * Useful for Pendo tracking
-   */
-  dataId?: string;
   disabled?: boolean;
   /**
    * Text to appear beneath the button
@@ -49,7 +46,7 @@ export interface ActionButtonProps {
   id?: string;
   image?: string;
   size?: ActionButtonSize;
-  type?: ActionButtonType;
+  variant?: ActionButtonVariant;
 }
 
 export type ActionButtonSize =
@@ -59,11 +56,11 @@ export type ActionButtonSize =
   | 'large'
   | 'x-large';
 
-export type ActionButtonType = 'primary' | 'secondary';
+export type ActionButtonVariant = 'primary' | 'secondary';
 
 //* Button Types
 
-export type ButtonProps = {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: string | number | ReactChild | ReactChild[];
   onClick: () => void;
   id?: string;
@@ -72,8 +69,7 @@ export type ButtonProps = {
   className?: string;
   disabled?: boolean;
   loading?: boolean;
-  type?: string;
-};
+}
 
 export type ButtonVariant =
   | 'default-destructive'

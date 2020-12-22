@@ -8,20 +8,22 @@ const Button: FC<ButtonProps> = ({
   children,
   onClick,
   id,
-  type,
+  variant,
   name,
   className,
   disabled,
   loading,
+  type,
 }: ButtonProps) => (
   <button
     id={id}
     name={name}
+    type={type}
     onClick={onClick}
     disabled={disabled}
     className={classnames({
       'fd-button': true,
-      [`fd-button-${type}`]: type,
+      [`fd-button-${variant}`]: variant,
       'fd-button-loading': loading,
       [className as string]: className,
     })}
