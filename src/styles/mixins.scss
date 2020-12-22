@@ -10,6 +10,20 @@
   box-shadow: 0 0 3px 2px $destructive-focus-outline;
 }
 
+@mixin glass-focus-styles {
+  outline: none;
+  box-shadow: 0 0.5rem 1.5rem 0 $glass-shadow;
+  border-color: rgba( 255, 255, 255, 0.5);
+}
+
+@mixin glass-base-styles {
+  box-shadow: 0 0.5rem 2rem 0 $glass-shadow;
+  backdrop-filter: blur($glass-blur);
+  -webkit-backdrop-filter: blur($glass-blur);
+  border: 1px solid rgba( 255, 255, 255, 0.18);
+  border-radius: 0.625rem;
+}
+
 @mixin input-base-styles {
   height: 2.5rem;
   padding: 0.5rem;
