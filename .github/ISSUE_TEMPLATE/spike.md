@@ -2,7 +2,7 @@
 name: SPIKE
 about: Research SPIKE for a new technology, software, bell, and/or whistle
 title: ''
-labels: "\U0001F913 research"
+labels: "\U0001F913 Research"
 assignees: ''
 
 ---
