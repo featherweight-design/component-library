@@ -11,7 +11,7 @@ export default {
 const mockClick = (): void => console.log("I've been clicked!");
 
 export const Default = (): JSX.Element => (
-  <Button onClick={mockClick} type="brand">
+  <Button onClick={mockClick} variant="brand">
     Click Me!
   </Button>
 );
@@ -19,23 +19,29 @@ export const Default = (): JSX.Element => (
 export const Types = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick}>Default</Button>
-    <Button onClick={mockClick} type="default-destructive">
+    <Button onClick={mockClick} variant="default-destructive">
       Default Destructive
     </Button>
-    <Button onClick={mockClick} type="brand">
+    <Button onClick={mockClick} variant="brand">
       Brand
     </Button>
-    <Button onClick={mockClick} type="neutral">
+    <Button onClick={mockClick} variant="neutral">
       Neutral
     </Button>
-    <Button onClick={mockClick} type="outline">
+    <Button onClick={mockClick} variant="outline">
       Outline
     </Button>
-    <Button onClick={mockClick} type="destructive">
+    <Button onClick={mockClick} variant="destructive">
       Destructive
     </Button>
-    <Button onClick={mockClick} type="outline-destructive">
+    <Button onClick={mockClick} variant="outline-destructive">
       Outline Destructive
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="round">
+      Round
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="square">
+      Square
     </Button>
   </div>
 );
@@ -45,23 +51,29 @@ export const TypesDisabled = (): JSX.Element => (
     <Button onClick={mockClick} disabled>
       Default
     </Button>
-    <Button onClick={mockClick} type="default-destructive" disabled>
+    <Button onClick={mockClick} variant="default-destructive" disabled>
       Default Destructive
     </Button>
-    <Button onClick={mockClick} type="brand" disabled>
+    <Button onClick={mockClick} variant="brand" disabled>
       Brand
     </Button>
-    <Button onClick={mockClick} type="neutral" disabled>
+    <Button onClick={mockClick} variant="neutral" disabled>
       Neutral
     </Button>
-    <Button onClick={mockClick} type="outline" disabled>
+    <Button onClick={mockClick} variant="outline" disabled>
       Outline
     </Button>
-    <Button onClick={mockClick} type="destructive" disabled>
+    <Button onClick={mockClick} variant="destructive" disabled>
       Destructive
     </Button>
-    <Button onClick={mockClick} type="outline-destructive" disabled>
+    <Button onClick={mockClick} variant="outline-destructive" disabled>
       Outline Destructive
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="round" disabled>
+      Round
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="square" disabled>
+      Square
     </Button>
   </div>
 );
@@ -71,23 +83,29 @@ export const TypesLoading = (): JSX.Element => (
     <Button onClick={mockClick} loading>
       Default
     </Button>
-    <Button onClick={mockClick} type="default-destructive" loading>
+    <Button onClick={mockClick} variant="default-destructive" loading>
       Default Destructive
     </Button>
-    <Button onClick={mockClick} type="brand" loading>
+    <Button onClick={mockClick} variant="brand" loading>
       Brand
     </Button>
-    <Button onClick={mockClick} type="neutral" loading>
+    <Button onClick={mockClick} variant="neutral" loading>
       Neutral
     </Button>
-    <Button onClick={mockClick} type="outline" loading>
+    <Button onClick={mockClick} variant="outline" loading>
       Outline
     </Button>
-    <Button onClick={mockClick} type="destructive" loading>
+    <Button onClick={mockClick} variant="destructive" loading>
       Destructive
     </Button>
-    <Button onClick={mockClick} type="outline-destructive" loading>
+    <Button onClick={mockClick} variant="outline-destructive" loading>
       Outline Destructive
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="round" loading>
+      Round
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="square" loading>
+      Square
     </Button>
   </div>
 );
