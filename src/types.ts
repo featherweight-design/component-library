@@ -78,7 +78,8 @@ export type ButtonVariant =
   | 'neutral'
   | 'outline'
   | 'destructive'
-  | 'outline-destructive';
+  | 'outline-destructive'
+  | 'glass';
 
 export type ButtonShape = 'round' | 'square' | undefined;
 
