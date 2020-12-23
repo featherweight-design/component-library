@@ -15,6 +15,33 @@ export const Default = (): JSX.Element => (
   <ActionButton icon="check" onClick={mockClick} />
 );
 
+export const Shapes = (): JSX.Element => (
+  <div
+    className="story__button-container"
+    style={{
+      gridTemplateColumns: '1fr 1fr 1fr',
+      padding: '0.5rem',
+      backgroundColor: '#ccc',
+    }}
+  >
+    <ActionButton icon="check" onClick={mockClick} label="Round (Default)" />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      shape="rounded-square"
+      label="Rounded Square"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      shape="square"
+      label="Square"
+    />
+  </div>
+);
+
 export const Variants = (): JSX.Element => (
   <div
     className="story__button-container"

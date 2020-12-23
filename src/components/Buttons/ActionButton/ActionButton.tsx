@@ -5,6 +5,7 @@ import { ActionButtonProps } from 'types';
 import Icon from 'components/Icon/Icon';
 import CircleLoader from 'components/Loaders/CircleLoader/CircleLoader';
 
+const DEFAULT_SHAPE = 'round';
 const DEFAULT_SIZE = 'medium';
 const DEFAULT_VARIANT = 'primary';
 
@@ -27,6 +28,7 @@ const ActionButton: FC<ActionButtonProps> = ({
   loading = false,
   size = DEFAULT_SIZE,
   variant = DEFAULT_VARIANT,
+  shape = DEFAULT_SHAPE,
   type,
 }: ActionButtonProps): ReactElement => (
   <div
@@ -41,8 +43,9 @@ const ActionButton: FC<ActionButtonProps> = ({
       type={type}
       className={classnames({
         'fd-action-button__button': true,
-        [`fd-action-button__button-${variant}`]: true,
+        [`fd-action-button__button-${shape}`]: true,
         [`fd-action-button__button-${size}`]: true,
+        [`fd-action-button__button-${variant}`]: true,
         'fd-action-button__button-loading': loading,
         'fd-action-button__button-has-image': image,
       })}
@@ -79,6 +82,7 @@ const ActionButton: FC<ActionButtonProps> = ({
 ActionButton.defaultProps = {
   disabled: false,
   loading: false,
+  shape: DEFAULT_SHAPE,
   size: DEFAULT_SIZE,
   variant: DEFAULT_VARIANT,
 };
