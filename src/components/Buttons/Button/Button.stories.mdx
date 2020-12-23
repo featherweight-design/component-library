@@ -24,7 +24,11 @@ const MyComponent = () => {
   // ...things
   const handleOnClick = () => console.log('Click!');
 
-  return <Button icon="check" onClick={handleOnClick} />;
+  return (
+    <Button variant="brand" onClick={handleOnClick}>
+      Click me!
+    </Button>
+  );
 };
 ```
 
