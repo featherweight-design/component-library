@@ -1,4 +1,4 @@
-@use './colors.scss';
+@use './variables.scss';
 
 @mixin focus-styles {
   outline: none;
@@ -12,11 +12,9 @@
 
 @mixin glass-base-styles {
   box-shadow: 0 8px 32px 0 $glass-shadow;
+  background-color: $glass-brand-color;
   backdrop-filter: blur($glass-blur);
   -webkit-backdrop-filter: blur($glass-blur);
-  // border: 1px solid rgba( 255, 255, 255, 0.18);
-  border-radius: 0.625rem;
-  background-color: $glass-brand-color;
 }
 
 @mixin glass-hover-styles {

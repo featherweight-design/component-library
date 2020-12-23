@@ -1,4 +1,5 @@
 // BRAND
+// Colors
 $brand-white: #ecf6fb !default;
 $brand-xx-light: #c6e4f4 !default;
 $brand-x-light: #a0d3ed !default;
@@ -14,8 +15,7 @@ $brand-black: #050f14 !default;
 $brand-focus-outline: #3178c4 !default;
 
 // GLASS BRAND
-$glass-blur: 7px;
-$glass-opacity: 0.25 !default;
+// Colors
 $glass-main: rgba(255, 255, 255, $glass-opacity) !default;
 $glass-brand-color: rgba(48, 159, 217, $glass-opacity) !default;
 $glass-brand-hover: rgba(44, 145, 198, $glass-opacity) !default;
@@ -24,6 +24,13 @@ $glass-disabled: rgba(229, 229, 229, $glass-opacity) !default;
 $glass-shadow: rgba(31, 38, 135, 0.37) !default;
 $glass-shadow-hover: rgba(31, 38, 135, 0.47) !default;
 $glass-shadow-active: rgba(31, 38, 135, 0.57) !default;
+
+// Box
+$glass-border: 1px solid rgba( 255, 255, 255, 0.18) !default;
+
+// Measurement
+$glass-blur: 7px !default;
+$glass-opacity: 0.25 !default;
 
 // GRAYS
 $black: #000;
