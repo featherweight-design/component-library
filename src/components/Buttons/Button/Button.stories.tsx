@@ -43,6 +43,9 @@ export const Types = (): JSX.Element => (
     <Button onClick={mockClick} variant="brand" shape="square">
       Square
     </Button>
+    <Button onClick={mockClick} variant="glass">
+      Glass
+    </Button>
   </div>
 );
 
@@ -75,6 +78,9 @@ export const TypesDisabled = (): JSX.Element => (
     <Button onClick={mockClick} variant="brand" shape="square" disabled>
       Square
     </Button>
+    <Button onClick={mockClick} variant="glass" disabled>
+      Glass
+    </Button>
   </div>
 );
 
@@ -106,6 +112,9 @@ export const TypesLoading = (): JSX.Element => (
     </Button>
     <Button onClick={mockClick} variant="brand" shape="square" loading>
       Square
+    </Button>
+    <Button onClick={mockClick} variant="glass" loading>
+      Glass
     </Button>
   </div>
 );
