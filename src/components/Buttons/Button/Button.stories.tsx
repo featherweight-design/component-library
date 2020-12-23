@@ -16,7 +16,21 @@ export const Default = (): JSX.Element => (
   </Button>
 );
 
-export const Types = (): JSX.Element => (
+export const Shapes = (): JSX.Element => (
+  <div className="story__button-container">
+    <Button onClick={mockClick} variant="brand">
+      Rounded Square (Default)
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="round">
+      Round
+    </Button>
+    <Button onClick={mockClick} variant="brand" shape="square">
+      Square
+    </Button>
+  </div>
+);
+
+export const Variants = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick}>Default</Button>
     <Button onClick={mockClick} variant="default-destructive">
@@ -37,19 +51,13 @@ export const Types = (): JSX.Element => (
     <Button onClick={mockClick} variant="outline-destructive">
       Outline Destructive
     </Button>
-    <Button onClick={mockClick} variant="brand" shape="round">
-      Round
-    </Button>
-    <Button onClick={mockClick} variant="brand" shape="square">
-      Square
-    </Button>
     <Button onClick={mockClick} variant="glass">
       Glass
     </Button>
   </div>
 );
 
-export const TypesDisabled = (): JSX.Element => (
+export const VariantsDisabled = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick} disabled>
       Default
@@ -84,7 +92,7 @@ export const TypesDisabled = (): JSX.Element => (
   </div>
 );
 
-export const TypesLoading = (): JSX.Element => (
+export const VariantsLoading = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick} loading>
       Default

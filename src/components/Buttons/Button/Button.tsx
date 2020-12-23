@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import { CircleLoader } from 'components/Loaders';
 import { ButtonProps } from 'types';
 
+const DEFAULT_SHAPE = 'rounded-square';
+
 const Button: FC<ButtonProps> = ({
   children,
   onClick,
@@ -14,7 +16,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   loading,
   type,
-  shape,
+  shape = DEFAULT_SHAPE,
 }: ButtonProps) => (
   <button
     id={id}
@@ -38,5 +40,9 @@ const Button: FC<ButtonProps> = ({
     <span className="fd-button__value">{children}</span>
   </button>
 );
+
+Button.defaultProps = {
+  shape: DEFAULT_SHAPE,
+};
 
 export default Button;
