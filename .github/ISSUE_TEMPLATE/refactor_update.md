@@ -2,7 +2,7 @@
 name: Refactor/Update
 about: Something needs refactoring and/or updating
 title: ''
-labels: "\U0001F6E0 maintenance"
+labels: "\U0001F6E0 Maintenance"
 assignees: ''
 
 ---
