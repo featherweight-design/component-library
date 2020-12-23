@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactChild, ButtonHTMLAttributes } from 'react';
+import { ChangeEvent, ReactChild } from 'react';
 
 //* Accordion Types
 export interface AccordionProps {
@@ -26,8 +26,7 @@ export interface AccordionProps {
 }
 
 //* ActionButton Types
-export interface ActionButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ActionButtonProps {
   onClick: () => void;
   /**
    * Applied to the outer container of the button
@@ -54,6 +53,7 @@ export interface ActionButtonProps
    * Determines border-radius of the Button
    */
   shape?: ButtonShape;
+  type?: ButtonType;
 }
 
 export type ActionButtonShape = 'round' | 'rounded-square' | 'square';
@@ -68,7 +68,7 @@ export type ActionButtonSize =
 export type ActionButtonVariant = 'primary' | 'secondary' | 'glass';
 
 //* Button Types
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
   /**
    * Value of the button
    */
@@ -84,7 +84,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Determines border-radius of the Button
    */
   shape?: ButtonShape;
+  type?: ButtonType;
 }
+
+export type ButtonType = 'submit' | 'reset' | 'button';
 
 export type ButtonShape = 'round' | 'rounded-square' | 'square';
 
