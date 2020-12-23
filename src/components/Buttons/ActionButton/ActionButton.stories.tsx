@@ -15,56 +15,72 @@ export const Default = (): JSX.Element => (
   <ActionButton icon="check" onClick={mockClick} />
 );
 
-export const Types = (): JSX.Element => (
+export const Variants = (): JSX.Element => (
   <div
     className="story__button-container"
     style={{
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       padding: '0.5rem',
       backgroundColor: '#ccc',
     }}
   >
     <ActionButton icon="check" onClick={mockClick} />
 
-    <ActionButton icon="check" onClick={mockClick} type="secondary" />
+    <ActionButton icon="check" onClick={mockClick} variant="secondary" />
+
+    <ActionButton icon="check" onClick={mockClick} variant="glass" />
   </div>
 );
 
-export const TypesDisabled = (): JSX.Element => (
+export const VariantsDisabled = (): JSX.Element => (
   <div
     className="story__button-container"
     style={{
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       padding: '0.5rem',
       backgroundColor: '#c9c7c5',
     }}
   >
     <ActionButton icon="check" onClick={mockClick} disabled />
 
-    <ActionButton icon="check" onClick={mockClick} type="secondary" disabled />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="secondary"
+      disabled
+    />
+
+    <ActionButton icon="check" onClick={mockClick} variant="glass" disabled />
   </div>
 );
 
-export const TypesLoading = (): JSX.Element => (
+export const VariantsLoading = (): JSX.Element => (
   <div
     className="story__button-container"
     style={{
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       padding: '0.5rem',
       backgroundColor: '#c9c7c5',
     }}
   >
     <ActionButton icon="check" onClick={mockClick} loading />
 
-    <ActionButton icon="check" onClick={mockClick} type="secondary" loading />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="secondary"
+      loading
+    />
+
+    <ActionButton icon="check" onClick={mockClick} variant="glass" loading />
   </div>
 );
 
-export const TypesWithLabel = (): JSX.Element => (
+export const VariantsWithLabel = (): JSX.Element => (
   <div
     className="story__button-container"
     style={{
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       padding: '0.5rem',
       backgroundColor: '#c9c7c5',
     }}
@@ -74,17 +90,24 @@ export const TypesWithLabel = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
       label="Secondary"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
+      label="Glass"
     />
   </div>
 );
 
-export const TypesWithSizes = (): JSX.Element => (
+export const VariantsWithSizes = (): JSX.Element => (
   <div
     className="story__button-container"
     style={{
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
       padding: '0.5rem',
       backgroundColor: '#c9c7c5',
     }}
@@ -99,7 +122,15 @@ export const TypesWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
+      label="X-Small"
+      size="x-small"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
       label="X-Small"
       size="x-small"
     />
@@ -109,7 +140,15 @@ export const TypesWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
+      label="Small"
+      size="small"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
       label="Small"
       size="small"
     />
@@ -119,7 +158,14 @@ export const TypesWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
+      label="Medium (default)"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
       label="Medium (default)"
     />
 
@@ -128,7 +174,15 @@ export const TypesWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
+      label="Large"
+      size="large"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
       label="Large"
       size="large"
     />
@@ -143,7 +197,15 @@ export const TypesWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      type="secondary"
+      variant="secondary"
+      label="X-Large"
+      size="x-large"
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
       label="X-Large"
       size="x-large"
     />
@@ -155,6 +217,6 @@ export const WithImage = (): JSX.Element => (
     image={fwdLogo}
     onClick={mockClick}
     label="Conga"
-    type="secondary"
+    variant="secondary"
   />
 );
