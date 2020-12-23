@@ -59,7 +59,7 @@ export type ActionButtonSize =
   | 'large'
   | 'x-large';
 
-export type ActionButtonVariant = 'primary' | 'secondary';
+export type ActionButtonVariant = 'primary' | 'secondary' | 'glass';
 
 //* Button Types
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

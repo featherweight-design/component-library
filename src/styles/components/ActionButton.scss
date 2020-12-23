@@ -6,7 +6,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  &-primary {
+  &-primary,
+  &-glass {
     color: $brand-color;
   }
   &-secondary {
@@ -47,49 +48,49 @@
     &-primary {
       background-color: $brand-color;
       color: $white;
-      &:hover {
+      &:hover:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $brand-hover;
       }
-      &:active {
+      &:active:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $brand-active;
       }
     }
     &-secondary {
       background-color: $white;
       color: $brand-color;
-      &:hover {
+      &:hover:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $gray-03;
       }
-      &:active {
+      &:active:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $gray-04;
       }
     }
+    &-primary, &-secondary {
+      &:focus {
+        @include focus-styles();
+      }
+      &:disabled {
+        @include action-button-disabled-styles;
+      }
+    }
+    &-glass {
+      @include glass-base-styles;
+      color: $brand-color;
+      &:hover:not(.fd-action-button__button-loading):not(:disabled) {
+        @include glass-hover-styles;
+      }
+      &:active:not(.fd-action-button__button-loading):not(:disabled) {
+        @include glass-active-styles;
+      }
+      &:disabled {
+        @include glass-disabled-styles;
+      }
+      &:focus {
+        @include glass-focus-styles;
+      }
+    }
     &-loading {
-      cursor: not-allowed;
-    }
-    &-loading.fd-action-button__button-primary,
-    &:disabled.fd-action-button__button-primary {
-      &:hover,
-      &:active {
-        background-color: $brand-color;
-      }
-    }
-    &-loading.fd-action-button__button-secondary,
-    &:disabled.fd-action-button__button-secondary {
-      &:hover,
-      &:active {
-        background-color: $white;
-      }
-    }
-    &:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      + .fd-action-button__label {
-        opacity: 0.4;
-      }
-    }
-    &:focus {
-      @include focus-styles();
+      cursor: wait;
     }
   }
   &__loader-container {

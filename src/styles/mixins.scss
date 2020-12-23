@@ -10,6 +10,16 @@
   box-shadow: 0 0 3px 2px $destructive-focus-outline;
 }
 
+// ACTION BUTTON
+@mixin action-button-disabled-styles {
+  opacity: 0.4;
+  cursor: not-allowed;
+  + .fd-action-button__label {
+    opacity: 0.4;
+  }
+}
+
+// GLASS
 @mixin glass-base-styles {
   box-shadow: 0 8px 32px 0 $glass-shadow;
   background-color: $glass-brand-color;
