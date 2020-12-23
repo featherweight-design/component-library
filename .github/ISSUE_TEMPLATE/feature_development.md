@@ -2,7 +2,7 @@
 name: Feature Development
 about: Internal feature development by the FD team
 title: ''
-labels: "\U0001F3D7feature development"
+labels: "\U0001F3D7 Feature development"
 assignees: ''
 
 ---
