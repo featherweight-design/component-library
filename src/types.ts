@@ -44,6 +44,9 @@ export interface ActionButtonProps
    */
   icon?: string;
   id?: string;
+  /**
+   * Image to be used in place of an icon
+   */
   image?: string;
   size?: ActionButtonSize;
   variant?: ActionButtonVariant;
@@ -59,8 +62,10 @@ export type ActionButtonSize =
 export type ActionButtonVariant = 'primary' | 'secondary';
 
 //* Button Types
-
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * Value of the button
+   */
   children: string | number | ReactChild | ReactChild[];
   onClick: () => void;
   id?: string;
@@ -69,6 +74,9 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disabled?: boolean;
   loading?: boolean;
+  /**
+   * Determines border-radius of the Button
+   */
   shape?: ButtonShape;
 }
 

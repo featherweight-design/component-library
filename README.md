@@ -36,13 +36,13 @@ npm install @f-design/component-library
 To override style variables in your project, add the below `@import` to your `main.scss` or equivalent file:
 
 ```scss
-// colors.scss
+// variables.scss
 $brand-color: #8155A5;
 $brand-hover: #764E96;
 $brand-active: #6A4688;
 
 // main.scss
-@import './colors';
+@import './variables';
 @import './mixins';
 
 @import '~@f-design/component-library/dist/scss/components/all.scss';
