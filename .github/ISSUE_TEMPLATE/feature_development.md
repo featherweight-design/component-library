@@ -32,4 +32,4 @@ Add any other context or screenshots about the feature request here.
 
 ## Designs
 
-![FEATURE Figma Mock](https://figma.com/cool/new/feature)
+![Figma Mock](https://figma.com/cool/new/feature)
