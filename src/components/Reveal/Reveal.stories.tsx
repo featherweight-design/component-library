@@ -20,13 +20,13 @@ export const Default = (): JSX.Element => {
         padding: '10px',
       }}
     >
-      <Button type="brand" onClick={(): void => toggleReveal(!isShown)}>
+      <Button variant="brand" onClick={(): void => toggleReveal(!isShown)}>
         Toggle reveal
       </Button>
 
       <Reveal isShown={isShown} padding="5px">
         <Button
-          type="destructive"
+          variant="destructive"
           onClick={(): void => console.log('destroy!')}
         >
           Secret Destroy Button
@@ -43,7 +43,7 @@ export const LargeReveal = (): JSX.Element => {
     <div>
       <div className="story__button-container">
         <Button
-          type="brand"
+          variant="brand"
           onClick={(): void => toggleLargeShown(!isLargeShown)}
         >
           Toggle large reveal

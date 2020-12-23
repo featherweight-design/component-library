@@ -118,16 +118,16 @@ export const Playground = (): JSX.Element => {
         />
 
         <Button
-          type="brand"
+          variant="brand"
           onClick={(): void => toggleIsRounded(!isRounded)}
         >{`isRounded: ${isRounded}`}</Button>
 
-        <Button type="brand" onClick={(): void => toggleIsGreen(!isGreen)}>
+        <Button variant="brand" onClick={(): void => toggleIsGreen(!isGreen)}>
           Toggle color
         </Button>
 
         <Button
-          type="brand"
+          variant="brand"
           onClick={(): void => {
             updateItems(items.map(() => ({ isComplete: !isComplete })));
             updateNumberComplete(isComplete ? 0 : 10);
