@@ -14,6 +14,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   loading,
   type,
+  shape,
 }: ButtonProps) => (
   <button
     id={id}
@@ -25,6 +26,7 @@ const Button: FC<ButtonProps> = ({
       'fd-button': true,
       [`fd-button-${variant}`]: variant,
       'fd-button-loading': loading,
+      [`fd-button-${shape}`]: shape,
       [className as string]: className,
     })}
   >
