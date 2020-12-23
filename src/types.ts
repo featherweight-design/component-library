@@ -69,6 +69,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   disabled?: boolean;
   loading?: boolean;
+  shape?: ButtonShape;
 }
 
 export type ButtonVariant =
@@ -78,6 +79,8 @@ export type ButtonVariant =
   | 'outline'
   | 'destructive'
   | 'outline-destructive';
+
+export type ButtonShape = 'round' | 'square' | undefined;
 
 //* HeaderMenu Types
 export interface HeaderMenuOptions {
