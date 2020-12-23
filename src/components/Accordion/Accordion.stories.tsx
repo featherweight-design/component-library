@@ -42,7 +42,10 @@ export const Hidden = (): JSX.Element => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <Button type="brand" onClick={(): void => toggleIsExpanded(!isExpanded)}>
+      <Button
+        variant="brand"
+        onClick={(): void => toggleIsExpanded(!isExpanded)}
+      >
         Click Me!
       </Button>
 

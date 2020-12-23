@@ -91,7 +91,7 @@ storiesOf('Radio', module)
 
         <div style={{ marginTop: '1rem' }}>
           <Button
-            type="destructive"
+            variant="destructive"
             onClick={(): void => handleChangeSelected('')}
           >
             Pick no one!

@@ -25,12 +25,12 @@ const MyComponent = () => {
 
   return (
     <div>
-      <Button type="brand" onClick={() => toggleReveal(!isShown)}>
+      <Button variant="brand" onClick={() => toggleReveal(!isShown)}>
         Toggle reveal
       </Button>
 
       <Reveal isShown={isShown}>
-        <Button type="destructive">Secret Destroy Button</Button>
+        <Button variant="destructive">Secret Destroy Button</Button>
       </Reveal>
     </div>
   );
