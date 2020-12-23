@@ -50,7 +50,13 @@ export interface ActionButtonProps
   image?: string;
   size?: ActionButtonSize;
   variant?: ActionButtonVariant;
+  /**
+   * Determines border-radius of the Button
+   */
+  shape?: ButtonShape;
 }
+
+export type ActionButtonShape = 'round' | 'rounded-square' | 'square';
 
 export type ActionButtonSize =
   | 'x-small'
@@ -80,6 +86,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   shape?: ButtonShape;
 }
 
+export type ButtonShape = 'round' | 'square' | undefined;
+
 export type ButtonVariant =
   | 'default-destructive'
   | 'brand'
@@ -88,8 +96,6 @@ export type ButtonVariant =
   | 'destructive'
   | 'outline-destructive'
   | 'glass';
-
-export type ButtonShape = 'round' | 'square' | undefined;
 
 //* HeaderMenu Types
 export interface HeaderMenuOptions {

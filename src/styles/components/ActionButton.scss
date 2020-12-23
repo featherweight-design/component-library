@@ -20,7 +20,6 @@
     justify-content: center;
     margin-bottom: 0.5rem;
     border: none;
-    border-radius: 100%;
     opacity: 1;
     overflow: hidden;
     transition: 0.1s ease-in-out;
@@ -45,6 +44,15 @@
       height: 3.75rem;
       width: 3.75rem;
     }
+    &-round {
+      border-radius: 100%;
+    }
+    &-rounded-square {
+      border-radius: 0.25rem;
+    }
+    &-square {
+      border-radius: 0;
+    }
     &-primary {
       background-color: $brand-color;
       color: $white;
@@ -65,7 +73,8 @@
         background-color: $gray-04;
       }
     }
-    &-primary, &-secondary {
+    &-primary,
+    &-secondary {
       &:focus {
         @include focus-styles();
       }
