@@ -86,7 +86,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   shape?: ButtonShape;
 }
 
-export type ButtonShape = 'round' | 'square' | undefined;
+export type ButtonShape = 'round' | 'rounded-square' | 'square';
 
 export type ButtonVariant =
   | 'default-destructive'
