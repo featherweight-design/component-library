@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.56](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.55...@f-design/component-library@0.1.56) (2020-12-24)
+
+
+### Bug Fixes
+
+* Update webpack to use ts-loader ([bf27cd3](https://github.com/featherweight-design/component-library/commit/bf27cd3083464665944d9cabb723cce0f74ec8c1))
+
 ### [0.1.55](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.54...@f-design/component-library@0.1.55) (2020-12-23)
 
 ### [0.1.54](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.53...@f-design/component-library@0.1.54) (2020-12-13)
