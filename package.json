@@ -78,7 +78,7 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^24.9.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^5.0.0",
     "prettier": "^1.19.1",
     "react-docgen-typescript-loader": "^3.6.0",
     "react-test-renderer": "^16.12.0",
