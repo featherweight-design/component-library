@@ -121,7 +121,7 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 - Find an issue of interest in the **"To Do"** column of the [Component Library project board](https://github.com/featherweight-design/component-library/projects/1)
 - To have this issue assigned to you, leave a comment on the issue itself or post in the `#component-library` Slack channel (an admin must approve your request)
 - Once approved, move your issue to the **"In Progress"** column of the project board
-- Pull down the latest changes from `development` and checkout a new branch prefaced with your first name (e.g. `hugh/icon-component`)
+- Pull down the latest changes from `development` and checkout a new branch prefaced with your first name (e.g. `hugh-icon-component`)
 
 ### During Development
 
