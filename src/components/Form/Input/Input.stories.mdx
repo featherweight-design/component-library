@@ -28,14 +28,7 @@ const MyComponent = () => {
   }: ChangeEvent<HTMLInputElement>): void => handleChangeTextValue(value);
 
   return (
-    <div className="story__input-container">
-      <Input
-        value={value}
-        name="default"
-        label="Label"
-        onChange={mockOnChange}
-      />
-    </div>
+    <Input value={value} name="default" label="Label" onChange={mockOnChange} />
   );
 };
 ```
