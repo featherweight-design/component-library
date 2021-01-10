@@ -13,7 +13,7 @@
   background: none;
   color: $brand-color;
   cursor: pointer;
-  transition: 0.1s ease-in-out;
+  transition: 0.2s ease-in-out;
   &:hover:not(.fd-button-loading):not(:disabled) {
     color: $brand-hover;
   }
