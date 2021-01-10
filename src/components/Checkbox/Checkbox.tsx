@@ -1,25 +1,10 @@
-import React, { ChangeEvent, FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import OtherOption from '../OtherOption/OtherOption';
-import { OtherOptionType } from '../../types';
+import { CheckboxProps } from '../../types';
 
-type CheckboxProps = {
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  options: CheckboxOption[];
-  label?: string;
-  other?: OtherOptionType;
-  className?: string;
-  errorMessage?: string;
-};
-
-type CheckboxOption = {
-  checked: boolean;
-  label: string;
-  disabled?: boolean;
-};
-
-const Checkbox: FunctionComponent<CheckboxProps> = ({
+const Checkbox: FC<CheckboxProps> = ({
   onChange,
   options,
   label,

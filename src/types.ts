@@ -113,6 +113,22 @@ export type ButtonVariant =
   | 'outline-destructive'
   | 'glass';
 
+//* Checkbox Types
+export interface CheckboxProps {
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  options: CheckboxOption[];
+  label?: string;
+  other?: OtherOptionType;
+  className?: string;
+  errorMessage?: string;
+}
+
+export interface CheckboxOption {
+  checked: boolean;
+  label: string;
+  disabled?: boolean;
+}
+
 //* CircleLoader Types
 export interface CircleLoaderProps {
   size?: string | number;
