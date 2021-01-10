@@ -78,7 +78,7 @@ export const Types = (): JSX.Element => {
         label="Label"
         selected={selected}
         onSelect={mockOnSelect}
-        errorMessage="Please pick a Hartigan"
+        errorMessage="Please pick a creature"
         options={[
           { value: 'alien', label: 'Alien 👽' },
           { value: 'dragon', label: 'Dragon 🐉' },
