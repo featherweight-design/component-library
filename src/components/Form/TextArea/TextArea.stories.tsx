@@ -1,61 +1,65 @@
 import React, { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
-import { storiesOf } from '@storybook/react';
 
 import TextArea from './TextArea';
 
-storiesOf('TextArea', module)
-  .addDecorator(withA11y)
-  .add('Default', () => {
-    const [value, updateValue] = useState('');
+export default {
+  component: 'Components/Form/TextArea',
+  decorators: [withA11y],
+};
 
-    const handleChange = ({
-      target: { value },
-    }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+export const Default = (): JSX.Element => {
+  const [value, updateValue] = useState('');
 
-    return (
-      <TextArea
-        name="default"
-        label="Label"
-        value={value}
-        onChange={handleChange}
-      />
-    );
-  })
-  .add('Disabled', () => {
-    const [value, updateValue] = useState(
-      'You will never change me! MWAAAAHAHAHAHAHAHA!'
-    );
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
 
-    const handleChange = ({
-      target: { value },
-    }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+  return (
+    <TextArea
+      name="default"
+      label="Label"
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
 
-    return (
-      <TextArea
-        disabled
-        name="default"
-        label="Label"
-        value={value}
-        onChange={handleChange}
-      />
-    );
-  })
-  .add('Error', () => {
-    const [value, updateValue] = useState('');
+export const Disabled = (): JSX.Element => {
+  const [value, updateValue] = useState(
+    'You will never change me! MWAAAAHAHAHAHAHAHA!'
+  );
 
-    const handleChange = ({
-      target: { value },
-    }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
 
-    return (
-      <TextArea
-        name="default"
-        label="Pirate lore"
-        placeholder="Yarrrr... t'was many moons ago when I..."
-        value={value}
-        onChange={handleChange}
-        errorMessage={value ? '' : 'Write me a story, ye heathen!'}
-      />
-    );
-  });
+  return (
+    <TextArea
+      disabled
+      name="default"
+      label="Label"
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
+
+export const Error = (): JSX.Element => {
+  const [value, updateValue] = useState('');
+
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+
+  return (
+    <TextArea
+      name="default"
+      label="Pirate lore"
+      placeholder="Yarrrr... t'was many moons ago when I..."
+      value={value}
+      onChange={handleChange}
+      errorMessage={value ? '' : 'Write me a story, ye heathen!'}
+    />
+  );
+};
