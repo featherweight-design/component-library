@@ -24,7 +24,6 @@ Add any other context or screenshots about the feature request here.
 ## Acceptance Criteria
 
 * [ ] What are the minimum requirements for this feature?
-* [ ] Functional/styling/accessibility implementations?
 
 ## Resources
 

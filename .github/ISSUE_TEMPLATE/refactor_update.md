@@ -14,7 +14,6 @@ What needs refacotring/updating and why? Any breaking changes?
 ## Acceptance Criteria
 
 * [ ] What do we expect from this refactor/update?
-* [ ] What betterments will come from this?
 
 ## Resources
 

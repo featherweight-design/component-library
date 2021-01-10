@@ -1,5 +1,3 @@
-# <PR_BRANCH_NAME>
-
 ## Description
 
 - Release version: [<VERSION_NUMBER>](https://www.npmjs.com/package/@f-design/component-library)
