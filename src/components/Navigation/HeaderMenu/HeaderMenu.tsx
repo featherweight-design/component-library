@@ -6,7 +6,7 @@ import {
   HeaderMenuOption,
   HeaderMenuProps,
   HeaderMenuSubOption,
-} from '../../../types';
+} from 'types';
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
   goDark ? 'fd-header-menu-dark' : 'fd-header-menu';
