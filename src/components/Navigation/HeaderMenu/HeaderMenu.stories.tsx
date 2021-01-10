@@ -3,6 +3,33 @@ import { withA11y } from '@storybook/addon-a11y';
 
 import HeaderMenu from './HeaderMenu';
 
+const subOptions = [
+  {
+    icon: 'group',
+    label: 'User Management',
+    path: '/user-management',
+    hasAccess: true,
+  },
+  {
+    icon: 'account_tree',
+    label: 'Permissions',
+    path: '/permissions',
+    hasAccess: true,
+  },
+  {
+    icon: 'mail',
+    label: 'Support',
+    path: '/support',
+    hasAccess: true,
+  },
+  {
+    icon: 'info',
+    label: 'Info',
+    path: '/info',
+    hasAccess: true,
+  },
+];
+
 export default {
   title: 'Components/Navigation/HeaderMenu',
   decorators: [withA11y],
@@ -28,7 +55,6 @@ export const Default = (): JSX.Element => (
         icon: 'search',
       },
     }}
-    defaultTitle="Dashboard"
   />
 );
 
@@ -43,35 +69,9 @@ export const WithDarkTheme = (): JSX.Element => (
       settings: {
         subTitle: 'Bob H.',
         icon: 'settings',
-        subOptions: [
-          {
-            icon: 'group',
-            label: 'User Management',
-            path: '/user-management',
-            hasAccess: true,
-          },
-          {
-            icon: 'account_tree',
-            label: 'Permissions',
-            path: '/permissions',
-            hasAccess: true,
-          },
-          {
-            icon: 'mail',
-            label: 'Support',
-            path: '/support',
-            hasAccess: true,
-          },
-          {
-            icon: 'info',
-            label: 'Info',
-            path: '/info',
-            hasAccess: true,
-          },
-        ],
+        subOptions: subOptions,
       },
     }}
-    defaultTitle="Dashboard"
   />
 );
 
@@ -92,7 +92,21 @@ export const WithIndicator = (): JSX.Element => (
         icon: 'search',
       },
     }}
-    defaultTitle="Dashboard"
+  />
+);
+
+export const WithoutTitle = (): JSX.Element => (
+  <HeaderMenu
+    currentlyViewing={{
+      path: '/support',
+    }}
+    menuOptions={{
+      settings: {
+        subTitle: 'Bob H.',
+        icon: 'settings',
+        subOptions: subOptions,
+      },
+    }}
   />
 );
 
@@ -106,34 +120,8 @@ export const WithSubOptions = (): JSX.Element => (
       settings: {
         subTitle: 'Bob H.',
         icon: 'settings',
-        subOptions: [
-          {
-            icon: 'group',
-            label: 'User Management',
-            path: '/user-management',
-            hasAccess: true,
-          },
-          {
-            icon: 'account_tree',
-            label: 'Permissions',
-            path: '/permissions',
-            hasAccess: true,
-          },
-          {
-            icon: 'mail',
-            label: 'Support',
-            path: '/support',
-            hasAccess: true,
-          },
-          {
-            icon: 'info',
-            label: 'Info',
-            path: '/info',
-            hasAccess: true,
-          },
-        ],
+        subOptions: subOptions,
       },
     }}
-    defaultTitle="Dashboard"
   />
 );
