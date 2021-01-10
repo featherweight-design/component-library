@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Button from './Button';
+import Input from '../../Input/Input';
 
 export default {
   title: 'Components/Buttons/Button',
@@ -15,6 +16,61 @@ export const Default = (): JSX.Element => (
     Click Me!
   </Button>
 );
+
+export const Playground = (): JSX.Element => {
+  const [color, updateColorValue] = useState('#000');
+  const [backgroundColor, updateBackgroundColorValue] = useState('#F56C70');
+  const [borderColor, updateBorderColor] = useState('#00FFE5');
+
+  return (
+    <div className="container">
+      <div className="story__controls-container">
+        <Input
+          label="Brand color"
+          name="brand-color"
+          value={color}
+          onChange={({
+            target: { value },
+          }: ChangeEvent<HTMLInputElement>): void => updateColorValue(value)}
+        />
+
+        <Input
+          label="Brand background color"
+          name="brand-background-color"
+          value={backgroundColor}
+          onChange={({
+            target: { value },
+          }: ChangeEvent<HTMLInputElement>): void =>
+            updateBackgroundColorValue(value)
+          }
+        />
+
+        <Input
+          label="Outline border color"
+          name="outline-border-color"
+          value={borderColor}
+          onChange={({
+            target: { value },
+          }: ChangeEvent<HTMLInputElement>): void => updateBorderColor(value)}
+        />
+      </div>
+
+      <div className="story__button-container">
+        <Button
+          onClick={mockClick}
+          variant="brand"
+          style={{ backgroundColor, color }}
+        >
+          Brand
+        </Button>
+
+        <Button onClick={mockClick} variant="outline" style={{ borderColor }}>
+          Outline
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export const Shapes = (): JSX.Element => (
   <div className="story__button-container">
