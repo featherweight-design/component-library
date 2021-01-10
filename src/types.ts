@@ -1,8 +1,10 @@
 import { ChangeEvent, ReactChild } from 'react';
 
+type Children = ReactChild | ReactChild[];
+
 //* Accordion Types
 export interface AccordionProps {
-  children: ReactChild | ReactChild[];
+  children: Children;
   /**
    * Applied to parent container
    */
@@ -54,16 +56,17 @@ export interface ActionButtonProps {
    */
   shape?: ButtonShape;
   type?: ButtonType;
+  children?: Children;
 }
 
 export type ActionButtonShape = 'round' | 'rounded-square' | 'square';
 
 export type ActionButtonSize =
-  | 'x-small'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'x-large';
+  | 'x-small' // 36px
+  | 'small' // 42px
+  | 'medium' // 28px
+  | 'large' // 54px
+  | 'x-large'; // 60px
 
 export type ActionButtonVariant = 'primary' | 'secondary' | 'glass';
 
@@ -72,7 +75,7 @@ export interface ButtonProps {
   /**
    * Value of the button
    */
-  children: string | number | ReactChild | ReactChild[];
+  children: string | number | Children;
   onClick: () => void;
   id?: string;
   variant?: ButtonVariant;
@@ -189,7 +192,7 @@ export type ProgressBarSizes =
 
 //* Reveal Types
 export interface RevealProps {
-  children: ReactChild | ReactChild[];
+  children: Children;
   isShown: boolean;
   /**
    * Applied to the `div` container
