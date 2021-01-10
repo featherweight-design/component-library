@@ -1,11 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import classnames from 'classnames';
 
-type CircleLoaderProps = {
-  size?: string | number;
-  color?: string;
-  className?: string;
-};
+import { CircleLoaderProps } from 'types';
 
 const CircleLoader: FunctionComponent<CircleLoaderProps> = ({
   size,
