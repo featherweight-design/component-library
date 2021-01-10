@@ -1,19 +1,7 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
-type TextAreaProps = {
-  name: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  id?: string;
-  label?: string;
-  placeholder?: string;
-  min?: number;
-  max?: number;
-  disabled?: boolean;
-  className?: string;
-  errorMessage?: string;
-};
+import { TextAreaProps } from 'types';
 
 const TextArea: FC<TextAreaProps> = ({
   name,
