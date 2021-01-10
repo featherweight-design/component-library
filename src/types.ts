@@ -124,7 +124,7 @@ export interface CircleLoaderProps {
 export interface HeaderMenuProps {
   currentlyViewing: CurrentlyViewing;
   menuOptions: HeaderMenuOptions;
-  defaultTitle: string;
+  defaultTitle?: string;
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   goDark?: boolean;
   className?: string;
@@ -177,7 +177,7 @@ export interface CurrentlyViewingTab {
 
 export interface CurrentlyViewing {
   path: string;
-  title: string;
+  title?: string;
   subTitle?: string;
   backPath?: string;
   backTitle?: string;
