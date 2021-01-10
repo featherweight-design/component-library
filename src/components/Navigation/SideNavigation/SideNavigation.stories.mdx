@@ -2,7 +2,10 @@ import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
 
 import SideNavigation from './SideNavigation.tsx';
 
-<Meta title="Components/Navigation/sidenavigation/README" component={SideNavigation} />
+<Meta
+  title="Components/Navigation/sidenavigation/README"
+  component={SideNavigation}
+/>
 
 # SideNavigation
 
@@ -29,49 +32,52 @@ const MyComponent = () => {
     path: '/settings',
   };
 
-  const menuOptions =  [
-  {
-    label: 'user',
-    icon: 'person',
-    subOptions: [
-      {
-        title: 'My Info',
-        path: '/user/my-info',
-      },
-      {
-        title: 'Notifications',
-        path: '/user/notifications',
-      },
-      {
-        title: 'Logout',
-        path: '/logout',
-      },
-    ],
-  },
-  {
-    label: 'help',
-    icon: 'help',
-    subOptions: [
-      {
-        title: 'Contact Us',
-        path: '/help/contact',
-      },
-      {
-        title: 'Feedback',
-        path: '/help/feedback',
-      },
-    ],
-  },
-  {
-    label: 'settings',
-    icon: 'settings_applications',
-    path: '/settings',
-    title: 'Settings',
-  },
-];
+  const menuOptions = [
+    {
+      label: 'user',
+      icon: 'person',
+      subOptions: [
+        {
+          title: 'My Info',
+          path: '/user/my-info',
+        },
+        {
+          title: 'Notifications',
+          path: '/user/notifications',
+        },
+        {
+          title: 'Logout',
+          path: '/logout',
+        },
+      ],
+    },
+    {
+      label: 'help',
+      icon: 'help',
+      subOptions: [
+        {
+          title: 'Contact Us',
+          path: '/help/contact',
+        },
+        {
+          title: 'Feedback',
+          path: '/help/feedback',
+        },
+      ],
+    },
+    {
+      label: 'settings',
+      icon: 'settings_applications',
+      path: '/settings',
+      title: 'Settings',
+    },
+  ];
 
   return (
-    <SideNavigation currentlyViewing={currentlyViewing} menuOptions={menuOptions} />
+    <SideNavigation
+      currentlyViewing={currentlyViewing}
+      menuOptions={menuOptions}
+    />
   );
 };
 ```
