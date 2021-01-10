@@ -1,0 +1,54 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import HeaderMenu from './HeaderMenu.tsx';
+
+<Meta title="Components/Navigation/HeaderMenu/README" component={HeaderMenu} />
+
+# HeaderMenu
+
+---
+
+<Story id="components-navigation-headermenu--default" />
+
+---
+
+The `HeaderMenu` component is a basic navigation element that sits along the top of any container. It necessitates only one prop to render, which is the `currentlyViewing` object. From this prop, only the `path` value is required, which allows the `HeaderMenu` to dynamically intuit when the `path` has changed and update the selected menu option or sub-option accordingly.
+
+This component can work in conjunction with the `SideNavigation` component to make for a more robust and dynamic navigation system fueled by the `currentlyViewing` property.
+
+## Quick Start ⚡️
+
+```jsx
+import { HeaderMenu } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const currentlyViewing = {
+    path: '/settings',
+  };
+
+  const menuOptions = {
+    settings: {
+      icon: 'settings',
+      path: '/settings',
+    },
+    notifications: {
+      icon: 'notifications',
+      path: '/notifications',
+    },
+    search: {
+      icon: 'search',
+    },
+  };
+
+  return (
+    <HeaderMenu currentlyViewing={currentlyViewing} menuOptions={menuOptions} />
+  );
+};
+```
+
+## API
+
+### [HeaderMenu Component](https://github.com/featherweight-design/component-library/src/components/Navigation/HeaderMenu/HeaderMenu.tsx)
+
+<Props of={HeaderMenu} />
