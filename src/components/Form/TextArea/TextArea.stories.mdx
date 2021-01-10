@@ -1,0 +1,45 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import TextArea from './TextArea.tsx';
+
+<Meta title="Components/Form/TextArea/README" component={TextArea} />
+
+# TextArea
+
+---
+
+<Story id="components-form-textarea--default" />
+
+---
+
+A basic `TextArea` component with `disabled` and `error` states, as well as `min/max` values and an accessible `label`.
+
+## Quick Start ⚡️
+
+```jsx
+import { TextArea } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const [value, updateValue] = useState('');
+
+  const handleChange = ({
+    target: { value },
+  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+
+  return (
+    <TextArea
+      name="default"
+      label="Label"
+      value={value}
+      onChange={handleChange}
+    />
+  );
+};
+```
+
+## API
+
+### [TextArea Component](https://github.com/featherweight-design/component-library/src/components/Form/TextArea/TextArea.tsx)
+
+<Props of={TextArea} />
