@@ -9,32 +9,11 @@ import classnames from 'classnames';
 import {
   CurrentlyViewing,
   SideNavigationOption,
+  SideNavigationProps,
+  SideNavigationSelection,
   SideNavigationSubOption,
 } from 'types';
 import Accordion from '../../Accordion/Accordion';
-
-type SideNavigationProps = {
-  menuOptions: SideNavigationOption[];
-  currentlyViewing: CurrentlyViewing;
-  onGoBack?: (currentlyViewing: CurrentlyViewing) => void;
-  defaultSelected: {
-    option: string;
-    subOption: string;
-  };
-  collapsed?: boolean;
-  onCollapse?: (isCollapsed: boolean) => void;
-  showBackButton?: boolean;
-  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
-  logoAssetPath?: string;
-  logoTitle?: string;
-  goDark?: boolean;
-  className?: string;
-};
-
-type SideNavigationSelection = {
-  option?: string;
-  subOption?: string;
-};
 
 const getSelection = (
   currentlyViewing: CurrentlyViewing,

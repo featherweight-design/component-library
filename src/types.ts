@@ -255,6 +255,29 @@ export interface OtherOptionType {
 }
 
 //* SideNavigation Types
+export interface SideNavigationProps {
+  menuOptions: SideNavigationOption[];
+  currentlyViewing: CurrentlyViewing;
+  onGoBack?: (currentlyViewing: CurrentlyViewing) => void;
+  defaultSelected: {
+    option: string;
+    subOption: string;
+  };
+  collapsed?: boolean;
+  onCollapse?: (isCollapsed: boolean) => void;
+  showBackButton?: boolean;
+  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
+  logoAssetPath?: string;
+  logoTitle?: string;
+  goDark?: boolean;
+  className?: string;
+};
+
+export interface SideNavigationSelection {
+  option?: string;
+  subOption?: string;
+};
+
 export interface SideNavigationOption {
   label: string;
   icon: string;
