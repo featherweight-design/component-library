@@ -284,6 +284,8 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     </div>
   );
 
+  const hasTitle = currentlyViewing.title || defaultTitle;
+
   return (
     <div
       className={classnames({
@@ -293,7 +295,7 @@ const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
     >
       <div className={`${baseClassName}__left`}>
         <div className={`${baseClassName}__location-container`}>
-          {currentlyViewing && renderCurrentlyViewingHeader(currentlyViewing)}
+          {hasTitle && renderCurrentlyViewingHeader(currentlyViewing)}
         </div>
       </div>
 
