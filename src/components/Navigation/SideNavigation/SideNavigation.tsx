@@ -16,6 +16,11 @@ import {
 
 import Accordion from '../../Accordion/Accordion';
 
+const DEFAULT_SELECTED = {
+  option: '',
+  subOption: '',
+}
+
 const getSelection = (
   currentlyViewing: CurrentlyViewing,
   menuOptions: SideNavigationOption[],
@@ -67,7 +72,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
     onNavigate,
     logoAssetPath,
     logoTitle,
-    defaultSelected,
+    defaultSelected = DEFAULT_SELECTED,
     goDark,
     className,
   } = props;
@@ -538,6 +543,7 @@ const SideNavigation: FunctionComponent<SideNavigationProps> = (
 };
 
 SideNavigation.defaultProps = {
+  defaultSelected: DEFAULT_SELECTED,
   collapsed: false,
   onCollapse: undefined,
   currentlyViewing: undefined,

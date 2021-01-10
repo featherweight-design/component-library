@@ -128,7 +128,7 @@ export interface HeaderMenuProps {
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
   goDark?: boolean;
   className?: string;
-};
+}
 
 export interface HeaderMenuOptions {
   [key: string]: HeaderMenuOption;
@@ -259,7 +259,7 @@ export interface SideNavigationProps {
   menuOptions: SideNavigationOption[];
   currentlyViewing: CurrentlyViewing;
   onGoBack?: (currentlyViewing: CurrentlyViewing) => void;
-  defaultSelected: {
+  defaultSelected?: {
     option: string;
     subOption: string;
   };
@@ -271,12 +271,12 @@ export interface SideNavigationProps {
   logoTitle?: string;
   goDark?: boolean;
   className?: string;
-};
+}
 
 export interface SideNavigationSelection {
   option?: string;
   subOption?: string;
-};
+}
 
 export interface SideNavigationOption {
   label: string;
