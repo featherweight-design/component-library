@@ -30,6 +30,7 @@ const ActionButton: FC<ActionButtonProps> = ({
   variant = DEFAULT_VARIANT,
   shape = DEFAULT_SHAPE,
   type,
+  children,
 }: ActionButtonProps): ReactElement => (
   <div
     id={id}
@@ -52,7 +53,7 @@ const ActionButton: FC<ActionButtonProps> = ({
       onClick={onClick}
       disabled={disabled}
       style={
-        image
+        !children && image
           ? {
               backgroundImage: `url(${image})`,
               backgroundSize: 'cover',
@@ -66,13 +67,14 @@ const ActionButton: FC<ActionButtonProps> = ({
         </div>
       )}
 
-      {!loading && icon && (
+      {!loading && !image && !children && icon && (
         <Icon
           className="fd-action-button__icon"
           icon={icon}
           size={SIZES_ENUM[size]}
         />
       )}
+      {children}
     </button>
 
     {label && <p className="fd-action-button__label">{label}</p>}
