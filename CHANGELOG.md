@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.59](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.58...@f-design/component-library@0.1.59) (2021-01-10)
+
 ### [0.1.58](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@0.1.57...@f-design/component-library@0.1.58) (2021-01-10)
 
 
