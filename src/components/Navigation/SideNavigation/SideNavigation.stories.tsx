@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import SideNavigation from './SideNavigation';
+import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
 
 const sideNavigationMenuOptions = [
   {
@@ -117,7 +118,7 @@ export const WithLogo = (): JSX.Element => {
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
       defaultSelected={defaultSelected}
-      logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
+      logoAssetPath={fwdLogo}
       showBackButton={showBackButton}
       onGoBack={(): void => {
         toggleOnGoBack(false);
@@ -132,7 +133,7 @@ export const WithLogoAndTitle = (): JSX.Element => (
     currentlyViewing={currentlyViewing}
     menuOptions={sideNavigationMenuOptions}
     defaultSelected={defaultSelected}
-    logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
-    logoTitle="DevelopmentalFX"
+    logoAssetPath={fwdLogo}
+    logoTitle="Featherweight Design"
   />
 );
