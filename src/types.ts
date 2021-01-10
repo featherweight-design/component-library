@@ -88,11 +88,21 @@ export interface ButtonProps {
    */
   shape?: ButtonShape;
   type?: ButtonType;
+  /**
+   * Style overrides for backgroundColor, borderColor, and color
+   */
+  style?: ButtonStyles;
 }
 
 export type ButtonType = 'submit' | 'reset' | 'button';
 
 export type ButtonShape = 'round' | 'rounded-square' | 'square';
+
+export interface ButtonStyles {
+  backgroundColor?: string;
+  borderColor?: string;
+  color?: string;
+}
 
 export type ButtonVariant =
   | 'default-destructive'
