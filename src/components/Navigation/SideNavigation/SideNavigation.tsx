@@ -19,7 +19,7 @@ import Accordion from '../../Accordion/Accordion';
 const DEFAULT_SELECTED = {
   option: '',
   subOption: '',
-}
+};
 
 const getSelection = (
   currentlyViewing: CurrentlyViewing,
