@@ -1,9 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import { InputProps } from 'types';
 
-const Input: FunctionComponent<InputProps> = ({
+const Input: FC<InputProps> = ({
   name,
   value,
   onChange,

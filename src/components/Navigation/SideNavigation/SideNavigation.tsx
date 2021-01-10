@@ -1,9 +1,4 @@
-import React, {
-  ReactElement,
-  useState,
-  useEffect,
-  FunctionComponent,
-} from 'react';
+import React, { ReactElement, useState, useEffect, FC } from 'react';
 import classnames from 'classnames';
 
 import {
@@ -59,7 +54,7 @@ const getSelection = (
 const getBaseClassName = (goDark: boolean | undefined): string =>
   goDark ? 'fd-side-navigation-dark' : 'fd-side-navigation';
 
-const SideNavigation: FunctionComponent<SideNavigationProps> = (
+const SideNavigation: FC<SideNavigationProps> = (
   props: SideNavigationProps
 ) => {
   const {

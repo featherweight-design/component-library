@@ -1,9 +1,9 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FC, useState } from 'react';
 import classnames from 'classnames';
 
 import { SelectProps } from 'types';
 
-const Select: FunctionComponent<SelectProps> = ({
+const Select: FC<SelectProps> = ({
   selected,
   onSelect,
   options,
