@@ -248,6 +248,18 @@ export type ProgressBarSizes =
   | 'large'
   | 'x-large';
 
+//* Radio Types
+export interface RadioProps {
+  options: string[];
+  selected: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
+  other?: OtherOptionType;
+  disabled?: boolean;
+  className?: string;
+  errorMessage?: string;
+}
+
 //* Reveal Types
 export interface RevealProps {
   children: Children;
