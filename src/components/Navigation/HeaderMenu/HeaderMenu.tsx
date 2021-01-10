@@ -9,19 +9,10 @@ import classnames from 'classnames';
 
 import {
   CurrentlyViewing,
-  HeaderMenuOptions,
   HeaderMenuOption,
+  HeaderMenuProps,
   HeaderMenuSubOption,
 } from '../../../types';
-
-type HeaderMenuProps = {
-  currentlyViewing: CurrentlyViewing;
-  menuOptions: HeaderMenuOptions;
-  defaultTitle: string;
-  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
-  goDark?: boolean;
-  className?: string;
-};
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
   goDark ? 'fd-header-menu-dark' : 'fd-header-menu';

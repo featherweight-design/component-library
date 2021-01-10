@@ -113,7 +113,23 @@ export type ButtonVariant =
   | 'outline-destructive'
   | 'glass';
 
+//* CircleLoader Types
+export interface CircleLoaderProps {
+  size?: string | number;
+  color?: string;
+  className?: string;
+}
+
 //* HeaderMenu Types
+export interface HeaderMenuProps {
+  currentlyViewing: CurrentlyViewing;
+  menuOptions: HeaderMenuOptions;
+  defaultTitle: string;
+  onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
+  goDark?: boolean;
+  className?: string;
+};
+
 export interface HeaderMenuOptions {
   [key: string]: HeaderMenuOption;
 }
