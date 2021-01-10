@@ -7,6 +7,7 @@ module.exports = {
       jsx: true, // Allows for the parsing of JSX
     },
   },
+  ignorePatterns: ['**/notes/*.{js,json,md,ts}'],
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
