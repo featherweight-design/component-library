@@ -1,0 +1,52 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Select from './Select.tsx';
+
+<Meta title="Components/Form/Select/README" component={Select} />
+
+# Select
+
+---
+
+<Story id="components-form-select--default" />
+
+---
+
+A basic `Select` component with `disabled` and `error` states, as well as an accessible `label`.
+
+## Quick Start ⚡️
+
+```jsx
+import { Select } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const [selected, handleSelectOption] =
+    (useState < SelectOptionType) | (undefined > undefined);
+
+  const mockOnSelect = (option: SelectOptionType): void => {
+    console.log({ option });
+    handleSelectOption(option);
+  };
+
+  return (
+    <Select
+      label="Favorite Creature"
+      selected={selected}
+      onSelect={mockOnSelect}
+      options={[
+        { value: 'alien', label: 'Alien 👽' },
+        { value: 'dragon', label: 'Dragon 🐉' },
+        { value: 'ghost', label: 'Ghost 👻' },
+        { value: 'unicorn', label: 'Unicorn 🦄' },
+      ]}
+    />
+  );
+};
+```
+
+## API
+
+### [Select Component](https://github.com/featherweight-design/component-library/src/components/Form/Select/Select.tsx)
+
+<Props of={Select} />
