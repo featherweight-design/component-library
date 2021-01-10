@@ -1,20 +1,7 @@
 import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
-type InputProps = {
-  name: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  id?: string;
-  type?: string;
-  label?: string;
-  placeholder?: string;
-  min?: string;
-  max?: string;
-  disabled?: boolean;
-  className?: string;
-  errorMessage?: string;
-};
+import { InputProps } from 'types';
 
 const Input: FunctionComponent<InputProps> = ({
   name,

@@ -184,6 +184,22 @@ export interface IconArgsType {
   color?: string;
 }
 
+//* Input Types
+export interface InputProps {
+  name: string;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  id?: string;
+  type?: string;
+  label?: string;
+  placeholder?: string;
+  min?: string;
+  max?: string;
+  disabled?: boolean;
+  className?: string;
+  errorMessage?: string;
+}
+
 //* Navigation Types
 export interface CurrentlyViewingTab {
   label: string;
