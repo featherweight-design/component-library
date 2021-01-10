@@ -5,7 +5,7 @@ import { SelectOptionType } from 'types';
 import Select from './Select';
 
 export default {
-  component: 'Components/Form/Select',
+  title: 'Components/Form/Select',
   decorators: [withA11y],
 };
 

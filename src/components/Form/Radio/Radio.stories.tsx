@@ -5,7 +5,7 @@ import { Button } from 'components/Buttons';
 import Radio from './Radio';
 
 export default {
-  component: 'Components/Form/Radio',
+  title: 'Components/Form/Radio',
   decorators: [withA11y],
 };
 

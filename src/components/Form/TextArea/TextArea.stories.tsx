@@ -4,7 +4,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import TextArea from './TextArea';
 
 export default {
-  component: 'Components/Form/TextArea',
+  title: 'Components/Form/TextArea',
   decorators: [withA11y],
 };
 

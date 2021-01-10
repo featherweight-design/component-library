@@ -4,7 +4,7 @@ import { withA11y } from '@storybook/addon-a11y';
 import Input from './Input';
 
 export default {
-  component: 'Components/Form/Input',
+  title: 'Components/Form/Input',
   decorators: [withA11y],
 };
 
