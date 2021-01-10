@@ -1,0 +1,45 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import Radio from './Radio.tsx';
+
+<Meta title="Components/Form/Radio/README" component={Radio} />
+
+# Radio
+
+---
+
+<Story id="components-form-radio--default" />
+
+---
+
+The `Radio` component is a grouping of Radio inputs ordered in a stacked (`block`) layout. It can also accept a custom "Other" option that allows for a custom input value.
+
+## Quick Start ⚡️
+
+```jsx
+import { Radio } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const [selected, handleChangeSelected] = useState('');
+
+  return (
+    <div>
+      <Radio
+        label="Baby Names"
+        selected={selected}
+        options={['Torin', 'Juniper', 'Pooch', 'Luna']}
+        onChange={(event): void => {
+          handleChangeSelected(event.target.name);
+        }}
+      />
+    </div>
+  );
+};
+```
+
+## API
+
+### [Radio Component](https://github.com/featherweight-design/component-library/src/components/Form/Radio/Radio.tsx)
+
+<Props of={Radio} />
