@@ -5,8 +5,7 @@ import { ProgressItem, SelectOptionType } from 'types';
 import { SIZES_ENUM, DEFAULT_SIZE } from './utilities/defaults';
 import ProgressBar from './ProgressBar';
 import { Button } from 'components/Buttons';
-import Input from 'components/Input/Input';
-import Select from 'components/Select/Select';
+import { Input, Select } from 'components/Form';
 
 export default {
   title: 'Components/Progress/ProgressBar',
