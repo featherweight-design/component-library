@@ -14,6 +14,8 @@ This document contains a number of guidelines for contributing to this library. 
 - [I have a question](#i-have-a-question)
 - [Styleguides](#styleguides)
   - [Git Commit Messages](#git-commit-messages)
+    - [Structure](#structure)
+    - [Examples](#examples)
   - [JavaScript Styleguide](#javascript-styleguide)
   - [TypeScript Styleguide](#typescript-styleguide)
   - [CSS Styleguide](#css-styleguide)
@@ -62,6 +64,35 @@ If talking to a real person is your jam, reach out to the `#questions` channel i
 - Use the present tense ("Add feature" not "Added feature")
 - Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
 - Limit the first line to 72 characters or less
+
+#### Structure
+
+```terminal
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### Examples
+
+- PATCH
+
+```terminal
+// v1.0.0
+
+// 
+git commit -m'fix: Resolve icon rendering issue' >> 1.0.1
+
+git commit -m'feat: Finalize PopDownHeader component' >> 1.1.0
+
+git commit -m'feat!: Convert ButtonProps to new configuration' >> 2.0.0
+
+git commit -m'feat: Remove redundant ExpansionPanel component in favor of Accordion
+
+BREAKING CHANGE: ExpansionPanel is no longer exported, users should update to use Accordion' >> 3.0.0
+```
 
 ### JavaScript Styleguide
 
