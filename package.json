@@ -24,7 +24,7 @@
     "postbuild": "mkdir ./dist/scss && cp -a ./src/styles/. ./dist/scss",
     "build-storybook": "build-storybook",
     "clean": "rm -rf node_modules yarn.lock && yarn install",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "format": "prettier --write './src/**/*.{ts,tsx,mdx}'",
     "lint": "eslint './src/**/*.{js,ts,tsx,mdx}' --fix",
     "lint-github-check": "eslint './src/**/*.{js,ts,tsx,mdx}'",
     "release": "standard-version -t @f-design/component-library@",
