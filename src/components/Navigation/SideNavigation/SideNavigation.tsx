@@ -13,6 +13,7 @@ import {
   SideNavigationSelection,
   SideNavigationSubOption,
 } from 'types';
+
 import Accordion from '../../Accordion/Accordion';
 
 const getSelection = (
