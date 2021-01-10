@@ -239,11 +239,37 @@ export const VariantsWithSizes = (): JSX.Element => (
   </div>
 );
 
+export const withChildren = (): JSX.Element => (
+  <ActionButton onClick={mockClick}>
+    <div style={{ display: 'grid', gap: '0.25rem' }}>
+      <span
+        style={{
+          width: '1.5rem',
+          height: '0.125rem',
+          borderRadius: '1px',
+          backgroundColor: 'white',
+        }}
+      />
+      <span
+        style={{
+          width: '1.125rem',
+          height: '0.125rem',
+          borderRadius: '1px',
+          backgroundColor: 'white',
+        }}
+      />
+      <span
+        style={{
+          width: '1.5rem',
+          height: '0.125rem',
+          borderRadius: '1px',
+          backgroundColor: 'white',
+        }}
+      />
+    </div>
+  </ActionButton>
+);
+
 export const WithImage = (): JSX.Element => (
-  <ActionButton
-    image={fwdLogo}
-    onClick={mockClick}
-    label="Conga"
-    variant="secondary"
-  />
+  <ActionButton image={fwdLogo} onClick={mockClick} />
 );
