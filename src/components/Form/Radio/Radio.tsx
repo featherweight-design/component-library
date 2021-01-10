@@ -1,21 +1,10 @@
-import React, { FunctionComponent, ChangeEvent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import OtherOption from '../OtherOption/OtherOption';
-import { OtherOptionType } from 'types';
+import { RadioProps } from 'types';
 
-type RadioProps = {
-  options: string[];
-  selected: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
-  other?: OtherOptionType;
-  disabled?: boolean;
-  className?: string;
-  errorMessage?: string;
-};
-
-const Radio: FunctionComponent<RadioProps> = ({
+const Radio: FC<RadioProps> = ({
   options,
   selected,
   onChange,
