@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Button from './Button';
-import Input from '../../Input/Input';
+import { Input } from 'components/Form';
 
 export default {
   title: 'Components/Buttons/Button',

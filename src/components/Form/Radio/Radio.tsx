@@ -2,7 +2,7 @@ import React, { FunctionComponent, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
 import OtherOption from '../OtherOption/OtherOption';
-import { OtherOptionType } from '../../types';
+import { OtherOptionType } from 'types';
 
 type RadioProps = {
   options: string[];
