@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { withA11Y } from '@storybook/addon-a11y';
-import { storiesOf } from '@storybook/react';
+import { withA11y } from '@storybook/addon-a11y';
 
 import SideNavigation from './SideNavigation';
 
@@ -79,54 +78,61 @@ const defaultSelected = {
   subOption: 'my info',
 };
 
-storiesOf('Navigation/Side Navigation', module)
-  .addDecorator(withA11Y)
-  .add('Default', () => (
-    <SideNavigation
-      currentlyViewing={currentlyViewing}
-      menuOptions={sideNavigationMenuOptions}
-      defaultSelected={defaultSelected}
-    />
-  ))
-  .add('Collapsed by default', () => (
-    <SideNavigation
-      collapsed
-      currentlyViewing={currentlyViewing}
-      menuOptions={sideNavigationMenuOptions}
-      defaultSelected={defaultSelected}
-    />
-  ))
-  .add('With logo', () => {
-    const [showBackButton, toggleOnGoBack] = useState(true);
+export default {
+  title: 'Components/Navigation/SideNavigation',
+  decorators: [withA11y],
+};
 
-    return (
-      <SideNavigation
-        currentlyViewing={currentlyViewing}
-        menuOptions={sideNavigationMenuOptions}
-        defaultSelected={defaultSelected}
-        logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
-        showBackButton={showBackButton}
-        onGoBack={(): void => {
-          toggleOnGoBack(false);
-          setTimeout(() => toggleOnGoBack(true), 1000);
-        }}
-      />
-    );
-  })
-  .add('With logo and title', () => (
+export const Default = (): JSX.Element => (
+  <SideNavigation
+    currentlyViewing={currentlyViewing}
+    menuOptions={sideNavigationMenuOptions}
+    defaultSelected={defaultSelected}
+  />
+);
+
+export const WithCollapseInitialState = (): JSX.Element => (
+  <SideNavigation
+    collapsed
+    currentlyViewing={currentlyViewing}
+    menuOptions={sideNavigationMenuOptions}
+    defaultSelected={defaultSelected}
+  />
+);
+
+export const WithDarkTheme = (): JSX.Element => (
+  <SideNavigation
+    goDark
+    currentlyViewing={currentlyViewing}
+    menuOptions={sideNavigationMenuOptions}
+    defaultSelected={defaultSelected}
+  />
+);
+
+export const WithLogo = (): JSX.Element => {
+  const [showBackButton, toggleOnGoBack] = useState(true);
+
+  return (
     <SideNavigation
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
       defaultSelected={defaultSelected}
       logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
-      logoTitle="DevelopmentalFX"
+      showBackButton={showBackButton}
+      onGoBack={(): void => {
+        toggleOnGoBack(false);
+        setTimeout(() => toggleOnGoBack(true), 1000);
+      }}
     />
-  ))
-  .add('Dark theme', () => (
-    <SideNavigation
-      goDark
-      currentlyViewing={currentlyViewing}
-      menuOptions={sideNavigationMenuOptions}
-      defaultSelected={defaultSelected}
-    />
-  ));
+  );
+};
+
+export const WithLogoAndTitle = (): JSX.Element => (
+  <SideNavigation
+    currentlyViewing={currentlyViewing}
+    menuOptions={sideNavigationMenuOptions}
+    defaultSelected={defaultSelected}
+    logoAssetPath="https://developmentalfx.org/wp-content/uploads/2018/05/dfx-1.png"
+    logoTitle="DevelopmentalFX"
+  />
+);
