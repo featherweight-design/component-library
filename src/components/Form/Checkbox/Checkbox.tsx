@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import OtherOption from '../OtherOption/OtherOption';
-import { CheckboxProps } from '../../types';
+import { CheckboxProps } from 'types';
 
 const Checkbox: FC<CheckboxProps> = ({
   onChange,
