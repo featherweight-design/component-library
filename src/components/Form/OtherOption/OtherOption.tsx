@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 
 import { OtherOptionType } from 'types';
@@ -9,7 +9,7 @@ type OtherOptionProps = OtherOptionType & {
   disabled?: boolean;
 };
 
-const OtherOption: FunctionComponent<OtherOptionProps> = ({
+const OtherOption: FC<OtherOptionProps> = ({
   onChange,
   value,
   name,

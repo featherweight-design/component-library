@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import classnames from 'classnames';
 
 type TextAreaProps = {
@@ -15,7 +15,7 @@ type TextAreaProps = {
   errorMessage?: string;
 };
 
-const TextArea: FunctionComponent<TextAreaProps> = ({
+const TextArea: FC<TextAreaProps> = ({
   name,
   value,
   onChange,

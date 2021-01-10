@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  ReactElement,
-  Fragment,
-  useState,
-  useRef,
-} from 'react';
+import React, { FC, ReactElement, Fragment, useState, useRef } from 'react';
 import classnames from 'classnames';
 
 import {
@@ -17,7 +11,7 @@ import {
 const getBaseClassName = (goDark: boolean | undefined): string =>
   goDark ? 'fd-header-menu-dark' : 'fd-header-menu';
 
-const HeaderMenu: FunctionComponent<HeaderMenuProps> = ({
+const HeaderMenu: FC<HeaderMenuProps> = ({
   currentlyViewing,
   menuOptions,
   onNavigate,
