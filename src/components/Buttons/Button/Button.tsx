@@ -16,6 +16,7 @@ const Button: FC<ButtonProps> = ({
   disabled,
   loading,
   type,
+  style,
   shape = DEFAULT_SHAPE,
 }: ButtonProps) => (
   <button
@@ -24,6 +25,7 @@ const Button: FC<ButtonProps> = ({
     type={type}
     onClick={onClick}
     disabled={disabled}
+    style={style}
     className={classnames({
       'fd-button': true,
       [`fd-button-${variant}`]: variant,
