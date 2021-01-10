@@ -1,0 +1,83 @@
+import { Meta, Story, Props } from '@storybook/addon-docs/blocks';
+
+import SideNavigation from './SideNavigation.tsx';
+
+<Meta title="Components/Navigation/sidenavigation/README" component={SideNavigation} />
+
+# SideNavigation
+
+---
+
+<Story id="components-navigation-sidenavigation--default" />
+
+---
+
+The `SideNavigation` component is a more robust, customizable navigation element that sits along the left side of any container. In order to fill the entire height of the screen, the parent container must be styled accordingly.
+
+It necessitates twp props to render: `menuOptions` and `currentlyViewing`. Like the `HeaderMenu` component, the `path` value is required, which allows the `SideNavigation` to dynamically intuit when the `path` has changed and update the selected menu option or sub-option accordingly.
+
+This component can work in conjunction with the `HeaderMenu` component to make for a more robust and dynamic navigation system fueled by the `currentlyViewing` property.
+
+## Quick Start ⚡️
+
+```jsx
+import { SideNavigation } from '@f-design/component-library';
+
+const MyComponent = () => {
+  // ...things
+  const currentlyViewing = {
+    path: '/settings',
+  };
+
+  const menuOptions =  [
+  {
+    label: 'user',
+    icon: 'person',
+    subOptions: [
+      {
+        title: 'My Info',
+        path: '/user/my-info',
+      },
+      {
+        title: 'Notifications',
+        path: '/user/notifications',
+      },
+      {
+        title: 'Logout',
+        path: '/logout',
+      },
+    ],
+  },
+  {
+    label: 'help',
+    icon: 'help',
+    subOptions: [
+      {
+        title: 'Contact Us',
+        path: '/help/contact',
+      },
+      {
+        title: 'Feedback',
+        path: '/help/feedback',
+      },
+    ],
+  },
+  {
+    label: 'settings',
+    icon: 'settings_applications',
+    path: '/settings',
+    title: 'Settings',
+  },
+];
+
+  return (
+    <SideNavigation currentlyViewing={currentlyViewing} menuOptions={menuOptions} />
+  );
+};
+```
+
+## API
+
+### [SideNavigation Component](https://github.com/featherweight-design/component-library/src/components/Navigation/SideNavigation/SideNavigation.tsx)
+
+<Props of={SideNavigation} />
