@@ -1,0 +1,28 @@
+name: Pull Request Checks
+
+# Run this workflow every time a new pull request is opened
+# and when commits are pushed to an existing PR
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  # Set the job key. This key is displayed as the job name
+  # when a job name is not provided
+  pr-checks:
+    name: Pull Request Checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      # Runs actions specific script that does not fix errors
+      - name: Check linting
+        run: yarn run lint-ci
+
+      # Ensure that their are no errors in the build
+      - name: Check Storybook build
+        run: yarn storybook-smoke-test
