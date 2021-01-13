@@ -59,6 +59,7 @@ jobs:
         uses: tzkhan/pr-update-action@v2
         with:
           repo-token: "${{ secrets.GH_ACTION_PAT }}"
+          head-branch-regex: '(development)'
           body-template: |
             ## Description
             - Release version: [<VERSION_NUMBER>](https://www.npmjs.com/package/@f-design/component-library)
