@@ -18,11 +18,11 @@ jobs:
       PR_DEV: ${{ github.actor }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-        # with:
-        #   # Removes credentials
-        #   persist-credentials: false
-        #   fetch-depth: 0
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -41,10 +41,10 @@ jobs:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
 
-      # - name: Set GitHub Action user
-      #   run: |
-      #     git config --local user.email "action@github.com"
-      #     git config --local user.name "GitHub Action"
+      - name: Set GitHub Action user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
       - name: Build new package
         run: yarn run build
