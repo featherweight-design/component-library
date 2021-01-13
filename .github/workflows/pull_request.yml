@@ -54,7 +54,9 @@ jobs:
         run: yarn run release-canary
 
       - name: Capture new version
-        run: VERSION=$(node -p "require('./package.json').version")
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+      - name: Test
+        run: echo $VERSION
 
       - name: Update PR with version
         uses: tzkhan/pr-update-action@v2
