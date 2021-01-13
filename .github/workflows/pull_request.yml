@@ -12,8 +12,6 @@ jobs:
   pr-checks:
     name: Pull Request Checks
     runs-on: ubuntu-latest
-    env:
-      PR_DEV: ${{ github.actor }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
