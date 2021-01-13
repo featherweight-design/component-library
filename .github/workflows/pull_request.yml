@@ -16,6 +16,7 @@ jobs:
       # Set an environment variable for the publishing dev
       # This is used in to make a unique canary release to npm
       PR_DEV: ${{ github.actor }}
+      VERSION: ''
     steps:
       - name: Checkout code
         uses: actions/checkout@master
