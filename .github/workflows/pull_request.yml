@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+        # with:
+        #   # Removes credentials
+        #   persist-credentials: false
+        #   fetch-depth: 0
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -23,6 +27,28 @@ jobs:
       - name: Check linting
         run: yarn run lint-ci
 
-      # Ensure that their are no errors in the build
+      # Ensure that their are no errors in the Storybook build
       - name: Check Storybook build
         run: yarn storybook-smoke-test
+
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+
+      # - name: Set GitHub Action user
+      #   run: |
+      #     git config --local user.email "action@github.com"
+      #     git config --local user.name "GitHub Action"
+
+      - name: Build new package
+        run: yarn run build
+
+      - name: Tag canary release
+        run: yarn run release-canary
+
+      - name: Publish @f-design/component-library beta release from PR branch
+        run: npm publish --tag canary --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
