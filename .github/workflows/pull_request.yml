@@ -62,7 +62,8 @@ jobs:
           base-branch-regex: '[development]+'
           body-template: |
             ## Description
-            - Release version: [<VERSION_NUMBER>](https://www.npmjs.com/package/@f-design/component-library)
+
+            - Release version: [${{ VERSION }}](https://www.npmjs.com/package/@f-design/component-library)
           body-update-action: 'prefix'
 
       - name: Publish @f-design/component-library beta release from PR branch
