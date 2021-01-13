@@ -13,7 +13,9 @@ jobs:
     name: Pull Request Checks
     runs-on: ubuntu-latest
     env:
-      PR_DEV: ${{ github.actor }}
+      # Set an environment variable for the publishing dev
+      # This is used in to make a unique canary release to npm
+      PR_DEV: ${{ GITHUB_ACTOR }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -49,6 +51,18 @@ jobs:
 
       - name: Tag canary release
         run: yarn run release-canary
+
+      - name: Capture new version
+        run: VERSION=$(node -p "require('./package.json').version")
+
+      - name: Update PR with version
+        uses: tzkhan/pr-update-action@v2
+        with:
+          repo-token: "${{ secrets.GH_ACTION_PAT }}"
+          body-template: |
+            ## Description
+            - Release version: [<VERSION_NUMBER>](https://www.npmjs.com/package/@f-design/component-library)
+          body-update-action: 'prefix'
 
       - name: Publish @f-design/component-library beta release from PR branch
         run: npm publish --tag canary --access public
