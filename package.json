@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "1.0.2-canary-.2",
+  "version": "1.0.2-huey.0",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     "lint-ci": "eslint './src/**/*.{js,ts,tsx,mdx}'",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "yarn release --prerelease beta --skip.changelog --skip.tag",
-    "release-canary": "echo $MOCK_USER && yarn release --prerelease $MOCK_USER --skip.changelog --skip.tag",
+    "release-canary": "MOCK_USER=huey && echo $MOCK_USER && yarn release --prerelease $MOCK_USER --skip.changelog --skip.tag",
     "storybook": "start-storybook -p 6006 -s ./.storybook/public",
     "storybook-smoke-test": "start-storybook --smoke-test",
     "test": "jest --config jestconfig.json",
