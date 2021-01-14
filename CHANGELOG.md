@@ -2,13 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [1.0.3](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@1.0.1...@f-design/component-library@1.0.3) (2021-01-14)
-
-
-### Configuration
-
-* PR GH Action workflow ([62219c5](https://github.com/featherweight-design/component-library/commit/62219c5bce862b399dc3363427a52464932224a5))
-
 ### [1.0.2](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@1.0.1...@f-design/component-library@1.0.2) (2021-01-14)
 
 
