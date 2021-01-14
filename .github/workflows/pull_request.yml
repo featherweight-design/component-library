@@ -83,6 +83,6 @@ jobs:
       #     body-update-action: 'prefix'
 
       - name: Publish @f-design/component-library canary release from PR branch
-        run: npm publish --tag canary-$PR_DEV-${{ steps.generate-uuid.outputs.uuid }} --access public
+        run: npm publish --tag canary-${{ env.PR_DEV }}-${{ steps.generate-uuid.outputs.uuid }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
