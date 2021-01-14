@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "1.0.1",
+  "version": "1.1.0-HartiganHM-canary.0",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
     "lint-ci": "eslint './src/**/*.{js,ts,tsx,mdx}'",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "standard-version --prerelease beta --skip.changelog --skip.tag",
-    "release-canary": "source ./.env && standard-version --no-verify --prerelease $PR_DEV-canary --skip.changelog --skip.tag --post-commit",
+    "release-canary": "source ./.env && standard-version --prerelease $PR_DEV-canary --skip.changelog --skip.tag --no-verify",
     "storybook": "start-storybook -p 6006 -s ./.storybook/public",
     "storybook-smoke-test": "start-storybook --smoke-test",
     "test": "jest --config jestconfig.json",
@@ -101,11 +101,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "post-commit": "yarn run release-canary",
       "pre-push": "yarn run lint-ci"
-    }
-  },
-  "standard-version": {
-    "scripts": {
-      "precommit": "--no-verify"
     }
   }
 }
