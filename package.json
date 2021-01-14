@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "1.0.2-HartiganHM-canary.5",
+  "version": "1.0.2-HartiganHM-canary.3",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -44,7 +44,7 @@
   "dependencies": {
     "@babel/core": "^7.7.5",
     "core-js": "^3.5.0",
-    "husky": ">=4",
+    "husky": "^3.1.0",
     "lodash": "^4.17.15",
     "regenerator-runtime": "^0.13.3",
     "webpack": "^4.41.2",
@@ -79,7 +79,6 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
     "jest": "^24.9.0",
-    "lint-staged": ">=10",
     "node-sass": "^5.0.0",
     "prettier": "^1.19.1",
     "react-docgen-typescript-loader": "^3.6.0",
@@ -100,14 +99,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn run lint-ci",
-      "pre-push": "lint-staged"
+      "pre-push": "yarn run lint-ci"
     }
-  },
-  "lint-staged": {
-    "*": [
-      "yarn run release-canary",
-      "yarn run lint-ci"
-    ]
   }
 }
