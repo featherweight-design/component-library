@@ -99,6 +99,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-commit": "yarn run release-canary",
       "pre-push": "yarn run lint-ci"
     }
   }
