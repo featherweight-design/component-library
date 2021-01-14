@@ -50,14 +50,14 @@ jobs:
       - name: Build new package
         run: yarn run build
 
-      - name: Tag canary release
-        run: yarn run release-canary
+      # - name: Tag canary release
+      #   run: yarn run release-canary
 
-      - name: Push updates to PR branch
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_ACTION_PAT }}
-          branch: ${{ github.head_ref }}
+      # - name: Push updates to PR branch
+      #   uses: ad-m/github-push-action@master
+      #   with:
+      #     github_token: ${{ secrets.GH_ACTION_PAT }}
+      #     branch: ${{ github.head_ref }}
 
       - name: Capture new version
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
