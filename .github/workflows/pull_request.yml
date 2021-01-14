@@ -50,8 +50,8 @@ jobs:
       - name: Build new package
         run: yarn run build
 
-      # - name: Tag canary release
-      #   run: yarn run release-canary
+      - name: Tag canary release
+        run: yarn run release-canary
 
       # - name: Push updates to PR branch
       #   uses: ad-m/github-push-action@master
