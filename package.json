@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "1.1.0-HartiganHM-canary.4",
+  "version": "1.0.1",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
@@ -101,6 +101,11 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "post-commit": "yarn run release-canary",
       "pre-push": "yarn run lint-ci"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "precommit": "--no-verify"
     }
   }
 }
