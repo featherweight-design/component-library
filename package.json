@@ -1,6 +1,6 @@
 {
   "name": "@f-design/component-library",
-  "version": "1.0.3-HartiganHM-canary.15",
+  "version": "1.0.3-HartiganHM-canary.16",
   "description": "A component library built and maintained by Featherweight Design",
   "main": "dist/bundle.js",
   "types": "dist/index.d.ts",
