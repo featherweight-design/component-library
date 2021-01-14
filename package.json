@@ -29,7 +29,7 @@
     "lint-ci": "eslint './src/**/*.{js,ts,tsx,mdx}'",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "yarn release --prerelease beta --skip.changelog --skip.tag",
-    "release-canary": "source ./.env && yarn release --prerelease $PR_DEV-canary --skip.changelog --skip.tag --no-verify",
+    "release-canary": "source ./.env && yarn release --no-verify --prerelease $PR_DEV-canary --skip.changelog --skip.tag --no-verify",
     "storybook": "start-storybook -p 6006 -s ./.storybook/public",
     "storybook-smoke-test": "start-storybook --smoke-test",
     "test": "jest --config jestconfig.json",
