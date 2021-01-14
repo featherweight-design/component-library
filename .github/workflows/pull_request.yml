@@ -67,7 +67,7 @@ jobs:
         run: echo "UUID is ${{ steps.generate-uuid.outputs.uuid }}"
 
       - name: Set UUID to env variable
-        run: echo "UUID=${{ steps.generate.uuid.outputs.uuid }}" >> $GITHUB_ENV
+        run: echo "UUID=${{ steps.generate-uuid.outputs.uuid }}" >> $GITHUB_ENV
 
       - name: Tag canary release
         run: yarn run release-canary
