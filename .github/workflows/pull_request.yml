@@ -79,10 +79,10 @@ jobs:
       #     body-template: |
       #       ## Description
 
-      #       - Release version: [${{ env.VERSION }}](https://www.npmjs.com/package/@f-design/component-library)
+      #       - Canary release version: [${{ env.VERSION }}](https://www.npmjs.com/package/@f-design/component-library)
       #     body-update-action: 'prefix'
 
-      # - name: Publish @f-design/component-library canary release from PR branch
-      #   run: npm publish --tag canary-$PR_DEV --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+      - name: Publish @f-design/component-library canary release from PR branch
+        run: npm publish --tag canary-$PR_DEV-${{ steps.generate-uuid.outputs.uuid }} --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
