@@ -66,6 +66,7 @@ jobs:
       - name: Tag canary release
         run: yarn run release-canary
 
+      # Publish a new canary release to NPM
       - name: Publish @f-design/component-library canary release from PR branch
         run: npm publish --tag canary --access public
         env:
