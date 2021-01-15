@@ -1,6 +1,7 @@
 {
   "types": [
     { "type": "build", "section": "Configuration" },
+    { "type": "docs", "hidden": "Documentation" },
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
     { "type": "refactor", "section": "Refactoring" },
@@ -8,7 +9,6 @@
     { "type": "test", "section": "Tests" },
     { "type": "chore", "hidden": true },
     { "type": "ci", "hidden": true },
-    { "type": "docs", "hidden": true },
     { "type": "optimization", "hidden": true },
     { "type": "revert", "hidden": true }
   ]
