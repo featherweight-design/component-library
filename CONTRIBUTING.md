@@ -170,15 +170,16 @@ BREAKING CHANGE: ExpansionPanel is no longer exported, users should update to us
 
 - Celebrate! 🎉
 - Rebase with `development`
-- Run `yarn release-beta` to update the package version for a beta release
-- Run `npm publish` to publish the `beta` version of your changes for testing (e.g. `@f-design/component-library@0.1.38-beta.0`)
-
-> _Note: The above two commands should only be run once you are done with your PR to avoid redundant beta release versions; There is no need to run these commands for documentation changes_
-
 - Push your changes to GitHub and open a new PR
 - Fill out any relevant sections in the PR Template and remove those that are unused
 - Run through the **"Sanity Checks"**
 - GitHub will randomly assign someone to review your PR, but you are welcome to select additional reviewers
+- Opening and updating a PR will kick off a GH Action that will run a few PR validation checks
+- If all of these checks pass, a comment will be added to your PR with a canary release version of the component library
+  > 🚨&emsp; It is expected that you test this canary release **_before_** your PR is merged
+
+  > ![image](https://user-images.githubusercontent.com/24458700/104745988-edc06d80-570b-11eb-864b-5e6d0b37bff2.png)
+  > _GH comment for canary release_
 
 ### Receiving Feedback
 
@@ -190,10 +191,13 @@ BREAKING CHANGE: ExpansionPanel is no longer exported, users should update to us
 
 ### After Approval
 
-- Once your PR is merged into `development` a new version will be released and the `CHANGELOG.md` will be updated
-- Another team member will be assigned to test your changes though you are encouraged to test them as well using the new release version of the component library
-- If any bugs are found during testing, open a new **"🐛 Bug"** issue (you are welcome to tackle this afterward if you wish)
+- Once your PR is merged into `development` a new beta version will be released
+- Another team member will be assigned to test your changes though you are encouraged to test them as well using the new beta release of the component library (`yarn add @f-design/component-library@beta`)
+- If any bugs are found during testing, open a new **"🐛 Bug"** issue
+  - You are welcome to tackle this afterward by assigning yourself to the issue and moving it to the "In Progress" column
 - Once your changes pass QA, your PR will be moved to the **"Done"** column in the project board
+- When we feel that the `beta` version of the component library is stable enough for an official release a PR merging `development` into `main` will be opened
+- This release will update the official version of the component library, as well as the `CHANGELOG`
 - 🔥 You did it! 🔥
 
 ## Attribution
