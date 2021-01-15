@@ -1,13 +1,16 @@
-name: Publish new release from development
+name: Publish new beta release from development
 on:
   pull_request:
     types: [closed]
 
 jobs:
   update-version-changelog:
+    # This ensure that this workflow only runs when a PR is being merged to 'development'
     if: github.ref == 'development' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    name: Publish new release from development
+    name: Publish new beta release from development
     runs-on: ubuntu-latest
+    env:
+      VERSION: ''
     steps:
       - name: Checkout development
         uses: actions/checkout@master
@@ -21,6 +24,7 @@ jobs:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
 
+      # This is required for publishing from GH Actions
       - name: Set GitHub Action user
         run: |
           git config --local user.email "action@github.com"
@@ -29,29 +33,40 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Update CHANGELOG/version
+      # Update the version in package.json for the beta release
+      - name: Tag beta release
         run: yarn release-beta
 
+      # Ensure development is in sync
       - name: Push to development
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_ACTION_PAT }}
           branch: development
 
+      # Build the component library
       - name: Build new package
         run: yarn run build
 
-      - name: Publish @f-design/component-library from development
-        run: npm publish --access public
+      # Publish a new beta release to NPM
+      - name: Publish @f-design/component-library beta release from development
+        run: npm publish --tag beta --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
+      # Extract the canary version number to post in a comment
+      - name: Capture new version
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      # Post Slack notification about beta release
       - name: Slack Notification about beta release
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: component-library
-          SLACK_ICON_EMOJI: ':rocket:'
-          SLACK_MESSAGE: Install with `yarn add @f-design/component-library@beta`
+          SLACK_ICON_EMOJI: ':sewing_needle:'
+          SLACK_MESSAGE: |
+            Version: ${{ env.VERSION }}
+            Install with `yarn add @f-design/component-library@beta`
           SLACK_TITLE: Beta release of Component Library successful!
           SLACK_USERNAME: FWD-Bot
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
