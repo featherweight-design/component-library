@@ -30,6 +30,7 @@
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "standard-version --prerelease beta --skip.changelog --skip.tag",
     "storybook": "start-storybook -p 6006 -s ./.storybook/public",
+    "storybook-smoke-test": "start-storybook --smoke-test",
     "test": "jest --config jestconfig.json",
     "upgrade": "yarn upgrade-interactive --latest",
     "version": "yarn run format && git add -A src"
