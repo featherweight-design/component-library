@@ -80,13 +80,36 @@ jobs:
       - name: Capture new version
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
-      - name: Update PR title with version
-        uses: tzkhan/pr-update-action@v2
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        id: fc
         with:
-          repo-token: "${{ secrets.GH_ACTION_PAT }}"
-          base-branch-regex: '[development]+'
-          body-template: |
-            ## Description
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Canary release
 
-            - [Canary release version](https://www.npmjs.com/package/@f-design/component-library/v/${{ env.VERSION }})
-          body-update-action: 'prefix'
+      - name: Create comment
+        if: ${{ steps.fc.outputs.comment-id == 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Canary release :hatched_chick:
+
+            To test your changes, run the below in a test repo:
+            ```terminal
+            yarn add @f-design/component-library@${{ env.VERSION }}
+            ```
+
+      - name: Update comment
+        if: ${{ steps.fc.outputs.comment-id != 0 }}
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          body: |
+            Canary release :hatched_chick:
+
+            To test your changes, run the below in a test repo:
+            ```terminal
+            yarn add @f-design/component-library@${{ env.VERSION }}
+            ```
