@@ -1,0 +1,57 @@
+name: Publish new release from development
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  update-version-changelog:
+    if: github.ref == 'development' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
+    name: Publish new release from development
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout development
+        uses: actions/checkout@master
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Set GitHub Action user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Update CHANGELOG/version
+        run: yarn release-beta
+
+      - name: Push to development
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_ACTION_PAT }}
+          branch: development
+
+      - name: Build new package
+        run: yarn run build
+
+      - name: Publish @f-design/component-library from development
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+      - name: Slack Notification about beta release
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: component-library
+          SLACK_ICON_EMOJI: ':rocket:'
+          SLACK_MESSAGE: Install with `yarn add @f-design/component-library@beta`
+          SLACK_TITLE: Beta release of Component Library successful!
+          SLACK_USERNAME: FWD-Bot
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
