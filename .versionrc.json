@@ -1,11 +1,11 @@
 {
   "types": [
+    { "type": "build", "section": "Configuration" },
     { "type": "feat", "section": "Features" },
     { "type": "fix", "section": "Bug Fixes" },
     { "type": "refactor", "section": "Refactoring" },
     { "type": "style", "section": "Styles" },
     { "type": "test", "section": "Tests" },
-    { "type": "build", "hidden": true },
     { "type": "chore", "hidden": true },
     { "type": "ci", "hidden": true },
     { "type": "docs", "hidden": true },
