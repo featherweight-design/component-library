@@ -1,15 +1,9 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:6006",
   "fixturesFolder": "src/cypress/fixtures",
   "integrationFolder": "src/cypress/integration",
   "pluginsFile": "src/cypress/plugins/index.js",
   "screenshotsFolder": "src/cypress/screenshots",
   "videosFolder": "src/cypress/videos",
-  "supportFile": "src/cypress/support/index.js",
-  "viewportHeight": 800,
-  "viewportWidth": 1280,
-  "retries": {
-    "runMode": 2,
-    "openMode": 1
-  }
+  "supportFile": "src/cypress/support/index.js"
 }
