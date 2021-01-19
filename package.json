@@ -26,6 +26,8 @@
     "format": "prettier --write './src/**/*.{ts,tsx,mdx}'",
     "lint": "eslint './src/**/*.{js,ts,tsx,mdx}' --fix",
     "lint-ci": "eslint './src/**/*.{js,ts,tsx,mdx}'",
+    "cy-open": "cypress open",
+    "cy-run": "cypress run",
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "standard-version --prerelease beta --skip.changelog --skip.tag",
     "release-canary": "standard-version --prerelease canary-$PR_DEV-$UUID --skip.changelog --skip.tag",
