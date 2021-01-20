@@ -1,30 +1,84 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  env: {
+    browser: true,
+    amd: true,
+    node: true,
+    'cypress/globals': true,
+  },
+  // Specifies the ESLint parser
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module', // Allows for the use of imports
+    // Allows for the parsing of modern ECMAScript features
+    ecmaVersion: 2018,
+    // Allows for the use of imports
+    sourceType: 'module',
     ecmaFeatures: {
-      jsx: true, // Allows for the parsing of JSX
+      // Allows for the parsing of JSX
+      jsx: true,
     },
   },
   ignorePatterns: ['**/notes/*.{js,json,md,ts}'],
   extends: [
-    'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
-    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    // Uses the recommended rules from @eslint-plugin-react
+    'plugin:react/recommended',
+    // Uses the recommended rules from Cypress
+    'plugin:cypress/recommended',
+    // Uses the recommended rules from eslint
+    'eslint:recommended',
+    // Uses the recommended rules from @typescript-eslint/eslint-plugin
+    'plugin:@typescript-eslint/recommended',
+    // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
+    'prettier/@typescript-eslint',
+    // Enables eslint-plugin-prettier and eslint-config-prettier.
+    // This will display prettier errors as ESLint errors.
+    // Make sure this is always the last configuration in the extends array.
+    'plugin:prettier/recommended',
   ],
-  plugins: ['react-hooks'],
+  plugins: ['react-hooks', 'cypress'],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+    // Place to specify ESLint rules. Can be used to overwrite rules
+    // specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
-    'no-use-before-define': ['error', { variables: false }],
+    // Turned off due to conflict with the second rule below, which should be used with TS
+    'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error', { variables: false }],
+    // Turned off because annoying
     'react-hooks/rules-of-hooks': 'error',
+    // No longer needed as of React v17
+    'react/jsx-uses-react': 'off',
+    // No longer needed as of React v17
+    'react/react-in-jsx-scope': 'off',
+    // Allows JSX to be used in .ts/.tsx files
+    'react/jsx-filename-extension': [
+      2,
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+    ],
+    // Allows omission of file extensions in .ts(x)/.js(x) files
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    // Turns off rule that conflicts with Prettier
+    'comma-dangle': 'off',
+    // Turns off rule that conflicts with Prettier
+    'object-curly-newline': 'off',
+    // Fixes an error when suggesting testing devDependencies should be dependencies
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   settings: {
     react: {
-      version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
+      // Tells eslint-plugin-react to automatically detect the version of React to use
+      version: 'detect',
+    },
+    'import/resolver': {
+      // This loads <rootdir>/tsconfig.json to eslint
+      typescript: {},
     },
   },
   overrides: [
