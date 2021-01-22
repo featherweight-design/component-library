@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import { Button } from 'components/Buttons';

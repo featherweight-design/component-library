@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
-import Reveal from './Reveal';
 import { Button } from 'components/Buttons';
+import Reveal from './Reveal';
 
 export default {
   title: 'Components/Reveal',
@@ -27,6 +27,7 @@ export const Default = (): JSX.Element => {
       <Reveal isShown={isShown} padding="5px">
         <Button
           variant="destructive"
+          /* eslint-disable-next-line no-console */
           onClick={(): void => console.log('destroy!')}
         >
           Secret Destroy Button

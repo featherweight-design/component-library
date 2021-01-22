@@ -1,4 +1,4 @@
-import React, { FC, ReactElement, Fragment, useState, useRef } from 'react';
+import { FC, ReactElement, Fragment, useState, useRef } from 'react';
 import classnames from 'classnames';
 
 import {
@@ -79,12 +79,12 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
     });
 
     return (
-      <Fragment>
+      <>
         <h2 className={titleClassNames}>{title || defaultTitle}</h2>
         {subTitle && (
           <h4 className={`${baseClassName}__location-sub-title`}>{subTitle}</h4>
         )}
-      </Fragment>
+      </>
     );
   };
 

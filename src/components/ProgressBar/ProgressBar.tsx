@@ -1,14 +1,14 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import classnames from 'classnames';
 
 import { ProgressBarProps } from 'types';
+import Icon from 'components/Icon/Icon';
 import {
   DEFAULT_COMPLETION_COLOR,
   DEFAULT_LANGUAGE,
   DEFAULT_SIZE,
   SIZES_ENUM,
 } from './utilities/defaults';
-import Icon from 'components/Icon/Icon';
 
 const ProgressBar: FC<ProgressBarProps> = ({
   itemsToComplete,

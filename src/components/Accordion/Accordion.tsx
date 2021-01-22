@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 import classnames from 'classnames';
 
 import { AccordionProps } from 'types';
@@ -46,6 +46,7 @@ const Accordion: FC<AccordionProps> = ({
     >
       {title && (
         <button
+          type="button"
           className={classnames({
             'fd-accordion__button': true,
             'fd-accordion__button-hidden': !isExpanded,
@@ -62,10 +63,10 @@ const Accordion: FC<AccordionProps> = ({
             icon="keyboard_arrow_down"
             size="0.875rem"
           />
-          ​<span className="fd-accordion__title">{title}</span>
+          <span className="fd-accordion__title">{title}</span>
         </button>
       )}
-      ​
+
       <div
         aria-hidden={isExpanded}
         className={classnames({

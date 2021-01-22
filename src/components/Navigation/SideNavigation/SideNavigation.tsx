@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useEffect, FC } from 'react';
+import { ReactElement, useState, useEffect, FC, KeyboardEvent } from 'react';
 import classnames from 'classnames';
 
 import {
@@ -9,6 +9,7 @@ import {
   SideNavigationSubOption,
 } from 'types';
 
+import { keyboardKeyEnum } from 'shared/enums';
 import Accordion from '../../Accordion/Accordion';
 
 const DEFAULT_SELECTED = {
@@ -32,7 +33,7 @@ const getSelection = (
 
       if (subOptions && subOptions.length) {
         const match = subOptions.find(
-          ({ path }) => path === currentlyViewing.path
+          subOption => subOption.path === currentlyViewing.path
         );
 
         if (match) {
@@ -120,7 +121,7 @@ const SideNavigation: FC<SideNavigationProps> = (
 
         const optionOffsets = [];
 
-        for (let i = 0; i < optionElements.length; i++) {
+        for (let i = 0; i < optionElements.length; i += 1) {
           optionOffsets.push(
             (optionElements[i] as HTMLElement).offsetTop + addedOffset
           );
@@ -300,13 +301,22 @@ const SideNavigation: FC<SideNavigationProps> = (
       >
         <div
           role="listbox"
-          tabIndex={index}
+          tabIndex={0}
           className={optionTitleClassNames}
           onClick={(): void => {
             if (!isCollapsed && selection.option !== label) {
               handleSelectOption(option);
             } else if (isCollapsed && !subOptions) {
               handleSelectOption(option);
+            }
+          }}
+          onKeyDown={(event: KeyboardEvent<HTMLDivElement>): void => {
+            if (event.key === keyboardKeyEnum.Enter) {
+              if (!isCollapsed && selection.option !== label) {
+                handleSelectOption(option);
+              } else if (isCollapsed && !subOptions) {
+                handleSelectOption(option);
+              }
             }
           }}
         >
@@ -337,8 +347,8 @@ const SideNavigation: FC<SideNavigationProps> = (
 
   const renderSubOptions = (
     subOptions: SideNavigationSubOption[]
-  ): ReactElement[] => {
-    return subOptions.map((subOption, subIndex) => {
+  ): ReactElement[] =>
+    subOptions.map((subOption, subIndex) => {
       const { title } = subOption;
       const key = `${title}__${subIndex}`;
       const isSelected = title === selection.subOption;
@@ -357,6 +367,11 @@ const SideNavigation: FC<SideNavigationProps> = (
           aria-selected={isSelected}
           className={subOptionClassNames}
           onClick={(): void => handleSelectSubOption(subOption)}
+          onKeyDown={(event: KeyboardEvent<HTMLDivElement>): void => {
+            if (event.key === keyboardKeyEnum.Enter) {
+              handleSelectSubOption(subOption);
+            }
+          }}
         >
           <div
             className={classnames({
@@ -369,7 +384,6 @@ const SideNavigation: FC<SideNavigationProps> = (
         </div>
       );
     });
-  };
 
   const renderHoverSubOptions = (
     option: SideNavigationOption,
@@ -463,6 +477,11 @@ const SideNavigation: FC<SideNavigationProps> = (
                 handleGoBack();
               }
             }}
+            onKeyDown={(event: KeyboardEvent<HTMLDivElement>): void => {
+              if (event.key === keyboardKeyEnum.Enter && showBackButton) {
+                handleGoBack();
+              }
+            }}
           >
             <i className={backIconClassNames}>keyboard_arrow_left</i>
 
@@ -522,6 +541,11 @@ const SideNavigation: FC<SideNavigationProps> = (
           [`${baseClassName}__collapse-toggle-collapsed`]: isCollapsed,
         })}
         onClick={handleToggleCollapse}
+        onKeyDown={(event: KeyboardEvent<HTMLDivElement>): void => {
+          if (event.key === keyboardKeyEnum.Enter) {
+            handleToggleCollapse();
+          }
+        }}
       >
         <i className={collapseIconClassNames}>arrow_back_ios</i>
         <span
@@ -530,7 +554,7 @@ const SideNavigation: FC<SideNavigationProps> = (
             [`${baseClassName}__collapse-text-hidden`]: isCollapsed,
           })}
         >
-          {'Collapse'}
+          Collapse
         </span>
       </div>
     </nav>

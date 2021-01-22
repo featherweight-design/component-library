@@ -1,11 +1,11 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import { ProgressItem, SelectOptionType } from 'types';
-import { SIZES_ENUM, DEFAULT_SIZE } from './utilities/defaults';
-import ProgressBar from './ProgressBar';
 import { Button } from 'components/Buttons';
 import { Input, Select } from 'components/Form';
+import { SIZES_ENUM, DEFAULT_SIZE } from './utilities/defaults';
+import ProgressBar from './ProgressBar';
 
 export default {
   title: 'Components/Progress/ProgressBar',
@@ -74,7 +74,7 @@ export const Playground = (): JSX.Element => {
     updateItems(newItems);
   }, [numberComplete]);
 
-  const isComplete = !items.find(({ isComplete }) => !isComplete);
+  const areAllItemsComplete = !items.find(({ isComplete }) => !isComplete);
   const sizeOptions = Object.keys(SIZES_ENUM).map(label => ({
     label,
     value: label,
@@ -119,7 +119,9 @@ export const Playground = (): JSX.Element => {
         <Button
           variant="brand"
           onClick={(): void => toggleIsRounded(!isRounded)}
-        >{`isRounded: ${isRounded}`}</Button>
+        >
+          {`isRounded: ${isRounded}`}
+        </Button>
 
         <Button variant="brand" onClick={(): void => toggleIsGreen(!isGreen)}>
           Toggle color
@@ -128,11 +130,13 @@ export const Playground = (): JSX.Element => {
         <Button
           variant="brand"
           onClick={(): void => {
-            updateItems(items.map(() => ({ isComplete: !isComplete })));
-            updateNumberComplete(isComplete ? 0 : 10);
+            updateItems(
+              items.map(() => ({ isComplete: !areAllItemsComplete }))
+            );
+            updateNumberComplete(areAllItemsComplete ? 0 : 10);
           }}
         >
-          {`${isComplete ? 'Reset' : 'Complete'} all items`}
+          {`${areAllItemsComplete ? 'Reset' : 'Complete'} all items`}
         </Button>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import { FC, ReactElement } from 'react';
 import classnames from 'classnames';
 
 import { ActionButtonProps } from 'types';
@@ -7,6 +7,7 @@ import CircleLoader from 'components/Loaders/CircleLoader/CircleLoader';
 
 const DEFAULT_SHAPE = 'round';
 const DEFAULT_SIZE = 'medium';
+const DEFAULT_TYPE = 'button';
 const DEFAULT_VARIANT = 'primary';
 
 const SIZES_ENUM = {
@@ -20,6 +21,7 @@ const SIZES_ENUM = {
 const ActionButton: FC<ActionButtonProps> = ({
   icon,
   onClick,
+  children,
   className,
   disabled = false,
   label,
@@ -27,10 +29,9 @@ const ActionButton: FC<ActionButtonProps> = ({
   image,
   loading = false,
   size = DEFAULT_SIZE,
-  variant = DEFAULT_VARIANT,
   shape = DEFAULT_SHAPE,
-  type,
-  children,
+  type = DEFAULT_TYPE,
+  variant = DEFAULT_VARIANT,
 }: ActionButtonProps): ReactElement => (
   <div
     id={id}
@@ -41,6 +42,8 @@ const ActionButton: FC<ActionButtonProps> = ({
     })}
   >
     <button
+      // Disabled here to allow for dynamic passing of "type"
+      // eslint-disable-next-line react/button-has-type
       type={type}
       className={classnames({
         'fd-action-button__button': true,

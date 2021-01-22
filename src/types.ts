@@ -174,7 +174,6 @@ export interface IconProps {
   color?: string;
   dataId?: string;
   id?: string;
-  onClick?: () => void;
   size?: string;
 }
 
@@ -289,7 +288,7 @@ export interface SelectProps {
 }
 
 export interface SelectOptionType {
-  value: any /*eslint-disable-line @typescript-eslint/no-explicit-any*/;
+  value: any /* eslint-disable-line @typescript-eslint/no-explicit-any */;
   label: string;
 }
 

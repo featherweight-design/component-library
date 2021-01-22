@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
 import { CircleLoader } from 'components/Loaders';
 import { ButtonProps } from 'types';
 
 const DEFAULT_SHAPE = 'rounded-square';
+const DEFAULT_TYPE = 'button';
 
 const Button: FC<ButtonProps> = ({
   children,
@@ -15,13 +16,15 @@ const Button: FC<ButtonProps> = ({
   className,
   disabled,
   loading,
-  type,
   style,
+  type = DEFAULT_TYPE,
   shape = DEFAULT_SHAPE,
 }: ButtonProps) => (
   <button
     id={id}
     name={name}
+    // Disabled here to allow for dynamic passing of "type"
+    // eslint-disable-next-line react/button-has-type
     type={type}
     onClick={onClick}
     disabled={disabled}
@@ -45,6 +48,7 @@ const Button: FC<ButtonProps> = ({
 
 Button.defaultProps = {
   shape: DEFAULT_SHAPE,
+  type: DEFAULT_TYPE,
 };
 
 export default Button;

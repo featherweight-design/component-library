@@ -1,7 +1,8 @@
-import React, { FC, useState } from 'react';
+import { FC, useState, KeyboardEvent } from 'react';
 import classnames from 'classnames';
 
 import { SelectProps } from 'types';
+import { keyboardKeyEnum } from 'shared/enums';
 
 const Select: FC<SelectProps> = ({
   selected,
@@ -27,6 +28,8 @@ const Select: FC<SelectProps> = ({
       {label && <span className="fd-label">{label}</span>}
 
       <div
+        role="listbox"
+        tabIndex={0}
         className={classnames({
           'fd-select__container': true,
           'fd-select__container-open': areOptionsShown,
@@ -35,6 +38,11 @@ const Select: FC<SelectProps> = ({
         })}
         onClick={(): void => {
           if (!disabled) {
+            toggleShowOptions(!areOptionsShown);
+          }
+        }}
+        onKeyDown={({ key }: KeyboardEvent<HTMLDivElement>): void => {
+          if (key === keyboardKeyEnum.Enter) {
             toggleShowOptions(!areOptionsShown);
           }
         }}
@@ -74,6 +82,7 @@ const Select: FC<SelectProps> = ({
           options.map(option => (
             <option
               key={`${option.value}__${option.label}`}
+              aria-selected={selected?.value === option.value}
               className={classnames({
                 'fd-select__option': true,
                 'fd-select__option-selected': selected?.value === option.value,

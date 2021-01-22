@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Input from './Input';
@@ -9,7 +9,7 @@ export default {
 };
 
 export const Default = (): JSX.Element => {
-  const [value, handleChangeTextValue] = useState('');
+  const [inputValue, handleChangeTextValue] = useState('');
 
   const mockOnChange = ({
     target: { value },
@@ -18,7 +18,7 @@ export const Default = (): JSX.Element => {
   return (
     <div className="story__input-container">
       <Input
-        value={value}
+        value={inputValue}
         name="default"
         label="Label"
         onChange={mockOnChange}
@@ -28,14 +28,13 @@ export const Default = (): JSX.Element => {
 };
 
 export const Types = (): JSX.Element => {
-  const [value, handleChangeTextValue] = useState('');
+  const [defaultValue, handleChangeTextValue] = useState('');
   const [percentage, handleChangePercentage] = useState('');
   const [errorValue, handleChangeErrorValue] = useState('');
 
   const mockOnChange = ({
     target: { value, name },
   }: ChangeEvent<HTMLInputElement>): void => {
-    console.log({ value });
     if (name === 'default') {
       handleChangeTextValue(value);
     }
@@ -52,7 +51,7 @@ export const Types = (): JSX.Element => {
   return (
     <div className="story__input-container">
       <Input
-        value={value}
+        value={defaultValue}
         name="default"
         label="Label"
         onChange={mockOnChange}
@@ -70,10 +69,10 @@ export const Types = (): JSX.Element => {
       />
 
       <Input
-        value={''}
+        value=""
         name="disabled"
         label="Disabled"
-        onChange={(): void => console.log('Disabled')}
+        onChange={mockOnChange}
         disabled
       />
 

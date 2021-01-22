@@ -1,4 +1,3 @@
-import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import HeaderMenu from './HeaderMenu';
@@ -69,7 +68,7 @@ export const WithDarkTheme = (): JSX.Element => (
       settings: {
         subTitle: 'Bob H.',
         icon: 'settings',
-        subOptions: subOptions,
+        subOptions,
       },
     }}
   />
@@ -104,7 +103,7 @@ export const WithoutTitle = (): JSX.Element => (
       settings: {
         subTitle: 'Bob H.',
         icon: 'settings',
-        subOptions: subOptions,
+        subOptions,
       },
     }}
   />
@@ -120,7 +119,7 @@ export const WithSubOptions = (): JSX.Element => (
       settings: {
         subTitle: 'Bob H.',
         icon: 'settings',
-        subOptions: subOptions,
+        subOptions,
       },
     }}
   />

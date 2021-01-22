@@ -1,14 +1,15 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
-import Button from './Button';
 import { Input } from 'components/Form';
+import Button from './Button';
 
 export default {
   title: 'Components/Buttons/Button',
   decorators: [withA11y],
 };
 
+/* eslint-disable-next-line no-console */
 const mockClick = (): void => console.log("I've been clicked!");
 
 export const Default = (): JSX.Element => (
