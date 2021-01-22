@@ -9,7 +9,7 @@ import {
   SideNavigationSubOption,
 } from 'types';
 
-import { keyboardKeyEnum } from 'shared/enums';
+import { keyboardKeyEnum } from 'shared/data/enums';
 import Accordion from '../../Accordion/Accordion';
 
 const DEFAULT_SELECTED = {
