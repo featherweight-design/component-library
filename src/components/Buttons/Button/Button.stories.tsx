@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import { Input } from 'components/Form';
+import { buttonCopy } from 'shared/data/copyContent';
 import Button from './Button';
 
 export default {
@@ -62,11 +63,11 @@ export const Playground = (): JSX.Element => {
           variant="brand"
           style={{ backgroundColor, color }}
         >
-          Brand
+          {buttonCopy.brand}
         </Button>
 
         <Button onClick={mockClick} variant="outline" style={{ borderColor }}>
-          Outline
+          {buttonCopy.outline}
         </Button>
       </div>
     </div>
@@ -76,13 +77,13 @@ export const Playground = (): JSX.Element => {
 export const Shapes = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick} variant="brand">
-      Rounded Square (Default)
+      {buttonCopy.roundedSquare}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="round">
-      Round
+      {buttonCopy.round}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="square">
-      Square
+      {buttonCopy.square}
     </Button>
   </div>
 );
@@ -91,25 +92,25 @@ export const Variants = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick}>Default</Button>
     <Button onClick={mockClick} variant="default-destructive">
-      Default Destructive
+      {buttonCopy.defaultDestructive}
     </Button>
     <Button onClick={mockClick} variant="brand">
-      Brand
+      {buttonCopy.brand}
     </Button>
     <Button onClick={mockClick} variant="neutral">
-      Neutral
+      {buttonCopy.neutral}
     </Button>
     <Button onClick={mockClick} variant="outline">
-      Outline
+      {buttonCopy.outline}
     </Button>
     <Button onClick={mockClick} variant="destructive">
-      Destructive
+      {buttonCopy.destructive}
     </Button>
     <Button onClick={mockClick} variant="outline-destructive">
-      Outline Destructive
+      {buttonCopy.outlineDestructive}
     </Button>
     <Button onClick={mockClick} variant="glass">
-      Glass
+      {buttonCopy.glass}
     </Button>
   </div>
 );
@@ -117,34 +118,34 @@ export const Variants = (): JSX.Element => (
 export const VariantsDisabled = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick} disabled>
-      Default
+      {buttonCopy.default}
     </Button>
     <Button onClick={mockClick} variant="default-destructive" disabled>
-      Default Destructive
+      {buttonCopy.defaultDestructive}
     </Button>
     <Button onClick={mockClick} variant="brand" disabled>
-      Brand
+      {buttonCopy.brand}
     </Button>
     <Button onClick={mockClick} variant="neutral" disabled>
-      Neutral
+      {buttonCopy.neutral}
     </Button>
     <Button onClick={mockClick} variant="outline" disabled>
-      Outline
+      {buttonCopy.outline}
     </Button>
     <Button onClick={mockClick} variant="destructive" disabled>
-      Destructive
+      {buttonCopy.destructive}
     </Button>
     <Button onClick={mockClick} variant="outline-destructive" disabled>
-      Outline Destructive
+      {buttonCopy.outlineDestructive}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="round" disabled>
-      Round
+      {buttonCopy.round}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="square" disabled>
-      Square
+      {buttonCopy.square}
     </Button>
     <Button onClick={mockClick} variant="glass" disabled>
-      Glass
+      {buttonCopy.glass}
     </Button>
   </div>
 );
@@ -152,34 +153,34 @@ export const VariantsDisabled = (): JSX.Element => (
 export const VariantsLoading = (): JSX.Element => (
   <div className="story__button-container">
     <Button onClick={mockClick} loading>
-      Default
+      {buttonCopy.default}
     </Button>
     <Button onClick={mockClick} variant="default-destructive" loading>
-      Default Destructive
+      {buttonCopy.defaultDestructive}
     </Button>
     <Button onClick={mockClick} variant="brand" loading>
-      Brand
+      {buttonCopy.brand}
     </Button>
     <Button onClick={mockClick} variant="neutral" loading>
-      Neutral
+      {buttonCopy.neutral}
     </Button>
     <Button onClick={mockClick} variant="outline" loading>
-      Outline
+      {buttonCopy.outline}
     </Button>
     <Button onClick={mockClick} variant="destructive" loading>
-      Destructive
+      {buttonCopy.destructive}
     </Button>
     <Button onClick={mockClick} variant="outline-destructive" loading>
-      Outline Destructive
+      {buttonCopy.outlineDestructive}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="round" loading>
-      Round
+      {buttonCopy.round}
     </Button>
     <Button onClick={mockClick} variant="brand" shape="square" loading>
-      Square
+      {buttonCopy.square}
     </Button>
     <Button onClick={mockClick} variant="glass" loading>
-      Glass
+      {buttonCopy.glass}
     </Button>
   </div>
 );
