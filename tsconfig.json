@@ -6,7 +6,7 @@
     "declaration": true,
     "noImplicitAny": true,
     "strict": true,
-    "module": "commonjs",
+    "module": "esnext",
     "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -17,7 +17,13 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["node", "cypress", "@testing-library/cypress"]
+    "types": [
+      "node",
+      "cypress",
+      "@testing-library/cypress",
+      "cypress-storybook/cypress"
+    ]
   }
 }
