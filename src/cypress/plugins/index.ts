@@ -17,8 +17,9 @@
  */
 
 // Remove the eslint-disable once this is being used
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
-// module.exports = (on, config) => {
-//   // `on` is used to hook into various events Cypress emits
-//   // `config` is the resolved Cypress config
-// };
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-ignore */
+// @ts-ignore: Ignore isolated modules error for this file
+module.exports = (on, config): void => {
+  // `on` is used to hook into various events Cypress emits
+  // `config` is the resolved Cypress config
+};
