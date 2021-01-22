@@ -1,5 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "include": ["src", "config/custom.d.ts"],
-  "exclude": ["node_modules", "dist", "src/**/*.stories.tsx", "notes"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/**/*.stories.tsx",
+    "cypress",
+    "notes"
+  ]
 }
