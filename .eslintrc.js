@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     amd: true,
+    es6: true,
     node: true,
     'cypress/globals': true,
   },
@@ -19,22 +20,27 @@ module.exports = {
   },
   ignorePatterns: ['**/notes/*.{js,json,md,ts}'],
   extends: [
-    // Uses the recommended rules from @eslint-plugin-react
-    'plugin:react/recommended',
+    // Enables airbnb eslint rules (https://www.npmjs.com/package/eslint-config-airbnb)
+    'airbnb',
     // Uses the recommended rules from Cypress
     'plugin:cypress/recommended',
     // Uses the recommended rules from eslint
     'eslint:recommended',
     // Uses the recommended rules from @typescript-eslint/eslint-plugin
     'plugin:@typescript-eslint/recommended',
+    // Uses the recommended rules from @eslint-plugin-react
+    'plugin:react/recommended',
+    // Uses the recommended rules for MDX docs
+    'plugin:mdx/recommended',
     // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
     'prettier/@typescript-eslint',
     // Enables eslint-plugin-prettier and eslint-config-prettier.
     // This will display prettier errors as ESLint errors.
     // Make sure this is always the last configuration in the extends array.
+    'prettier/react',
     'plugin:prettier/recommended',
   ],
-  plugins: ['react-hooks', 'cypress'],
+  plugins: ['react-hooks', 'cypress', 'prettier'],
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules
     // specified from the extended configs
@@ -62,6 +68,7 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
+        mdx: 'never',
       },
     ],
     // Turns off rule that conflicts with Prettier
@@ -70,6 +77,12 @@ module.exports = {
     'object-curly-newline': 'off',
     // Fixes an error when suggesting testing devDependencies should be dependencies
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-unresolved': [2, { ignore: ['.spec.ts'] }],
+    'prettier/prettier': 'error',
+    'react/jsx-filename-extension': [
+      'error',
+      { extensions: ['.jsx', '.mdx', '.tsx'] },
+    ],
   },
   settings: {
     react: {
