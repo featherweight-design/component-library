@@ -2,7 +2,7 @@ import { FC, useState, KeyboardEvent } from 'react';
 import classnames from 'classnames';
 
 import { SelectProps } from 'types';
-import { keyboardKeyEnum } from 'shared/enums';
+import { keyboardKeyEnum } from 'shared/data/enums';
 
 const Select: FC<SelectProps> = ({
   selected,
