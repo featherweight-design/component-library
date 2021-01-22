@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
-import OtherOption from '../OtherOption/OtherOption';
 import { CheckboxProps } from 'types';
+import OtherOption from '../OtherOption/OtherOption';
 
 const Checkbox: FC<CheckboxProps> = ({
   onChange,
@@ -26,18 +26,20 @@ const Checkbox: FC<CheckboxProps> = ({
         'fd-checkbox__inputs-container-error': errorMessage,
       })}
     >
-      {options.map(({ label, checked, disabled }) => (
+      {options.map(({ label: optionLabel, checked, disabled }) => (
         <label
-          key={`fd-checkbox__${label}`}
+          key={`fd-checkbox__${optionLabel}`}
+          htmlFor={optionLabel}
           className={classnames({
             'fd-checkbox__container': true,
             'fd-checkbox__container-disabled': disabled,
           })}
         >
           <input
+            id={optionLabel}
             className="fd-checkbox__input"
             type="checkbox"
-            name={label}
+            name={optionLabel}
             checked={checked}
             onChange={onChange}
             disabled={disabled}
@@ -53,9 +55,9 @@ const Checkbox: FC<CheckboxProps> = ({
           </div>
           <span>{label}</span>
 
-          {label.toLowerCase() === 'other' && other && (
+          {optionLabel.toLowerCase() === 'other' && other && (
             <OtherOption
-              name={label}
+              name={optionLabel}
               value={other.value}
               selected={checked}
               onChange={other.onChange}

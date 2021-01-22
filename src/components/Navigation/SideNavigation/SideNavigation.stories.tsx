@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
-import SideNavigation from './SideNavigation';
 import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
+import SideNavigation from './SideNavigation';
 
 const sideNavigationMenuOptions = [
   {

@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import TextArea from './TextArea';
@@ -11,9 +11,8 @@ export default {
 export const Default = (): JSX.Element => {
   const [value, updateValue] = useState('');
 
-  const handleChange = ({
-    target: { value },
-  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+  const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>): void =>
+    updateValue(target.value);
 
   return (
     <TextArea
@@ -30,9 +29,8 @@ export const Disabled = (): JSX.Element => {
     'You will never change me! MWAAAAHAHAHAHAHAHA!'
   );
 
-  const handleChange = ({
-    target: { value },
-  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+  const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>): void =>
+    updateValue(target.value);
 
   return (
     <TextArea
@@ -48,9 +46,8 @@ export const Disabled = (): JSX.Element => {
 export const Error = (): JSX.Element => {
   const [value, updateValue] = useState('');
 
-  const handleChange = ({
-    target: { value },
-  }: ChangeEvent<HTMLTextAreaElement>): void => updateValue(value);
+  const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>): void =>
+    updateValue(target.value);
 
   return (
     <TextArea

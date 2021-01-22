@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
-import OtherOption from '../OtherOption/OtherOption';
 import { RadioProps } from 'types';
+import OtherOption from '../OtherOption/OtherOption';
 
 const Radio: FC<RadioProps> = ({
   options,
@@ -29,8 +29,9 @@ const Radio: FC<RadioProps> = ({
       })}
     >
       {options.map(option => (
-        <label key={option} className="fd-radio__container">
+        <label key={option} htmlFor={option} className="fd-radio__container">
           <input
+            id={option}
             type="radio"
             className={classnames({
               'fd-radio__input': true,

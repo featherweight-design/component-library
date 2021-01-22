@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import { SelectOptionType } from 'types';
@@ -15,6 +15,7 @@ export const Default = (): JSX.Element => {
   );
 
   const mockOnSelect = (option: SelectOptionType): void => {
+    /* eslint-disable-next-line no-console */
     console.log({ option });
     handleSelectOption(option);
   };
@@ -40,6 +41,7 @@ export const Types = (): JSX.Element => {
   );
 
   const mockOnSelect = (option: SelectOptionType): void => {
+    /* eslint-disable-next-line no-console */
     console.log({ option });
     handleSelectOption(option);
   };

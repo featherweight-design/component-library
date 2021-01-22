@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
 import { IconProps } from 'types';
 
 const Icon: FC<IconProps> = ({
   className,
-  onClick,
   size,
   color,
   icon,
@@ -19,11 +18,10 @@ const Icon: FC<IconProps> = ({
       'fd-icon': true,
       [className as string]: className,
     })}
-    onClick={onClick}
     data-id={dataId}
     style={{
       fontSize: size,
-      color: color,
+      color,
     }}
   >
     {icon}

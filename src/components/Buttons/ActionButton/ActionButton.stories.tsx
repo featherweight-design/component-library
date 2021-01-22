@@ -1,14 +1,14 @@
-import React from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
-import ActionButton from './ActionButton';
 import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
+import ActionButton from './ActionButton';
 
 export default {
   title: 'Components/Buttons/ActionButton',
   decorators: [withA11y],
 };
 
+/* eslint-disable-next-line no-console */
 const mockClick = (): void => console.log("I've been clicked!");
 
 export const Default = (): JSX.Element => (

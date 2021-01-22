@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
 import { OtherOptionType } from 'types';
@@ -37,5 +37,9 @@ const OtherOption: FC<OtherOptionProps> = ({
     </div>
   </>
 );
+
+OtherOption.defaultProps = {
+  disabled: false,
+};
 
 export default OtherOption;

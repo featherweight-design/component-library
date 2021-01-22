@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import Checkbox from './Checkbox';
@@ -43,6 +43,7 @@ export const Disabled = (): JSX.Element => {
     <div style={{ display: 'flex ' }}>
       <Checkbox
         label="Label"
+        /* eslint-disable-next-line no-console */
         onChange={(): void => console.log('Disabled')}
         options={options}
       />
