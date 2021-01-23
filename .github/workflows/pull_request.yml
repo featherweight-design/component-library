@@ -72,13 +72,16 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
+      - name: Build Storybook
+        run: yarn storybook-build
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: storybook-dist # The folder that the build-storybook script generates files.
-          # CLEAN: true # Automatically remove deleted files from the deploy branch
+          CLEAN: true # Automatically remove deleted files from the deploy branch
 
       # Extract the canary version number to post in a comment
       - name: Capture new version
