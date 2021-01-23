@@ -17,22 +17,7 @@ module.exports = {
     },
   ],
   webpackFinal: async config => {
-    // do mutation to the config
     config.module.rules.push(
-      {
-        test: /\.(ts|tsx)$/,
-        use: [
-          {
-            loader: require.resolve('awesome-typescript-loader'),
-          },
-          {
-            loader: require.resolve('react-docgen-typescript-loader'),
-            options: {
-              tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
-            },
-          },
-        ],
-      },
       {
         test: /\.scss$/,
         use: [
@@ -47,7 +32,6 @@ module.exports = {
         ],
       }
     );
-    config.resolve.extensions.push('.ts', '.tsx');
     config.resolve.alias = {
       ...config.resolve.alias,
       styles: path.resolve(__dirname, '../src/styles'),
