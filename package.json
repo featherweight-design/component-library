@@ -103,8 +103,6 @@
     }
   },
   "storybook-deployer": {
-    "gitUsername": "GitHub Action",
-    "gitEmail": "action@github.com",
     "commitMessage": "chore: Deploy Storybook to GH Pages"
   }
 }
