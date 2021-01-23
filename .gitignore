@@ -12,7 +12,7 @@
 /lib
 /lib-esm
 /dist
-/storybook-static
+/storybook-dist
 
 # misc
 /notes
