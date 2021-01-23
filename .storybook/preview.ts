@@ -1,7 +1,6 @@
-import { configure, addParameters } from '@storybook/react';
 import '../src/styles/main.scss';
 
-addParameters({
+export const parameters = {
   options: {
     showRoots: true,
     // Inspiration for sorting solution credit to Reaviz
@@ -21,14 +20,4 @@ addParameters({
       return idA > idB ? 1 : -1;
     },
   },
-});
-
-const loadStories = () => {
-  return [
-    require.context('../docs', true, /\.stories.mdx/),
-    // automatically import all files ending in *.stories.tsx or *.stories.mdx
-    require.context('../src/components', true, /\.stories\.(ts|md)x$/),
-  ];
 };
-
-configure(loadStories, module);
