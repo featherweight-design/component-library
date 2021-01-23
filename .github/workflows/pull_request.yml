@@ -19,76 +19,72 @@ jobs:
       UUID: ''
       VERSION: ''
     steps:
-      - name: Checkout code
+      - name: Checkout code 🛎
         uses: actions/checkout@master
         with:
           # Removes credentials
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Install dependencies
+      - name: Install dependencies 🔧
         run: yarn install --frozen-lockfile
 
       # Runs actions specific script that does not fix errors
-      - name: Check linting
+      - name: Check linting 🔍
         run: yarn run lint-ci
 
-      # Ensure that their are no errors in the Storybook build
-      - name: Check Storybook build
-        run: yarn storybook-smoke-test
-
-      - name: Setup .npmrc file to publish to npm
+      - name: Setup .npmrc file to publish to npm 🗂
         uses: actions/setup-node@v1
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
 
       # This is required for publishing from GH Actions
-      - name: Set GitHub Action user
+      - name: Set GitHub Action user 🐙
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
       # Build the component library
-      - name: Build new package
+      - name: Build new package 🏗
         run: yarn run build
 
       # This is added to the canary version so each release is unique
-      - name: Generate UUID for canary release
+      - name: Generate UUID for canary release 🐥
         id: generate-uuid
         uses: filipstefansson/uuid-action@v1
         with:
           name: ${{ github.sha }}
 
-      - name: Set UUID to env variable
+      - name: Set UUID to env variable 🔢
         run: echo "UUID=${{ steps.generate-uuid.outputs.uuid }}" >> $GITHUB_ENV
 
-      - name: Tag canary release
+      - name: Tag canary release 🏷
         run: yarn run release-canary
 
       # Publish a new canary release to NPM
-      - name: Publish @f-design/component-library canary release from PR branch
+      - name: Publish @f-design/component-library canary release from PR branch 🚢
         run: npm publish --tag canary --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      - name: Build Storybook
+      - name: Build Storybook 📖
         run: yarn storybook-build
 
-      - name: Deploy 🚀
+      - name: Deploy Storybook to GH Pages 🚀
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
-          BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: storybook-dist # The folder that the build-storybook script generates files.
-          CLEAN: true # Automatically remove deleted files from the deploy branch
+          BRANCH: gh-pages
+          FOLDER: storybook-dist
+          CLEAN: true
 
       # Extract the canary version number to post in a comment
-      - name: Capture new version
+      - name: Capture new version 🎣
         run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       # See if the canary comment already exists
-      - name: Find Comment
+      - name: Find Comment 👁
         uses: peter-evans/find-comment@v1
         id: fc
         with:
@@ -97,7 +93,7 @@ jobs:
           body-includes: Canary release
 
       # If not, create a new comment
-      - name: Create comment
+      - name: Create comment ✍️
         if: ${{ steps.fc.outputs.comment-id == 0 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
@@ -111,7 +107,7 @@ jobs:
             ```
 
       # Otherwise, update the existing comment
-      - name: Update comment
+      - name: Update comment ✍️
         if: ${{ steps.fc.outputs.comment-id != 0 }}
         uses: peter-evans/create-or-update-comment@v1
         with:
