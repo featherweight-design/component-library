@@ -35,7 +35,7 @@ module.exports = {
     config.resolve.alias = {
       ...config.resolve.alias,
       styles: path.resolve(__dirname, '../src/styles'),
-      utilities: path.resolve(__dirname, '../src/utilities'),
+      shared: path.resolve(__dirname, '../src/shared'),
       components: path.resolve(__dirname, '../src/components'),
     };
 
