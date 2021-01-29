@@ -1,3 +1,5 @@
+import 'cypress-storybook/react'
+
 import '../src/styles/main.scss';
 
 export const parameters = {
