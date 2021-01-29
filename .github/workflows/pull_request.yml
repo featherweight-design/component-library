@@ -33,6 +33,13 @@ jobs:
       - name: Check linting
         run: yarn run lint-ci
 
+      # Run all Cypress tests in Chrome
+      - name: Check Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+            browser: chrome
+            start: yarn storybook
+
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
