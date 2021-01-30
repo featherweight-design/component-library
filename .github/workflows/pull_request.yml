@@ -157,6 +157,14 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref }}-
+
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
