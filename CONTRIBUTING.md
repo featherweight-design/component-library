@@ -21,6 +21,9 @@ This document contains a number of guidelines for contributing to this library. 
   - [CSS Styleguide](#css-styleguide)
   - [React Styleguide](#react-styleguide)
   - [Testing Styleguide](#testing-styleguide)
+    - [General](#general)
+    - [Jest](#jest)
+    - [Cypress](#cypress)
 - [Your First Contribution](#your-first-contribution)
   - [Picking Up an Issue](#picking-up-an-issue)
   - [During Development](#during-development)
@@ -142,8 +145,35 @@ BREAKING CHANGE: ExpansionPanel is no longer exported, users should update to us
 
 ### Testing Styleguide
 
-- Jest: TBD
-- Cypress: TBD
+This component library is opinionated when it comes to testing. We consider Cypress to be a more accurate, developer friendly UI/UX testing approach and all components should have corresponding Cypress tests. We also use Testing Library for Cypress specific DOM queries/commands.
+
+Jest should be used for testing utilities and under-the-hood functionality of components. With this approach, tests using the `jsdom` are not needed.
+
+#### General
+
+- All "happy" and "sad" paths should be tested when possible
+- Mocks and static content should be reused from the `/shared/mocks` when possible
+
+#### Jest
+
+- Tests should generally be reserved for `utilities` and any under-the-hood, functional logic of components (e.g. filtering, sorting, formatting, etc.)
+- If a test has specific data mocks that are not reusable, they should be located in `__tests__/mocks` with a `<FILE_NAME>.mock.ts` convention (e.g. `capitalizeString.mock.ts`)
+- If a test has utilities associated with mock data, they should be moved to a `__tests__/utilities` directory
+
+#### Cypress
+
+- Should be used for end-to-end (E2E) functionality and all components/pages when possible
+- If a test has specific data mocks that are not reusable, they should be located in `cypress/fixtures` as either `*.mock.ts` or `*.json`
+- If a test has utilities associated with mock data, they should be moved to a `cypress/support/utilities` directory
+- Tests should be written using more behavioral, product nomenclature:
+
+```javascript
+// Use this
+it('Should show a company logo on the landing page', () => { ... });
+
+// Instead of this
+it('Should render an image on the landing page', () => { ... });
+```
 
 ## Your First Contribution
 
