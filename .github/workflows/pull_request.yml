@@ -37,8 +37,18 @@ jobs:
       - name: Check Cypress tests
         uses: cypress-io/github-action@v2
         with:
-            browser: chrome
-            start: yarn storybook
+          browser: chrome
+          start: yarn storybook
+          record: true
+          parallel: true
+        env:
+          # make sure every Cypress install prints minimal information
+          CI: 1
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TERM: xterm
 
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
