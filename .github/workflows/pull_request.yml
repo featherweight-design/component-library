@@ -127,7 +127,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           group: 'Button Tests'
-          spec: cypress/integration/Buttons/Button
+          spec: cypress/integration/Buttons/Button/*
           browser: chrome
           start: yarn storybook
           record: true
