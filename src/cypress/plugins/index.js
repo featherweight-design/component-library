@@ -17,7 +17,7 @@
  */
 
 // Remove the eslint-disable once this is being used
-/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/ban-ts-ignore, @typescript-eslint/explicit-function-return-type */
 // @ts-ignore: Ignore isolated modules error for this file
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
