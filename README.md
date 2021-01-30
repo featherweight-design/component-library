@@ -1,3 +1,5 @@
+[![Component Library](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/detailed/8cgbjw&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/8cgbjw/runs)
+
 # Featherweight Design Component Library
 
 A component library built for and maintained by Featherweight Design in an effort to standardize and expedite the design and development process.
