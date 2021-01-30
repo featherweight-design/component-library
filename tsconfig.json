@@ -6,7 +6,7 @@
     "declaration": true,
     "noImplicitAny": true,
     "strict": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es6",
     "moduleResolution": "node",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -17,9 +17,10 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": false,
     "jsx": "react-jsx",
     "types": [
+      "node",
       "cypress",
       "@testing-library/cypress",
       "cypress-storybook/cypress"

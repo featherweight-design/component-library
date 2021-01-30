@@ -18,7 +18,7 @@ module.exports = {
       react: path.resolve(__dirname, './node_modules/react'),
       'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
       styles: path.resolve(__dirname, './src/styles'),
-      utilities: path.resolve(__dirname, './src/utilities'),
+      shared: path.resolve(__dirname, './src/shared'),
       components: path.resolve(__dirname, './src/components'),
     },
   },
