@@ -1,5 +1,6 @@
 import { withA11y } from '@storybook/addon-a11y';
 
+import { actionButtonCopy } from 'shared/data/copyContent';
 import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
 import ActionButton from './ActionButton';
 
@@ -24,20 +25,24 @@ export const Shapes = (): JSX.Element => (
       backgroundColor: '#ccc',
     }}
   >
-    <ActionButton icon="check" onClick={mockClick} label="Round (Default)" />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      label={actionButtonCopy.round}
+    />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       shape="rounded-square"
-      label="Rounded Square"
+      label={actionButtonCopy.roundedSquare}
     />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       shape="square"
-      label="Square"
+      label={actionButtonCopy.square}
     />
   </div>
 );
@@ -112,20 +117,24 @@ export const VariantsWithLabel = (): JSX.Element => (
       backgroundColor: '#c9c7c5',
     }}
   >
-    <ActionButton icon="check" onClick={mockClick} label="Primary" />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      label={actionButtonCopy.primary}
+    />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="Secondary"
+      label={actionButtonCopy.secondary}
     />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="Glass"
+      label={actionButtonCopy.glass}
     />
   </div>
 );
@@ -142,7 +151,7 @@ export const VariantsWithSizes = (): JSX.Element => (
     <ActionButton
       icon="check"
       onClick={mockClick}
-      label="X-Small"
+      label={actionButtonCopy.xSmall}
       size="x-small"
     />
 
@@ -150,7 +159,7 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="X-Small"
+      label={actionButtonCopy.xSmall}
       size="x-small"
     />
 
@@ -158,17 +167,22 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="X-Small"
+      label={actionButtonCopy.xSmall}
       size="x-small"
     />
 
-    <ActionButton icon="check" onClick={mockClick} label="Small" size="small" />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      label={actionButtonCopy.small}
+      size="small"
+    />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="Small"
+      label={actionButtonCopy.small}
       size="small"
     />
 
@@ -176,33 +190,42 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="Small"
+      label={actionButtonCopy.small}
       size="small"
     />
 
-    <ActionButton icon="check" onClick={mockClick} label="Medium (default)" />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      label={actionButtonCopy.medium}
+    />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="Medium (default)"
+      label={actionButtonCopy.medium}
     />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="Medium (default)"
+      label={actionButtonCopy.medium}
     />
 
-    <ActionButton icon="check" onClick={mockClick} label="Large" size="large" />
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      label={actionButtonCopy.large}
+      size="large"
+    />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="Large"
+      label={actionButtonCopy.large}
       size="large"
     />
 
@@ -210,14 +233,14 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="Large"
+      label={actionButtonCopy.large}
       size="large"
     />
 
     <ActionButton
       icon="check"
       onClick={mockClick}
-      label="X-Large"
+      label={actionButtonCopy.xLarge}
       size="x-large"
     />
 
@@ -225,7 +248,7 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="secondary"
-      label="X-Large"
+      label={actionButtonCopy.xLarge}
       size="x-large"
     />
 
@@ -233,7 +256,7 @@ export const VariantsWithSizes = (): JSX.Element => (
       icon="check"
       onClick={mockClick}
       variant="glass"
-      label="X-Large"
+      label={actionButtonCopy.xLarge}
       size="x-large"
     />
   </div>
