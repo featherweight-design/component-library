@@ -7,34 +7,34 @@ describe('Button Variants tests', () => {
   });
 
   it('Should have a "Default" button', () => {
-    cy.get('button').findByText(buttonCopy.default);
+    cy.findByText(buttonCopy.default).closest('button');
   });
 
   it('Should have a "Default Destructive" button', () => {
-    cy.get('button').findByText(buttonCopy.defaultDestructive);
+    cy.findByText(buttonCopy.defaultDestructive).closest('button');
   });
 
   it('Should have a "Brand" button', () => {
-    cy.get('button').findByText(buttonCopy.brand);
+    cy.findByText(buttonCopy.brand).closest('button');
   });
 
   it('Should have a "Neutral" button', () => {
-    cy.get('button').findByText(buttonCopy.neutral);
+    cy.findByText(buttonCopy.neutral).closest('button');
   });
 
   it('Should have a "Outline" button', () => {
-    cy.get('button').findByText(buttonCopy.outline);
+    cy.findByText(buttonCopy.outline).closest('button');
   });
 
   it('Should have a "Destructive" button', () => {
-    cy.get('button').findByText(buttonCopy.destructive);
+    cy.findByText(buttonCopy.destructive).closest('button');
   });
 
   it('Should have a "Outline Destructive" button', () => {
-    cy.get('button').findByText(buttonCopy.outlineDestructive);
+    cy.findByText(buttonCopy.outlineDestructive).closest('button');
   });
 
   it('Should have a "Glass" button', () => {
-    cy.get('button').findByText(buttonCopy.glass);
+    cy.findByText(buttonCopy.glass).closest('button');
   });
 });
