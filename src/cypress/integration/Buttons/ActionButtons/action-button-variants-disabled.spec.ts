@@ -3,24 +3,24 @@ import { actionButtonCopy } from 'shared/data/copyContent';
 describe('ActionButton Variants Disabled tests', () => {
   before(() => {
     cy.visitStorybook();
-    cy.loadStory('components-buttons-actionbutton', 'variants');
+    cy.loadStory('components-buttons-actionbutton', 'variants-disabled');
   });
 
-  it('Should have a "Primary" button', () => {
+  it('Should have a disabled "Primary" button', () => {
     cy.findByText(actionButtonCopy.primary)
-      .closest('button')
+      .siblings('button')
       .should('be.disabled');
   });
 
-  it('Should have a "Secondary" button', () => {
+  it('Should have a disabled "Secondary" button', () => {
     cy.findByText(actionButtonCopy.secondary)
-      .closest('button')
+      .siblings('button')
       .should('be.disabled');
   });
 
-  it('Should have a "Glass" button', () => {
+  it('Should have a disabled "Glass" button', () => {
     cy.findByText(actionButtonCopy.glass)
-      .closest('button')
+      .siblings('button')
       .should('be.disabled');
   });
 });
