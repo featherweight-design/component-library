@@ -1,5 +1,3 @@
-import { actionButtonCopy } from 'shared/data/copyContent';
-
 describe('Action Button Variants Without Labels tests', () => {
   before(() => {
     cy.visitStorybook();
@@ -10,3 +8,6 @@ describe('Action Button Variants Without Labels tests', () => {
     cy.findAllByRole('button').should('have.length', 3);
   });
 });
+
+// Empty export to remove TS --isolatedModules error (https://stackoverflow.com/a/56577324)
+export {};
