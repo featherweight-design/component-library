@@ -1,6 +1,6 @@
 import { actionButtonCopy } from 'shared/data/copyContent';
 
-describe('ActionButton Variants tests', () => {
+describe('ActionButton Variants Disabled tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-buttons-actionbutton', 'variants');
