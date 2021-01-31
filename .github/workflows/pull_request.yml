@@ -88,6 +88,64 @@ jobs:
       - name: Check linting
         run: yarn run lint-ci
 
+  action-button-tests:
+    name: ActionButton tests
+    runs-on: ubuntu-latest
+    needs: [install, static-analysis]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Restore just local node_modules and the Cypress binary archives.
+      - name: Cache Cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+
+      - name: Cache local node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-${{ github.ref }}-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
+
+      - name: Run ActionButton Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          group: 'ActionButton Tests'
+          spec: src/cypress/integration/Buttons/ActionButton/*.spec.ts
+          browser: chrome
+          start: yarn storybook
+          record: true
+          parallel: true
+          # tag will be either "push" or "pull_request"
+          tag: ${{ github.event_name }}
+        env:
+          TERM: xterm
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
+          # - if the event is push, the title will be undefined
+          # and Cypress will get the commit message from Git information
+          # - if the event is pull_request, then we set the commit
+          # message to the pull request title
+          COMMIT_INFO_MESSAGE: ${{ github.event.pull_request.title }}
+
   button-tests:
     name: Button tests
     runs-on: ubuntu-latest
