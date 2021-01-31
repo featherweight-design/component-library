@@ -56,67 +56,6 @@ export const Variants = (): JSX.Element => (
       backgroundColor: '#ccc',
     }}
   >
-    <ActionButton icon="check" onClick={mockClick} />
-
-    <ActionButton icon="check" onClick={mockClick} variant="secondary" />
-
-    <ActionButton icon="check" onClick={mockClick} variant="glass" />
-  </div>
-);
-
-export const VariantsDisabled = (): JSX.Element => (
-  <div
-    className="story__button-container"
-    style={{
-      gridTemplateColumns: '1fr 1fr 1fr',
-      padding: '0.5rem',
-      backgroundColor: '#c9c7c5',
-    }}
-  >
-    <ActionButton icon="check" onClick={mockClick} disabled />
-
-    <ActionButton
-      icon="check"
-      onClick={mockClick}
-      variant="secondary"
-      disabled
-    />
-
-    <ActionButton icon="check" onClick={mockClick} variant="glass" disabled />
-  </div>
-);
-
-export const VariantsLoading = (): JSX.Element => (
-  <div
-    className="story__button-container"
-    style={{
-      gridTemplateColumns: '1fr 1fr 1fr',
-      padding: '0.5rem',
-      backgroundColor: '#c9c7c5',
-    }}
-  >
-    <ActionButton icon="check" onClick={mockClick} loading />
-
-    <ActionButton
-      icon="check"
-      onClick={mockClick}
-      variant="secondary"
-      loading
-    />
-
-    <ActionButton icon="check" onClick={mockClick} variant="glass" loading />
-  </div>
-);
-
-export const VariantsWithLabel = (): JSX.Element => (
-  <div
-    className="story__button-container"
-    style={{
-      gridTemplateColumns: '1fr 1fr 1fr',
-      padding: '0.5rem',
-      backgroundColor: '#c9c7c5',
-    }}
-  >
     <ActionButton
       icon="check"
       onClick={mockClick}
@@ -136,6 +75,91 @@ export const VariantsWithLabel = (): JSX.Element => (
       variant="glass"
       label={actionButtonCopy.glass}
     />
+  </div>
+);
+
+export const VariantsDisabled = (): JSX.Element => (
+  <div
+    className="story__button-container"
+    style={{
+      gridTemplateColumns: '1fr 1fr 1fr',
+      padding: '0.5rem',
+      backgroundColor: '#c9c7c5',
+    }}
+  >
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      disabled
+      label={actionButtonCopy.primary}
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="secondary"
+      disabled
+      label={actionButtonCopy.secondary}
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
+      disabled
+      label={actionButtonCopy.glass}
+    />
+  </div>
+);
+
+export const VariantsLoading = (): JSX.Element => (
+  <div
+    className="story__button-container"
+    style={{
+      gridTemplateColumns: '1fr 1fr 1fr',
+      padding: '0.5rem',
+      backgroundColor: '#c9c7c5',
+    }}
+  >
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      loading
+      label={actionButtonCopy.primary}
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="secondary"
+      loading
+      label={actionButtonCopy.secondary}
+    />
+
+    <ActionButton
+      icon="check"
+      onClick={mockClick}
+      variant="glass"
+      loading
+      label={actionButtonCopy.glass}
+    />
+  </div>
+);
+
+export const VariantsWithoutLabel = (): JSX.Element => (
+  <div
+    className="story__button-container"
+    style={{
+      gridTemplateColumns: '1fr 1fr 1fr',
+      padding: '0.5rem',
+      backgroundColor: '#c9c7c5',
+    }}
+  >
+    <ActionButton icon="check" onClick={mockClick} />
+
+    <ActionButton icon="check" onClick={mockClick} variant="secondary" />
+
+    <ActionButton icon="check" onClick={mockClick} variant="glass" />
   </div>
 );
 
