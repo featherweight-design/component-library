@@ -6,49 +6,49 @@ describe('Button Variants Loading tests', () => {
     cy.loadStory('components-buttons-button', 'variants-loading');
   });
 
-  it('Should have a "Default" button', () => {
+  it('Should have a loading "Default" button', () => {
     cy.findByText(buttonCopy.default)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Default Destructive" button', () => {
+  it('Should have a loading "Default Destructive" button', () => {
     cy.findByText(buttonCopy.defaultDestructive)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Brand" button', () => {
+  it('Should have a loading "Brand" button', () => {
     cy.findByText(buttonCopy.brand)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Neutral" button', () => {
+  it('Should have a loading "Neutral" button', () => {
     cy.findByText(buttonCopy.neutral)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Outline" button', () => {
+  it('Should have a loading "Outline" button', () => {
     cy.findByText(buttonCopy.outline)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Destructive" button', () => {
+  it('Should have a loading "Destructive" button', () => {
     cy.findByText(buttonCopy.destructive)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Outline Destructive" button', () => {
+  it('Should have a loading "Outline Destructive" button', () => {
     cy.findByText(buttonCopy.outlineDestructive)
       .closest('button')
       .find('.fd-circle-loader');
   });
 
-  it('Should have a "Glass" button', () => {
+  it('Should have a loading "Glass" button', () => {
     cy.findByText(buttonCopy.glass)
       .closest('button')
       .find('.fd-circle-loader');
