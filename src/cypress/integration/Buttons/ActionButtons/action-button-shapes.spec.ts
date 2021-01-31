@@ -7,14 +7,14 @@ describe('ActionButton Shapes tests', () => {
   });
 
   it('Should have a "Rounded Square" button', () => {
-    cy.findByText(actionButtonCopy.roundedSquare);
+    cy.findByText(actionButtonCopy.roundedSquare).siblings('button');
   });
 
   it('Should have a "Round" button', () => {
-    cy.findByText(actionButtonCopy.round);
+    cy.findByText(actionButtonCopy.round).siblings('button');
   });
 
   it('Should have a "Square" button', () => {
-    cy.findByText(actionButtonCopy.square);
+    cy.findByText(actionButtonCopy.square).siblings('button');
   });
 });

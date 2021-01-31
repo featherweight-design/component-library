@@ -7,14 +7,14 @@ describe('ActionButton Variants tests', () => {
   });
 
   it('Should have a "Primary" button', () => {
-    cy.findByText(actionButtonCopy.primary).closest('button');
+    cy.findByText(actionButtonCopy.primary).siblings('button');
   });
 
   it('Should have a "Secondary" button', () => {
-    cy.findByText(actionButtonCopy.secondary).closest('button');
+    cy.findByText(actionButtonCopy.secondary).siblings('button');
   });
 
   it('Should have a "Glass" button', () => {
-    cy.findByText(actionButtonCopy.glass).closest('button');
+    cy.findByText(actionButtonCopy.glass).siblings('button');
   });
 });
