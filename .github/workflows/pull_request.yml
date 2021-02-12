@@ -143,11 +143,13 @@ jobs:
           echo "FILE_PATH="$(find src/cypress/integration/ -name "${{ matrix.test-spec }}.spec.ts")"" >> $GITHUB_ENV
           echo "TEST_GROUP="$(basename "$(dirname "${{ env.FILE_PATH }}")")"" >> $GITHUB_ENV
 
-      - name: Run ${{ env.TEST_GROUP }} - ${{ matrix.test-suite }} Cypress tests
+      - run: echo ${{ env.TEST_GROUP }} ${{ env.FILE_PATH }}
+
+      - name: Run ${{ env.TEST_GROUP }} - ${{ matrix.test-spec }} Cypress tests
         uses: cypress-io/github-action@v2
         with:
           group: "${{ env.TEST_GROUP }} Tests"
-          spec: src/cypress/integration/**/${{ matrix.test-suite }}.spec.ts
+          spec: src/cypress/integration/**/${{ matrix.test-spec }}.spec.ts
           browser: chrome
           start: yarn storybook
           record: true
