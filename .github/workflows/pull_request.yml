@@ -24,6 +24,30 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      # we use exact restore key to avoid NPM module snowballing
+      # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
+      - name: Cache central NPM modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
+
+      # we use the exact restore key to avoid Cypress binary snowballing
+      # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
+      - name: Cache Cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
         uses: actions/cache@v1
@@ -37,7 +61,12 @@ jobs:
         env:
           # make sure every Cypress install prints minimal information
           CI: 1
-        run: yarn install --frozen-lockfile
+        run: |
+          yarn install --frozen-lockfile
+          npx cypress cache path
+          npx cypress cache list
+          npx cypress verify
+          npx cypress info
 
   static-analysis:
     name: Static code analysis
@@ -81,6 +110,15 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      # Restore just local node_modules and the Cypress binary archives.
+      - name: Cache Cypress binary
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
+
       - name: Cache local node_modules
         uses: actions/cache@v1
         with:
@@ -88,6 +126,12 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-${{ github.ref }}-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
 
       - name: Run ${{ matrix.test-suite }} Cypress tests
         uses: cypress-io/github-action@v2
