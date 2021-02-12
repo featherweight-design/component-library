@@ -2,6 +2,10 @@ name: Pull Request Checks
 
 # Run this workflow every time a new pull request is opened
 # and when commits are pushed to an existing PR
+
+# References
+# Cypress Parallel test kitchen sink (https://github.com/cypress-io/cypress-example-kitchensink/blob/master/.github/workflows/parallel.yml#L28)
+# Cypress GH Action Parallel test blog (https://www.cypress.io/blog/2019/11/20/drastically-simplify-your-testing-with-cypress-github-action/)
 on:
   pull_request:
     types: [opened, synchronize]
@@ -65,7 +69,9 @@ jobs:
     needs: [install, static-analysis]
     strategy:
       matrix:
+        # Each test suite should be listed here for running parallel tests
         test-suite: ["ActionButton", "Button"]
+        # Multiple machines are used for load balancing
         machines: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout code
