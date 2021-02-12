@@ -141,7 +141,7 @@ jobs:
       - name: Set test group
         run: |
           FILE_PATH=find src/cypress/integration/ -name "${{ matrix.test-spec }}.spec.ts"
-          TEST_GROUP="$(basename "$(dirname "$FILE_PATH")")"
+          echo "TEST_GROUP="$(basename "$(dirname "$FILE_PATH")")"" >> $GITHUB_ENV
 
       - name: Run ${{ env.TEST_GROUP }} - ${{ matrix.test-suite }} Cypress tests
         uses: cypress-io/github-action@v2
