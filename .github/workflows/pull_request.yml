@@ -65,11 +65,11 @@ jobs:
           # make sure every Cypress install prints minimal information
           CI: 1
         run: |
-          yarn install --frozen-lockfile
           npx cypress cache path
           npx cypress cache list
           npx cypress verify
           npx cypress info
+          yarn install --frozen-lockfile
 
   static-analysis:
     name: Static code analysis
