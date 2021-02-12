@@ -24,6 +24,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Install Cypress
+        run: cypress install
+
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
       # workflow successfully finishes.
@@ -62,7 +65,6 @@ jobs:
           # make sure every Cypress install prints minimal information
           CI: 1
         run: |
-          npm install cypress
           yarn install --frozen-lockfile
           npx cypress cache path
           npx cypress cache list
