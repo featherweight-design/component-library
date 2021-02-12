@@ -140,7 +140,7 @@ jobs:
 
       - name: Set test group
         run: |
-          echo "FILE_PATH="$(find src/cypress/integration/ -name "${{ matrix.test-spec }}.spec.ts")" >> $GITHUB_ENV
+          echo "FILE_PATH="$(find src/cypress/integration/ -name "${{ matrix.test-spec }}.spec.ts")"" >> $GITHUB_ENV
           echo "TEST_GROUP="$(basename "$(dirname "${{ env.FILE_PATH }}")")"" >> $GITHUB_ENV
 
       - name: Run ${{ env.TEST_GROUP }} - ${{ matrix.test-suite }} Cypress tests
