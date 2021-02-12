@@ -95,7 +95,6 @@ jobs:
     strategy:
       matrix:
         test-suite: ["ActionButton", "Button"]
-        machines: [1, 2]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
