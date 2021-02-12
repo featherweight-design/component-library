@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
+import { inputCopy } from 'shared/data/copyContent';
 import Input from './Input';
 
 export default {
@@ -20,7 +21,7 @@ export const Default = (): JSX.Element => {
       <Input
         value={inputValue}
         name="default"
-        label="Label"
+        label={inputCopy.label}
         onChange={mockOnChange}
       />
     </div>
@@ -53,7 +54,7 @@ export const Types = (): JSX.Element => {
       <Input
         value={defaultValue}
         name="default"
-        label="Label"
+        label={inputCopy.label}
         onChange={mockOnChange}
       />
 
@@ -61,8 +62,8 @@ export const Types = (): JSX.Element => {
         value={percentage}
         name="number"
         type="number"
-        label="Number"
-        placeholder="%"
+        label={inputCopy.number}
+        placeholder={inputCopy.numberPlaceholder}
         min="0"
         max="100"
         onChange={mockOnChange}
@@ -71,7 +72,7 @@ export const Types = (): JSX.Element => {
       <Input
         value=""
         name="disabled"
-        label="Disabled"
+        label={inputCopy.disabled}
         onChange={mockOnChange}
         disabled
       />
@@ -79,8 +80,8 @@ export const Types = (): JSX.Element => {
       <Input
         value={errorValue}
         name="errorValue"
-        label="Label"
-        errorMessage={errorValue ? '' : 'Please enter a value'}
+        label={inputCopy.label}
+        errorMessage={errorValue ? '' : inputCopy.errorMessage}
         onChange={mockOnChange}
       />
     </div>
