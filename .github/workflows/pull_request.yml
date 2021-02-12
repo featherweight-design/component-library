@@ -94,7 +94,19 @@ jobs:
     needs: [install, static-analysis]
     strategy:
       matrix:
-        test-suite: ["ActionButton", "Button"]
+        test-spec:
+          [
+            "action-button-shapes",
+            "action-button-variants-disabled",
+            "action-button-variants-loading",
+            "action-button-variants-with-sizes",
+            "action-button-variants-without-labels",
+            "action-button-variants",
+            "button-shapes",
+            "button-variants-disabled",
+            "button-variants-loading",
+            "button-variants",
+          ]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -126,11 +138,16 @@ jobs:
           npx cypress cache path
           npx cypress cache list
 
-      - name: Run ${{ matrix.test-suite }} Cypress tests
+      - name: Set test group
+        run: |
+          FILE_PATH=find src/cypress/integration/ -name "${{ matrix.test-spec }}"
+          TEST_GROUP="$(basename "$(dirname "$FILE_PATH")")"
+
+      - name: Run ${{ env.TEST_GROUP }} - ${{ matrix.test-suite }} Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          group: "${{ matrix.test-suite }} Tests"
-          spec: src/cypress/integration/Buttons/${{ matrix.test-suite }}/*.spec.ts
+          group: "${{ env.TEST_GROUP }} Tests"
+          spec: src/cypress/integration/**/${{ matrix.test-suite }}.spec.ts
           browser: chrome
           start: yarn storybook
           record: true
