@@ -8,90 +8,82 @@ describe('Input Types tests', () => {
 
   describe('Text input', () => {
     it('Should be displayed', () => {
-      cy.findAllByText(inputCopy.label).first();
+      cy.findByLabelText(inputCopy.textLabel);
+    });
+
+    it('Should have a placeholder', () => {
+      cy.findAllByPlaceholderText(inputCopy.placeholder).first();
     });
 
     it('Should accept a value', () => {
       const expectedValue = 'stuff';
-      cy.findAllByText(inputCopy.label)
-        .first()
-        .siblings('input')
-        .type(expectedValue);
 
-      cy.findAllByText(inputCopy.label)
-        .first()
-        .siblings('input')
-        .should('have.value', expectedValue);
+      cy.findByLabelText(inputCopy.textLabel).type(expectedValue);
+
+      cy.findByLabelText(inputCopy.textLabel).should(
+        'have.value',
+        expectedValue
+      );
     });
   });
 
   describe('Number input', () => {
     it('Should be displayed', () => {
-      cy.findAllByText(inputCopy.number);
+      cy.findByLabelText(inputCopy.numberLabel);
+    });
+
+    it('Should have a "%" placeholder', () => {
+      cy.findByPlaceholderText(inputCopy.numberPlaceholder);
     });
 
     it('Should accept number values', () => {
       const expectedValue = '1234';
 
-      cy.findAllByText(inputCopy.number)
-        .first()
-        .siblings('input')
-        .type(expectedValue);
+      cy.findByLabelText(inputCopy.numberLabel).type(expectedValue);
 
-      cy.findAllByText(inputCopy.number)
-        .first()
-        .siblings('input')
-        .should('have.value', expectedValue);
+      cy.findByLabelText(inputCopy.numberLabel).should(
+        'have.value',
+        expectedValue
+      );
 
-      cy.findAllByText(inputCopy.number)
-        .first()
-        .siblings('input')
-        .clear();
+      cy.findByLabelText(inputCopy.numberLabel).clear();
     });
 
     it('Should not accept non-integers', () => {
       const expectedValue = '';
 
-      cy.findAllByText(inputCopy.number)
-        .first()
-        .siblings('input')
-        .type('abc');
+      cy.findByLabelText(inputCopy.numberLabel).type('abc');
 
-      cy.findAllByText(inputCopy.number)
-        .first()
-        .siblings('input')
-        .should('have.value', expectedValue);
+      cy.findByLabelText(inputCopy.numberLabel).should(
+        'have.value',
+        expectedValue
+      );
     });
   });
 
   describe('Disabled input', () => {
     it('Should be displayed', () => {
-      cy.findAllByText(inputCopy.disabled);
+      cy.findByLabelText(inputCopy.disabledLabel);
     });
 
     it('Should have the input disabled', () => {
-      cy.findByText(inputCopy.disabled)
-        .siblings('input')
-        .should('be.disabled');
+      cy.findByLabelText(inputCopy.disabledLabel).should('be.disabled');
     });
   });
 
   describe('Error input', () => {
     it('Should be displayed', () => {
-      cy.findAllByText(inputCopy.label).last();
+      cy.findByLabelText(inputCopy.errorLabel);
     });
 
     it('Should start with an error message', () => {
-      cy.findAllByText(inputCopy.errorMessage);
+      cy.findByText(inputCopy.errorMessage);
     });
 
     it('Should remove the error message when a value is entered', () => {
-      cy.findAllByText(inputCopy.label)
-        .last()
-        .siblings('input')
-        .type('123');
+      cy.findByLabelText(inputCopy.errorLabel).type('123');
 
-      cy.findAllByText(inputCopy.errorMessage).should('not.exist');
+      cy.findByText(inputCopy.errorMessage).should('not.exist');
     });
   });
 });
