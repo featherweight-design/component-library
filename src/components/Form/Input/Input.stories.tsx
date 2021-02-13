@@ -54,7 +54,7 @@ export const Types = (): JSX.Element => {
       <Input
         value={defaultValue}
         name="default"
-        label={inputCopy.label}
+        label={inputCopy.textLabel}
         onChange={mockOnChange}
       />
 
@@ -62,7 +62,7 @@ export const Types = (): JSX.Element => {
         value={percentage}
         name="number"
         type="number"
-        label={inputCopy.number}
+        label={inputCopy.numberLabel}
         placeholder={inputCopy.numberPlaceholder}
         min="0"
         max="100"
@@ -72,7 +72,7 @@ export const Types = (): JSX.Element => {
       <Input
         value=""
         name="disabled"
-        label={inputCopy.disabled}
+        label={inputCopy.disabledLabel}
         onChange={mockOnChange}
         disabled
       />
@@ -80,7 +80,7 @@ export const Types = (): JSX.Element => {
       <Input
         value={errorValue}
         name="errorValue"
-        label={inputCopy.label}
+        label={inputCopy.errorLabel}
         errorMessage={errorValue ? '' : inputCopy.errorMessage}
         onChange={mockOnChange}
       />
