@@ -1,86 +1,97 @@
 import { inputCopy } from 'shared/data/copyContent';
 
-describe('Input', () => {
+describe('Input Types tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-form-input', 'types');
   });
-  it('Should have a text input', () => {
-    cy.findAllByText(inputCopy.label).first();
+
+  describe('Text input', () => {
+    it('Should be displayed', () => {
+      cy.findAllByText(inputCopy.label).first();
+    });
+
+    it('Should accept a value', () => {
+      const expectedValue = 'stuff';
+      cy.findAllByText(inputCopy.label)
+        .first()
+        .siblings('input')
+        .type(expectedValue);
+
+      cy.findAllByText(inputCopy.label)
+        .first()
+        .siblings('input')
+        .should('have.value', expectedValue);
+    });
   });
 
-  it('Should have an input with an error', () => {
-    cy.findAllByText(inputCopy.label).last();
+  describe('Number input', () => {
+    it('Should be displayed', () => {
+      cy.findAllByText(inputCopy.number);
+    });
+
+    it('Should accept number values', () => {
+      const expectedValue = '1234';
+
+      cy.findAllByText(inputCopy.number)
+        .first()
+        .siblings('input')
+        .type(expectedValue);
+
+      cy.findAllByText(inputCopy.number)
+        .first()
+        .siblings('input')
+        .should('have.value', expectedValue);
+
+      cy.findAllByText(inputCopy.number)
+        .first()
+        .siblings('input')
+        .clear();
+    });
+
+    it('Should not accept non-integers', () => {
+      const expectedValue = '';
+
+      cy.findAllByText(inputCopy.number)
+        .first()
+        .siblings('input')
+        .type('abc');
+
+      cy.findAllByText(inputCopy.number)
+        .first()
+        .siblings('input')
+        .should('have.value', expectedValue);
+    });
   });
 
-  it('Should have a number input', () => {
-    cy.findAllByText(inputCopy.number);
+  describe('Disabled input', () => {
+    it('Should be displayed', () => {
+      cy.findAllByText(inputCopy.disabled);
+    });
+
+    it('Should have the input disabled', () => {
+      cy.findByText(inputCopy.disabled)
+        .siblings('input')
+        .should('be.disabled');
+    });
   });
 
-  it('The text input should accept a value', () => {
-    const expectedValue = 'stuff';
-    cy.findAllByText(inputCopy.label)
-      .first()
-      .siblings('input')
-      .type(expectedValue);
+  describe('Error input', () => {
+    it('Should be displayed', () => {
+      cy.findAllByText(inputCopy.label).last();
+    });
 
-    cy.findAllByText(inputCopy.label)
-      .first()
-      .siblings('input')
-      .should('have.value', expectedValue);
-  });
+    it('Should start with an error message', () => {
+      cy.findAllByText(inputCopy.errorMessage);
+    });
 
-  it('The number input should accept numbers', () => {
-    const expectedValue = '1234';
-    cy.findAllByText(inputCopy.number)
-      .first()
-      .siblings('input')
-      .type(expectedValue);
+    it('Should remove the error message when a value is entered', () => {
+      cy.findAllByText(inputCopy.label)
+        .last()
+        .siblings('input')
+        .type('123');
 
-    cy.findAllByText(inputCopy.number)
-      .first()
-      .siblings('input')
-      .should('have.value', expectedValue);
-
-    cy.findAllByText(inputCopy.number)
-      .first()
-      .siblings('input')
-      .clear();
-  });
-
-  it('The number input should not accept non-integers', () => {
-    const expectedValue = 'abc';
-    cy.findAllByText(inputCopy.number)
-      .first()
-      .siblings('input')
-      .type(expectedValue);
-
-    cy.findAllByText(inputCopy.number)
-      .first()
-      .siblings('input')
-      .should('have.value', '');
-  });
-
-  it('The error input should start with an error message', () => {
-    cy.findAllByText(inputCopy.errorMessage);
-  });
-
-  it('The error input should remove error if value is present', () => {
-    cy.findAllByText(inputCopy.label)
-      .last()
-      .siblings('input')
-      .type('123');
-
-    cy.findAllByText(inputCopy.errorMessage).should('not.exist');
-  });
-
-  it('Should have a disabled input', () => {
-    cy.findAllByText(inputCopy.disabled);
-  });
-
-  it('The disabled input should start as disabled', () => {
-    cy.findByText(inputCopy.disabled)
-      .siblings('input')
-      .should('be.disabled');
+      cy.findAllByText(inputCopy.errorMessage).should('not.exist');
+    });
   });
 });
