@@ -99,7 +99,7 @@ jobs:
     strategy:
       matrix:
         # Each test suite should be listed here for running parallel tests
-        test-suite: ["ActionButton", "Button"]
+        test-suite: ["ActionButton", "Button", "Input"]
         # Multiple machines are used for load balancing
         machines: [1, 2, 3, 4, 5]
     steps:
@@ -137,7 +137,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           group: "${{ matrix.test-suite }} Tests"
-          spec: src/cypress/integration/Buttons/${{ matrix.test-suite }}/*.spec.ts
+          spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook
           record: true
