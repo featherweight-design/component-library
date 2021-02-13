@@ -70,6 +70,10 @@ labels:
     color: '#F7B5D6'
     description: Styles need to be added, improved, or updated
 
+  - name: 🧪 Testing
+    color: '#AAFFB9'
+    description: New or updates tests and testing infrastructure
+
   - name: 😶  Wontfix
     color: '#ffffff'
     description: This will not be worked on
