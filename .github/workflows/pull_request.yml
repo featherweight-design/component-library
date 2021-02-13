@@ -31,7 +31,7 @@ jobs:
       # we use exact restore key to avoid NPM module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
       - name: Cache central NPM modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -41,7 +41,7 @@ jobs:
       # we use the exact restore key to avoid Cypress binary snowballing
       # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
@@ -50,7 +50,7 @@ jobs:
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -81,7 +81,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -112,7 +112,7 @@ jobs:
 
       # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
@@ -120,7 +120,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-${{ github.ref }}-${{ hashFiles('**/package.json') }}
 
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -175,7 +175,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache local node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
