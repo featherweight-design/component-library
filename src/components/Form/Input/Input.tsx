@@ -23,9 +23,13 @@ const Input: FC<InputProps> = ({
       [className as string]: className,
     })}
   >
-    {label && <span className="fd-label">{label}</span>}
+    {label && (
+      <label htmlFor={id || `fd-input__${name}`} className="fd-label">
+        {label}
+      </label>
+    )}
     <input
-      id={id}
+      id={id || `fd-input__${name}`}
       name={name}
       value={value}
       type={type}
