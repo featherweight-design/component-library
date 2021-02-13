@@ -1,8 +1,9 @@
 export default {
-  disabled: 'Disabled',
-  label: 'Label',
+  disabledLabel: 'Disabled',
+  errorLabel: 'Error',
   errorMessage: 'Please enter a value',
-  number: 'Number',
-  placeholder: 'Enter a value...',
+  textLabel: 'Label',
+  numberLabel: 'Number',
   numberPlaceholder: '%',
+  placeholder: 'Enter a value...',
 };
