@@ -71,7 +71,7 @@ labels:
     description: Styles need to be added, improved, or updated
 
   - name: 🧪 Testing
-    color: '#AAFFB9'
+    color: '#BFDADB'
     description: New or updates tests and testing infrastructure
 
   - name: 😶  Wontfix
