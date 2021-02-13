@@ -9,7 +9,7 @@ assignees: ''
 
 ## Description
 
-What needs refacotring/updating/testing and why? Any breaking changes? Is this related to a bug?
+What needs refactoring/updating/testing and why? Any breaking changes? Is this related to a bug?
 
 ## Acceptance Criteria
 
