@@ -1,29 +1,38 @@
 import { withA11y } from '@storybook/addon-a11y';
 
+import { headerMenuCopy } from 'shared/data/copyContent';
 import HeaderMenu from './HeaderMenu';
+
+const {
+  defaultSubTitle,
+  defaultTitle,
+  icons,
+  subOptionLabels,
+  userName,
+} = headerMenuCopy;
 
 const subOptions = [
   {
-    icon: 'group',
-    label: 'User Management',
+    icon: icons.userManagement,
+    label: subOptionLabels.userManagement,
     path: '/user-management',
     hasAccess: true,
   },
   {
-    icon: 'account_tree',
-    label: 'Permissions',
+    icon: icons.permissions,
+    label: subOptionLabels.permissions,
     path: '/permissions',
     hasAccess: true,
   },
   {
-    icon: 'mail',
-    label: 'Support',
+    icon: icons.support,
+    label: subOptionLabels.support,
     path: '/support',
     hasAccess: true,
   },
   {
-    icon: 'info',
-    label: 'Info',
+    icon: icons.info,
+    label: subOptionLabels.info,
     path: '/info',
     hasAccess: true,
   },
@@ -37,21 +46,21 @@ export default {
 export const Default = (): JSX.Element => (
   <HeaderMenu
     currentlyViewing={{
-      title: 'Best Site',
-      subTitle: 'ever',
+      title: defaultTitle,
+      subTitle: defaultSubTitle,
       path: '/best-site',
     }}
     menuOptions={{
       settings: {
-        icon: 'settings',
+        icon: icons.settings,
         path: '/settings',
       },
       notifications: {
-        icon: 'notifications',
+        icon: icons.notifications,
         path: '/notifications',
       },
       search: {
-        icon: 'search',
+        icon: icons.search,
       },
     }}
   />
@@ -61,13 +70,13 @@ export const WithDarkTheme = (): JSX.Element => (
   <HeaderMenu
     goDark
     currentlyViewing={{
-      title: 'Permissions',
+      title: subOptionLabels.permissions,
       path: '/permissions',
     }}
     menuOptions={{
       settings: {
-        subTitle: 'Bob H.',
-        icon: 'settings',
+        subTitle: userName,
+        icon: icons.settings,
         subOptions,
       },
     }}
@@ -77,18 +86,18 @@ export const WithDarkTheme = (): JSX.Element => (
 export const WithIndicator = (): JSX.Element => (
   <HeaderMenu
     currentlyViewing={{
-      title: 'Notifications',
+      title: subOptionLabels.notifications,
       path: '/notifications',
     }}
     menuOptions={{
       notifications: {
-        icon: 'notifications',
+        icon: icons.notifications,
         path: '/notifications',
         indicator: true,
         isActive: true,
       },
       search: {
-        icon: 'search',
+        icon: icons.search,
       },
     }}
   />
@@ -101,8 +110,8 @@ export const WithoutTitle = (): JSX.Element => (
     }}
     menuOptions={{
       settings: {
-        subTitle: 'Bob H.',
-        icon: 'settings',
+        subTitle: userName,
+        icon: icons.settings,
         subOptions,
       },
     }}
@@ -112,13 +121,13 @@ export const WithoutTitle = (): JSX.Element => (
 export const WithSubOptions = (): JSX.Element => (
   <HeaderMenu
     currentlyViewing={{
-      title: 'Permissions',
+      title: subOptionLabels.permissions,
       path: '/permissions',
     }}
     menuOptions={{
       settings: {
         subTitle: 'Bob H.',
-        icon: 'settings',
+        icon: icons.settings,
         subOptions,
       },
     }}

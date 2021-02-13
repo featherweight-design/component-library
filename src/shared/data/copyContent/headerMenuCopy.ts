@@ -1,6 +1,6 @@
 export default {
-  defaultTitle: 'Best Site',
   defaultSubTitle: 'ever',
+  defaultTitle: 'Best Site',
   icons: {
     info: 'info',
     notifications: 'notifications',
@@ -10,11 +10,12 @@ export default {
     support: 'mail',
     userManagement: 'group',
   },
-  subOptions: {
-    infoLabel: 'Info',
-    permissionsLabel: 'Permissions',
-    supportLabel: 'Support',
-    userManagementLabel: 'User Management',
+  subOptionLabels: {
+    info: 'Info',
+    notifications: 'Notifications',
+    permissions: 'Permissions',
+    support: 'Support',
+    userManagement: 'User Management',
   },
   userName: 'Bob H.',
 };
