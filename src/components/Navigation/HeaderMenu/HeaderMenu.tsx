@@ -1,4 +1,12 @@
-import { FC, ReactElement, Fragment, useState, useRef } from 'react';
+import {
+  FC,
+  ReactElement,
+  Fragment,
+  useState,
+  useRef,
+  KeyboardEvent,
+} from 'react';
+
 import classnames from 'classnames';
 
 import {
@@ -7,6 +15,9 @@ import {
   HeaderMenuProps,
   HeaderMenuSubOption,
 } from 'types';
+
+import Icon from 'components/Icon/Icon';
+import { keyboardKeyEnum } from 'shared/data/enums';
 
 const getBaseClassName = (goDark: boolean | undefined): string =>
   goDark ? 'fd-header-menu-dark' : 'fd-header-menu';
@@ -27,11 +38,8 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
     document.removeEventListener('click', handleHeaderMenuOutsideClick);
   };
 
-  const handleHeaderMenuOutsideClick = (event: MouseEvent): void => {
-    if (
-      subOptionsMenu.current &&
-      !subOptionsMenu.current.contains(event.currentTarget as Node)
-    ) {
+  const handleHeaderMenuOutsideClick = (): void => {
+    if (subOptionsMenu.current) {
       handleRemoveEventListener();
       setSelectedOption(null);
     }
@@ -44,11 +52,16 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
     const { subOptions, path } = optionObject;
 
     if (subOptions) {
-      if (!selectedOption) {
-        document.addEventListener('click', handleHeaderMenuOutsideClick);
-      }
-
       setSelectedOption(name);
+
+      if (!selectedOption) {
+        // Slight timeout is needed to prevent this from firing on the initial click event
+        setTimeout(
+          () =>
+            document.addEventListener('click', handleHeaderMenuOutsideClick),
+          100
+        );
+      }
     } else if (path && onNavigate) {
       onNavigate({
         title: name,
@@ -63,9 +76,6 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
         path,
         title,
       });
-    }
-    if (subOptionsMenu) {
-      handleRemoveEventListener();
     }
   };
 
@@ -115,9 +125,11 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                 handleRemoveEventListener();
                 setSelectedOption(null);
               }}
-              onKeyDown={(): void => {
-                handleRemoveEventListener();
-                setSelectedOption(null);
+              onKeyDown={(event): void => {
+                if (event.key === keyboardKeyEnum.Enter) {
+                  handleRemoveEventListener();
+                  setSelectedOption(null);
+                }
               }}
             >
               <div
@@ -127,15 +139,13 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                 })}
               />
 
-              <i
+              <Icon
                 className={classnames({
-                  'material-icons': true,
                   [`${baseClassName}__sub-option-icon`]: true,
                   [`${baseClassName}__sub-option-icon-selected`]: isSelected,
                 })}
-              >
-                {icon}
-              </i>
+                icon={icon}
+              />
               {label}
             </a>
           );
@@ -153,9 +163,11 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                   handleSelectSubOption(label, path);
                 }
               }}
-              onKeyDown={(): void => {
-                if (!isSelected) {
-                  handleSelectSubOption(label, path);
+              onKeyDown={(event): void => {
+                if (event.key === keyboardKeyEnum.Enter) {
+                  if (!isSelected) {
+                    handleSelectSubOption(label, path);
+                  }
                 }
               }}
             >
@@ -166,15 +178,14 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                 })}
               />
 
-              <i
+              <Icon
                 className={classnames({
                   'material-icons': true,
                   [`${baseClassName}__sub-option-icon`]: true,
                   [`${baseClassName}__sub-option-icon-selected`]: isSelected,
                 })}
-              >
-                {icon}
-              </i>
+                icon={icon}
+              />
               {label}
             </div>
           );
@@ -202,24 +213,24 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
 
         return (
           <Fragment key={key}>
-            <div className={`${baseClassName}__icon-container`}>
-              <i
-                className={menuOptionIconClassNames}
-                role="menuitem"
-                tabIndex={0}
-                onClick={(): void => {
+            <div
+              className={`${baseClassName}__icon-container`}
+              role="menuitem"
+              tabIndex={0}
+              onClick={(): void => {
+                if (!selectedOption) {
+                  handleSelectOption(option, menuOptions[option]);
+                }
+              }}
+              onKeyDown={(event: KeyboardEvent<HTMLDivElement>): void => {
+                if (event.key === keyboardKeyEnum.Enter) {
                   if (!selectedOption) {
                     handleSelectOption(option, menuOptions[option]);
                   }
-                }}
-                onKeyDown={(): void => {
-                  if (!selectedOption) {
-                    handleSelectOption(option, menuOptions[option]);
-                  }
-                }}
-              >
-                {icon}
-              </i>
+                }
+              }}
+            >
+              <Icon className={menuOptionIconClassNames} icon={icon} />
 
               <div
                 className={classnames({
@@ -232,17 +243,6 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                 <div
                   className={`${baseClassName}__icon-indicator`}
                   role="menuitem"
-                  tabIndex={-1}
-                  onClick={(): void => {
-                    if (!selectedOption) {
-                      handleSelectOption(option, menuOptions[option]);
-                    }
-                  }}
-                  onKeyDown={(): void => {
-                    if (!selectedOption) {
-                      handleSelectOption(option, menuOptions[option]);
-                    }
-                  }}
                 >
                   {typeof indicator === 'number' && indicator}
                 </div>
@@ -251,8 +251,7 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                 <div
                   className={classnames({
                     [`${baseClassName}__sub-options`]: true,
-                    [`${baseClassName}__sub-options-shown`]:
-                      selectedOption === option,
+                    [`${baseClassName}__sub-options-shown`]: isSelected,
                   })}
                   ref={subOptionsMenu}
                 >
