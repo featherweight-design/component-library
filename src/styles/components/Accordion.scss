@@ -22,6 +22,7 @@
     color: $cool-gray-19;
     background-color: $gray-02;
     box-shadow: $brand-color 0.25rem 0 0 inset;
+    font-size: 1rem;
     transition: box-shadow 0.2s ease-in-out;
     &:focus {
       outline: none;
@@ -36,9 +37,6 @@
     &-hidden {
       transform: rotate(-90deg);
     }
-  }
-  &__title {
-    font-size: 1rem;
   }
   &__content {
     position: relative;

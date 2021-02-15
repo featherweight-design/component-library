@@ -61,7 +61,6 @@ const Accordion: FC<AccordionProps> = ({
               'fd-accordion__icon-hidden': !isExpanded,
             })}
             icon="keyboard_arrow_down"
-            size="0.875rem"
           />
           <span className="fd-accordion__title">{title}</span>
         </button>
