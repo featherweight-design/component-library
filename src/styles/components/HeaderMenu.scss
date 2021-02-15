@@ -42,6 +42,13 @@
   &__icon-container {
     position: relative;
     margin-left: 1.5rem;
+    &:focus {
+      outline: none;
+      > .fd-header-menu__menu-icon-background,
+      .fd-header-menu-dark__menu-icon-background {
+        @include focus-styles;
+      }
+    }
   }
   &__menu-icon-background {
     position: absolute;
@@ -187,7 +194,7 @@
       opacity: 1;
     }
     &:focus {
-      outline: none;
+      @include focus-styles;
     }
     &:last-child {
       padding-bottom: 1.5rem;
