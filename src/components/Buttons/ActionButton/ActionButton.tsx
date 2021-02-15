@@ -55,14 +55,11 @@ const ActionButton: FC<ActionButtonProps> = ({
       })}
       onClick={onClick}
       disabled={disabled}
-      style={
-        !children && image
-          ? {
-              backgroundImage: `url(${image})`,
-              backgroundSize: 'cover',
-            }
-          : {}
-      }
+      style={{
+        fontSize: SIZES_ENUM[size],
+        backgroundImage: image ? `url(${image})` : 'unset',
+        backgroundSize: image ? `cover` : 'unset',
+      }}
     >
       {loading && (
         <div className="fd-action-button__loader-container">
@@ -71,11 +68,7 @@ const ActionButton: FC<ActionButtonProps> = ({
       )}
 
       {!loading && !image && !children && icon && (
-        <Icon
-          className="fd-action-button__icon"
-          icon={icon}
-          size={SIZES_ENUM[size]}
-        />
+        <Icon className="fd-action-button__icon" icon={icon} />
       )}
       {children}
     </button>
