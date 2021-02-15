@@ -172,9 +172,7 @@ export interface IconProps {
   icon: string;
   className?: string;
   color?: string;
-  dataId?: string;
   id?: string;
-  size?: string;
 }
 
 export interface IconArgsType {
