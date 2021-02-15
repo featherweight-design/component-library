@@ -1,9 +1,9 @@
 ## Description
 
+<BRIEF_DESCRIPTION>
+
 - Issues:
   - Resolves #<ISSUE_NUMBER>
-
-<BRIEF_DESCRIPTION>
 
 ## Changes
 
