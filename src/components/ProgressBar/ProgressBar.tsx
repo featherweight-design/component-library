@@ -36,7 +36,7 @@ const ProgressBar: FC<ProgressBarProps> = ({
         [className as string]: className,
       })}
     >
-      <div className="fd-progress-bar__progress-container">
+      <div className="fd-progress-bar__progress-container" style={{ color }}>
         <div
           className={classnames({
             'fd-progress-bar__fill-container': true,
@@ -66,8 +66,6 @@ const ProgressBar: FC<ProgressBarProps> = ({
               'fd-progress-bar__completion-icon-hidden': !areAllItemsComplete,
             })}
             icon="check_circle"
-            color={color}
-            size="1rem"
           />
         )}
       </div>
