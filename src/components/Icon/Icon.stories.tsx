@@ -8,7 +8,3 @@ export default {
 };
 
 export const Default = (): JSX.Element => <Icon icon="search" />;
-
-export const WithCustomColor = (): JSX.Element => (
-  <Icon icon="search" color="red" />
-);
