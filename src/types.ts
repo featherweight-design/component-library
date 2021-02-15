@@ -178,7 +178,6 @@ export interface IconProps {
 export interface IconArgsType {
   icon: string;
   className?: string;
-  color?: string;
 }
 
 //* Input Types
