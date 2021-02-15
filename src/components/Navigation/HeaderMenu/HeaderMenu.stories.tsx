@@ -121,11 +121,12 @@ export const WithoutTitle = (): JSX.Element => (
 export const WithSubOptions = (): JSX.Element => (
   <HeaderMenu
     currentlyViewing={{
-      title: subOptionLabels.permissions,
-      path: '/permissions',
+      title: defaultTitle,
+      subTitle: defaultSubTitle,
+      path: '/best-site',
     }}
     menuOptions={{
-      settings: {
+      menu: {
         subTitle: 'Bob H.',
         icon: icons.settings,
         subOptions,
