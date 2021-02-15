@@ -242,7 +242,7 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
               {indicator && (
                 <div
                   className={`${baseClassName}__icon-indicator`}
-                  role="menuitem"
+                  role="alert"
                 >
                   {typeof indicator === 'number' && indicator}
                 </div>
