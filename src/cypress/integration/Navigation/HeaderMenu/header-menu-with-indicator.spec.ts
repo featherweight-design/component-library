@@ -1,6 +1,6 @@
 import { headerMenuCopy } from 'shared/data/copyContent';
 
-describe('HeaderMenu with indicator tests', () => {
+describe('HeaderMenu with Indicator tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-navigation-headermenu', 'with-indicator');
