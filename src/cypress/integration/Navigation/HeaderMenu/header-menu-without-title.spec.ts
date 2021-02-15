@@ -1,6 +1,6 @@
 import { headerMenuCopy } from 'shared/data/copyContent';
 
-describe('HeaderMenu default tests', () => {
+describe('HeaderMenu without Title tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-navigation-headermenu', 'without-title');
