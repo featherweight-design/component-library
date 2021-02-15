@@ -3,14 +3,7 @@ import classnames from 'classnames';
 
 import { IconProps } from 'types';
 
-const Icon: FC<IconProps> = ({
-  className,
-  size,
-  color,
-  icon,
-  id,
-  dataId,
-}: IconProps) => (
+const Icon: FC<IconProps> = ({ className, color, icon, id }: IconProps) => (
   <i
     id={id}
     className={classnames({
@@ -18,9 +11,7 @@ const Icon: FC<IconProps> = ({
       'fd-icon': true,
       [className as string]: className,
     })}
-    data-id={dataId}
     style={{
-      fontSize: size,
       color,
     }}
   >
@@ -30,7 +21,6 @@ const Icon: FC<IconProps> = ({
 
 Icon.defaultProps = {
   className: '',
-  size: '24px',
   color: 'currentColor',
 };
 
