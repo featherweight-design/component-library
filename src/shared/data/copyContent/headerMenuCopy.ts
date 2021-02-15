@@ -10,12 +10,13 @@ export default {
     support: 'mail',
     userManagement: 'group',
   },
+  menuTitle: 'menu',
   subOptionLabels: {
-    info: 'Info',
-    notifications: 'Notifications',
-    permissions: 'Permissions',
-    support: 'Support',
-    userManagement: 'User Management',
+    info: 'info',
+    notifications: 'notifications',
+    permissions: 'permissions',
+    support: 'support',
+    userManagement: 'user management',
   },
   userName: 'Bob H.',
 };
