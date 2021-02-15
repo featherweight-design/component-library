@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 import { IconProps } from 'types';
 
-const Icon: FC<IconProps> = ({ className, color, icon, id }: IconProps) => (
+const Icon: FC<IconProps> = ({ className, icon, id }: IconProps) => (
   <i
     id={id}
     className={classnames({
@@ -11,17 +11,9 @@ const Icon: FC<IconProps> = ({ className, color, icon, id }: IconProps) => (
       'fd-icon': true,
       [className as string]: className,
     })}
-    style={{
-      color,
-    }}
   >
     {icon}
   </i>
 );
-
-Icon.defaultProps = {
-  className: '',
-  color: 'currentColor',
-};
 
 export default Icon;
