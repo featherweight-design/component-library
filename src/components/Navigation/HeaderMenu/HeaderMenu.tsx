@@ -254,6 +254,7 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
                     [`${baseClassName}__sub-options-shown`]: isSelected,
                   })}
                   ref={subOptionsMenu}
+                  role="menu"
                 >
                   <div className={`${baseClassName}__sub-options-header`}>
                     <span className={`${baseClassName}__sub-options-title`}>
@@ -285,6 +286,7 @@ const HeaderMenu: FC<HeaderMenuProps> = ({
         [`${baseClassName}`]: true,
         [className as string]: className,
       })}
+      role="menubar"
     >
       <div className={`${baseClassName}__left`}>
         <div className={`${baseClassName}__location-container`}>
