@@ -18,6 +18,13 @@ describe('SideNavigation default tests', () => {
     cy.findByText(optionLabels.settings);
   });
 
+  it('Should have an icon for each menu option', () => {
+    cy.findByText(icons.user);
+    cy.findByText(icons.games);
+    cy.findByText(icons.help);
+    cy.findByText(icons.settings);
+  });
+
   it('Should have the "User" option selected by default and show a list of sub-options', () => {
     cy.get(SELECTED_OPTION_CLASS).should('contain.text', optionLabels.user);
     cy.get(SELECTED_SUB_OPTION_CLASS).should(
