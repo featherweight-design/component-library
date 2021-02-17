@@ -2,10 +2,13 @@ import { sideNavigationCopy } from 'shared/data/copyContent';
 
 const { collapse } = sideNavigationCopy;
 
-describe('SideNavigation default tests', () => {
+describe('SideNavigation with Collapse Initial State', () => {
   before(() => {
     cy.visitStorybook();
-    cy.loadStory('components-navigation-sidenavigation', 'default');
+    cy.loadStory(
+      'components-navigation-sidenavigation',
+      'with-collapse-initial-state'
+    );
   });
 
   it('Should be collapsed by default', () => {
