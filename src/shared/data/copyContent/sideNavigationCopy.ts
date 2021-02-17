@@ -2,6 +2,7 @@ export default {
   backTitle: 'Home',
   collapse: 'Collapse',
   icons: {
+    back: 'keyboard_arrow_left',
     games: 'games',
     help: 'help',
     settings: 'settings_applications',
