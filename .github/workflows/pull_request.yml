@@ -99,7 +99,8 @@ jobs:
     strategy:
       matrix:
         # Each test suite should be listed here for running parallel tests
-        test-suite: ["ActionButton", "Button", "Input", "HeaderMenu"]
+        test-suite:
+          ["ActionButton", "Button", "HeaderMenu", "Input", "SideNavigation"]
         # Multiple machines are used for load balancing
         machines: [1, 2, 3, 4, 5, 6]
     steps:
