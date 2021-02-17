@@ -3,7 +3,7 @@ export default {
   icons: {
     games: 'games',
     help: 'help',
-    settings: 'settings',
+    settings: 'settings_applications',
     user: 'person',
   },
   logoTitle: 'Featherweight Design',
@@ -12,6 +12,22 @@ export default {
     help: 'help',
     settings: 'settings',
     user: 'user',
+  },
+  optionTitles: {
+    settings: 'Settings',
+  },
+  paths: {
+    allGames: '/games/all',
+    contact: '/help/contact',
+    feedback: '/help/feedback',
+    home: '/',
+    logout: '/logout',
+    notifications: '/user/notifications',
+    myInfo: '/user/my-info',
+    puzzle: '/games/puzzle',
+    racing: '/games/racing',
+    rpg: '/games/rpg',
+    settings: '/settings',
   },
   subOptionLabels: {
     allGames: 'All Games',
