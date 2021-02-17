@@ -79,7 +79,7 @@ const sideNavigationMenuOptions = [
 ];
 
 const currentlyViewing = {
-  path: paths.myInfo ,
+  path: paths.myInfo,
   title: optionLabels.user,
   backPath: paths.home,
   backTitle,
@@ -129,7 +129,10 @@ export const WithLogo = (): JSX.Element => {
       currentlyViewing={currentlyViewing}
       menuOptions={sideNavigationMenuOptions}
       defaultSelected={defaultSelected}
-      logoAssetPath={fwdLogo}
+      logo={{
+        src: fwdLogo,
+        alt: logoTitle,
+      }}
       showBackButton={showBackButton}
       onGoBack={(): void => {
         toggleOnGoBack(false);
@@ -139,12 +142,24 @@ export const WithLogo = (): JSX.Element => {
   );
 };
 
-export const WithLogoAndTitle = (): JSX.Element => (
-  <SideNavigation
-    currentlyViewing={currentlyViewing}
-    menuOptions={sideNavigationMenuOptions}
-    defaultSelected={defaultSelected}
-    logoAssetPath={fwdLogo}
-    logoTitle={logoTitle}
-  />
-);
+export const WithLogoAndTitle = (): JSX.Element => {
+  const [showBackButton, toggleOnGoBack] = useState(true);
+
+  return (
+    <SideNavigation
+      currentlyViewing={currentlyViewing}
+      menuOptions={sideNavigationMenuOptions}
+      defaultSelected={defaultSelected}
+      logo={{
+        src: fwdLogo,
+        alt: logoTitle,
+        title: logoTitle,
+      }}
+      showBackButton={showBackButton}
+      onGoBack={(): void => {
+        toggleOnGoBack(false);
+        setTimeout(() => toggleOnGoBack(true), 1000);
+      }}
+    />
+  );
+};
