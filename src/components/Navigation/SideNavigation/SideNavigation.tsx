@@ -66,8 +66,7 @@ const SideNavigation: FC<SideNavigationProps> = (
     onCollapse,
     showBackButton,
     onNavigate,
-    logoAssetPath,
-    logoTitle,
+    logo,
     defaultSelected = DEFAULT_SELECTED,
     goDark,
     className,
@@ -439,7 +438,7 @@ const SideNavigation: FC<SideNavigationProps> = (
     [`${baseClassName}__collapse-icon-collapsed`]: isCollapsed,
   });
 
-  const hasHeader = logoAssetPath || logoTitle;
+  const hasHeader = logo?.src || logo?.title;
   const selectedOptionObject =
     openOption && menuOptions.find(({ label }) => label === openOption);
   const optionIndex = menuOptions.map(({ label }) => label).indexOf(openOption);
@@ -460,8 +459,7 @@ const SideNavigation: FC<SideNavigationProps> = (
         <div
           className={classnames({
             [`${baseClassName}__header`]: true,
-            [`${baseClassName}__header-image-only`]:
-              logoAssetPath && !logoTitle,
+            [`${baseClassName}__header-image-only`]: logo?.src && !logo?.title,
           })}
         >
           <div
@@ -470,7 +468,7 @@ const SideNavigation: FC<SideNavigationProps> = (
             className={classnames({
               [`${baseClassName}__logo-link`]: true,
               [`${baseClassName}__logo-link-image-only`]:
-                logoAssetPath && !logoTitle,
+                logo?.src && !logo?.title,
             })}
             onClick={(): void => {
               if (showBackButton) {
@@ -485,27 +483,27 @@ const SideNavigation: FC<SideNavigationProps> = (
           >
             <i className={backIconClassNames}>keyboard_arrow_left</i>
 
-            {(logoAssetPath || logoTitle) && (
+            {hasHeader && (
               <div className={logoWrapperClassNames}>
-                {logoAssetPath && (
+                {logo?.src && (
                   <img
                     className={classnames({
                       [`${baseClassName}__logo-image`]: true,
                       [`${baseClassName}__logo-image-large`]:
-                        !logoTitle && !isCollapsed,
+                        !logo?.title && !isCollapsed,
                     })}
-                    alt={logoTitle}
-                    src={logoAssetPath}
+                    alt={logo?.alt || ''}
+                    src={logo.src}
                   />
                 )}
-                {logoTitle && (
+                {logo?.title && (
                   <span
                     className={classnames({
                       [`${baseClassName}__logo-text`]: true,
                       [`${baseClassName}__logo-text-hidden`]: isCollapsed,
                     })}
                   >
-                    {logoTitle}
+                    {logo.title}
                   </span>
                 )}
               </div>
@@ -568,8 +566,7 @@ SideNavigation.defaultProps = {
   currentlyViewing: undefined,
   showBackButton: false,
   onNavigate: undefined,
-  logoAssetPath: undefined,
-  logoTitle: undefined,
+  logo: undefined,
   goDark: false,
 };
 
