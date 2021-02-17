@@ -307,10 +307,15 @@ export interface SideNavigationProps {
   onCollapse?: (isCollapsed: boolean) => void;
   showBackButton?: boolean;
   onNavigate?: (currentlyViewing: CurrentlyViewing) => void;
-  logoAssetPath?: string;
-  logoTitle?: string;
+  logo?: SideNavigationLogo;
   goDark?: boolean;
   className?: string;
+}
+
+export interface SideNavigationLogo {
+  src?: string;
+  alt?: string;
+  title?: string;
 }
 
 export interface SideNavigationSelection {
