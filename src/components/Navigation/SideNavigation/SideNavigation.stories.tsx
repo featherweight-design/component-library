@@ -1,82 +1,93 @@
 import { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
+import { sideNavigationCopy } from 'shared/data/copyContent';
 import fwdLogo from 'styles/assets/images/Logo-Mock-1-Square-Inverted.jpg';
 import SideNavigation from './SideNavigation';
 
+const {
+  backTitle,
+  icons,
+  logoTitle,
+  optionLabels,
+  optionTitles,
+  paths,
+  subOptionLabels,
+} = sideNavigationCopy;
+
 const sideNavigationMenuOptions = [
   {
-    label: 'user',
-    icon: 'person',
+    label: optionLabels.user,
+    icon: icons.user,
     subOptions: [
       {
-        title: 'My Info',
-        path: '/user/my-info',
+        title: subOptionLabels.myInfo,
+        path: paths.myInfo,
       },
       {
-        title: 'Notifications',
-        path: '/user/notifications',
+        title: subOptionLabels.notifications,
+        path: paths.notifications,
       },
       {
-        title: 'Logout',
-        path: '/logout',
+        title: subOptionLabels.logout,
+        path: paths.logout,
       },
     ],
   },
   {
-    label: 'games',
-    icon: 'games',
+    label: optionLabels.games,
+    icon: icons.games,
     subOptions: [
       {
-        title: 'All Games',
-        path: '/games/all',
+        title: subOptionLabels.allGames,
+        path: paths.allGames,
       },
       {
-        title: 'RPG',
-        path: '/games/rpg',
+        title: subOptionLabels.rpg,
+        path: paths.rpg,
       },
       {
-        title: 'Racing',
-        path: '/games/racing',
+        title: subOptionLabels.racing,
+        path: paths.racing,
       },
       {
-        title: 'Puzzle',
-        path: '/games/puzzle',
+        title: subOptionLabels.puzzle,
+        path: paths.puzzle,
       },
     ],
   },
   {
-    label: 'help',
-    icon: 'help',
+    label: optionLabels.help,
+    icon: icons.help,
     subOptions: [
       {
-        title: 'Contact Us',
-        path: '/help/contact',
+        title: subOptionLabels.contact,
+        path: paths.contact,
       },
       {
-        title: 'Feedback',
-        path: '/help/feedback',
+        title: subOptionLabels.feedback,
+        path: paths.feedback,
       },
     ],
   },
   {
-    label: 'settings',
-    icon: 'settings_applications',
-    path: '/settings',
-    title: 'Settings',
+    label: optionLabels.settings,
+    icon: icons.settings,
+    path: paths.settings,
+    title: optionTitles.settings,
   },
 ];
 
 const currentlyViewing = {
-  path: '/user/my-info',
-  title: 'user',
-  backPath: '/',
-  backTitle: 'Home',
+  path: paths.myInfo ,
+  title: optionLabels.user,
+  backPath: paths.home,
+  backTitle,
 };
 
 const defaultSelected = {
-  option: 'user',
-  subOption: 'my info',
+  option: optionLabels.user,
+  subOption: subOptionLabels.myInfo,
 };
 
 export default {
@@ -134,6 +145,6 @@ export const WithLogoAndTitle = (): JSX.Element => (
     menuOptions={sideNavigationMenuOptions}
     defaultSelected={defaultSelected}
     logoAssetPath={fwdLogo}
-    logoTitle="Featherweight Design"
+    logoTitle={logoTitle}
   />
 );
