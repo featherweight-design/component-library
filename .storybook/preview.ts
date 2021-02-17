@@ -3,6 +3,7 @@ import 'cypress-storybook/react'
 import '../src/styles/main.scss';
 
 export const parameters = {
+  layout: 'fullscreen',
   options: {
     showRoots: true,
     // Inspiration for sorting solution credit to Reaviz
