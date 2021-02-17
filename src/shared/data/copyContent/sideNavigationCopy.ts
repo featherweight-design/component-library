@@ -1,5 +1,6 @@
 export default {
   backTitle: 'Home',
+  collapse: 'Collapse',
   icons: {
     games: 'games',
     help: 'help',
@@ -8,10 +9,10 @@ export default {
   },
   logoTitle: 'Featherweight Design',
   optionLabels: {
-    games: 'games',
-    help: 'help',
-    settings: 'settings',
-    user: 'user',
+    games: 'Games',
+    help: 'Help',
+    settings: 'Settings',
+    user: 'User',
   },
   optionTitles: {
     settings: 'Settings',
