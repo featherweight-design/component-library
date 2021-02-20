@@ -182,19 +182,22 @@ export interface IconArgsType {
 
 //* Input Types
 export interface InputProps {
-  name: string;
-  value: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   label: string;
+  name: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  className?: string;
+  disabled?: boolean;
+  errorMessage?: string;
   id?: string;
-  type?: string;
-  placeholder?: string;
   min?: string;
   max?: string;
-  disabled?: boolean;
-  className?: string;
-  errorMessage?: string;
+  placeholder?: string;
+  type?: string;
+  variant?: InputVariant;
 }
+
+export type InputVariant = 'default' | 'minimal';
 
 //* Navigation Types
 export interface CurrentlyViewingTab {
