@@ -185,9 +185,9 @@ export interface InputProps {
   name: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  label: string;
   id?: string;
   type?: string;
-  label?: string;
   placeholder?: string;
   min?: string;
   max?: string;
