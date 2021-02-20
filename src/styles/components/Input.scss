@@ -2,6 +2,7 @@
 @import '../mixins';
 
 .fd-input {
+  position: relative;
   display: flex;
   flex-direction: column;
   &__input {
@@ -18,6 +19,24 @@
     }
     &-error {
       border-color: $destructive;
+    }
+  }
+  &__password-button {
+    position:absolute;
+    top: 2rem;
+    right: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0.25rem;
+    color: $gray-09;
+    background: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    &:focus {
+      @include focus-styles;
     }
   }
 }
