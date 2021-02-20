@@ -5,6 +5,18 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  &__minimal-label.fd-label {
+    position: absolute;
+    top: 2rem;
+    color: $brand-color-80;
+    font-size: 1rem;
+    transition: 0.2s ease-in-out;
+  }
+  &__minimal-label-top-aligned.fd-label {
+    top: 0;
+    font-size: 0.75rem;
+  }
+
   &__input {
     @include input-base-styles;
     &:disabled {
@@ -19,6 +31,20 @@
     }
     &-error {
       border-color: $destructive;
+    }
+  }
+  &__minimal-input {
+    margin-top: 1.5rem;
+    border: none;
+    border-bottom: 2px solid $brand-color-40;
+    border-radius: 0;
+    transition: 0.1s ease-in-out;
+    &:focus {
+      box-shadow: none;
+      border-bottom-color: $brand-color;
+    }
+    &::placeholder {
+      color: transparent;
     }
   }
   &__password-button {
