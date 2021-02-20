@@ -14,6 +14,12 @@ $brand-xx-dark: #0e2c3c !default;
 $brand-black: #050f14 !default;
 $brand-focus-outline: #3178c4 !default;
 
+// Brand alpha colors
+$brand-color-20: rgb(48, 159, 217, 0.2) !default;
+$brand-color-40: rgb(48, 159, 217, 0.4) !default;
+$brand-color-60: rgb(48, 159, 217, 0.6) !default;
+$brand-color-80: rgb(48, 159, 217, 0.8) !default;
+
 // GLASS BRAND
 // Box
 $glass-border: 1px solid rgba(255, 255, 255, 0.18) !default;
@@ -22,7 +28,7 @@ $glass-border: 1px solid rgba(255, 255, 255, 0.18) !default;
 $glass-blur: 7px !default;
 $glass-opacity: 0.25 !default;
 
-// Colors
+// Glass Colors
 $glass-main: rgba(255, 255, 255, $glass-opacity) !default;
 $glass-brand-color: rgba(48, 159, 217, $glass-opacity) !default;
 $glass-brand-hover: rgba(44, 145, 198, $glass-opacity) !default;
