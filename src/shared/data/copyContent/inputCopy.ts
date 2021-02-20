@@ -5,5 +5,6 @@ export default {
   textLabel: 'Label',
   numberLabel: 'Number',
   numberPlaceholder: '%',
+  passwordLabel: 'Password',
   placeholder: 'Enter a value...',
 };
