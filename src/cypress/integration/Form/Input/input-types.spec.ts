@@ -86,4 +86,39 @@ describe('Input Types tests', () => {
       cy.findByText(inputCopy.errorMessage).should('not.exist');
     });
   });
+
+  describe('Password input', () => {
+    let enteredValue: string;
+
+    beforeEach(() => {
+      enteredValue = 'password12345';
+    });
+
+    it('Should be displated', () => {
+      cy.findByLabelText(inputCopy.passwordLabel);
+    });
+
+    it('Should should hide the entered password value', () => {
+      cy.findByLabelText(inputCopy.passwordLabel).type(enteredValue);
+      cy.findByText(enteredValue).should('not.exist');
+    });
+
+    it('Should show the password value when clicking the show password button', () => {
+      cy.findByText(inputCopy.icons.showPassword).click();
+
+      cy.findByLabelText(inputCopy.passwordLabel).should(
+        'contain',
+        enteredValue
+      );
+    });
+
+    it('Should hide the password value when clicking the hide password button', () => {
+      cy.findByText(inputCopy.icons.hidePassword).click();
+
+      cy.findByLabelText(inputCopy.passwordLabel).should(
+        'not.contain',
+        enteredValue
+      );
+    });
+  });
 });
