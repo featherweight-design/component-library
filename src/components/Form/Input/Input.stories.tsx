@@ -4,6 +4,10 @@ import { withA11y } from '@storybook/addon-a11y';
 import { inputCopy } from 'shared/data/copyContent';
 import Input from './Input';
 
+interface InputChangeHandlers {
+  [key: string]: (value: string) => void;
+}
+
 export default {
   title: 'Components/Form/Input',
   decorators: [withA11y],
@@ -30,36 +34,34 @@ export const Default = (): JSX.Element => {
 
 export const Types = (): JSX.Element => {
   const [defaultValue, handleChangeTextValue] = useState('');
-  const [numberValue, handleChangePercentage] = useState('');
+  const [numberValue, handleChangeNumberValue] = useState('');
   const [errorValue, handleChangeErrorValue] = useState('');
   const [passwordValue, handleChangePasswordValue] = useState('');
+  const [minimalValue, handleChangeMinimalValue] = useState('');
 
   const inputNames = {
     default: 'default',
     disabled: 'disabled',
     error: 'error',
+    minimal: 'minimal',
     number: 'number',
     password: 'password',
+  };
+
+  const inputChangeHandlers: InputChangeHandlers = {
+    default: handleChangeTextValue,
+    error: handleChangeErrorValue,
+    minimal: handleChangeMinimalValue,
+    number: handleChangeNumberValue,
+    password: handleChangePasswordValue,
   };
 
   const mockOnChange = ({
     target: { value, name },
   }: ChangeEvent<HTMLInputElement>): void => {
-    if (name === inputNames.default) {
-      handleChangeTextValue(value);
-    }
+    const changeHandler = inputChangeHandlers[name as string];
 
-    if (name === inputNames.number) {
-      handleChangePercentage(value);
-    }
-
-    if (name === inputNames.error) {
-      handleChangeErrorValue(value);
-    }
-
-    if (name === inputNames.password) {
-      handleChangePasswordValue(value);
-    }
+    changeHandler(value);
   };
 
   return (
@@ -103,6 +105,14 @@ export const Types = (): JSX.Element => {
         name={inputNames.password}
         type="password"
         label={inputCopy.passwordLabel}
+        onChange={mockOnChange}
+      />
+
+      <Input
+        variant="minimal"
+        value={minimalValue}
+        name={inputNames.minimal}
+        label={inputCopy.minimalLabel}
         onChange={mockOnChange}
       />
     </div>
