@@ -21,7 +21,7 @@ export const Default = (): JSX.Element => {
       <Input
         value={inputValue}
         name="default"
-        label={inputCopy.label}
+        label={inputCopy.textLabel}
         onChange={mockOnChange}
       />
     </div>
@@ -30,22 +30,35 @@ export const Default = (): JSX.Element => {
 
 export const Types = (): JSX.Element => {
   const [defaultValue, handleChangeTextValue] = useState('');
-  const [percentage, handleChangePercentage] = useState('');
+  const [numberValue, handleChangePercentage] = useState('');
   const [errorValue, handleChangeErrorValue] = useState('');
+  const [passwordValue, handleChangePasswordValue] = useState('');
+
+  const inputNames = {
+    default: 'default',
+    disabled: 'disabled',
+    error: 'error',
+    number: 'number',
+    password: 'password',
+  };
 
   const mockOnChange = ({
     target: { value, name },
   }: ChangeEvent<HTMLInputElement>): void => {
-    if (name === 'default') {
+    if (name === inputNames.default) {
       handleChangeTextValue(value);
     }
 
-    if (name === 'number') {
+    if (name === inputNames.number) {
       handleChangePercentage(value);
     }
 
-    if (name === 'errorValue') {
+    if (name === inputNames.error) {
       handleChangeErrorValue(value);
+    }
+
+    if (name === inputNames.password) {
+      handleChangePasswordValue(value);
     }
   };
 
@@ -53,14 +66,14 @@ export const Types = (): JSX.Element => {
     <div className="story__input-container">
       <Input
         value={defaultValue}
-        name="default"
+        name={inputNames.default}
         label={inputCopy.textLabel}
         onChange={mockOnChange}
       />
 
       <Input
-        value={percentage}
-        name="number"
+        value={numberValue}
+        name={inputNames.number}
         type="number"
         label={inputCopy.numberLabel}
         placeholder={inputCopy.numberPlaceholder}
@@ -71,7 +84,7 @@ export const Types = (): JSX.Element => {
 
       <Input
         value=""
-        name="disabled"
+        name={inputNames.disabled}
         label={inputCopy.disabledLabel}
         onChange={mockOnChange}
         disabled
@@ -79,9 +92,17 @@ export const Types = (): JSX.Element => {
 
       <Input
         value={errorValue}
-        name="errorValue"
+        name={inputNames.error}
         label={inputCopy.errorLabel}
         errorMessage={errorValue ? '' : inputCopy.errorMessage}
+        onChange={mockOnChange}
+      />
+
+      <Input
+        value={passwordValue}
+        name={inputNames.password}
+        type="password"
+        label={inputCopy.passwordLabel}
         onChange={mockOnChange}
       />
     </div>
