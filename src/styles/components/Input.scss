@@ -8,12 +8,16 @@
   &__minimal-label.fd-label {
     position: absolute;
     top: 2rem;
-    color: $brand-color-80;
+    padding-left: 0.75rem;
+    color: $gray-06;
     font-size: 1rem;
+    opacity: 0.8;
     transition: 0.2s ease-in-out;
   }
   &__minimal-label-top-aligned.fd-label {
     top: 0;
+    padding: 0.25rem;
+    color: $gray-15;
     font-size: 0.75rem;
   }
 
@@ -48,7 +52,7 @@
     }
   }
   &__password-button {
-    position:absolute;
+    position: absolute;
     top: 2rem;
     right: 0.5rem;
     display: flex;
