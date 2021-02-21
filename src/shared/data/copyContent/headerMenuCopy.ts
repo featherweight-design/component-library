@@ -12,11 +12,11 @@ export default {
   },
   menuTitle: 'menu',
   subOptionLabels: {
-    info: 'info',
-    notifications: 'notifications',
-    permissions: 'permissions',
-    support: 'support',
-    userManagement: 'user management',
+    info: 'Info',
+    notifications: 'Notifications',
+    permissions: 'Permissions',
+    support: 'Support',
+    userManagement: 'User Management',
   },
   userName: 'Bob H.',
 };
