@@ -121,4 +121,21 @@ describe('Input Types tests', () => {
       );
     });
   });
+
+  describe('Minimal tests', () => {
+    it('Should be displayed', () => {
+      cy.findByLabelText(inputCopy.minimalLabel);
+    });
+
+    it('Should accept a value', () => {
+      const expectedValue = 'stuff';
+
+      cy.findByLabelText(inputCopy.minimalLabel).type(expectedValue);
+
+      cy.findByLabelText(inputCopy.minimalLabel).should(
+        'have.value',
+        expectedValue
+      );
+    });
+  })
 });
