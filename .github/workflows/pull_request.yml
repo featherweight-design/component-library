@@ -140,7 +140,7 @@ jobs:
           group: "${{ matrix.test-suite }} Tests"
           spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
-          start: yarn storybook
+          start: yarn storybook --ci
           record: true
           parallel: true
           # tag will be either "push" or "pull_request"
