@@ -44,9 +44,7 @@ describe('HeaderMenu with Sub Options tests', () => {
   it('Should close the menu when selecting an option', () => {
     cy.findByText(headerMenuCopy.icons.settings).click();
     // Test fails when clicking the text, so target the actual menu item
-    cy.findByText(headerMenuCopy.subOptionLabels.userManagement)
-      .closest('div[role="link"]')
-      .click();
+    cy.findByText(headerMenuCopy.subOptionLabels.info).click();
     cy.findByRole('menu').should('not.be.visible');
   });
 });
