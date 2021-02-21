@@ -48,7 +48,8 @@ const Input: FC<InputProps> = ({
         className={classnames({
           'fd-label': true,
           'fd-input__minimal-label': variant === MINIMAL_VARIANT,
-          'fd-input__minimal-label-top-aligned': isFocused || value,
+          'fd-input__minimal-label-top-aligned':
+            variant === MINIMAL_VARIANT && (isFocused || value),
         })}
       >
         {label}
