@@ -31,7 +31,7 @@
     "release": "standard-version -t @f-design/component-library@",
     "release-beta": "standard-version --prerelease beta --skip.changelog --skip.tag",
     "release-canary": "standard-version --prerelease canary-$PR_DEV-$UUID --skip.changelog --skip.tag",
-    "storybook": "start-storybook -p 6006 -s ./.storybook/public/",
+    "storybook": "start-storybook --quiet -p 6006 -s ./.storybook/public/",
     "storybook-build": "build-storybook -s ./.storybook/public/ -o ./storybook-dist",
     "storybook-smoke-test": "start-storybook --smoke-test",
     "test": "jest --config jestconfig.json",
