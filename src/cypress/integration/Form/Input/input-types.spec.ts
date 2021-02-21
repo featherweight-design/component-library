@@ -137,5 +137,5 @@ describe('Input Types tests', () => {
         expectedValue
       );
     });
-  })
+  });
 });
