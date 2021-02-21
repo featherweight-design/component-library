@@ -105,20 +105,17 @@ describe('Input Types tests', () => {
 
     it('Should show the password value when clicking the show password button', () => {
       cy.findByText(inputCopy.icons.showPassword).click();
+      cy.findByText(inputCopy.icons.hidePassword).should('be.visible');
 
       cy.findByLabelText(inputCopy.passwordLabel).should(
-        'contain',
+        'have.value',
         enteredValue
       );
     });
 
     it('Should hide the password value when clicking the hide password button', () => {
       cy.findByText(inputCopy.icons.hidePassword).click();
-
-      cy.findByLabelText(inputCopy.passwordLabel).should(
-        'not.contain',
-        enteredValue
-      );
+      cy.findByText(inputCopy.icons.showPassword).should('be.visible');
     });
   });
 
