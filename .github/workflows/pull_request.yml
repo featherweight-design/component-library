@@ -141,7 +141,8 @@ jobs:
           spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook --ci
-          record: true
+          # This will remain false until we have a paid plan
+          record: false
           parallel: true
           # tag will be either "push" or "pull_request"
           tag: ${{ github.event_name }}
