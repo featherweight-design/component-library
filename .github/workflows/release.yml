@@ -2,12 +2,14 @@ name: Publish new release from main
 on:
   pull_request:
     types: [closed]
+    branches:
+      - main
 
 jobs:
   update-version-changelog:
     # This ensures that this workflow only runs when a PR is being merged to 'main'
-    if: github.ref == 'main' && github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
-    name: Publish new release from development
+    if: github.event.pull_request.merged == true
+    name: Publish new release from main
     runs-on: ubuntu-latest
     env:
       VERSION: ''
