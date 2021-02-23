@@ -142,11 +142,11 @@ jobs:
           start: yarn storybook --ci
           # These options will remain disabled until we have a paid plan
           # or until Cypress decides to be more cool
-          # group: "${{ matrix.test-suite }} Tests"
-          # record: true
-          # parallel: true
+          group: "${{ matrix.test-suite }} Tests"
+          record: true
+          parallel: true
           # tag will be either "push" or "pull_request"
-          # tag: ${{ github.event_name }}
+          tag: ${{ github.event_name }}
         env:
           TERM: xterm
           # pass the Dashboard record key as an environment variable
