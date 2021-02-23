@@ -137,15 +137,16 @@ jobs:
       - name: Run ${{ matrix.test-suite }} Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          group: "${{ matrix.test-suite }} Tests"
           spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook --ci
-          # This will remain false until we have a paid plan
-          record: false
-          parallel: true
+          # These options will remain disabled until we have a paid plan
+          # or until Cypress decides to be more cool
+          # group: "${{ matrix.test-suite }} Tests"
+          # record: true
+          # parallel: true
           # tag will be either "push" or "pull_request"
-          tag: ${{ github.event_name }}
+          # tag: ${{ github.event_name }}
         env:
           TERM: xterm
           # pass the Dashboard record key as an environment variable
