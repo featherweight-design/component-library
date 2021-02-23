@@ -154,7 +154,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
 
   deployment:
-    name: Package and GH Pages deployment
+    name: Canary npm deployment
     runs-on: ubuntu-latest
     needs: [install, static-analysis, cypress-tests]
     env:
@@ -213,17 +213,6 @@ jobs:
         run: npm publish --tag canary --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
-
-      - name: Build Storybook
-        run: yarn storybook-build
-
-      - name: Deploy Storybook to GH Pages
-        uses: JamesIves/github-pages-deploy-action@3.6.2
-        with:
-          GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
-          BRANCH: gh-pages
-          FOLDER: storybook-dist
-          CLEAN: true
 
       # Extract the canary version number to post in a comment
       - name: Capture new version
