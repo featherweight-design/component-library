@@ -1,0 +1,128 @@
+name: Scheduled test-suite
+
+# Run this workflow every day to ensure the official release
+# of the component library is behaving as expected
+
+on:
+  # Schedule type workflow always run against the default branch
+  # which for this repository is "development"
+  schedule:
+    # Run this everyday at 08:00
+    - cron: '0 8 * * *'
+
+jobs:
+  install:
+    name: Install and cache dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      # we use exact restore key to avoid NPM module snowballing
+      # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
+      - name: Cache central NPM modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # we use the exact restore key to avoid Cypress binary snowballing
+      # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
+      - name: Cache Cypress binary
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
+      # Cache local node_modules to pass to testing jobs
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies and verify Cypress
+        env:
+          # make sure every Cypress install prints minimal information
+          CI: 1
+        run: |
+          npx cypress cache path
+          npx cypress cache list
+          npx cypress verify
+          npx cypress info
+          yarn install --frozen-lockfile
+
+  cypress-tests:
+    name: Run Cypress tests
+    runs-on: ubuntu-latest
+    needs: [install, static-analysis]
+    strategy:
+      matrix:
+        # Each test suite should be listed here for running parallel tests
+        test-suite:
+          ["ActionButton", "Button", "HeaderMenu", "Input", "SideNavigation"]
+        # Multiple machines are used for load balancing
+        machines: [1, 2, 3, 4, 5, 6]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Restore just local node_modules and the Cypress binary archives.
+      - name: Cache Cypress binary
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            cypress-${{ runner.os }}-cypress-
+
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      # check the restored Cypress binary
+      - name: Check binary
+        run: |
+          npx cypress cache path
+          npx cypress cache list
+
+      - name: Run ${{ matrix.test-suite }} Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          group: "${{ matrix.test-suite }} Tests"
+          spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
+          browser: chrome
+          start: yarn storybook --ci
+          # This will remain false until we have a paid plan
+          record: true
+          parallel: true
+          # tag will be either "push" or "pull_request"
+          tag: ${{ github.event_name }}
+        env:
+          TERM: xterm
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
