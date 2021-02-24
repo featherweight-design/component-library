@@ -1,6 +1,7 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
+import { checkboxCopy } from 'shared/data/copyContent';
 import Checkbox from './Checkbox';
 
 export default {
@@ -10,10 +11,10 @@ export default {
 
 export const Default = (): JSX.Element => {
   const [options, updateOptions] = useState([
-    { checked: true, label: 'Torin' },
-    { checked: false, label: 'Juniper' },
-    { checked: false, label: 'Pooch' },
-    { checked: false, label: 'Luna' },
+    { checked: true, label: checkboxCopy.torin },
+    { checked: false, label: checkboxCopy.juniper },
+    { checked: false, label: checkboxCopy.pooch },
+    { checked: false, label: checkboxCopy.luna },
   ]);
 
   const handleChange = ({
@@ -28,15 +29,19 @@ export const Default = (): JSX.Element => {
 
   return (
     <div style={{ display: 'flex ' }}>
-      <Checkbox label="Best Dogs" onChange={handleChange} options={options} />
+      <Checkbox
+        label={checkboxCopy.bestDogs}
+        onChange={handleChange}
+        options={options}
+      />
     </div>
   );
 };
 
 export const Disabled = (): JSX.Element => {
   const options = [
-    { checked: false, label: 'Disabled', disabled: true },
-    { checked: true, label: 'Disabled Checked', disabled: true },
+    { checked: false, label: checkboxCopy.disabled, disabled: true },
+    { checked: true, label: checkboxCopy.disabledChecked, disabled: true },
   ];
 
   return (
@@ -53,13 +58,13 @@ export const Disabled = (): JSX.Element => {
 
 export const Error = (): JSX.Element => {
   const [options, updateOptions] = useState([
-    { checked: false, label: 'Cat' },
-    { checked: false, label: 'Dog' },
-    { checked: false, label: 'Gold Fish' },
-    { checked: false, label: 'Guinea Pig' },
-    { checked: false, label: 'Hedgehog' },
-    { checked: false, label: 'Ocelot' },
-    { checked: false, label: 'Cthulhu' },
+    { checked: false, label: checkboxCopy.cat },
+    { checked: false, label: checkboxCopy.dog },
+    { checked: false, label: checkboxCopy.goldFish },
+    { checked: false, label: checkboxCopy.guineaPig },
+    { checked: false, label: checkboxCopy.hedgehog },
+    { checked: false, label: checkboxCopy.ocelot },
+    { checked: false, label: checkboxCopy.cthulhu },
   ]);
 
   const handleChange = ({
@@ -80,7 +85,7 @@ export const Error = (): JSX.Element => {
         label="Label"
         onChange={handleChange}
         options={options}
-        errorMessage={!hasOptionChecked ? 'Please pick a favorite pet' : ''}
+        errorMessage={!hasOptionChecked ? checkboxCopy.errorMessage : ''}
       />
     </div>
   );
@@ -89,11 +94,11 @@ export const Error = (): JSX.Element => {
 export const WithOtherOptions = (): JSX.Element => {
   const [otherValue, updateOther] = useState('');
   const [options, updateOptions] = useState([
-    { checked: true, label: 'Chocolate' },
-    { checked: false, label: 'Vanilla' },
-    { checked: false, label: 'Salted Oreo' },
-    { checked: false, label: 'Cookie Dough' },
-    { checked: false, label: 'Other' },
+    { checked: true, label: checkboxCopy.chocolate },
+    { checked: false, label: checkboxCopy.vanilla },
+    { checked: false, label: checkboxCopy.saltedOreo },
+    { checked: false, label: checkboxCopy.cookieDough },
+    { checked: false, label: checkboxCopy.other },
   ]);
 
   const handleChange = ({
@@ -117,7 +122,7 @@ export const WithOtherOptions = (): JSX.Element => {
   return (
     <div style={{ display: 'flex ' }}>
       <Checkbox
-        label="Best Ice Cream"
+        label={checkboxCopy.bestIceCream}
         onChange={handleChange}
         options={options}
         other={{
