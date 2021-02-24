@@ -53,7 +53,7 @@ const Checkbox: FC<CheckboxProps> = ({
           >
             {checked && <div className="fd-checkbox__icon" />}
           </div>
-          <span>{label}</span>
+          <span>{optionLabel}</span>
 
           {optionLabel.toLowerCase() === 'other' && other && (
             <OtherOption
