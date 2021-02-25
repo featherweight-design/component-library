@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
 
       - name: Set TEST_SUITES to env variable
-        run: echo "TEST_SUITES=$(sh "bash./collect-test-suites.sh")" >> $GITHUB_ENV
+        run: echo "TEST_SUITES=$(sh "bash ./collect-test-suites.sh")" >> $GITHUB_ENV
 
       - name: Verify TEST_SUITES
         run: echo $TEST_SUITES
