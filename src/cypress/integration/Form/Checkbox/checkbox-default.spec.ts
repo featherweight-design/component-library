@@ -11,11 +11,6 @@ describe('Checkbox Default tests', () => {
   });
 
   it('Should start with the first option selected', () => {
-    cy.findByLabelText(checkboxCopy.torin);
+    cy.findByLabelText(checkboxCopy.torin).should('be.checked');
   });
-
-  // it('Should be able to select different values', () => {
-  //   cy.findByLabelText(checkboxCopy.juniper).click();
-  //   expect(cy.findByLabelText(checkboxCopy.juniper)).checked();
-  // });
 });
