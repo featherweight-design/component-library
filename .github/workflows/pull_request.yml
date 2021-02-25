@@ -24,8 +24,18 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      # This is required for publishing from GH Actions
+      - name: Set GitHub Action user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
       - name: Set TEST_SUITES to env variable
-        run: echo "TEST_SUITES=$(sh "bash ./collect-test-suites.sh")" >> $GITHUB_ENV
+        run: |
+          chmod +x collect-test-suites.sh
+          git add collect-test-suites.sh
+          git commit  
+          echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
 
       - name: Verify TEST_SUITES
         run: echo $TEST_SUITES
