@@ -25,12 +25,10 @@ jobs:
           fetch-depth: 0
 
       - name: Set TEST_SUITES to env variable
-        run: sh collect-test-suites.sh
+        run: echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
 
       - name: Verify TEST_SUITES
-        run: |
-          echo $TEST_SUITES
-          echo $UNIQUE_TEST_SUITES
+        run: echo $TEST_SUITES
 
   #     # Restore the previous NPM modules and Cypress binary archives.
   #     # Any updated archives will be saved automatically after the entire
