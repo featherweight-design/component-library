@@ -25,7 +25,11 @@ jobs:
           fetch-depth: 0
 
       - name: Set TEST_SUITES to env variable
-        run: echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
+        run: |
+          chmod +x entrypoint.sh
+          git add entrypoint.sh
+          git commit  
+          echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
 
       - name: Verify TEST_SUITES
         run: echo $TEST_SUITES
