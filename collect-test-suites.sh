@@ -9,4 +9,4 @@ do
 done
 
 UNIQUE_TEST_SUITES=$(echo "${TEST_SUITE_ARRAY[@]}" | tr ' ' '\n' | sort -u | tr '\n' ',')
-echo $UNIQUE_TEST_SUITES >> $GITHUB_ENV
+echo $UNIQUE_TEST_SUITES
