@@ -26,8 +26,8 @@ jobs:
 
       - name: Set TEST_SUITES to env variable
         run: |
-          chmod +x entrypoint.sh
-          git add entrypoint.sh
+          chmod +x collect-test-suites.sh
+          git add collect-test-suites.sh
           git commit  
           echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
 
