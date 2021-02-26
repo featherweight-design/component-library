@@ -29,10 +29,10 @@ jobs:
 
       - name: Get test suite directories
         id: get-test-suites
-        uses: featherweight-design/collect-directory-names-by-file-glob@v1.1.5
+        uses: featherweight-design/collect-directory-names-by-file-glob@v1.1.6
         with:
           file-glob: "*.spec.ts"
-          search-directory: "./src/cypress"
+          search-directory: "/src/cypress"
 
       - name: Check test suite directories
         run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names }}"
