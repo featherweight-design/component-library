@@ -26,7 +26,7 @@ jobs:
 
       - name: Get test suite directories
         id: get-test-suites
-        uses: actions/collect-directory-names-by-file-glob@v1
+        uses: actions/featherweight-design/collect-directory-names-by-file-glob@v1
         with:
           file-glob: "*.spec.ts"
           search-directory: "./src/cypress"
