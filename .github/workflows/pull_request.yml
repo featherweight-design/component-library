@@ -46,7 +46,7 @@ jobs:
 
       - name: Set matrix strategy for Cypress tests
         id: set-matrix
-        run: echo "::set-output name=matrix::{\"test-suite\":${{ steps.get-test-suites.outputs.directory-names }},\"machines\":\"${{ env.MATRIX_MACHINES }}}\""
+        run: echo "::set-output name=matrix::{\"test-suite\":\"${{ steps.get-test-suites.outputs.directory-names }}\"",\"machines\":${{ env.MATRIX_MACHINES }}}"
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
