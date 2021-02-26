@@ -24,6 +24,9 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      - name: Check PWD
+        run: pwd
+
       - name: Get test suite directories
         id: get-test-suites
         uses: featherweight-design/collect-directory-names-by-file-glob@v1.1.4
