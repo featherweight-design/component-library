@@ -14,6 +14,9 @@ jobs:
   install:
     name: Install and cache dependencies
     runs-on: ubuntu-latest
+    outputs:
+      # We output the test-suites here to it's accessible to other jobs
+      test-suites: ${{ steps.get-test-suites.outputs.directory-names }}
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -21,6 +24,17 @@ jobs:
           # Removes credentials
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Get test suite directories
+        id: get-test-suites
+        # Custom action that grabs all of our existing test-suites
+        uses: featherweight-design/collect-directory-names-by-file-glob@v1.2.2
+        with:
+          file-glob: "**/*.spec.ts"
+          search-directory: "/src/cypress"
+
+      - name: Check test suite directories
+        run: echo "Directories are ${{ steps.get-test-suites.outputs.directory-names }}"
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
@@ -73,10 +87,9 @@ jobs:
     strategy:
       matrix:
         # Each test suite should be listed here for running parallel tests
-        test-suite:
-          ["ActionButton", "Button", "HeaderMenu", "Input", "SideNavigation"]
+        test-suite: ${{ fromJson(needs.install.outputs.test-suites) }}
         # Multiple machines are used for load balancing
-        machines: [1, 2, 3, 4, 5, 6]
+        machines: [1, 2, 3, 4, 5, 6, 7]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
