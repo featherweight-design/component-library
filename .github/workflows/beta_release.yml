@@ -26,7 +26,7 @@ jobs:
       # we use exact restore key to avoid NPM module snowballing
       # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
       - name: Cache central NPM modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -35,7 +35,7 @@ jobs:
 
       # Cache local node_modules to pass to testing jobs
       - name: Cache local node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
@@ -61,7 +61,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache local node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
@@ -87,7 +87,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache local node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
@@ -120,7 +120,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache local node_modules
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
