@@ -13,7 +13,7 @@ on:
 env:
   # Multiple machines are used for load balancing
   # This is a string because because it is later parsed
-  MATRIX_MACHINES: "[1, 2, 3, 4, 5, 6, 7]"
+  MATRIX_MACHINES: \"[1, 2, 3, 4, 5, 6, 7]\"
 
 jobs:
   # Set the job key. This key is displayed as the job name
@@ -46,7 +46,7 @@ jobs:
 
       - name: Set matrix strategy for Cypress tests
         id: set-matrix
-        run: echo "::set-output name=matrix::{\"test-suite\":${{ steps.get-test-suites.outputs.directory-names }},\"machines\":${{ env.MATRIX_MACHINES }}}"
+        run: echo "::set-output name=matrix::{\"test-suite\":${{ steps.get-test-suites.outputs.directory-names }},\"machines\":\"${{ env.MATRIX_MACHINES }}}\""
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
