@@ -16,6 +16,8 @@ jobs:
   install:
     name: Install and cache dependencies
     runs-on: ubuntu-latest
+    outputs:
+      test-suites: ${{ steps.get-test-suites.outputs.directory-names }}
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -32,7 +34,7 @@ jobs:
           search-directory: "/src/cypress"
 
       - name: Check test suite directories
-        run: echo "TEST_SUITES=${{ steps.get-test-suites.outputs.directory-names }}" >> $GITHUB_ENV
+        run: echo "Directories are ${{ steps.get-test-suites.outputs.directory-names }}"
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
@@ -109,7 +111,7 @@ jobs:
     strategy:
       matrix:
         # Each test suite should be listed here for running parallel tests
-        test-suite: ${{ env.TEST_SUITES }}
+        test-suite: ${{ needs.install.outputs.test-suites }}
         # Multiple machines are used for load balancing
         machines: [1, 2, 3, 4, 5, 6]
     steps:
