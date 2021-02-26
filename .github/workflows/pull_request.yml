@@ -32,7 +32,7 @@ jobs:
           search-directory: "./src/cypress"
 
       - name: Check test suite directories
-        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names }}"
 
   #     # Restore the previous NPM modules and Cypress binary archives.
   #     # Any updated archives will be saved automatically after the entire
