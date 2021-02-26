@@ -24,246 +24,242 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # This is required for publishing from GH Actions
-      - name: Set GitHub Action user
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-      - name: Set TEST_SUITES to env variable
-        run: |
-          chmod +x collect-test-suites.sh
-          echo "TEST_SUITES=$(./collect-test-suites.sh)" >> $GITHUB_ENV
-
-      - name: Verify TEST_SUITES
-        run: echo $TEST_SUITES
-
-      # Restore the previous NPM modules and Cypress binary archives.
-      # Any updated archives will be saved automatically after the entire
-      # workflow successfully finishes.
-      # See https://github.com/actions/cache
-      # we use exact restore key to avoid NPM module snowballing
-      # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
-      - name: Cache central NPM modules
-        uses: actions/cache@v2
+      - name: Get test suite directories
+        id: get-test-suites
+        uses: actions/collect-directory-names-by-file-glob@v1.1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          file-glob: "*.spec.ts"
+          search-directory: "./src/cypress"
 
-      # we use the exact restore key to avoid Cypress binary snowballing
-      # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
-      - name: Cache Cypress binary
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-cypress-
+      - name: Check test suite directories
+        run: echo "Directory Names are ${{ steps.get-directory-names.outputs.directory-names}}
 
-      # Cache local node_modules to pass to testing jobs
-      - name: Cache local node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+  #     # Restore the previous NPM modules and Cypress binary archives.
+  #     # Any updated archives will be saved automatically after the entire
+  #     # workflow successfully finishes.
+  #     # See https://github.com/actions/cache
+  #     # we use exact restore key to avoid NPM module snowballing
+  #     # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
+  #     - name: Cache central NPM modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ~/.npm
+  #         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-
 
-      - name: Install dependencies and verify Cypress
-        env:
-          # make sure every Cypress install prints minimal information
-          CI: 1
-        run: |
-          npx cypress cache path
-          npx cypress cache list
-          npx cypress verify
-          npx cypress info
-          yarn install --frozen-lockfile
+  #     # we use the exact restore key to avoid Cypress binary snowballing
+  #     # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
+  #     - name: Cache Cypress binary
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ~/.cache/Cypress
+  #         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+  #         restore-keys: |
+  #           cypress-${{ runner.os }}-cypress-
 
-  static-analysis:
-    name: Static code analysis
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-        with:
-          # Removes credentials
-          persist-credentials: false
-          fetch-depth: 0
+  #     # Cache local node_modules to pass to testing jobs
+  #     - name: Cache local node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-modules-
 
-      - name: Cache local node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+  #     - name: Install dependencies and verify Cypress
+  #       env:
+  #         # make sure every Cypress install prints minimal information
+  #         CI: 1
+  #       run: |
+  #         npx cypress cache path
+  #         npx cypress cache list
+  #         npx cypress verify
+  #         npx cypress info
+  #         yarn install --frozen-lockfile
 
-      # Runs actions specific script that does not fix errors
-      - name: Check linting
-        run: yarn run lint-ci
+  # static-analysis:
+  #   name: Static code analysis
+  #   runs-on: ubuntu-latest
+  #   needs: install
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@master
+  #       with:
+  #         # Removes credentials
+  #         persist-credentials: false
+  #         fetch-depth: 0
 
-  cypress-tests:
-    name: Run Cypress tests
-    runs-on: ubuntu-latest
-    needs: [install, static-analysis]
-    strategy:
-      matrix:
-        # Each test suite should be listed here for running parallel tests
-        # test-suite: $TEST_SUITES
-        # Multiple machines are used for load balancing
-        machines: [1, 2, 3, 4, 5, 6]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-        with:
-          # Removes credentials
-          persist-credentials: false
-          fetch-depth: 0
+  #     - name: Cache local node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-modules-
 
-      # Restore just local node_modules and the Cypress binary archives.
-      - name: Cache Cypress binary
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-cypress-
+  #     # Runs actions specific script that does not fix errors
+  #     - name: Check linting
+  #       run: yarn run lint-ci
 
-      - name: Cache local node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+  # cypress-tests:
+  #   name: Run Cypress tests
+  #   runs-on: ubuntu-latest
+  #   needs: [install, static-analysis]
+  #   strategy:
+  #     matrix:
+  #       # Each test suite should be listed here for running parallel tests
+  #       # test-suite: $TEST_SUITES
+  #       # Multiple machines are used for load balancing
+  #       machines: [1, 2, 3, 4, 5, 6]
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@master
+  #       with:
+  #         # Removes credentials
+  #         persist-credentials: false
+  #         fetch-depth: 0
 
-      # check the restored Cypress binary
-      - name: Check binary
-        run: |
-          npx cypress cache path
-          npx cypress cache list
+  #     # Restore just local node_modules and the Cypress binary archives.
+  #     - name: Cache Cypress binary
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ~/.cache/Cypress
+  #         key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+  #         restore-keys: |
+  #           cypress-${{ runner.os }}-cypress-
 
-      - name: Run ${{ matrix.test-suite }} Cypress tests
-        uses: cypress-io/github-action@v2
-        with:
-          spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
-          browser: chrome
-          start: yarn storybook --ci
-          group: "${{ matrix.test-suite }} Tests"
-          record: true
-          parallel: true
-          # tag will be either "push" or "pull_request"
-          tag: ${{ github.event_name }}
-        env:
-          TERM: xterm
-          # pass the Dashboard record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # pass GitHub token to allow accurately detecting a build vs a re-run build
-          GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
+  #     - name: Cache local node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-modules-
 
-  deployment:
-    name: Canary npm deployment
-    runs-on: ubuntu-latest
-    needs: [install, static-analysis, cypress-tests]
-    env:
-      # Set an environment variable for the publishing dev
-      # This is used in to make a unique canary release to npm
-      PR_DEV: ${{ github.actor }}
-      UUID: ""
-      VERSION: ""
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-        with:
-          # Removes credentials
-          persist-credentials: false
-          fetch-depth: 0
+  #     # check the restored Cypress binary
+  #     - name: Check binary
+  #       run: |
+  #         npx cypress cache path
+  #         npx cypress cache list
 
-      - name: Cache local node_modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
+  #     - name: Run ${{ matrix.test-suite }} Cypress tests
+  #       uses: cypress-io/github-action@v2
+  #       with:
+  #         spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
+  #         browser: chrome
+  #         start: yarn storybook --ci
+  #         group: "${{ matrix.test-suite }} Tests"
+  #         record: true
+  #         parallel: true
+  #         # tag will be either "push" or "pull_request"
+  #         tag: ${{ github.event_name }}
+  #       env:
+  #         TERM: xterm
+  #         # pass the Dashboard record key as an environment variable
+  #         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  #         # pass GitHub token to allow accurately detecting a build vs a re-run build
+  #         GITHUB_TOKEN: ${{ secrets.GH_ACTION_PAT }}
 
-      - name: Setup .npmrc file to publish to npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-          registry-url: "https://registry.npmjs.org"
+  # deployment:
+  #   name: Canary npm deployment
+  #   runs-on: ubuntu-latest
+  #   needs: [install, static-analysis, cypress-tests]
+  #   env:
+  #     # Set an environment variable for the publishing dev
+  #     # This is used in to make a unique canary release to npm
+  #     PR_DEV: ${{ github.actor }}
+  #     UUID: ""
+  #     VERSION: ""
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@master
+  #       with:
+  #         # Removes credentials
+  #         persist-credentials: false
+  #         fetch-depth: 0
 
-      # This is required for publishing from GH Actions
-      - name: Set GitHub Action user
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+  #     - name: Cache local node_modules
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-node-modules-
 
-      # Build the component library
-      - name: Build new package
-        run: yarn run build
+  #     - name: Setup .npmrc file to publish to npm
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: "12.x"
+  #         registry-url: "https://registry.npmjs.org"
 
-      # This is added to the canary version so each release is unique
-      - name: Generate UUID for canary release
-        id: generate-uuid
-        uses: filipstefansson/uuid-action@v1
-        with:
-          name: ${{ github.sha }}
+  #     # This is required for publishing from GH Actions
+  #     - name: Set GitHub Action user
+  #       run: |
+  #         git config --local user.email "action@github.com"
+  #         git config --local user.name "GitHub Action"
 
-      - name: Set UUID to env variable
-        run: echo "UUID=${{ steps.generate-uuid.outputs.uuid }}" >> $GITHUB_ENV
+  #     # Build the component library
+  #     - name: Build new package
+  #       run: yarn run build
 
-      - name: Tag canary release
-        run: yarn run release-canary
+  #     # This is added to the canary version so each release is unique
+  #     - name: Generate UUID for canary release
+  #       id: generate-uuid
+  #       uses: filipstefansson/uuid-action@v1
+  #       with:
+  #         name: ${{ github.sha }}
 
-      # Publish a new canary release to NPM
-      - name: Publish @f-design/component-library canary release from PR branch
-        run: npm publish --tag canary --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+  #     - name: Set UUID to env variable
+  #       run: echo "UUID=${{ steps.generate-uuid.outputs.uuid }}" >> $GITHUB_ENV
 
-      # Extract the canary version number to post in a comment
-      - name: Capture new version
-        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+  #     - name: Tag canary release
+  #       run: yarn run release-canary
 
-      # See if the canary comment already exists
-      - name: Find Comment
-        uses: peter-evans/find-comment@v1
-        id: fc
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
-          body-includes: Canary release
+  #     # Publish a new canary release to NPM
+  #     - name: Publish @f-design/component-library canary release from PR branch
+  #       run: npm publish --tag canary --access public
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-      # If not, create a new comment
-      - name: Create comment
-        if: ${{ steps.fc.outputs.comment-id == 0 }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            Canary release :hatched_chick:
+  #     # Extract the canary version number to post in a comment
+  #     - name: Capture new version
+  #       run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
-            To test your changes, run the below in a test repo:
-            ```terminal
-            yarn add @f-design/component-library@${{ env.VERSION }}
-            ```
+  #     # See if the canary comment already exists
+  #     - name: Find Comment
+  #       uses: peter-evans/find-comment@v1
+  #       id: fc
+  #       with:
+  #         issue-number: ${{ github.event.pull_request.number }}
+  #         comment-author: "github-actions[bot]"
+  #         body-includes: Canary release
 
-      # Otherwise, update the existing comment
-      - name: Update comment
-        if: ${{ steps.fc.outputs.comment-id != 0 }}
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: "replace"
-          body: |
-            Canary release :hatched_chick:
+  #     # If not, create a new comment
+  #     - name: Create comment
+  #       if: ${{ steps.fc.outputs.comment-id == 0 }}
+  #       uses: peter-evans/create-or-update-comment@v1
+  #       with:
+  #         issue-number: ${{ github.event.pull_request.number }}
+  #         body: |
+  #           Canary release :hatched_chick:
 
-            To test your changes, run the below in a test repo:
-            ```terminal
-            yarn add @f-design/component-library@${{ env.VERSION }}
-            ```
+  #           To test your changes, run the below in a test repo:
+  #           ```terminal
+  #           yarn add @f-design/component-library@${{ env.VERSION }}
+  #           ```
+
+  #     # Otherwise, update the existing comment
+  #     - name: Update comment
+  #       if: ${{ steps.fc.outputs.comment-id != 0 }}
+  #       uses: peter-evans/create-or-update-comment@v1
+  #       with:
+  #         comment-id: ${{ steps.fc.outputs.comment-id }}
+  #         edit-mode: "replace"
+  #         body: |
+  #           Canary release :hatched_chick:
+
+  #           To test your changes, run the below in a test repo:
+  #           ```terminal
+  #           yarn add @f-design/component-library@${{ env.VERSION }}
+  #           ```
