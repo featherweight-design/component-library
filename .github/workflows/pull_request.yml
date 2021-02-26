@@ -25,11 +25,15 @@ jobs:
           fetch-depth: 0
 
       - name: Check PWD
-        run: pwd
+        run: |
+          pwd
+          ls
+          ls src
+          ls src/cypress
 
       - name: Get test suite directories
         id: get-test-suites
-        uses: featherweight-design/collect-directory-names-by-file-glob@v1.1.7
+        uses: featherweight-design/collect-directory-names-by-file-glob@v1.1.8
         with:
           file-glob: "**/*.spec.ts"
           search-directory: "/src/cypress"
