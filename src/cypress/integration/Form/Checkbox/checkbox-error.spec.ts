@@ -1,6 +1,6 @@
 import { checkboxCopy } from 'shared/data/copyContent';
 
-describe('checkbox-error-tests', () => {
+describe('Checkbox Error tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-form-checkbox', 'error');
