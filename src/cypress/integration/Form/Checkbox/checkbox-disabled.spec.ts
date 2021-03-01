@@ -1,6 +1,6 @@
 import { checkboxCopy } from 'shared/data/copyContent';
 
-describe('checkbox-disabled-test', () => {
+describe('Checkbox Disabled tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-form-checkbox', 'disabled');

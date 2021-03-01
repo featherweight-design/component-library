@@ -1,6 +1,6 @@
 import { checkboxCopy } from 'shared/data/copyContent';
 
-describe('checkbox-with-other-options-tests', () => {
+describe('Checkbox With Other Options tests', () => {
   before(() => {
     cy.visitStorybook();
     cy.loadStory('components-form-checkbox', 'with-other-options');
