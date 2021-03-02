@@ -8,7 +8,7 @@ on:
   # which for this repository is "development"
   schedule:
     # Run this everyday at 08:00
-    - cron: '0 8 * * *'
+    - cron: '0 8,20 * * *'
 
 jobs:
   install:
@@ -83,7 +83,7 @@ jobs:
   cypress-tests:
     name: Run Cypress tests
     runs-on: ubuntu-latest
-    needs: [install, static-analysis]
+    needs: install
     strategy:
       matrix:
         # Each test suite should be listed here for running parallel tests
