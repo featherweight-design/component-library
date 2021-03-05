@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
+import { textareaCopy } from 'shared/data/copyContent';
 
 import TextArea from './TextArea';
 
@@ -16,7 +17,7 @@ export const Default = (): JSX.Element => {
 
   return (
     <TextArea
-      name="default"
+      name={textareaCopy.default}
       label="Label"
       value={value}
       onChange={handleChange}
@@ -35,7 +36,7 @@ export const Disabled = (): JSX.Element => {
   return (
     <TextArea
       disabled
-      name="default"
+      name={textareaCopy.disabled}
       label="Label"
       value={value}
       onChange={handleChange}
