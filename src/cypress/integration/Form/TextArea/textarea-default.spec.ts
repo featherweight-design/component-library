@@ -1,16 +1,12 @@
-import { textareaCopy } from 'shared/data/textareaCopy';
+import { textareaCopy } from 'shared/data/copyContent';
 
-describe('Checkbox Default tests', () => {
+describe('TextArea Default tests', () => {
   before(() => {
     cy.visitStorybook();
-    cy.loadStory('components-form-checkbox', 'default');
+    cy.loadStory('components-form-textarea', 'default');
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.bestDogs);
-  });
-
-  it('Should start with the first option selected', () => {
-    cy.findByLabelText(textareaCopy.torin).should('be.checked');
+    cy.findByText(textareaCopy.default);
   });
 });
