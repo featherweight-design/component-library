@@ -1,7 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 import { textareaCopy } from 'shared/data/copyContent';
-
 import TextArea from './TextArea';
 
 export default {
@@ -17,8 +16,8 @@ export const Default = (): JSX.Element => {
 
   return (
     <TextArea
-      name={textareaCopy.default}
-      label="Label"
+      name="default"
+      label={textareaCopy.default}
       value={value}
       onChange={handleChange}
     />
@@ -26,9 +25,7 @@ export const Default = (): JSX.Element => {
 };
 
 export const Disabled = (): JSX.Element => {
-  const [value, updateValue] = useState(
-    'You will never change me! MWAAAAHAHAHAHAHAHA!'
-  );
+  const [value, updateValue] = useState(textareaCopy.disabledMessage);
 
   const handleChange = ({ target }: ChangeEvent<HTMLTextAreaElement>): void =>
     updateValue(target.value);
@@ -36,8 +33,8 @@ export const Disabled = (): JSX.Element => {
   return (
     <TextArea
       disabled
-      name={textareaCopy.disabled}
-      label="Label"
+      name="disabled"
+      label={textareaCopy.disabled}
       value={value}
       onChange={handleChange}
     />
@@ -53,11 +50,11 @@ export const Error = (): JSX.Element => {
   return (
     <TextArea
       name="default"
-      label="Pirate lore"
+      label={textareaCopy.pirateLore}
       placeholder="Yarrrr... t'was many moons ago when I..."
       value={value}
       onChange={handleChange}
-      errorMessage={value ? '' : 'Write me a story, ye heathen!'}
+      errorMessage={value ? '' : textareaCopy.errorMessage}
     />
   );
 };
