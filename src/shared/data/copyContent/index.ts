@@ -4,6 +4,7 @@ import checkboxCopy from './checkboxCopy';
 import headerMenuCopy from './headerMenuCopy';
 import inputCopy from './inputCopy';
 import sideNavigationCopy from './sideNavigationCopy';
+import textareaCopy from './textareaCopy';
 
 export {
   actionButtonCopy,
@@ -12,4 +13,5 @@ export {
   headerMenuCopy,
   inputCopy,
   sideNavigationCopy,
+  textareaCopy,
 };
