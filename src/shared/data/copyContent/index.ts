@@ -5,6 +5,7 @@ import headerMenuCopy from './headerMenuCopy';
 import inputCopy from './inputCopy';
 import revealCopy from './revealCopy';
 import sideNavigationCopy from './sideNavigationCopy';
+import textareaCopy from './textareaCopy';
 
 export {
   actionButtonCopy,
@@ -14,4 +15,5 @@ export {
   inputCopy,
   revealCopy,
   sideNavigationCopy,
+  textareaCopy,
 };
