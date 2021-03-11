@@ -7,17 +7,17 @@ describe('TextArea Disabled tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.disabled);
+    cy.findByText(textareaCopy.disabledLabel);
   });
 
   it('Should start as disabled', () => {
-    cy.findByText(textareaCopy.disabled)
+    cy.findByText(textareaCopy.disabledLabel)
       .siblings('textarea')
       .should('be.disabled');
   });
 
   it('Should start with a preset message', () => {
-    cy.findByText(textareaCopy.disabled)
+    cy.findByText(textareaCopy.disabledLabel)
       .siblings('textarea')
       .should('have.value', textareaCopy.disabledMessage);
   });
