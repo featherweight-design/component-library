@@ -127,7 +127,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           group: "${{ matrix.test-suite }} Tests"
-          spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
+          # spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook --ci
           # This will remain false until we have a paid plan
