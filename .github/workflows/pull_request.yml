@@ -62,6 +62,15 @@ jobs:
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
 
+      # Cache local node_modules to pass to testing jobs
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
       - name: Install dependencies and verify Cypress
         env:
           # make sure every Cypress install prints minimal information
@@ -84,6 +93,14 @@ jobs:
           # Removes credentials
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       # Runs actions specific script that does not fix errors
       - name: Check linting
@@ -109,7 +126,7 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      # Restore the Cypress binary archives.
+      # Restore just local node_modules and the Cypress binary archives.
       - name: Cache Cypress binary
         uses: actions/cache@v2
         with:
@@ -117,6 +134,14 @@ jobs:
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cypress-${{ runner.os }}-cypress-
+
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       # check the restored Cypress binary
       - name: Check binary
@@ -159,6 +184,14 @@ jobs:
           # Removes credentials
           persist-credentials: false
           fetch-depth: 0
+
+      - name: Cache local node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
 
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
