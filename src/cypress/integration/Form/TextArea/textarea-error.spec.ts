@@ -7,7 +7,7 @@ describe('TextArea Error tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.pirateLore);
+    cy.findByText(textareaCopy.pirateLoreLabel);
   });
 
   it('Should have an error message', () => {
@@ -15,7 +15,7 @@ describe('TextArea Error tests', () => {
   });
 
   it('Should remove the error message once a value is entered', () => {
-    cy.findByText(textareaCopy.pirateLore)
+    cy.findByText(textareaCopy.pirateLoreLabel)
       .siblings('textarea')
       .type('I feel a mean scurvy coming on...');
 

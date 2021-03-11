@@ -18,7 +18,7 @@ export const Default = (): JSX.Element => {
   return (
     <TextArea
       name="default"
-      label={textareaCopy.default}
+      label={textareaCopy.defaultLabel}
       value={value}
       onChange={handleChange}
     />
@@ -35,7 +35,7 @@ export const Disabled = (): JSX.Element => {
     <TextArea
       disabled
       name="disabled"
-      label={textareaCopy.disabled}
+      label={textareaCopy.disabledLabel}
       value={value}
       onChange={handleChange}
     />
@@ -51,7 +51,7 @@ export const Error = (): JSX.Element => {
   return (
     <TextArea
       name="default"
-      label={textareaCopy.pirateLore}
+      label={textareaCopy.pirateLoreLabel}
       placeholder={textareaCopy.placeholder}
       value={value}
       onChange={handleChange}
