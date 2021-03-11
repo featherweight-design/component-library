@@ -117,7 +117,7 @@ jobs:
         # environment variable as an array, even though it is by the time it is set
         test-suite: ${{ fromJson(needs.install.outputs.test-suites) }}
         # Multiple machines are used for load balancing
-        machines: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        machines: [1, 2, 3, 4, 5]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
