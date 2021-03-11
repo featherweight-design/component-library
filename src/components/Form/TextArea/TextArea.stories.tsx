@@ -1,5 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
+
 import { textareaCopy } from 'shared/data/copyContent';
 import TextArea from './TextArea';
 
@@ -51,7 +52,7 @@ export const Error = (): JSX.Element => {
     <TextArea
       name="default"
       label={textareaCopy.pirateLore}
-      placeholder="Yarrrr... t'was many moons ago when I..."
+      placeholder={textareaCopy.placeholder}
       value={value}
       onChange={handleChange}
       errorMessage={value ? '' : textareaCopy.errorMessage}
