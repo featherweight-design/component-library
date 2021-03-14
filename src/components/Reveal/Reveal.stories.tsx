@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
 
 import { Button } from 'components/Buttons';
+import { revealCopy } from 'shared/data/copyContent';
 import Reveal from './Reveal';
 
 export default {
@@ -21,7 +22,7 @@ export const Default = (): JSX.Element => {
       }}
     >
       <Button variant="brand" onClick={(): void => toggleReveal(!isShown)}>
-        Toggle reveal
+        {revealCopy.toggleButtonText}
       </Button>
 
       <Reveal isShown={isShown} padding="5px">
@@ -30,7 +31,7 @@ export const Default = (): JSX.Element => {
           /* eslint-disable-next-line no-console */
           onClick={(): void => console.log('destroy!')}
         >
-          Secret Destroy Button
+          {revealCopy.hiddenButtonText}
         </Button>
       </Reveal>
     </div>
@@ -47,12 +48,15 @@ export const LargeReveal = (): JSX.Element => {
           variant="brand"
           onClick={(): void => toggleLargeShown(!isLargeShown)}
         >
-          Toggle large reveal
+          {revealCopy.toggleLargeButtonText}
         </Button>
       </div>
 
       <Reveal isShown={isLargeShown}>
-        <img src="https://i.imgflip.com/ohrrn.jpg" alt="All the things" />
+        <img
+          src="https://i.imgflip.com/ohrrn.jpg"
+          alt={revealCopy.imageAltText}
+        />
       </Reveal>
     </div>
   );
