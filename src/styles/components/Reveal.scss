@@ -4,6 +4,13 @@
 .fd-reveal {
   position: relative;
   display: flex;
+  > * {
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+  &-shown > * {
+    opacity: 1;
+  }
   &__cover,
   &__drawer {
     position: absolute;
