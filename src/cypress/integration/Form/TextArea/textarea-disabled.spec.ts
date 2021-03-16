@@ -7,7 +7,7 @@ describe('TextArea Disabled tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.disabledLabel);
+    cy.findByLabelText(textareaCopy.disabledLabel);
   });
 
   it('Should start as disabled', () => {
