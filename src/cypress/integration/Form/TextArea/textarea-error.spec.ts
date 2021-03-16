@@ -15,9 +15,10 @@ describe('TextArea Error tests', () => {
   });
 
   it('Should remove the error message once a value is entered', () => {
+    const pirateSpeak = 'I feel a mean scurvy coming on...';
     cy.findByText(textareaCopy.pirateLoreLabel)
       .siblings('textarea')
-      .type('I feel a mean scurvy coming on...');
+      .type(pirateSpeak);
 
     cy.findByText(textareaCopy.errorMessage).should('not.exist');
   });
