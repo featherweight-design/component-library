@@ -11,14 +11,13 @@ describe('TextArea Disabled tests', () => {
   });
 
   it('Should start as disabled', () => {
-    cy.findByText(textareaCopy.disabledLabel)
-      .siblings('textarea')
-      .should('be.disabled');
+    cy.findByLabelText(textareaCopy.disabledLabel).should('be.disabled');
   });
 
   it('Should start with a preset message', () => {
-    cy.findByText(textareaCopy.disabledLabel)
-      .siblings('textarea')
-      .should('have.value', textareaCopy.disabledMessage);
+    cy.findByLabelText(textareaCopy.disabledLabel).should(
+      'have.value',
+      textareaCopy.disabledMessage
+    );
   });
 });

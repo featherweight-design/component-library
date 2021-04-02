@@ -7,6 +7,6 @@ describe('TextArea Default tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.defaultLabel);
+    cy.findByLabelText(textareaCopy.defaultLabel);
   });
 });

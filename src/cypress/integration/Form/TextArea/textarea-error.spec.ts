@@ -7,7 +7,7 @@ describe('TextArea Error tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(textareaCopy.pirateLoreLabel);
+    cy.findByLabelText(textareaCopy.pirateLoreLabel);
   });
 
   it('Should have an error message', () => {
@@ -16,10 +16,8 @@ describe('TextArea Error tests', () => {
 
   it('Should remove the error message once a value is entered', () => {
     const pirateSpeak = 'I feel a mean scurvy coming on...';
-    cy.findByText(textareaCopy.pirateLoreLabel)
-      .siblings('textarea')
-      .type(pirateSpeak);
 
+    cy.findByLabelText(textareaCopy.pirateLoreLabel).type(pirateSpeak);
     cy.findByText(textareaCopy.errorMessage).should('not.exist');
   });
 });
