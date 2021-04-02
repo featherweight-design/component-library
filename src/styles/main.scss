@@ -16,11 +16,15 @@ body {
   &__button-container,
   &__controls-container,
   &__input-container,
-  &__select-container {
+  &__select-container,
+  &__textarea-container {
     display: grid;
     gap: 1rem;
     grid-template-columns: 1fr 1fr 1fr;
     margin: 1rem;
+  }
+  &__textarea-container {
+    grid-template-columns: 1fr 1fr;
   }
   &__delete-confirmation-container {
     position: relative;
@@ -36,4 +40,3 @@ body {
     padding: 1rem;
   }
 }
-
