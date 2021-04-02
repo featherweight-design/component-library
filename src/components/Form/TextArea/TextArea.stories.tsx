@@ -16,12 +16,14 @@ export const Default = (): JSX.Element => {
     updateValue(target.value);
 
   return (
-    <TextArea
-      name="default"
-      label={textareaCopy.defaultLabel}
-      value={value}
-      onChange={handleChange}
-    />
+    <div className="story__textarea-container">
+      <TextArea
+        name="default"
+        label={textareaCopy.defaultLabel}
+        value={value}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 
@@ -32,13 +34,15 @@ export const Disabled = (): JSX.Element => {
     updateValue(target.value);
 
   return (
-    <TextArea
-      disabled
-      name="disabled"
-      label={textareaCopy.disabledLabel}
-      value={value}
-      onChange={handleChange}
-    />
+    <div className="story__textarea-container">
+      <TextArea
+        disabled
+        name="disabled"
+        label={textareaCopy.disabledLabel}
+        value={value}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 
@@ -49,13 +53,15 @@ export const Error = (): JSX.Element => {
     updateValue(target.value);
 
   return (
-    <TextArea
-      name="default"
-      label={textareaCopy.pirateLoreLabel}
-      placeholder={textareaCopy.placeholder}
-      value={value}
-      onChange={handleChange}
-      errorMessage={value ? '' : textareaCopy.errorMessage}
-    />
+    <div className="story__textarea-container">
+      <TextArea
+        name="default"
+        label={textareaCopy.pirateLoreLabel}
+        placeholder={textareaCopy.placeholder}
+        value={value}
+        onChange={handleChange}
+        errorMessage={value ? '' : textareaCopy.errorMessage}
+      />
+    </div>
   );
 };
