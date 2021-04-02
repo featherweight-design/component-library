@@ -27,9 +27,8 @@ const Checkbox: FC<CheckboxProps> = ({
       })}
     >
       {options.map(({ label: optionLabel, checked, disabled }) => (
-        <label
+        <div
           key={`fd-checkbox__${optionLabel}`}
-          htmlFor={optionLabel}
           className={classnames({
             'fd-checkbox__container': true,
             'fd-checkbox__container-disabled': disabled,
@@ -40,7 +39,7 @@ const Checkbox: FC<CheckboxProps> = ({
             className="fd-checkbox__input"
             type="checkbox"
             name={optionLabel}
-            checked={checked}
+            defaultChecked={checked}
             onChange={onChange}
             disabled={disabled}
           />
@@ -53,7 +52,10 @@ const Checkbox: FC<CheckboxProps> = ({
           >
             {checked && <div className="fd-checkbox__icon" />}
           </div>
-          <span>{optionLabel}</span>
+
+          <label htmlFor={optionLabel} className="fd-checkbox__label">
+            {optionLabel}
+          </label>
 
           {optionLabel.toLowerCase() === 'other' && other && (
             <OtherOption
@@ -64,7 +66,7 @@ const Checkbox: FC<CheckboxProps> = ({
               disabled={disabled}
             />
           )}
-        </label>
+        </div>
       ))}
     </div>
 
