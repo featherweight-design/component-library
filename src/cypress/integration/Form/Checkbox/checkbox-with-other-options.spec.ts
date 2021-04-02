@@ -1,4 +1,4 @@
-import { checkboxCopy } from 'shared/data/copyContent';
+import { checkboxCopy, otherOptionCopy } from 'shared/data/copyContent';
 
 describe('Checkbox With Other Options tests', () => {
   before(() => {
@@ -11,24 +11,16 @@ describe('Checkbox With Other Options tests', () => {
   });
 
   it('Should accept new values in "Other"', () => {
-    // TODO: Update to use findByLabel when Checkbox/OtherOption are refactored
     const expected = 'Strawberry';
 
-    cy.findByText(checkboxCopy.other)
-      .siblings('input')
-      .check({ force: true });
+    cy.findByLabelText(checkboxCopy.other).check({ force: true });
 
-    cy.get('.fd-other-option__input').type(expected);
-
-    cy.get('.fd-other-option__input').should('have.value', expected);
+    cy.findByLabelText(otherOptionCopy.label).type(expected);
+    cy.findByLabelText(otherOptionCopy.label).should('have.value', expected);
   });
 
   it('Should remove value from "Other" if unchecked', () => {
-    // TODO: Update to use findByLabel when Checkbox/OtherOption are refactored
-    cy.get('.fd-other-option')
-      .siblings('input')
-      .uncheck({ force: true });
-
-    cy.get('.fd-other-option__input').should('not.have.value');
+    cy.findByLabelText(checkboxCopy.other).uncheck({ force: true });
+    cy.findByLabelText(otherOptionCopy.label).should('not.have.value');
   });
 });
