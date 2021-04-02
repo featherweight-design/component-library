@@ -7,6 +7,7 @@ export default {
   cthulhu: 'Cthulhu',
   disabled: 'Disabled',
   disabledChecked: 'Disabled Checked',
+  disabledLabel: 'Disabled Checkboxes',
   dog: 'Dog',
   errorMessage: 'Please pick a favorite pet',
   goldFish: 'Gold Fish',
