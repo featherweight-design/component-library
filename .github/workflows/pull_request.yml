@@ -115,9 +115,9 @@ jobs:
         # Each test suite should be listed here for running parallel tests
         # You may see an error here from your IDE because it does not recognize this
         # environment variable as an array, even though it is by the time it is set
-        # test-suite: ${{ fromJson(needs.install.outputs.test-suites) }}
+        test-suite: ${{ fromJson(needs.install.outputs.test-suites) }}
         # Multiple machines are used for load balancing
-        machines: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        machines: [1, 2]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -149,13 +149,13 @@ jobs:
           npx cypress cache path
           npx cypress cache list
 
-      - name: Run Cypress tests
+      - name: Run ${{ matrix.test-suite }} Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          # spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
+          spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook --ci
-          # group: "${{ matrix.test-suite }} Tests"
+          group: "${{ matrix.test-suite }} Tests"
           record: true
           parallel: true
           # tag will be either "push" or "pull_request"
