@@ -7,24 +7,18 @@ describe('Checkbox Disabled tests', () => {
   });
 
   it('Should be displayed', () => {
-    cy.findByText(checkboxCopy.disabled);
+    cy.findByText(checkboxCopy.disabledLabel);
   });
 
   it('Should have both options disabled', () => {
-    cy.findByText(checkboxCopy.disabled)
-      .siblings('input')
-      .should('be.disabled');
+    cy.findByLabelText(checkboxCopy.disabled).should('be.disabled');
   });
 
   it('Should not have the first option checked', () => {
-    cy.findByText(checkboxCopy.disabled)
-      .siblings('input')
-      .should('not.be.checked');
+    cy.findByLabelText(checkboxCopy.disabled).should('not.be.checked');
   });
 
   it('Should have the second option checked', () => {
-    cy.findByText(checkboxCopy.disabledChecked)
-      .siblings('input')
-      .should('be.checked');
+    cy.findByLabelText(checkboxCopy.disabledChecked).should('be.checked');
   });
 });
