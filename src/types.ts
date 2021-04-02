@@ -342,11 +342,11 @@ export interface SideNavigationSubOption {
 //* TextArea types
 
 export interface TextAreaProps {
+  label: string;
   name: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   id?: string;
-  label?: string;
   placeholder?: string;
   min?: number;
   max?: number;
