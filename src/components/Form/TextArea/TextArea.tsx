@@ -22,10 +22,12 @@ const TextArea: FC<TextAreaProps> = ({
       [className as string]: className,
     })}
   >
-    {label && <span className="fd-label">{label}</span>}
+    <label className="fd-label" htmlFor={id || `fd-textarea__${name}`}>
+      {label}
+    </label>
 
     <textarea
-      id={id}
+      id={id || `fd-textarea__${name}`}
       name={name}
       value={value}
       placeholder={placeholder}
