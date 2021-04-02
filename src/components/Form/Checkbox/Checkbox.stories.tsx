@@ -47,7 +47,7 @@ export const Disabled = (): JSX.Element => {
   return (
     <div style={{ display: 'flex ' }}>
       <Checkbox
-        label="Label"
+        label={checkboxCopy.disabledLabel}
         /* eslint-disable-next-line no-console */
         onChange={(): void => console.log('Disabled')}
         options={options}
