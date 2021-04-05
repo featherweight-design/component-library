@@ -16,9 +16,6 @@ jobs:
   install:
     name: Install and cache dependencies
     runs-on: ubuntu-latest
-    outputs:
-      # We output the test-suites here to it's accessible to other jobs
-      test-suites: ${{ steps.get-test-suites.outputs.directory-names }}
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -26,17 +23,6 @@ jobs:
           # Removes credentials
           persist-credentials: false
           fetch-depth: 0
-
-      - name: Get test suite directories
-        id: get-test-suites
-        # Custom action that grabs all of our existing test-suites
-        uses: featherweight-design/collect-directory-names-by-file-glob@v1.2.2
-        with:
-          file-glob: "**/*.spec.ts"
-          search-directory: "/src/cypress"
-
-      - name: Check test suite directories
-        run: echo "Directories are ${{ steps.get-test-suites.outputs.directory-names }}"
 
       # Restore the previous NPM modules and Cypress binary archives.
       # Any updated archives will be saved automatically after the entire
@@ -112,12 +98,8 @@ jobs:
     needs: [install, static-analysis]
     strategy:
       matrix:
-        # Each test suite should be listed here for running parallel tests
-        # You may see an error here from your IDE because it does not recognize this
-        # environment variable as an array, even though it is by the time it is set
-        # test-suite: ${{ fromJson(needs.install.outputs.test-suites) }}
         # Multiple machines are used for load balancing
-        machines: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+        machines: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -152,10 +134,8 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          # spec: src/cypress/integration/**/${{ matrix.test-suite }}/*.spec.ts
           browser: chrome
           start: yarn storybook --ci
-          # group: "${{ matrix.test-suite }} Tests"
           record: true
           parallel: true
           # tag will be either "push" or "pull_request"
