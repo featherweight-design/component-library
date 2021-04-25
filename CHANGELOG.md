@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@2.0.0...@f-design/component-library@2.0.1) (2021-04-25)
+
+
+### Bug Fixes
+
+* Alpha color variables ([772bdde](https://github.com/featherweight-design/component-library/commit/772bdde86ef0fe2be30e153e1ba5741b7a48fa4e))
+
 ## [2.0.0](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@1.0.1...@f-design/component-library@2.0.0) (2021-04-25)
 
 
