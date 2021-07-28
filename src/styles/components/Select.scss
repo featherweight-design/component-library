@@ -15,7 +15,7 @@
     transition: border-radius 0.01s ease-in-out 0.2s;
     &-disabled {
       background-color: $gray-03;
-      color: $gray-08;
+      color: $background-light;
       cursor: not-allowed;
     }
     &-open {
@@ -32,7 +32,7 @@
       color: $gray-06;
     }
     &-disabled {
-      color: $gray-08;
+      color: $background-light;
     }
   }
   &__icon {
