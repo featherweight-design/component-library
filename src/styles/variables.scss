@@ -38,8 +38,19 @@ $glass-shadow: rgba(31, 38, 135, 0.37) !default;
 $glass-shadow-hover: rgba(31, 38, 135, 0.47) !default;
 $glass-shadow-active: rgba(31, 38, 135, 0.57) !default;
 
+// Background
+$background-white: #fff !default;
+$background-xx-light: #f2f2f2 !default;
+$background-x-light: #cccccc !default;
+$background-light: #a5a5a5 !default;
+$background: #7f7f7f !default;
+$background-dark: #595959 !default;
+$background-x-dark: #333333 !default;
+$background-xx-dark: #0c0c0c !default;
+$bacgkround-black: #000 !default;
+
 // GRAYS
-$black: #000;
+$background-white: #fff;
 $gray-01: #f9f9f9;
 $gray-02: #f2f2f2;
 $gray-03: #e5e5e5;
@@ -61,7 +72,7 @@ $gray-18: #262626;
 $gray-19: #191919;
 $gray-20: #0c0c0c;
 $gray-21: #070707;
-$white: #fff;
+$black: #000;
 
 // COOL GRAYS
 $cool-gray-01: #b3d1f9;
