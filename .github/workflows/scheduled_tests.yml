@@ -8,7 +8,7 @@ on:
   # which for this repository is "development"
   schedule:
     # Run this everyday at 08:00
-    - cron: '0 1,14 * * *'
+    - cron: '0 1 * * *'
 
 jobs:
   install:
