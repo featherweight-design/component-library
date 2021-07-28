@@ -14,7 +14,7 @@
     // Closing transition
     transition: border-radius 0.01s ease-in-out 0.2s;
     &-disabled {
-      background-color: $gray-03;
+      background-color: $background-xx-light;
       color: $background-light;
       cursor: not-allowed;
     }

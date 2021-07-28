@@ -67,7 +67,7 @@
       background-color: $background-white;
       color: $brand-color;
       &:hover:not(.fd-action-button__button-loading):not(:disabled) {
-        background-color: $gray-03;
+        background-color: $background-xx-light;
       }
       &:active:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $background-x-light;

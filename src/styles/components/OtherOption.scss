@@ -19,7 +19,7 @@
       @include focus-styles;
     }
     &:disabled {
-      background-color: $gray-03;
+      background-color: $background-xx-light;
       cursor: not-allowed;
     }
   }
