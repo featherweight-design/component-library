@@ -71,12 +71,12 @@
   );
 }
 
-@mixin gradient-pseudo-border-bottom($color-1: $gray-04, $color-2: $gray-07) {
+@mixin gradient-pseudo-border-bottom($color-1: $background-x-light, $color-2: $gray-07) {
   @include gradient-pseudo-border($color-1, $color-2);
   bottom: 0;
 }
 
-@mixin gradient-pseudo-border-top($color-1: $gray-04, $color-2: $gray-07) {
+@mixin gradient-pseudo-border-top($color-1: $background-x-light, $color-2: $gray-07) {
   @include gradient-pseudo-border($color-1, $color-2);
   top: 0;
 }
@@ -190,7 +190,7 @@
     }
   }
   &__sub-options-header {
-    border-bottom: 1px solid $gray-04;
+    border-bottom: 1px solid $background-x-light;
   }
   &__sub-options-sub-title {
     color: $brand-xx-light;
