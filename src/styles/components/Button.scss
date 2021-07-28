@@ -43,7 +43,7 @@
   &-neutral {
     border-color: $background-x-light;
     color: $background;
-    background-color: $gray-01;
+    background-color: $background-xx-light;
     &:hover:not(.fd-button-loading):not(:disabled),
     &:active:not(.fd-button-loading):not(:disabled) {
       color: $gray-12;
@@ -56,7 +56,7 @@
     }
     &:disabled {
       color: $gray-06;
-      background-color: $gray-01;
+      background-color: $background-xx-light;
     }
   }
   &-outline {
@@ -135,7 +135,7 @@
   &-outline,
   &-outline-destructive {
     &:hover:not(.fd-button-loading):not(:disabled) {
-      background-color: $gray-01;
+      background-color: $background-xx-light;
     }
     &:active:not(.fd-button-loading):not(:disabled) {
       background-color: $background-xx-light;
