@@ -55,7 +55,7 @@
       background-color: $background-xx-light;
     }
     &:disabled {
-      color: $gray-06;
+      color: $background-x-light;
       background-color: $background-xx-light;
     }
   }
@@ -141,7 +141,7 @@
       background-color: $background-xx-light;
     }
     &:disabled {
-      border-color: $gray-06;
+      border-color: $background-x-light;
       background-color: $background-white;
     }
   }

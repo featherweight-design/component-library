@@ -9,7 +9,7 @@
     position: absolute;
     top: 2rem;
     padding-left: 0.75rem;
-    color: $gray-06;
+    color: $background-x-light;
     font-size: 1rem;
     opacity: 0.8;
     transition: 0.2s ease-in-out;
@@ -28,7 +28,7 @@
       cursor: not-allowed;
     }
     &::placeholder {
-      color: $gray-06;
+      color: $background-x-light;
     }
     &:focus {
       @include focus-styles;
