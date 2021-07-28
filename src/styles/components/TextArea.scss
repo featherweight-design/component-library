@@ -9,7 +9,7 @@
     min-height: 7rem;
     resize: vertical;
     &:disabled {
-      background-color: $gray-03;
+      background-color: $background-xx-light;
       cursor: not-allowed;
     }
     &::placeholder {

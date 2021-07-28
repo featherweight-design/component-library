@@ -52,7 +52,7 @@
       background-color: $background-xx-light;
     }
     &:active:not(.fd-button-loading):not(:disabled) {
-      background-color: $gray-03;
+      background-color: $background-xx-light;
     }
     &:disabled {
       color: $gray-06;
@@ -129,7 +129,7 @@
     }
     &:disabled {
       color: $background-light;
-      background-color: $gray-03;
+      background-color: $background-xx-light;
     }
   }
   &-outline,
