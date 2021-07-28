@@ -46,7 +46,7 @@
     background-color: $background-xx-light;
     &:hover:not(.fd-button-loading):not(:disabled),
     &:active:not(.fd-button-loading):not(:disabled) {
-      color: $gray-12;
+      color: $background;
     }
     &:hover:not(.fd-button-loading):not(:disabled) {
       background-color: $background-xx-light;
