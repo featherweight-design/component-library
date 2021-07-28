@@ -155,8 +155,8 @@ jobs:
       # Set an environment variable for the publishing dev
       # This is used in to make a unique canary release to npm
       PR_DEV: ${{ github.actor }}
-      UUID: ""
-      VERSION: ""
+      UUID: ''
+      VERSION: ''
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -176,8 +176,8 @@ jobs:
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
 
       # This is required for publishing from GH Actions
       - name: Set GitHub Action user
@@ -218,7 +218,7 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
+          comment-author: 'github-actions[bot]'
           body-includes: Canary release
 
       # If not, create a new comment
@@ -241,7 +241,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: "replace"
+          edit-mode: 'replace'
           body: |
             Canary release :hatched_chick:
 
