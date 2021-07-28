@@ -12,7 +12,7 @@
     max-width: 16.75rem;
     margin-left: 0.5rem;
     border: none;
-    border-bottom: 1px solid $gray-09;
+    border-bottom: 1px solid $background-light;
     font-size: 0.825rem;
     transition: max-width 0.2s ease-in;
     &:focus {
@@ -38,7 +38,7 @@
       opacity: 1;
     }
     &-disabled {
-      background-color: $gray-09;
+      background-color: $background-light;
     }
   }
 }
