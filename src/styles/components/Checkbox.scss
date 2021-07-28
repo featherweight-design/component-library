@@ -43,7 +43,7 @@
     width: 1rem;
     height: 1rem;
     margin-right: 0.5rem;
-    border: 1px solid $gray-09;
+    border: 1px solid $background-light;
     border-radius: 0.25rem;
     transition: 0.2s ease-in-out;
     &-checked {
@@ -51,7 +51,7 @@
       border-color: $brand-color;
     }
     &-disabled {
-      border-color: $gray-09;
+      border-color: $background-light;
       > .fd-checkbox__icon {
         border-color: $background-light;
       }
