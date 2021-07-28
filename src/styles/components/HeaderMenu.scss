@@ -8,7 +8,7 @@
   justify-content: space-between;
   height: 4rem;
   padding: 0 2rem;
-  border: 1px solid $gray-04;
+  border: 1px solid $background-x-light;
   background-color: $background-white;
   color: $cool-gray-19;
   &__left {
@@ -140,7 +140,7 @@
     align-items: baseline;
     justify-content: space-between;
     padding: 1rem 1.5rem;
-    border-bottom: 1px solid $gray-04;
+    border-bottom: 1px solid $background-x-light;
   }
   &__sub-options-title {
     font-size: 1.125rem;
