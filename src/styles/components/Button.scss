@@ -42,7 +42,7 @@
   }
   &-neutral {
     border-color: $background-x-light;
-    color: $gray-11;
+    color: $background;
     background-color: $gray-01;
     &:hover:not(.fd-button-loading):not(:disabled),
     &:active:not(.fd-button-loading):not(:disabled) {
