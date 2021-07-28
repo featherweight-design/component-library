@@ -45,76 +45,12 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-  update-version-changelog:
-    # This ensures that this workflow only runs when a PR is being merged to 'development'
-    if: github.event.pull_request.merged == true
-    name: Update version and CHANGELOG
-    runs-on: ubuntu-latest
-    needs: install
-    env:
-      VERSION: ''
-    steps:
-      - name: Checkout development
-        uses: actions/checkout@master
-        with:
-          persist-credentials: false
-          fetch-depth: 0
-
-      - name: Cache local node_modules
-        uses: actions/cache@v2.1.4
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-
-
-      - name: Setup .npmrc file to publish to npm
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
-          registry-url: 'https://registry.npmjs.org'
-
-      # This is required for publishing from GH Actions
-      - name: Set GitHub Action user
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-
-      # Build the component library
-      - name: Build new package
-        run: yarn run build
-
-      # Update the version in package.json for the beta release
-      - name: Tag beta release
-        run: yarn release-beta
-
-  push-to-development:
-    # This ensures that this workflow only runs when a PR is being merged to 'development'
-    if: github.event.pull_request.merged == true
-    name: Push changes to development
-    runs-on: ubuntu-latest
-    needs: [install, update-version-changelog]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-        with:
-          # Removes credentials
-          persist-credentials: false
-          fetch-depth: 0
-
-      # Ensure development is in sync
-      - name: Push to development
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_ACTION_PAT }}
-          branch: development
-
   deploy-to-gh-pages:
     # This ensures that this workflow only runs when a PR is being merged to 'development'
     if: github.event.pull_request.merged == true
     name: Deploy to GH Pages
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog, push-to-development]
+    needs: [install, update-version-changelog]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -147,7 +83,7 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Deploy beta to npm
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog, push-to-development]
+    needs: [install, update-version-changelog]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -180,11 +116,42 @@ jobs:
       - name: Build new package
         run: yarn run build
 
+      # Update the version in package.json for the beta release
+      - name: Tag beta release
+        run: yarn release-beta
+
       # Publish a new beta release to NPM
       - name: Publish @f-design/component-library beta release from development
         run: npm publish --tag beta --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+  push-to-development:
+    # This ensures that this workflow only runs when a PR is being merged to 'development'
+    if: github.event.pull_request.merged == true
+    name: Push changes to development
+    runs-on: ubuntu-latest
+    needs:
+      [
+        install,
+        update-version-changelog,
+        deploy-to-gh-pages,
+        publish-beta-to-npm,
+      ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Ensure development is in sync
+      - name: Push to development
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_ACTION_PAT }}
+          branch: development
 
   post-slack-notification:
     # This ensures that this workflow only runs when a PR is being merged to 'development'
@@ -195,9 +162,9 @@ jobs:
       [
         install,
         update-version-changelog,
-        push-to-development,
         deploy-to-gh-pages,
         publish-beta-to-npm,
+        push-to-development,
       ]
     env:
       VERSION: ''
