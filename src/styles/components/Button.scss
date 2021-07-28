@@ -122,10 +122,10 @@
   }
   &-brand,
   &-destructive {
-    color: $white;
+    color: $background-white;
     &:hover:not(.fd-button-loading):not(:disabled),
     &:active:not(.fd-button-loading):not(:disabled) {
-      color: $white;
+      color: $background-white;
     }
     &:disabled {
       color: $gray-08;
@@ -142,7 +142,7 @@
     }
     &:disabled {
       border-color: $gray-06;
-      background-color: $white;
+      background-color: $background-white;
     }
   }
   &-loading {

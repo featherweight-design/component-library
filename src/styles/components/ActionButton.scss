@@ -11,7 +11,7 @@
     color: $brand-color;
   }
   &-secondary {
-    color: $white;
+    color: $background-white;
   }
   &__button {
     position: relative;
@@ -55,7 +55,7 @@
     }
     &-primary {
       background-color: $brand-color;
-      color: $white;
+      color: $background-white;
       &:hover:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $brand-hover;
       }
@@ -64,7 +64,7 @@
       }
     }
     &-secondary {
-      background-color: $white;
+      background-color: $background-white;
       color: $brand-color;
       &:hover:not(.fd-action-button__button-loading):not(:disabled) {
         background-color: $gray-03;
