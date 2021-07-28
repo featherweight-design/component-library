@@ -13,7 +13,7 @@
       cursor: not-allowed;
     }
     &::placeholder {
-      color: $gray-06;
+      color: $background-x-light;
     }
     &:focus {
       @include focus-styles;
