@@ -68,6 +68,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+
+      # This is required for publishing from GH Actions
+      - name: Set GitHub Action user
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+      # Build the component library
+      - name: Build new package
+        run: yarn run build
+
       # Update the version in package.json for the beta release
       - name: Tag beta release
         run: yarn release-beta
