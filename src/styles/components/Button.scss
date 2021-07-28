@@ -25,10 +25,10 @@
   }
   &:disabled {
     cursor: not-allowed;
-    color: $gray-05;
+    color: $background-x-light;
     &-hover,
     &-active {
-      color: $gray-05;
+      color: $background-x-light;
     }
   }
   &-brand {
@@ -41,7 +41,7 @@
     }
   }
   &-neutral {
-    border-color: $gray-05;
+    border-color: $background-x-light;
     color: $gray-11;
     background-color: $gray-01;
     &:hover:not(.fd-button-loading):not(:disabled),
@@ -117,7 +117,7 @@
       color: $destructive-active;
     }
     &:disabled {
-      color: $gray-05;
+      color: $background-x-light;
     }
   }
   &-brand,
