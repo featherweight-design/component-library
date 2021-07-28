@@ -219,7 +219,7 @@
     text-transform: capitalize;
     cursor: pointer;
     &-selected {
-      background-color: $background-xx-light;
+      background-color: $background-x-light;
     }
     &-hover {
       margin: 0 auto;
@@ -228,7 +228,7 @@
       transition: padding 0.05s ease-in-out;
     }
     &:hover {
-      background-color: $background-xx-light;
+      background-color: $background-x-light;
       > .fd-side-navigation__sub-option-text {
         color: $brand-color;
       }
