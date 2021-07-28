@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     env:
-      VERSION: ""
+      VERSION: ''
     steps:
       - name: Checkout development
         uses: actions/checkout@master
@@ -71,8 +71,8 @@ jobs:
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
 
       # This is required for publishing from GH Actions
       - name: Set GitHub Action user
@@ -88,12 +88,33 @@ jobs:
       - name: Tag beta release
         run: yarn release-beta
 
+  push-to-development:
+    # This ensures that this workflow only runs when a PR is being merged to 'development'
+    if: github.event.pull_request.merged == true
+    name: Push changes to development
+    runs-on: ubuntu-latest
+    needs: [install, update-version-changelog]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          # Removes credentials
+          persist-credentials: false
+          fetch-depth: 0
+
+      # Ensure development is in sync
+      - name: Push to development
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_ACTION_PAT }}
+          branch: development
+
   deploy-to-gh-pages:
     # This ensures that this workflow only runs when a PR is being merged to 'development'
     if: github.event.pull_request.merged == true
     name: Deploy to GH Pages
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog]
+    needs: [install, update-version-changelog, push-to-development]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -126,7 +147,7 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Deploy beta to npm
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog]
+    needs: [install, update-version-changelog, push-to-development]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -146,8 +167,8 @@ jobs:
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
-          node-version: "12.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
 
       # This is required for publishing from GH Actions
       - name: Set GitHub Action user
@@ -165,33 +186,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
-  push-to-development:
-    # This ensures that this workflow only runs when a PR is being merged to 'development'
-    if: github.event.pull_request.merged == true
-    name: Push changes to development
-    runs-on: ubuntu-latest
-    needs:
-      [
-        install,
-        update-version-changelog,
-        deploy-to-gh-pages,
-        publish-beta-to-npm,
-      ]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-        with:
-          # Removes credentials
-          persist-credentials: false
-          fetch-depth: 0
-
-      # Ensure development is in sync
-      - name: Push to development
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_ACTION_PAT }}
-          branch: development
-
   post-slack-notification:
     # This ensures that this workflow only runs when a PR is being merged to 'development'
     if: github.event.pull_request.merged == true
@@ -201,12 +195,12 @@ jobs:
       [
         install,
         update-version-changelog,
+        push-to-development,
         deploy-to-gh-pages,
         publish-beta-to-npm,
-        push-to-development,
       ]
     env:
-      VERSION: ""
+      VERSION: ''
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -224,7 +218,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: component-library
-          SLACK_ICON_EMOJI: ":sewing_needle:"
+          SLACK_ICON_EMOJI: ':sewing_needle:'
           SLACK_MESSAGE: |
             Version: ${{ env.VERSION }}
             Install with `yarn add @f-design/component-library@beta`
