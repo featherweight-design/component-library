@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   width: 230px;
-  border: 1px solid $gray-04;
+  border: 1px solid $background-x-light;
   background-color: $background-white;
   box-shadow: rgba(99, 115, 138, 0.2) 0px 5px 5px -3px,
     rgba(99, 115, 138, 0.14) 0px 8px 10px 1px,
@@ -201,7 +201,7 @@
   }
   &__option-hover-title {
     padding: 1rem;
-    border-bottom: 1px solid $gray-04;
+    border-bottom: 1px solid $background-x-light;
     margin-bottom: 0.25rem;
     font-size: 1rem;
     font-weight: 500;
@@ -264,7 +264,7 @@
       }
     }
     &::before {
-      @include gradient-pseudo-border-top($background-white, $gray-04);
+      @include gradient-pseudo-border-top($background-white, $background-x-light);
       width: 80%;
     }
   }
