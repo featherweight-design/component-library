@@ -1,13 +1,14 @@
-import { composeStories } from '@storybook/testing-react';
-import { mount } from '@cypress/react';
-
-import * as stories from 'components/Buttons/Button/Button.stories';
 import { buttonCopy } from 'shared/data/copyContent';
 
 describe('Button Variants tests', () => {
-  const { Variants } = composeStories(stories);
-
-  mount(Variants);
+  before(() => {
+    cy.visitStorybook({
+      headers: {
+        'Accept-Encoding': 'gzip, deflate',
+      },
+    });
+    cy.loadStory('components-buttons-button', 'variants');
+  });
 
   it('Should have a "Default" button', () => {
     cy.findByText(buttonCopy.default).closest('button');
