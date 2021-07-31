@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  update-version-changelog:
+  build-release:
     # This ensures that this workflow only runs when a PR is being merged to 'main'
     if: github.event.pull_request.merged == true
     name: Publish new release from main
