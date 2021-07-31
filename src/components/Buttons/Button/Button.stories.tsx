@@ -1,6 +1,5 @@
 import { useState, ChangeEvent } from 'react';
 import { withA11y } from '@storybook/addon-a11y';
-import { Meta } from '@storybook/react';
 
 import { Input } from 'components/Form';
 import { buttonCopy } from 'shared/data/copyContent';
@@ -9,7 +8,7 @@ import Button from './Button';
 export default {
   title: 'Components/Buttons/Button',
   decorators: [withA11y],
-} as Meta;
+};
 
 /* eslint-disable-next-line no-console */
 const mockClick = (): void => console.log("I've been clicked!");
