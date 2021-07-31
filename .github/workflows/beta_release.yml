@@ -50,7 +50,7 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Deploy to GH Pages
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog]
+    needs: [install]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -83,7 +83,7 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Deploy beta to npm
     runs-on: ubuntu-latest
-    needs: [install, update-version-changelog]
+    needs: [install]
     steps:
       - name: Checkout code
         uses: actions/checkout@master
@@ -134,7 +134,6 @@ jobs:
     needs:
       [
         install,
-        update-version-changelog,
         deploy-to-gh-pages,
         publish-beta-to-npm,
       ]
@@ -161,7 +160,6 @@ jobs:
     needs:
       [
         install,
-        update-version-changelog,
         deploy-to-gh-pages,
         publish-beta-to-npm,
         push-to-development,
