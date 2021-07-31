@@ -132,7 +132,7 @@ jobs:
           npx cypress cache list
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2.11.6
         with:
           browser: chrome
           start: yarn storybook --ci
