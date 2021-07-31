@@ -20,6 +20,32 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
+      # Restore the previous NPM modules and Cypress binary archives.
+      # Any updated archives will be saved automatically after the entire
+      # workflow successfully finishes.
+      # See https://github.com/actions/cache
+      # we use exact restore key to avoid NPM module snowballing
+      # https://glebbahmutov.com/blog/do-not-let-npm-cache-snowball/
+      - name: Cache central NPM modules
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Cache local node_modules to pass to testing jobs
+      - name: Cache local node_modules
+        uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Setup .npmrc file to publish to npm
         uses: actions/setup-node@v1
         with:
@@ -32,11 +58,18 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      # Build the component library
+      - name: Build new package
+        run: yarn run build
 
       - name: Update CHANGELOG/version
         run: yarn release
+
+      # Publish a new release to NPM
+      - name: Publish @f-design/component-library from main
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       # Ensure main is in sync
       - name: Push to main
@@ -44,16 +77,6 @@ jobs:
         with:
           github_token: ${{ secrets.GH_ACTION_PAT }}
           branch: main
-
-      # Build the component library
-      - name: Build new package
-        run: yarn run build
-
-      # Publish a new release to NPM
-      - name: Publish @f-design/component-library from main
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
 
       # Post Slack notification about release
       - name: Slack Notification
