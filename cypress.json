@@ -7,6 +7,7 @@
   "videosFolder": "src/cypress/videos",
   "supportFile": "src/cypress/support/index.ts",
   "projectId": "8cgbjw",
+  "responseTimeout": 40000,
   "retries": {
     "runMode": 2,
     "openMode": 1
