@@ -158,8 +158,8 @@
 }
 
 @mixin header-menu-dark {
-  border: 1px solid $cool-gray-17;
-  background-color: $cool-gray-11;
+  border: 1px solid $background-x-dark;
+  background-color: $background;
   color: $background-white;
   &__location-sub-title {
     color: $brand-xx-light;
@@ -181,9 +181,9 @@
   &__sub-options {
     border: 0px solid transparent;
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
-    background-color: $cool-gray-14;
+    background-color: $background-dark;
     &-shown {
-      border: 1px solid $cool-gray-17;
+      border: 1px solid $background-x-dark;
       box-shadow: 0 3px 14px 2px rgba(99, 115, 138, 0.12),
         0 8px 10px 1px rgba(99, 115, 138, 0.14),
         0 5px 5px 0 rgba(99, 115, 138, 0.2);
@@ -202,7 +202,7 @@
     }
   }
   &__sub-option-icon-background {
-    background-color: $cool-gray-14;
+    background-color: $background-dark;
     &-selected {
       background-color: $background-white;
     }
@@ -211,7 +211,7 @@
     &:hover,
     &-selected {
       color: $brand-white;
-      background-color: $cool-gray-17;
+      background-color: $background-x-dark;
     }
     &:hover > .fd-header-menu-dark__sub-option-icon {
       color: $background-white;
@@ -221,20 +221,20 @@
 }
 
 @mixin side-navigation-dark {
-  border: 1px solid $cool-gray-17;
-  background-color: $cool-gray-11;
+  border: 1px solid $background-x-dark;
+  background-color: $background;
   &__logo-back {
-    color: $cool-gray-17;
+    color: $background-x-dark;
   }
   &__logo-text {
-    color: $cool-gray-17;
+    color: $background-x-dark;
     &-hidden {
       color: transparent;
     }
   }
   &__option-menu {
     &-selected {
-      background-color: $cool-gray-14;
+      background-color: $background-dark;
     }
   }
   &__floating-icon-background {
@@ -263,19 +263,19 @@
     }
   }
   &__option-hover-menu {
-    border: 1px solid $cool-gray-17;
-    background-color: $cool-gray-11;
+    border: 1px solid $background-x-dark;
+    background-color: $background;
   }
   &__option-hover-title {
-    border-bottom: 1px solid $cool-gray-17;
+    border-bottom: 1px solid $background-x-dark;
     color: $background-white;
   }
   &__sub-option {
     &-selected {
-      background-color: $cool-gray-17;
+      background-color: $background-x-dark;
     }
     &:hover {
-      background-color: $cool-gray-17;
+      background-color: $background-x-dark;
       > .fd-side-navigation__sub-option-text {
         color: $brand-white;
       }
@@ -296,11 +296,11 @@
       }
     }
     &::before {
-      @include gradient-pseudo-border-top($cool-gray-11, $cool-gray-17);
+      @include gradient-pseudo-border-top($background, $background-x-dark);
     }
   }
   &__collapse-icon {
-    color: $cool-gray-17;
+    color: $background-x-dark;
   }
   &-collapse-text {
     &-hidden {
