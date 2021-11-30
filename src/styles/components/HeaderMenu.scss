@@ -10,7 +10,7 @@
   padding: 0 2rem;
   border: 1px solid $background-x-light;
   background-color: $background-white;
-  color: $cool-gray-19;
+  color: $background-xx-dark;
   &__left {
     display: flex;
   }
@@ -62,7 +62,7 @@
   &__menu-icon {
     position: relative;
     margin-left: 2.375rem;
-    color: $cool-gray-17;
+    color: $background-x-dark;
     opacity: 0.8;
     font-size: 1.25rem;
     cursor: pointer;
