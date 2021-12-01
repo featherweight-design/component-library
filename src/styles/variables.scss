@@ -1,104 +1,104 @@
 // BRAND
 // Colors
-$brand-white: #ecf6fb !default;
-$brand-xx-light: #c6e4f4 !default;
-$brand-x-light: #a0d3ed !default;
-$brand-light: #7bc1e6 !default;
-$brand-medium: #55b0df !default;
-$brand-color: #309fd9 !default;
-$brand-hover: #2c91c6 !default;
-$brand-active: #2883b2 !default;
-$brand-dark: #1f668b !default;
-$brand-x-dark: #164963 !default;
-$brand-xx-dark: #0e2c3c !default;
-$brand-black: #050f14 !default;
+$brand-white: hsl(200, 65%, 95%) !default;
+$brand-xx-light: hsl(201, 68%, 87%) !default;
+$brand-x-light: hsl(200, 68%, 78%) !default;
+$brand-light: hsl(201, 68%, 69%) !default;
+$brand-medium: hsl(200, 68%, 60%) !default;
+$brand-color: hsl(201, 69%, 52%) !default;
+$brand-hover: hsl(201, 64%, 47%) !default;
+$brand-active: hsl(200, 63%, 43%) !default;
+$brand-dark: rgb(30, 100, 138) !default;
+$brand-x-dark: hsl(200, 64%, 24%) !default;
+$brand-xx-dark: hsl(201, 62%, 15%) !default;
+$brand-black: hsl(200, 60%, 5%) !default;
 $brand-focus-outline: #3178c4 !default;
 
 // Brand alpha colors
-$brand-color-20: rgba(48, 159, 217, 0.2) !default;
-$brand-color-40: rgba(48, 159, 217, 0.4) !default;
-$brand-color-60: rgba(48, 159, 217, 0.6) !default;
-$brand-color-80: rgba(48, 159, 217, 0.8) !default;
+$brand-color-20: hsla(201, 69%, 52%, 0.2) !default;
+$brand-color-40: hsla(201, 69%, 52%, 0.4) !default;
+$brand-color-60: hsla(201, 69%, 52%, 0.6) !default;
+$brand-color-80: hsla(201, 69%, 52%, 0.8) !default;
 
 // GLASS BRAND
 // Box
-$glass-border: 1px solid rgba(255, 255, 255, 0.18) !default;
+$glass-border: 1px solid hsla(0, 0%, 100%, 0.18) !default;
 
 // Measurement
 $glass-blur: 7px !default;
 $glass-opacity: 0.25 !default;
 
 // Glass Colors
-$glass-main: rgba(255, 255, 255, $glass-opacity) !default;
-$glass-brand-color: rgba(48, 159, 217, $glass-opacity) !default;
-$glass-brand-hover: rgba(44, 145, 198, $glass-opacity) !default;
-$glass-brand-active: rgba(40, 131, 178, $glass-opacity) !default;
-$glass-disabled: rgba(229, 229, 229, $glass-opacity) !default;
-$glass-shadow: rgba(31, 38, 135, 0.37) !default;
-$glass-shadow-hover: rgba(31, 38, 135, 0.47) !default;
-$glass-shadow-active: rgba(31, 38, 135, 0.57) !default;
+$glass-main: hsla(0, 0%, 100%, $glass-opacity) !default;
+$glass-brand-color: hsla(201, 69%, 52%, $glass-opacity) !default;
+$glass-brand-hover: hsla(201, 64%, 47%, $glass-opacity) !default;
+$glass-brand-active: hsla(200, 63%, 43%, $glass-opacity) !default;
+$glass-disabled: hsla(0, 0%, 90%, $glass-opacity) !default;
+$glass-shadow: hsla(236, 63%, 33%, 0.37) !default;
+$glass-shadow-hover: hsla(236, 63%, 33%, 0.47) !default;
+$glass-shadow-active: hsla(236, 63%, 33%, 0.57) !default;
 
 // Background
-$background-white: #fff !default;
-$background-xx-light: #f2f2f2 !default; // gray-02 => gray-03, gray-01
-$background-x-light: #cccccc !default; // gray-04 => gray-05, gray-06
-$background-light: #a5a5a5 !default; // gray-08 => gray-07, gray-09
-$background: #7f7f7f !default; // gray-11 => gray-10, gray-12
-$background-dark: #595959 !default; // gray-14 => gray-13, gray-15
-$background-x-dark: #333333 !default; // gray-17 => gray-16, gray-18
-$background-xx-dark: #0c0c0c !default; // gray-20 => gray-19, gray-21
-$background-black: #000 !default;
+$background-white: hsl(0, 0%, 100%) !default;
+$background-xx-light: hsl(0, 0%, 95%) !default; // gray-02 => gray-03, gray-01
+$background-x-light: hsl(0, 0%, 80%) !default; // gray-04 => gray-05, gray-06
+$background-light: hsl(0, 0%, 65%) !default; // gray-08 => gray-07, gray-09
+$background: hsl(0, 0%, 50%) !default; // gray-11 => gray-10, gray-12
+$background-dark: hsl(0, 0%, 35%) !default; // gray-14 => gray-13, gray-15
+$background-x-dark: hsl(0, 0%, 20%) !default; // gray-17 => gray-16, gray-18
+$background-xx-dark: hsl(0, 0%, 5%) !default; // gray-20 => gray-19, gray-21
+$background-black: hsl(0, 0%, 0%) !default;
 
 // GRAYS
-$white: #fff !default;
-$gray-01: #f9f9f9 !default;
-$gray-02: #f2f2f2 !default;
-$gray-03: #e5e5e5 !default;
-$gray-04: #d8d8d8 !default;
-$gray-05: #cccccc !default;
-$gray-06: #bfbfbf !default;
-$gray-07: #b2b2b2 !default;
-$gray-08: #a5a5a5 !default;
-$gray-09: #999999 !default;
-$gray-10: #8c8c8c !default;
-$gray-11: #7f7f7f !default;
-$gray-12: #727272 !default;
-$gray-13: #666666 !default;
-$gray-14: #595959 !default;
-$gray-15: #4c4c4c !default;
-$gray-16: #3f3f3f !default;
-$gray-17: #333333 !default;
-$gray-18: #262626 !default;
-$gray-19: #191919 !default;
-$gray-20: #0c0c0c !default;
-$gray-21: #070707 !default;
-$black: #000 !default;
+$white: hsl(0, 0%, 100%) !default;
+$gray-01: rgb(249, 249, 249) !default;
+$gray-02: rgb(242, 242, 242) !default;
+$gray-03: rgb(229, 229, 229) !default;
+$gray-04: rgb(216, 216, 216) !default;
+$gray-05: rgb(204, 204, 204) !default;
+$gray-06: rgb(191, 191, 191) !default;
+$gray-07: rgb(178, 178, 178) !default;
+$gray-08: rgb(165, 165, 165) !default;
+$gray-09: rgb(153, 153, 153) !default;
+$gray-10: rgb(140, 140, 140) !default;
+$gray-11: rgb(127, 127, 127) !default;
+$gray-12: rgb(114, 114, 114) !default;
+$gray-13: rgb(102, 102, 102) !default;
+$gray-14: rgb(89, 89, 89) !default;
+$gray-15: rgb(76, 76, 76) !default;
+$gray-16: rgb(63, 63, 63) !default;
+$gray-17: rgb(51, 51, 51) !default;
+$gray-18: rgb(38, 38, 38) !default;
+$gray-19: rgb(25, 25, 25) !default;
+$gray-20: rgb(12, 12, 12) !default;
+$gray-21: rgb(7, 7, 7) !default;
+$black: hsl(0, 0%, 0%) !default;
 
 // COOL GRAYS
-$cool-gray-01: #b3d1f9 !default;
-$cool-gray-02: #aecaf2 !default;
-$cool-gray-03: #a5c0e5 !default;
-$cool-gray-04: #9cb5d8 !default;
-$cool-gray-05: #92aacc !default;
-$cool-gray-06: #89a0bf !default;
-$cool-gray-07: #8095b2 !default;
-$cool-gray-08: #778aa5 !default;
-$cool-gray-09: #6e8099 !default;
-$cool-gray-10: #64758c !default;
-$cool-gray-11: #5b6a7f !default;
-$cool-gray-12: #526072 !default;
-$cool-gray-13: #495566 !default;
-$cool-gray-14: #404a59 !default;
-$cool-gray-15: #37404c !default;
-$cool-gray-16: #2d353f !default;
-$cool-gray-17: #242a33 !default;
-$cool-gray-18: #1b2026 !default;
-$cool-gray-19: #121519 !default;
-$cool-gray-20: #090a0c !default;
-$cool-gray-21: #050607 !default;
+$cool-gray-01: hsl(214, 85%, 84%) !default;
+$cool-gray-02: hsl(215, 72%, 82%) !default;
+$cool-gray-03: hsl(215, 55%, 77%) !default;
+$cool-gray-04: hsl(215, 43%, 73%) !default;
+$cool-gray-05: hsl(215, 36%, 69%) !default;
+$cool-gray-06: hsl(214, 30%, 64%) !default;
+$cool-gray-07: hsl(215, 25%, 60%) !default;
+$cool-gray-08: hsl(215, 20%, 56%) !default;
+$cool-gray-09: hsl(215, 17%, 52%) !default;
+$cool-gray-10: hsl(215, 17%, 47%) !default;
+$cool-gray-11: hsl(215, 17%, 43%) !default;
+$cool-gray-12: hsl(214, 16%, 38%) !default;
+$cool-gray-13: hsl(215, 17%, 34%) !default;
+$cool-gray-14: hsl(216, 16%, 30%) !default;
+$cool-gray-15: hsl(214, 16%, 26%) !default;
+$cool-gray-16: hsl(213, 17%, 21%) !default;
+$cool-gray-17: hsl(216, 17%, 17%) !default;
+$cool-gray-18: hsl(213, 17%, 13%) !default;
+$cool-gray-19: hsl(214, 16%, 8%) !default;
+$cool-gray-20: hsl(220, 14%, 4%) !default;
+$cool-gray-21: hsl(210, 17%, 2%) !default;
 
 // REDS
-$destructive: #e52810 !default;
-$destructive-hover: #d1250f !default;
-$destructive-active: #bc210e !default;
-$destructive-focus-outline: #691308 !default;
+$destructive: hsl(7, 87%, 48%) !default;
+$destructive-hover: hsl(7, 87%, 44%) !default;
+$destructive-active: hsl(7, 86%, 40%) !default;
+$destructive-focus-outline: hsl(7, 86%, 22%) !default;
