@@ -117,7 +117,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0.5rem;
-    &-selected {
+    &:hover, &-selected {
       background-color: $background-xx-light;
     }
     &-collapsed {
@@ -273,7 +273,7 @@
     left: 2rem;
     font-size: 1rem;
     color: $background;
-    transition: 0.2s 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
     &-collapsed {
       left: 2rem;
       transform: rotate(180deg);
@@ -283,7 +283,7 @@
     width: 100%;
     margin-left: 3.375rem;
     opacity: 1;
-    transition: opacity 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
     &-hidden {
       color: transparent;
       opacity: 0;

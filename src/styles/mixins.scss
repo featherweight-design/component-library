@@ -222,7 +222,7 @@
 
 @mixin side-navigation-dark {
   border: 1px solid $background-x-dark;
-  background-color: $background;
+  background-color: $background-black;
   &__logo-back {
     color: $background-x-dark;
   }
@@ -233,38 +233,38 @@
     }
   }
   &__option-menu {
-    &-selected {
+    &:hover, &-selected {
       background-color: $background-dark;
     }
   }
   &__floating-icon-background {
     &-transitioning {
-      background: $background-white;
+      background: $background-black;
     }
   }
   &__icon-background {
     &-selected {
-      background: $background-white;
+      background: $background-black;
     }
   }
   &__option-title {
-    color: $background-white;
+    color: $brand-white;
     &-selected {
-      color: $background-white;
+      color: $brand-white;
     }
     &-hidden {
       color: transparent;
     }
   }
   &__option-icon {
-    color: $background-white;
+    color: $brand-white;
     &-selected {
       color: $brand-color;
     }
   }
   &__option-hover-menu {
     border: 1px solid $background-x-dark;
-    background-color: $background;
+    background-color: $background-x-dark;
   }
   &__option-hover-title {
     border-bottom: 1px solid $background-x-dark;
@@ -272,10 +272,10 @@
   }
   &__sub-option {
     &-selected {
-      background-color: $background-x-dark;
+      background-color: $background-black;
     }
     &:hover {
-      background-color: $background-x-dark;
+      background-color: $background-black;
       > .fd-side-navigation__sub-option-text {
         color: $brand-white;
       }
@@ -290,9 +290,9 @@
   &__collapse-toggle {
     color: $background-white;
     &:hover {
-      color: $brand-xx-light;
+      color: $brand-color;
       > * {
-        color: $brand-xx-light;
+        color: $brand-color;
       }
     }
     &::before {
@@ -300,7 +300,7 @@
     }
   }
   &__collapse-icon {
-    color: $background-x-dark;
+    color: $brand-white;
   }
   &-collapse-text {
     &-hidden {
