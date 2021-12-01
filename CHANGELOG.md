@@ -2,6 +2,54 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@3.1.1...@f-design/component-library@3.1.2) (2021-12-01)
+
+### [3.1.1](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@3.1.0...@f-design/component-library@3.1.1) (2021-12-01)
+
+## [3.1.0](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@2.1.0...@f-design/component-library@3.1.0) (2021-12-01)
+
+
+### Features
+
+* Allow overriding of all SCSS variables for greater dev flexability ([e35999b](https://github.com/featherweight-design/component-library/commit/e35999b39d95e82305809dbc596e4df527c94ce4))
+
+
+### Bug Fixes
+
+* Adjust broken styles for OtherOption ([db9b3ee](https://github.com/featherweight-design/component-library/commit/db9b3ee507f4d3bec50f54737567d7f3ee800efb))
+* Alpha color variables ([5779ea9](https://github.com/featherweight-design/component-library/commit/5779ea990e0a4086ed6cdccf268e6f41e5084eff))
+* Remove typo in beta_release; update release ([c66d162](https://github.com/featherweight-design/component-library/commit/c66d1627aae0e2815ea8782d4a720bfbfb075f5b))
+* Revert push change; move release command to npm publish job ([352b9ea](https://github.com/featherweight-design/component-library/commit/352b9eace2a970680eced468ad56bda9057d6535))
+* Update order of operation for beta_release ([52e2c6c](https://github.com/featherweight-design/component-library/commit/52e2c6c648b0bb8d28942b33a334c4bcdbe13b1d))
+* Update release flow ([dba7f47](https://github.com/featherweight-design/component-library/commit/dba7f47c1c1dd2d19263652f3cc5f89de47a1a76))
+
+
+### Styles
+
+* Add background color variables as overwrites ([5e1ece1](https://github.com/featherweight-design/component-library/commit/5e1ece14b54c41e410a6c35aac069da3953704b1))
+* Update $gray-01 to $background-xx-light ([662d556](https://github.com/featherweight-design/component-library/commit/662d55619f9442077ed059c8e670314d9e9ff77f))
+* Update $gray-02 to $background-xx-light ([9869675](https://github.com/featherweight-design/component-library/commit/9869675d1b461ffe5adcd576127fb30db50c182d))
+* Update $gray-03 to $background-xx-light ([6e12eda](https://github.com/featherweight-design/component-library/commit/6e12eda0e678519d1f81f7d27892f7733b800dc9))
+* Update $gray-04 to $background-x-light ([f9c0eb6](https://github.com/featherweight-design/component-library/commit/f9c0eb663019d5165d7324b03ffede2267ae9657))
+* Update $gray-05 to $background-x-light ([244061a](https://github.com/featherweight-design/component-library/commit/244061ac60437a9089811056e24a55bfa1056e06))
+* Update $gray-08 to $background-light ([1bfaaa0](https://github.com/featherweight-design/component-library/commit/1bfaaa0655ca8b3cf81ea9d9df3635b4ce0ad98a))
+* Update $gray-09 to $background-light ([2bd3c7b](https://github.com/featherweight-design/component-library/commit/2bd3c7b51b8bc6011335b263accaf769c85d3600))
+* Update $gray-1 to $background ([3cba60c](https://github.com/featherweight-design/component-library/commit/3cba60c817d48e5164ebe83d287d213e686d4ea8))
+* Update all $white to $background-white ([240dba3](https://github.com/featherweight-design/component-library/commit/240dba3eacfc2683d12de06d1611d89b8fa2dde5))
+* Update black to brackground-black ([7428ab4](https://github.com/featherweight-design/component-library/commit/7428ab49c4b897778c40aeb5705d4644c6742943))
+* Update gray-06 to brackground-x-light ([7b36da5](https://github.com/featherweight-design/component-library/commit/7b36da5a1245cc10c7287e45d6d8dc86924fa8ad))
+* Update gray-07 to brackground-light ([c1273f4](https://github.com/featherweight-design/component-library/commit/c1273f430cdb112ebcd9c33a7a0cf74dc667c38c))
+* Update gray-10 to brackground ([67dba0b](https://github.com/featherweight-design/component-library/commit/67dba0bc65bc5cd970e1d944387df44520edfa74))
+* Update gray-12 to brackground ([f9f7830](https://github.com/featherweight-design/component-library/commit/f9f78302140ca7e579c653a76b33834736008794))
+* Update gray-15 to brackground-dark ([1a6dd9c](https://github.com/featherweight-design/component-library/commit/1a6dd9c6d69fd9f32a1c16ee13729dfffbf023ab))
+* Update SideNavigation sub-option hover styles ([dbb4cf4](https://github.com/featherweight-design/component-library/commit/dbb4cf4aed3ee815617b0ddd617cdf11a0dd2a06))
+
+
+### Tests
+
+* Increase Cypress responseTimeout ([721a993](https://github.com/featherweight-design/component-library/commit/721a9932e206e7dbcace82f3f711a98d01827321))
+* Try new config for Button Variants tests ([d7812f9](https://github.com/featherweight-design/component-library/commit/d7812f9757e4b5f156ab5409a020fe4c074a420c))
+
 ## [2.1.0](https://github.com/featherweight-design/component-library/compare/@f-design/component-library@2.0.1...@f-design/component-library@2.1.0) (2021-07-28)
 
 

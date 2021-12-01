@@ -14,7 +14,6 @@
   box-shadow: rgba(99, 115, 138, 0.2) 0px 5px 5px -3px,
     rgba(99, 115, 138, 0.14) 0px 8px 10px 1px,
     rgba(99, 115, 138, 0.12) 0px 3px 14px 2px;
-  font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
   overflow-y: auto;
   transition: width 0.3s ease-in-out;
@@ -117,7 +116,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 0.5rem;
-    &-selected {
+    &:hover, &-selected {
       background-color: $background-xx-light;
     }
     &-collapsed {
@@ -161,7 +160,7 @@
     align-items: center;
     padding: 0.5rem 3.375rem;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
     cursor: pointer;
     transition: color 0.1s ease-in-out;
@@ -204,7 +203,7 @@
     border-bottom: 1px solid $background-x-light;
     margin-bottom: 0.25rem;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: bold;
     text-transform: capitalize;
     &-selected {
       color: $brand-color;
@@ -241,7 +240,7 @@
     transition: none !important;
     &-selected {
       color: $background-black;
-      font-weight: 500;
+      font-weight: bold;
     }
   }
   &__collapse-toggle {
@@ -273,7 +272,7 @@
     left: 2rem;
     font-size: 1rem;
     color: $background;
-    transition: 0.2s 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
     &-collapsed {
       left: 2rem;
       transform: rotate(180deg);
@@ -283,7 +282,7 @@
     width: 100%;
     margin-left: 3.375rem;
     opacity: 1;
-    transition: opacity 0.1s ease-in-out;
+    transition: 0.2s ease-in-out;
     &-hidden {
       color: transparent;
       opacity: 0;
