@@ -11,7 +11,7 @@ describe('Button Variants tests', () => {
   });
 
   it('Should have a "Default" button', () => {
-    cy.findByText(buttonCopy.default).closest('button');
+    cy.findAllByText(buttonCopy.default).closest('button');
   });
 
   it('Should have a "Default Destructive" button', () => {

@@ -7,7 +7,7 @@ describe('Button Variants Loading tests', () => {
   });
 
   it('Should have a loading "Default" button', () => {
-    cy.findByText(buttonCopy.default)
+    cy.findAllByText(buttonCopy.default)
       .closest('button')
       .find('.fd-circle-loader');
   });

@@ -7,7 +7,7 @@ describe('Button Variants Disabled tests', () => {
   });
 
   it('Should have a disabled "Default" button', () => {
-    cy.findByText(buttonCopy.default)
+    cy.findAllByText(buttonCopy.default)
       .closest('button')
       .should('be.disabled');
   });
